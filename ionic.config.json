@@ -1,0 +1,7 @@
+{
+  "name": "monekat",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

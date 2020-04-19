@@ -1,0 +1,89 @@
+<ion-header translucent>
+  <ion-toolbar color="favorite">
+      <ion-buttons slot="start">
+          <ion-back-button  color="dark" defaultHref="/" text="Your Shop" icon="arrow-back-outline"></ion-back-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button (click)="onSubmit()">Done</ion-button>
+      </ion-buttons> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen >
+      <form [formGroup]="shopProfileForm">
+            <div class="form-header">
+            <ion-text>
+                <h5>Shop logo (optional) </h5>
+                <p class="font-14">Your shop logo is visible on invoice, checkout link, and your online shop.</p>
+            </ion-text>
+            </div>
+            <ion-item lines="none" class="d-flex justify-content-center">
+                <div class="circle" (click)="presentActionSheet()" *ngIf="!shopLogo">
+                    <ion-icon name="add" ></ion-icon>
+                </div>
+                
+                <ion-avatar (click)="presentActionSheet()" *ngIf="shopLogo">
+                    <img [src]= "shopLogo">
+                </ion-avatar>
+            </ion-item> 
+            <div class="divider"></div>
+            <div class="form-header">
+                <ion-text>
+                    <h5>Basic Information </h5>
+                </ion-text>
+              </div>
+          <ion-item lines="none">
+              <ion-label position="stacked">Shop Name</ion-label>
+              <ion-input type="text" formControlName="shopName" name="shopName"></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label position="stacked">Email address</ion-label>
+            <ion-input type="text" formControlName="email" name="email"></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label position="stacked">Website</ion-label>
+            <ion-input type="text" formControlName="website" name="website"></ion-input>
+          </ion-item>
+         <div class="divider"></div>
+         <div class="form-header">
+            <ion-text>
+                <h5>Shop Details (optional) </h5>
+                <p class="font-14">Your customers will see shop details on your online store, other sales channels, and web search results.</p>
+            </ion-text>
+          </div>
+          <ion-item lines="none">
+            <ion-label position="stacked">Shop Details</ion-label>
+            <ion-input type="text" formControlName="shopdetails" name="shopdetails"></ion-input>
+          </ion-item>
+         <div class="divider"></div>
+         <div class="form-header">
+                <ion-text>
+                    <h5>Business Address </h5>
+                    <p class="font-14">This is where shopping companies will pick up your products for delivery. We won't share your business address with anyone.</p>
+                </ion-text>
+              </div>
+            <ion-item lines="none" >
+                <ion-label >
+                    <ion-text>
+                        <p>Address</p>
+                        <p *ngIf="hasShopAddress">
+                            {{shopAddress}}
+                        </p>
+                    </ion-text>
+                </ion-label>
+              
+                <ion-button slot="end" color="none" class="add-button" (click)="goToAddress()">
+                    <ion-text *ngIf="!hasShopAddress">Add</ion-text>
+                    <ion-text *ngIf="hasShopAddress">Edit</ion-text>
+                  </ion-button>
+              </ion-item>
+          <div class="divider"></div>
+          <div class="map-container" *ngIf="hasShopAddress">
+            <ion-text>
+                <h5>Pin Location</h5>
+            </ion-text>
+            <app-map [location]="geoLocation$ | async" ></app-map>
+          </div>
+          
+        </form>
+</ion-content>

@@ -1,0 +1,47 @@
+ion-slides  {
+    height: 80%;
+    --bullet-background-active : #ffffff;
+    --bullet-background : gray;
+
+    
+}
+
+
+
+ion-text  {
+    text-align: center;
+}
+ion-content, ion-header  {
+    --background : #ffcc04;
+}
+.slide-container ion-button  {
+    --color	: #ffffff !important;
+    --background : #ffcc04;
+    margin-top: 30px;
+}
+
+.heading  {
+    margin: 0 35px;
+    line-height: 0px;
+    color: #ffffff;
+    padding: 10px 0;
+}
+ion-toolbar h5  {
+    text-align: right;
+    color: #ffffff;
+}
+ion-text  {
+    --color : rgba(0,0,0,.84);
+}
+.slide-container  {
+    height: 80%;
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 60px 20px;
+}
+.slider-img  {
+    width: 50%;
+}
+.subtitle  {
+    font-size: 13px;
+}

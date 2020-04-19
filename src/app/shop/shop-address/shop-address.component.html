@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="favorite">
+    <ion-buttons slot="start">
+        <ion-back-button  color="dark" defaultHref="/" text="Business Address" icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="onSubmit()" color="dark">Done</ion-button>
+    </ion-buttons> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <form [formGroup]="shopAddressForm">
+    <ion-list>
+        <ion-item>
+            <ion-label>Country</ion-label>
+            <ion-select value="brown" okText="Okay" cancelText="Dismiss" formControlName="country">
+              <!-- <ion-select-option [value]="null"> </ion-select-option> -->
+              <ion-select-option *ngFor="let country of countries" [value]="country">{{country}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+              <ion-label>City</ion-label>
+              <ion-select value="brown" okText="Okay" cancelText="Dismiss" formControlName="city">
+                  <ion-select-option *ngFor="let city of cities" [value]="country">{{city}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>Street</ion-label>
+              <ion-input type="text" formControlName="street" name="shopdetails"></ion-input>
+            </ion-item>
+    </ion-list>
+  </form>
+</ion-content>
