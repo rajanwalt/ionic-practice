@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, AfterContentInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, AfterContentInit, SimpleChanges } from '@angular/core';
 declare var google: any;
 
 interface MapLocation  {
@@ -46,10 +46,21 @@ export class MapComponent implements OnInit, AfterContentInit {
   constructor() { }
 
   ngOnInit() {
-    // if(this.location && this.location.lat) {
-    //   this.setMap();
-    // }
+    if(this.location && this.location.lat) {
+      this.setMap();
+    }
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    for(const propName in changes)  {
+      let change = changes[propName];
+
+      if(propName == "location")  {
+        this.setMap(change.currentValue)
+      } 
+    }
+  }
+    
 
   ngAfterContentInit()  {
     if(this.location && this.location.lat) {

@@ -9,7 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import {File} from '@ionic-native/file/ngx';
-
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,11 +17,12 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers, initialState } from './store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from './../environments/environment';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, 
+  imports: [BrowserModule,
     IonicModule.forRoot(), 
     ReactiveFormsModule, 
     AppRoutingModule,
@@ -33,14 +34,17 @@ import { environment } from './../environments/environment';
         strictActionImmutability: true
       }
     }),
-    !environment.production ? StoreDevtoolsModule.instrument() : []],
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    ImageCropperModule
+  ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Crop,
     FileTransfer,
-    File
+    File,
+    WebView
   ],
   bootstrap: [AppComponent]
 })

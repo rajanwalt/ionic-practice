@@ -1,0 +1,111 @@
+<ion-header translucent>
+    <ion-toolbar color="favorite" padding>
+        <ion-buttons slot="start">
+            <ion-back-button  color="dark" defaultHref="/" text="" icon="close"></ion-back-button>
+        </ion-buttons>
+        <ion-title color="dark">Add Item</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="onSubmit()">
+            <ion-icon name="checkmark" color="dark"></ion-icon>
+          </ion-button>
+        </ion-buttons> 
+    </ion-toolbar>
+</ion-header>
+<ion-content padding >
+    <form [formGroup]="catalogueForm">
+        <div class="form-header">
+            <ion-text class="input-label">
+                Add logo (optional) 
+            </ion-text>
+        </div>
+        <ion-item lines="none" class="d-flex justify-content-center">
+            <div class="thumbnail-container"  *ngFor="let photo of photos; let i=index">
+                <div class="thumbnail" (click)="onSelectPhoto()">
+                    <ion-thumbnail>
+                        <img *ngIf="photo.webviewPath" [src]="photo.webviewPath">
+                        <ion-icon name="image-outline" *ngIf="!photo.webviewPath" color="primary"></ion-icon>
+                    </ion-thumbnail>
+                </div>
+                <div class="delete-icon" (click)="onDelete(i)">
+                    <ion-icon  name="trash" *ngIf="photo.webviewPath"></ion-icon>
+                </div>
+            </div>
+        </ion-item>
+
+        <ion-item lines="none" [class.error]="!catalogueForm.controls.productName.valid && (catalogueForm.controls.productName.dirty || catalogueForm.controls.productName.touched)" >
+            <ion-label position="stacked" class="input-label">Name of product or service</ion-label>
+            <ion-input type="text" formControlName="productName" name="productName"></ion-input>
+            <ion-text class="warn-text" >Name canot be empty</ion-text>
+        </ion-item> 
+
+        <ion-item lines="none" [class.error]="!catalogueForm.controls.price.valid && (catalogueForm.controls.price.dirty || catalogueForm.controls.price.touched)">
+            <ion-label position="stacked" class="input-label">Price</ion-label>
+            <ion-input type="text" formControlName="price" name="price"></ion-input>
+            <ion-text class="warn-text">Price canot be empty</ion-text>
+        </ion-item>
+        
+        <ion-item lines="none">
+            <ion-label position="stacked" class="input-label">Additional Details (Optional) </ion-label>
+            <ion-textarea clearOnEdit="true" rows="6" cols="20" formControlName="additionalDetails" name="additionalDetails" ></ion-textarea>
+        </ion-item>
+        <ion-item lines="none">
+                <ion-label class="ion-text-wrap delivery-label" >
+                        <ion-text  class="input-label">
+                          <p>Delivery</p>
+                        </ion-text>
+                        <ion-text>
+                            <p>Applicable for physical products</p>
+                        </ion-text>
+                        <ion-text *ngIf="!hasDimensions" color="medium">
+                          <p>Delivery address and options will be required for the customers to complete a purchase</p>
+                        </ion-text>
+                </ion-label>
+                      <ion-toggle 
+                        formControlName="delivery" 
+                        slot="end" 
+                        (ionChange)="hasDimensions = !hasDimensions">
+                    </ion-toggle>
+        </ion-item>
+        <div class="form-header" *ngIf="hasDimensions">
+            <ion-text class="input-label">
+                <p>Dimensions </p>
+            </ion-text>
+            <ion-text>
+                <p>Choose a preset or enter manually</p>
+            </ion-text>
+        </div>
+        <ion-item lines="none" *ngIf="hasDimensions">
+            <div class="dimention-thumbnail-container" *ngFor="let dimension of dimensions; let i=index">
+                    <ion-thumbnail (click)="onSelectDimensions(dimension.type);isActive=i" class="dimensions"  [class.active]="isActive==i">
+                        <ion-icon [name]="dimension.logo"></ion-icon>
+                        <ion-text>
+                            <p class="type">{{dimension.type}}</p>
+                            <p class="description">{{dimension.weight}} Kg-{{dimension.length}} L, {{dimension.width}} W, {{dimension.height}} H</p>
+                        </ion-text>
+                    </ion-thumbnail>
+            </div>
+        </ion-item>
+        <div formGroupName="dimensionDetails" class="dimensionDetails" *ngIf="hasDimensions">
+            <ion-item lines="none">
+                <ion-label position="stacked">Weight</ion-label>
+                <ion-input type="text" formControlName="weight" name="weight"></ion-input>
+                <span class="input-subtext">kg</span>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-label position="stacked">Length</ion-label>
+                <ion-input type="text" formControlName="length" name="length"></ion-input>
+                <span class="input-subtext">cm</span>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-label position="stacked">Width</ion-label>
+                <ion-input type="text" formControlName="width" name="width"></ion-input>
+                <span class="input-subtext">cm</span>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-label position="stacked">Height</ion-label>
+                <ion-input type="text" formControlName="height" name="height"></ion-input>
+                <span class="input-subtext">cm</span>
+            </ion-item>
+        </div>
+    </form>
+</ion-content>

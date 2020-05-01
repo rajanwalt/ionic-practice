@@ -1,0 +1,135 @@
+ion-toolbar  {
+    --padding-top : 10px;
+    --padding-bottom : 10px;
+}
+
+.form-header {
+    
+    &:first-child  {
+        padding: 15px;
+    }
+
+    padding: 0 15px;
+    
+}
+.input-label  {
+    font-weight: 600;
+    font-size: 14px;
+}
+.delivery-label p {
+    line-height: 1.5;
+}
+ion-thumbnail  {
+    margin-right: 25px;
+    --border-radius	 : 5px;
+    --size: 100%;
+
+    background-color: #D3D3D3;
+    text-align: center;
+
+    ion-icon  {
+        font-size: 35px;
+        margin-top: 15px;
+    }
+}
+.thumbnail-container  {
+    text-align: center;
+    
+    .thumbnail  {
+        height: 70px;
+        width:70px;
+        margin-right: 20px;
+    }
+    .delete-icon  {
+        width: 40px;
+        height: 40px;
+        margin-top: 10px;
+        margin-right: 20px;
+        margin-left: 15px;
+
+        ion-icon  {
+            padding: 5px;
+            background-color: rgba(0,0,0,0.6);  
+            font-size: 30px;
+            color: #ffffff;
+        }
+    }
+}
+
+ion-input {
+    --padding-top: 12px;
+    border-bottom : 1px solid #000000;
+}
+ion-item  {
+    --padding-bottom : 15px;
+    
+    .warn-text  {
+        display: none;
+    }
+    
+    &.error {
+        color: var(--ion-color-danger);
+
+        ion-input {
+            border-bottom : 1px solid var(--ion-color-danger);
+        }
+
+        .warn-text  {
+            padding-top: 5px;
+            font-size: 12px;
+            display: block;
+        }
+    }
+}
+
+ion-textarea  {
+    --background: var(--ion-color-light);
+    padding: 0 2px;
+}
+.dimention-thumbnail-container  {
+    height: auto;
+    width: calc(100% / 3);
+    padding: 0 4px;
+}
+ion-thumbnail.dimensions  {
+    
+    --size: 100%;   
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    padding: 0 3px;
+    line-height: 5px;
+
+    ion-icon  {
+        font-size: 40px;
+    }
+    .type  {
+        font-weight: bold;
+    }
+    .description  {
+        font-size: 10px;
+    }
+    &.active  {
+        
+        border: 1px solid var(--ion-color-favorite);
+        color: var(--ion-color-favorite);
+        
+        ion-icon  {
+            color: var(--ion-color-favorite);
+        }
+    }
+    
+}
+.dimensionDetails  {
+    padding: 0 20px;
+    
+    .input-subtext {
+        position: absolute;
+        right: 15px;
+        top: 35px;
+        color: gray;
+    }
+}
+.warn-text  {
+    padding-top: 5px;
+    font-size: 12px;
+}

@@ -18,12 +18,12 @@
             </ion-text>
             </div>
             <ion-item lines="none" class="d-flex justify-content-center">
-                <div class="circle" (click)="presentActionSheet()" *ngIf="!shopLogo">
+                <div class="circle" (click)="presentActionSheet()" *ngIf="!shopLogo?.webviewPath">
                     <ion-icon name="add" ></ion-icon>
                 </div>
                 
-                <ion-avatar (click)="presentActionSheet()" *ngIf="shopLogo">
-                    <img [src]= "shopLogo">
+                <ion-avatar (click)="presentActionSheet()" *ngIf="shopLogo?.webviewPath">
+                    <img [src]= "shopLogo?.webviewPath">
                 </ion-avatar>
             </ion-item> 
             <div class="divider"></div>
@@ -87,3 +87,7 @@
           
         </form>
 </ion-content>
+
+<!-- <div class="overlay" padding [hidden]="overlayHidden"> -->
+    <app-image-uploader *ngIf="!overlayHidden"></app-image-uploader>
+<!-- </div>  -->

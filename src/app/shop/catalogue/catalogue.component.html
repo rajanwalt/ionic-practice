@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="favorite" padding>
+    <ion-buttons slot="start">
+        <ion-back-button  color="dark" defaultHref="/" text="Catalogue" icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="onSubmit()" color="dark">
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+        <ion-col class="ion-align-self-center">
+          <div *ngIf="!((catelogue$ | async).length)" class="catalogue-container">
+            <h5 class="font-weight-bold ">You don't have anything in your catalogue yet</h5>
+            <p class="font-weight-light">
+              Add products or services to your catalogue. Just a name and price is needed to get going.
+            </p>
+            <ion-button 
+                    expand="full" 
+                    strong="true" 
+                    href="/shop/catalogue/add">
+              Add A PRODUCT OR SERVICE            
+            </ion-button>
+          </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
