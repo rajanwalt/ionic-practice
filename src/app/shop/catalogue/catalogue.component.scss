@@ -1,12 +1,35 @@
 ion-toolbar  {
     --padding-top : 10px;
     --padding-bottom : 10px;
+    --background: var(--ion-color-favorite);
+    
+    ion-back-button {
+        --icon-margin-end : 10px;
+        --icon-margin-start : 5px;
+        // --icon-font-weight : 900;
+    }
+
+    ion-searchbar  {
+        // position: absolute;
+        // right: 0;
+        // top: 0;
+        --cancel-button-color: var(--ion-color-dark);
+        // width: 92%;
+        padding: 25px;
+    }
 }
 
 ion-grid, ion-row  {
     height: 100%;
 }
-
+ion-item  {
+    --padding-top : 15px;
+}
 .catalogue-container  {
     text-align: center;
+}
+
+ion-button.add-item  {
+    --background:  var(--ion-color-favorite);
+    --color : var(--ion-color-dark);
 }

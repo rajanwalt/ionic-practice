@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar color="favorite">
+    <ion-buttons slot="start">
+        <ion-back-button  color="dark" defaultHref="/" text="" icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="onEdit()" color="dark">Edit</ion-button>
+    </ion-buttons> 
+  </ion-toolbar>
+</ion-header>
+<ion-content padding *ngIf="customerDetails$ | async as customerDetails">
+    <ion-grid >
+        <ion-row>
+          <ion-col class="avatar-container">
+              <ion-avatar class="center">
+                  <ion-text>{{customerDetails?.firstName | slice:0:1}}</ion-text>
+              </ion-avatar>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-text>{{customerDetails?.firstName}} {{customerDetails?.lastName}}</ion-text>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-text>Cust. Since {{customerDetails?.joinedOn | date:'mediumDate'}}</ion-text>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-text>
+                    <p>
+                        {{customerDetails?.totalOrders}}
+                    </p>
+                    <p>
+                        Orders
+                    </p>
+                </ion-text>
+            </ion-col>
+            <ion-col class="border-left">
+                <ion-text>
+                    <p>
+                        {{customerDetails?.totalSpent | currency:'USD':'code'}}
+                    </p>
+                    <p>
+                        Spent
+                    </p>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-list>
+        <ion-list-header>
+            <ion-label>Customer Details</ion-label>
+        </ion-list-header>
+        <ion-item  lines='none'>
+            <ion-label>
+                <ion-text>
+                    <p class="title-text">Name</p>
+                    <p>{{customerDetails?.firstName}} {{customerDetails?.lastName}}</p>
+                </ion-text>
+            </ion-label>
+            
+        </ion-item>
+        <ion-item  lines='none'>
+                <ion-label>
+                    <ion-text>
+                        <p class="title-text">Email</p>
+                        <p>{{customerDetails?.email}}</p>
+                    </ion-text>
+                </ion-label>
+                
+            </ion-item>
+            <ion-item  lines='none'>
+                    <ion-label>
+                        <ion-text>
+                            <p class="title-text">Phone number</p>
+                            <p>{{customerDetails?.phoneNumber}}</p>
+                        </ion-text>
+                    </ion-label>
+                    
+                </ion-item>
+            <div class="divider"></div>
+            <ion-list-header>
+                    <ion-label>Shipping Details</ion-label>
+                </ion-list-header>
+                <ion-item  lines='none'>
+                        <ion-label>
+                            <ion-text>
+                                <p>{{customerDetails?.country}}</p>
+                                <p>{{customerDetails?.city}}</p>
+                                <p>{{customerDetails?.street}}</p>
+                            </ion-text>
+                        </ion-label>
+                        
+                    </ion-item>
+    </ion-list>
+
+</ion-content>

@@ -1,0 +1,134 @@
+<ion-header>
+  <ion-toolbar padding>
+        <ion-back-button  slot="start" color="dark" defaultHref="/" text="My Wallet" icon="arrow-back-outline"></ion-back-button>
+   </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-grid *ngIf="hasData">
+    <ion-row class="ion-align-items-center">
+        <ion-col class="ion-align-self-center">
+          <div  class="catalogue-container">
+            <p class="dollar-icon">
+              <ion-icon name="cash-outline"></ion-icon>
+            </p>
+            <p class="font-weight-light">
+              Monekat release payouts about 7 days after a sale has been made. The time it takes for the funds to appear in your account depends on your payout method.
+            </p>
+            <ion-button 
+                    expand="full" 
+                    strong="true" 
+                    (click)="onAddItem()"
+                    class="add-item">
+              ADD PAYOUT METHOD            
+            </ion-button>
+          </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div *ngIf="!hasData">
+    <ion-item lines="none">
+        <ion-label class="header">
+            <ion-text class="text-16 text-600">
+                PAYOUT SUMMARY
+            </ion-text>
+        </ion-label>
+    </ion-item>
+    <ion-card>
+        <ion-card-content>
+            <ion-grid>
+                <ion-row >
+                    <ion-col class="text-left">
+                        <ion-text>Account Balance</ion-text>
+                      </ion-col>  
+                    <ion-col class="text-right">
+                        <ion-text>value</ion-text>
+                    </ion-col>
+                </ion-row>
+                <ion-row >
+                    <ion-col class="text-left">
+                        <ion-text>Currently Available</ion-text>
+                      </ion-col>  
+                    <ion-col class="text-right">
+                        <ion-text>value</ion-text>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+      </ion-card>
+      <ion-item lines="none">
+          <ion-label class="ion-text-wrap">
+            <ion-text>
+                <h2 class="text-600">Select a payout method</h2>
+                
+            </ion-text>
+            <ion-text color="medium">
+                <p class="sub-text">
+                    Monekat releases payout about 7 days after a sale has been made.
+                    The time it takes for thr funds to appear in your account depends on your payout method.
+                </p>
+            </ion-text>
+          </ion-label>
+      </ion-item>
+      <ion-card>
+          <ion-card-header>
+              <ion-card-title>
+                  <ion-grid>
+                      <ion-row >
+                          <ion-col size="5">
+                              <ion-text>Bank Transfer</ion-text>
+                            </ion-col>  
+                          <ion-col size="5">
+                              <ion-text>Bank Name</ion-text>
+                            </ion-col>
+                          <ion-col class="icon-container" size="2">
+                            <ion-icon name="ellipsis-vertical" (click)="onShowPopup($event)"></ion-icon>
+                          </ion-col>
+                      </ion-row>
+                  </ion-grid>
+              </ion-card-title>
+          </ion-card-header>
+        
+          <ion-card-content>
+              <ion-grid>
+                  <ion-row >
+                      <ion-col class="text-left">
+                          <ion-text>Processing in</ion-text>
+                        </ion-col>  
+                      <ion-col class="text-right">
+                          <ion-text>3 - 5 business days</ion-text>
+                      </ion-col>
+                  </ion-row>
+                  <ion-row >
+                      <ion-col class="text-left">
+                          <ion-text>Fees</ion-text>
+                        </ion-col>  
+                      <ion-col class="text-right">
+                          <ion-text>value</ion-text>
+                      </ion-col>
+                  </ion-row>
+                  <ion-row >
+                      <ion-col class="text-left">
+                          <ion-text>Currency</ion-text>
+                        </ion-col>  
+                      <ion-col class="text-right">
+                          <ion-text>USD</ion-text>
+                      </ion-col>
+                  </ion-row>
+                  <ion-row >
+                      <ion-col >
+                        Details: Business day processing only; weekends and banking holidays may cause delays.
+                      </ion-col>
+                  </ion-row>
+              </ion-grid>
+          </ion-card-content>
+        </ion-card>
+
+  </div>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+      <p>
+        RELEASE PAYMENT
+      </p>
+    </ion-toolbar>
+  </ion-footer>

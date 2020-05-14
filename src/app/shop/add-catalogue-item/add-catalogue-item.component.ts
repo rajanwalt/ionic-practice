@@ -7,6 +7,11 @@ import {File, IWriteOptions, FileEntry} from '@ionic-native/file/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 import { PhotoService} from './../../APIs';
+import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+
+import { State } from './../../store/state';
+import { AddCatalogue } from './../../store/actions';
 
 interface Photo  {
   filePath :  string,
@@ -22,7 +27,7 @@ export class AddCatalogueItemComponent implements OnInit {
 
   photos : Photo[] = [
     {
-      webviewPath : "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y",
+      webviewPath : "https://developer.apple.com/app-store/marketing/guidelines/images/thumbnail-iMac_2x.png",
       filePath : ""
     },
     {
@@ -110,7 +115,9 @@ export class AddCatalogueItemComponent implements OnInit {
 
   }
   onSubmit()  {
-    console.log(this.catalogueForm.value);
+    if(this.catalogueForm.valid)  {
+      this._store.dispatch(new AddCatalogue(this.catalogueForm.value));
+    }
   }
   onDelete(index)  {
     let selectedPhoto = this.photos[index] 
@@ -180,10 +187,18 @@ export class AddCatalogueItemComponent implements OnInit {
     private camera: Camera,
     private file: File,
     public photoService : PhotoService,
-    private webview: WebView) { 
+    private webview: WebView,
+    private activatedRoute: ActivatedRoute,
+    private _store: Store<State>) { 
 
     }
 
-  ngOnInit() {}
+  ngOnInit() {
+    let type = this.activatedRoute.snapshot.queryParamMap.get('id');
+
+    if(type !=  undefined)  {
+      // Call API to retrive Data and set or patch customerForm
+    }
+  }
 
 }

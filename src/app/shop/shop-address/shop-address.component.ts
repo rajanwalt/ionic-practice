@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { selectShopDetails } from './../../store/selectors';
 import { SetShopAddress } from './../../store/actions';
-import { State } from './../../store/reducers';
+import { State } from './../../store/state';
 import { Observable, Subscription } from 'rxjs';
 
 

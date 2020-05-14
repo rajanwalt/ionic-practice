@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule }    from '@angular/common/http';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -14,15 +15,24 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers, initialState } from './store/reducers';
+import { reducers, metaReducers } from './store/reducers';
+import {initialState} from './store/state';
+
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from './../environments/environment';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { EffectsModule } from '@ngrx/effects';
+import {ShopDetailsEffects, CustomersEffects, CatalogueEffects } from './store/effects';
+
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [],
-  imports: [BrowserModule,
+  entryComponents: [
+    // PopupContentComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(), 
     ReactiveFormsModule, 
     AppRoutingModule,
@@ -34,6 +44,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
         strictActionImmutability: true
       }
     }),
+    EffectsModule.forRoot([ShopDetailsEffects, CustomersEffects, CatalogueEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     ImageCropperModule
   ],
@@ -46,6 +57,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     File,
     WebView
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule {}

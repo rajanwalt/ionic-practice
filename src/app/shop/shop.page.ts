@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterContentInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
-import { Router} from '@angular/router'
+import { Router, ActivatedRoute} from '@angular/router'
 
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import { ActionSheetController } from '@ionic/angular';
@@ -10,9 +10,9 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 
 import { Store } from '@ngrx/store';
-import { SetShopAddress } from './../store/actions'
+import { SetShopAddress, AddShopDetails } from './../store/actions'
 import { selectShopDetails } from './../store/selectors';
-import { State } from './../store/reducers';
+import { State } from './../store/state';
 import { Observable, Subscription, of } from 'rxjs';
 import { map, filter, switchMap, catchError } from 'rxjs/operators';
 
@@ -49,7 +49,7 @@ export class ShopPage implements OnInit, OnDestroy {
   shopProfileForm = new FormGroup({
     shopName: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
-    website: new FormControl('', Validators.required),
+    // website: new FormControl('', Validators.required),
     shopdetails: new FormControl(''),
     country: new FormControl(''),
     city: new FormControl(''),
@@ -83,31 +83,43 @@ export class ShopPage implements OnInit, OnDestroy {
               private file: File,
               private service: MonekatService,
               public photoService : PhotoService,
-              private webview: WebView) { 
+              private webview: WebView,
+              private activatedRoute: ActivatedRoute) { 
   }
 
   ngOnInit() {
-    this.shopDetailsSub = this.shopDetails$.subscribe( shopDetails => {
-      this.shopProfileForm.setValue(shopDetails);
-      this.hasShopAddress = (shopDetails['country'] && shopDetails['country'].length>0) ? true : false;
-      this.shopAddress = shopDetails['street'] + "," + shopDetails['city'] + "," + shopDetails['country'];
-    })
+    let type = this.activatedRoute.snapshot.queryParamMap.get('id');
+
+    if(type ==  'edit')  {
+      // Call API to retrive Data and set or patch customerForm
+      
+      this.shopDetailsSub = this.shopDetails$.subscribe( shopDetails => {
+        this.shopProfileForm.setValue(shopDetails);
+        this.hasShopAddress = (shopDetails['country'] && shopDetails['country'].length>0) ? true : false;
+        this.shopAddress = shopDetails['street'] + "," + shopDetails['city'] + "," + shopDetails['country'];
+      })
+    }
+    
 
   }
   
   async onSubmit()  {
-    const formData = new FormData();
-    if(this.shopProfileForm.valid)  {
+    // if(this.shopProfileForm.valid)  {
+      const formData = new FormData();
+
       formData.append("shopName", this.shopProfileForm.get('shopName').value);
       formData.append("email", this.shopProfileForm.get('email').value);
-      formData.append("website", this.shopProfileForm.get('website').value);
+      // formData.append("website", this.shopProfileForm.get('website').value);
       formData.append("shopdetails", this.shopProfileForm.get('shopdetails').value);
       formData.append("country", this.shopProfileForm.get('country').value);
       formData.append("city", this.shopProfileForm.get('city').value);
       formData.append("street", this.shopProfileForm.get('street').value);
       const shopLogoBlog: Blob = this.shopLogo.filePath ? await this.photoService.convertImageUriToBlob(this.shopLogo.filePath) : null;
-      formData.append("shopLogo", shopLogoBlog, "logo");
-    }
+      
+      shopLogoBlog && formData.append("shopLogo", shopLogoBlog, "logo");
+
+      this._store.dispatch(new AddShopDetails(formData))
+    // }
   }
   
   goToAddress()  {
@@ -175,7 +187,9 @@ export class ShopPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.shopDetailsSub.unsubscribe();
+    if(this.shopDetailsSub)  {
+      this.shopDetailsSub.unsubscribe();
+    }
   }
   
 }

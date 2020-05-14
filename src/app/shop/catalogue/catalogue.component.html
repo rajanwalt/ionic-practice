@@ -1,21 +1,30 @@
 <ion-header>
-  <ion-toolbar color="favorite" padding>
-    <ion-buttons slot="start">
-        <ion-back-button  color="dark" defaultHref="/" text="Catalogue" icon="arrow-back-outline"></ion-back-button>
+  <ion-toolbar padding>
+    <ion-buttons slot="start" *ngIf="!isSerachActive">
+        <ion-back-button  color="dark" defaultHref="/" [text]="!isSerachActive ? 'Catalogue' : ''" icon="arrow-back-outline"></ion-back-button>
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button (click)="onSubmit()" color="dark">
+    <ion-buttons slot="end" *ngIf="!isSerachActive">
+      <ion-button (click)="isSerachActive = !isSerachActive" color="dark">
         <ion-icon name="search"></ion-icon>
       </ion-button>
     </ion-buttons> 
+    
+    <ion-searchbar
+      debounce="500"
+      placeholder="Search for products" 
+      showCancelButton="always" 
+      *ngIf="isSerachActive"
+      cancelButtonIcon="arrow-back-sharp" 
+      (ionChange) = "onSearch($event)"
+      (ionCancel) = "onCancel()"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
-  <ion-grid>
+  <ion-grid *ngIf="!((catelogue$ | async).length)">
     <ion-row class="ion-align-items-center">
         <ion-col class="ion-align-self-center">
-          <div *ngIf="!((catelogue$ | async).length)" class="catalogue-container">
+          <div  class="catalogue-container">
             <h5 class="font-weight-bold ">You don't have anything in your catalogue yet</h5>
             <p class="font-weight-light">
               Add products or services to your catalogue. Just a name and price is needed to get going.
@@ -23,11 +32,29 @@
             <ion-button 
                     expand="full" 
                     strong="true" 
-                    href="/shop/catalogue/add">
+                    (click)="onAddItem()"
+                    class="add-item">
               Add A PRODUCT OR SERVICE            
             </ion-button>
           </div>
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-list *ngIf="((catelogue$ | async).length)">
+      <ion-item *ngFor="let item of (catelogue$ | async)" (click)="onViewItem(item)">
+        <ion-thumbnail slot="start">
+          <img [src]="item?.url">
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{item?.productName}}</h2>
+          <p>{{item?.itemSold}} sold, {{item?.price | currency:'USD':'code'}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  <ion-fab vertical="bottom" horizontal="end"  slot="fixed">
+    <ion-fab-button (click)="onAddItem()" color="favorite">
+      <ion-icon name="add" color="dark"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

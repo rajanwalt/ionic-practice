@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar color="favorite" padding>
+    <ion-title>
+      Store
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid *ngIf="shopDetails$ | async as shopDetails">
+      <ion-row (click)="onSelect('shop')">
+          <ion-col size="12" class="text-right">
+            <ion-text color="primary" >
+              Edit
+            </ion-text>
+          </ion-col>  
+        <ion-col size="12" class="ion-align-self-center text-center">
+            <ion-avatar >
+                <img *ngIf="shopDetails.shopLogo" [src]= "shopDetails.shopLogo">
+                <ion-icon *ngIf="!(shopDetails.shopLogo)" name="image-outline"></ion-icon>
+            </ion-avatar>
+            
+            <ion-text>
+                <p>{{shopDetails.shopName}}</p>
+                <p>{{shopDetails.city}}, {{shopDetails.country}}</p>
+            </ion-text>
+        </ion-col>
+    </ion-row>
+    <ion-row class="list" (click)="onSelect('wallet')">
+      <ion-col size="6">
+        <ion-icon name="wallet-outline" color="medium" class="left-icon"></ion-icon>
+        <div class="sub-text">My Wallet</div>
+      </ion-col>
+      <ion-col size="6" class="text-right">
+          <div class="sub-text">{{shopDetails.totalWallet | currency:'USD':'code'}}</div>
+        <ion-icon name="chevron-forward-outline" color="medium" class="right-icon"></ion-icon> 
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="list" (click)="onSelect('customers')">
+      <ion-col size="6">
+        <ion-icon name="people-outline" color="medium" class="left-icon"></ion-icon>
+        <div class="sub-text">Customers</div>
+      </ion-col>
+      <ion-col size="6" class="text-right">
+        <ion-icon name="chevron-forward-outline" color="medium" class="right-icon"></ion-icon> 
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="list" (click)="onSelect('catalogue')">
+      <ion-col size="6">
+        <ion-icon name="library-outline" color="medium" class="left-icon"></ion-icon>
+        <div class="sub-text">Catalogue</div>
+      </ion-col>
+      <ion-col size="6" class="text-right">
+        <ion-icon name="chevron-forward-outline" color="medium" class="right-icon"></ion-icon> 
+      </ion-col>
+    </ion-row>
+    
+   
+  </ion-grid>
+
+</ion-content>

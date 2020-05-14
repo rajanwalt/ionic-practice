@@ -1,0 +1,88 @@
+<ion-header translucent>
+  <ion-toolbar color="favorite" padding>
+      <ion-buttons slot="start">
+          <ion-back-button  color="dark" defaultHref="/" text="" icon="arrow-back-outline"></ion-back-button>
+      </ion-buttons>
+      <ion-title color="dark">Item Name</ion-title>
+      <ion-buttons slot="end">
+          <ion-button (click)="onEdit()">
+            <ion-text color="dark">
+              Edit
+            </ion-text>
+          </ion-button>
+        </ion-buttons> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen color="light">
+  <div class="bannaer-img">
+    <img [src]="bannerPhoto" />
+  </div>  
+  
+  <ion-item lines="none">
+    <ion-thumbnail *ngFor="let photo of photos; let i=index" 
+        (click)="onSetBannerImg(photo);isActive=i" 
+        [class.active]="isActive==i">
+      <ion-img [src]="photo.webviewPath"></ion-img>
+    </ion-thumbnail>
+  </ion-item>
+
+  <ion-item lines="none" class="item-margin">
+    <ion-label >
+      <ion-text>
+        <p>{{itemDetails.productName}}</p>
+      </ion-text>
+      <ion-text>
+          <p class="bold">{{itemDetails.price | currency:'USD':'code' }}</p>
+      </ion-text>
+    </ion-label>
+  </ion-item>
+
+  <ion-item lines="none" class="item-margin">
+      <ion-label >
+        <ion-text>
+          <p>Product Description</p>
+        </ion-text>
+        <ion-text>
+            <p>{{itemDetails.additionalDetails}}</p>
+        </ion-text>
+      </ion-label>
+  </ion-item>
+
+  <ion-item lines="none" class="item-margin">
+      <ion-grid>
+          <ion-row >
+            <ion-col>
+              <p>Weight</p>
+              <p class="light">{{itemDetails.dimensionDetails.weight}} kg</p>
+            </ion-col>
+            <ion-col>
+                <p>Length</p>
+                <p class="light">{{itemDetails.dimensionDetails.length}} cm</p>
+            </ion-col>
+            <ion-col>
+                <p>Width</p>
+                <p class="light">{{itemDetails.dimensionDetails.width}} cm</p>
+            </ion-col>
+            <ion-col>
+                <p>Height</p>
+                <p class="light">{{itemDetails.dimensionDetails.height}} cm</p>
+            </ion-col>
+          </ion-row>
+          </ion-grid>
+  </ion-item>
+
+  <ion-item lines="none" class="item-margin">
+      <ion-label slot="start">
+        <ion-text>
+          <p>Prod Name</p>
+        </ion-text>
+      </ion-label>
+      <ion-label slot="end">
+          <ion-text>
+            <p>Yes</p>
+          </ion-text>
+        </ion-label>
+  </ion-item>
+
+</ion-content>

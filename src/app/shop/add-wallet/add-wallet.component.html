@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-toolbar color="favorite">
+      <ion-buttons slot="start">
+          <ion-back-button  color="dark" defaultHref="/" text="Add Payout Method" icon="arrow-back-outline"></ion-back-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button (click)="onSubmit()" color="dark" *ngIf="walletForm.valid">Done</ion-button>
+      </ion-buttons> 
+    </ion-toolbar>
+  </ion-header>
+<ion-content padding >
+    <form [formGroup]="walletForm">
+      <ion-item lines="none" >
+            <ion-label position="stacked" class="input-label" >Country</ion-label>
+            <ion-select value="brown" okText="Okay" cancelText="Dismiss" formControlName="country">
+              <!-- <ion-select-option [value]="null"> </ion-select-option> -->
+              <ion-select-option *ngFor="let country of countries" [value]="country">{{country}}</ion-select-option>
+            </ion-select>
+      </ion-item>  
+      <ion-item lines="none">
+            <ion-label position="stacked" class="input-label">SWIFT</ion-label>
+            <ion-input type="text" formControlName="swift" name="swift"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+            <ion-label position="stacked" class="input-label">IBAN</ion-label>
+            <ion-input type="text" formControlName="iban" name="iban"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+            <ion-label position="stacked" class="input-label">Bank Name</ion-label>
+            <ion-input type="text" formControlName="bankName" name="bankName"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+            <ion-label position="stacked" class="input-label">Account Name</ion-label>
+            <ion-input type="text" formControlName="accountName" name="accountName"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+            <ion-label position="stacked" class="input-label">Account Number</ion-label>
+            <ion-input type="number" formControlName="accountNumber" name="accountNumber"></ion-input>
+        </ion-item>
+    </form>
+</ion-content>

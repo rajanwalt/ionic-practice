@@ -1,0 +1,44 @@
+ion-toolbar  {
+    --padding-top : 10px;
+    --padding-start : 10px;
+    --padding-bottom : 10px;
+}
+
+.bannaer-img  {
+    height: 300px;
+    width: 100%;
+    background-color: #ffffff;
+    img  {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+ion-item  {
+    
+    p {
+        font-size: 16px;
+        line-height: 2;
+
+        &.light  {
+            color: var(--ion-color-medium)
+        }
+        &.bold  {
+            font-weight: 700;
+        }
+    }
+
+    ion-thumbnail  {
+        margin: 15px;
+        width: 100px;
+        height: auto;
+
+        // &.active  {
+            // border: 1px solid var(--ion-color-favorite);
+        // }
+    }
+
+    &.item-margin  {
+        margin: 15px 0;
+    }
+}

@@ -19,6 +19,15 @@ import { MapComponent } from './map/map.component';
 import { ImageUploaderComponent } from './../common/image-uploader/image-uploader.component';
 import {CatalogueComponent} from './catalogue/catalogue.component';
 import {AddCatalogueItemComponent} from './add-catalogue-item/add-catalogue-item.component';
+import {ViewCatalogueComponent } from './view-catalogue/view-catalogue.component';
+import {WalletComponent} from './wallet/wallet.component';
+import { AddWalletComponent } from './add-wallet/add-wallet.component';
+import { CustomersComponent } from './customers/customers.component';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
+import { ViewCustomerComponent } from './view-customer/view-customer.component';
+
+
+import {PopupContentComponent} from './popup-content/popup-content.component';
 
 import { MonekatService, PhotoService } from './../APIs';
 
@@ -38,8 +47,16 @@ import { MonekatService, PhotoService } from './../APIs';
     MapComponent, 
     ImageUploaderComponent,
     CatalogueComponent,
-    AddCatalogueItemComponent
+    AddCatalogueItemComponent,
+    ViewCatalogueComponent,
+    WalletComponent,
+    AddWalletComponent,
+    CustomersComponent,
+    PopupContentComponent,
+    AddCustomerComponent,
+    ViewCustomerComponent
   ],
+  entryComponents : [PopupContentComponent],
   providers: [
     Geolocation,
     ImagePicker,

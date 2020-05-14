@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar padding>
+    <ion-buttons slot="start" *ngIf="!isSerachActive">
+        <ion-back-button  color="dark" defaultHref="/" [text]="!isSerachActive ? 'Customers' : ''" icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end" *ngIf="!isSerachActive">
+      <ion-button (click)="isSerachActive = !isSerachActive" color="dark">
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons> 
+    
+    <ion-searchbar
+      debounce="500"
+      placeholder="Search for products" 
+      showCancelButton="always" 
+      *ngIf="isSerachActive"
+      cancelButtonIcon="arrow-back-sharp" 
+      (ionChange) = "onSearch($event)"
+      (ionCancel) = "onCancel()"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid *ngIf="!((customers$ | async).length)">
+        <ion-row>
+          <ion-col *ngFor="let item of tabs; let i=index" (click)="onActivateTab(i)" [class.active]="i==activeTab">
+            {{item}}
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-list *ngIf="((customers$ | async).length)">
+      <ion-item  *ngFor="let item of (customers$ | async)" (click)="onViewCustomer(item)">
+        <ion-avatar slot="start">
+          <ion-text>{{item?.firstName | slice:0:1}}</ion-text>
+        </ion-avatar>
+        <ion-label>
+          <h2>{{item?.firstName}} {{item?.lastName}}</h2>
+          <p>{{item?.totalOrders}} orders, {{item?.totalAmount | currency:'USD':'code'}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    
+    <ion-fab vertical="bottom" horizontal="end"  slot="fixed">
+        <ion-fab-button (click)="onAddCustomer()" color="favorite">
+          <ion-icon name="add" color="dark"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
