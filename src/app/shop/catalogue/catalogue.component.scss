@@ -1,6 +1,10 @@
 ion-toolbar  {
     --background: var(--ion-color-favorite);
     
+    ion-buttons  {
+        height: 55px;
+    }
+
     ion-back-button {
         --icon-margin-end : 10px;
         --icon-margin-start : 5px;
@@ -8,11 +12,7 @@ ion-toolbar  {
     }
 
     ion-searchbar  {
-        // position: absolute;
-        // right: 0;
-        // top: 0;
         --cancel-button-color: var(--ion-color-dark);
-        // width: 92%;
         padding: 25px;
     }
 }

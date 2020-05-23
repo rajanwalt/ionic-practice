@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router} from '@angular/router'
 import { of, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { State } from './../../store/state';
 import { selectCustomers } from './../../store/selectors';
+import { IonSearchbar } from '@ionic/angular';
 
 
 @Component({
@@ -13,8 +14,12 @@ import { selectCustomers } from './../../store/selectors';
   styleUrls: ['./customers.component.scss'],
 })
 export class CustomersComponent implements OnInit {
-  isSerachActive : boolean =  false;
   
+  @ViewChild('searchbar', { static: false }) searchbar: IonSearchbar;
+  
+  isSerachActive : boolean =  false;
+  searchText: string = "";
+
   activeTab : number = 0;
 
   tabs : string[] = [
@@ -51,11 +56,18 @@ export class CustomersComponent implements OnInit {
   onActivateTab(activeIndex : number)  {
     this.activeTab = activeIndex;
   }
+  
+  onEnableSearch()  {
+    setTimeout(() => this.searchbar &&  this.searchbar.setFocus(), 500);
+  }
+
   onSearch(event)  {
-    console.log(event.target.value);
+    let searchText = event.target.value;
+    this.searchText = searchText;
   }
   onCancel()  {
     this.isSerachActive = false;
+    this.searchText = "";
   }
   
   onViewCustomer(customer: any)  {
@@ -73,4 +85,5 @@ export class CustomersComponent implements OnInit {
 
   ngOnInit() {}
 
+  
 }

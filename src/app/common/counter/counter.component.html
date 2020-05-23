@@ -1,0 +1,17 @@
+<ion-list-header>
+    {{order.name}}
+</ion-list-header>
+<ion-item lines='none'>
+    <div class="counter">
+                <div (click)="onClickCounter('decrease')">
+                    <ion-icon name="remove" ></ion-icon>
+                </div>
+                <div>
+                    <ion-label>{{count}}</ion-label>
+                </div>
+                <div (click)="onClickCounter('increase')">
+                    <ion-icon name="add" ></ion-icon>
+                </div>
+    </div> X {{price | currency:'USD':'code'}}
+    <ion-text slot="end">{{totalPrice | currency:'USD':'code'}}</ion-text>
+</ion-item>

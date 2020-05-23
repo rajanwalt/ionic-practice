@@ -11,12 +11,13 @@
 
 <ion-content fullscreen >
       <form [formGroup]="shopProfileForm">
-            <div class="form-header">
-            <ion-text>
-                <h5>Shop logo (optional) </h5>
-                <p class="font-14">Your shop logo is visible on invoice, checkout link, and your online shop.</p>
-            </ion-text>
-            </div>
+        <ion-list>
+            <ion-list-header>
+                <ion-text>
+                    <h5>Shop logo (optional) </h5>
+                    <p class="font-14">Your shop logo is visible on invoice, checkout link, and your online shop.</p>
+                </ion-text>
+            </ion-list-header>
             <ion-item lines="none" class="d-flex justify-content-center">
                 <div class="circle" (click)="presentActionSheet()" *ngIf="!shopLogo?.webviewPath">
                     <ion-icon name="add" ></ion-icon>
@@ -27,14 +28,15 @@
                 </ion-avatar>
             </ion-item> 
             <div class="divider"></div>
-            <div class="form-header">
+            <ion-list-header>
                 <ion-text>
                     <h5>Basic Information </h5>
                 </ion-text>
-              </div>
+            </ion-list-header>
           <ion-item lines="none">
               <ion-label position="stacked">Shop Name</ion-label>
               <ion-input type="text" formControlName="shopName" name="shopName"></ion-input>
+              <!-- <ion-text class="warn-text" >Shop name canot be empty</ion-text> -->
           </ion-item>
           <ion-item lines="none">
             <ion-label position="stacked">Email address</ion-label>
@@ -45,23 +47,23 @@
             <ion-input type="text" formControlName="website" name="website"></ion-input>
           </ion-item> -->
          <div class="divider"></div>
-         <div class="form-header">
+         <ion-list-header>
             <ion-text>
                 <h5>Shop Details (optional) </h5>
                 <p class="font-14">Your customers will see shop details on your online store, other sales channels, and web search results.</p>
             </ion-text>
-          </div>
+        </ion-list-header>
           <ion-item lines="none">
             <ion-label position="stacked">Shop Details</ion-label>
             <ion-input type="text" formControlName="shopdetails" name="shopdetails"></ion-input>
           </ion-item>
          <div class="divider"></div>
-         <div class="form-header">
+         <ion-list-header>
                 <ion-text>
                     <h5>Business Address </h5>
                     <p class="font-14">This is where shopping companies will pick up your products for delivery. We won't share your business address with anyone.</p>
                 </ion-text>
-              </div>
+            </ion-list-header>
             <ion-item lines="none" >
                 <ion-label >
                     <ion-text>
@@ -84,10 +86,10 @@
             </ion-text>
             <app-map [location]="geoLocation$ | async" ></app-map>
           </div>
-          
-        </form>
+         </ion-list>
+    </form>
 </ion-content>
 
 <!-- <div class="overlay" padding [hidden]="overlayHidden"> -->
-    <app-image-uploader *ngIf="!overlayHidden"></app-image-uploader>
+    <!-- <app-image-uploader *ngIf="!overlayHidden"></app-image-uploader> -->
 <!-- </div>  -->

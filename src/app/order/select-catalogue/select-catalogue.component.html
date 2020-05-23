@@ -1,0 +1,53 @@
+<ion-header translucent>
+    <ion-toolbar color="favorite" padding>
+        <ion-buttons slot="start">
+            <ion-back-button  color="dark" defaultHref="/" text="Cancel"></ion-back-button>
+        </ion-buttons>
+        <ion-title color="dark">Add Item</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="onAddItems()">
+            Add
+          </ion-button>
+        </ion-buttons> 
+    </ion-toolbar>
+</ion-header>
+<ion-content fullscreen >
+    <ion-list-header>
+        <ion-item *ngIf="!isSerachActive" lines='none'>
+            <ion-label slot="start">
+              Choose from Catalogue
+            </ion-label>
+            <ion-icon name="search" slot="end" (click)="onEnableSearch()"></ion-icon>
+        </ion-item>
+        
+        <ion-searchbar
+          #searchbar
+          debounce="500"
+          placeholder="Search for catalogue" 
+          showCancelButton="always" 
+          *ngIf="isSerachActive"
+          cancelButtonIcon="arrow-back-sharp" 
+          (ionChange) = "onSearch($event)"
+          (ionCancel) = "onCancel()">
+        </ion-searchbar>
+
+  </ion-list-header>  
+  <ion-list *ngIf="((catelogue$ | async).length)">
+        <ion-item *ngFor="let item of (catelogue$ | async) | listFilter:'productName':searchText" (click)="onSelectItem(item)">
+          <ion-thumbnail slot="start">
+            <img [src]="item?.url">
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{item?.productName}}</h2>
+            <p>{{item?.itemSold}} sold, {{item?.price | currency:'USD':'code'}}</p>
+            
+          </ion-label>
+          <ion-checkbox slot="end" color="favorite" ></ion-checkbox>
+        </ion-item>
+      </ion-list>
+      <ion-fab vertical="bottom" horizontal="end"  slot="fixed">
+        <ion-fab-button (click)="onAddItem()" color="favorite">
+          <ion-icon name="add" color="dark"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+</ion-content>

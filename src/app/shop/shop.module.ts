@@ -7,6 +7,7 @@ import { HttpClientModule }    from '@angular/common/http';
 import { IonicModule } from '@ionic/angular';
 import { ImageCropperModule } from 'ngx-image-cropper';
 
+import { SharedModule } from './../common';
 import { ShopPageRoutingModule } from './shop-routing.module';
 
 import {Geolocation} from '@ionic-native/geolocation/ngx';
@@ -26,6 +27,7 @@ import { CustomersComponent } from './customers/customers.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { ViewCustomerComponent } from './view-customer/view-customer.component';
 
+import { ListFilterPipe } from './../common/list-filter.pipe';
 
 import {PopupContentComponent} from './popup-content/popup-content.component';
 
@@ -38,6 +40,7 @@ import { MonekatService, PhotoService } from './../APIs';
     ReactiveFormsModule,
     IonicModule,
     HttpClientModule,
+    SharedModule,
     ImageCropperModule,
     ShopPageRoutingModule,
   ],
@@ -54,7 +57,8 @@ import { MonekatService, PhotoService } from './../APIs';
     CustomersComponent,
     PopupContentComponent,
     AddCustomerComponent,
-    ViewCustomerComponent
+    ViewCustomerComponent,
+    // ListFilterPipe
   ],
   entryComponents : [PopupContentComponent],
   providers: [

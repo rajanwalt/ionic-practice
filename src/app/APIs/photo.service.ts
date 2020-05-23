@@ -42,16 +42,24 @@ async getFile(path: string): Promise<FileEntry> {
 
   async convertImageUriToBlob(imagePath)  {
     const fileEntry = await this.getFile(imagePath);
+    const blob = await this.readFileAsBlob(fileEntry);
     
-    return this.readFileAsBlob(fileEntry);
+    return blob;
+  }
+
+  removeFromTempFile(name)  {
+    this.file.removeFile(this.file.dataDirectory, name);
   }
 
    async getPicture(options)  {
       const tempImage = await this.camera.getPicture(options);
-      // const tempImage = imageData; // file:///var/mobile/Containers/Data/Application/E4A79B4A-E5CB-4E0C-A7D9-0603ECD48690/tmp/cdv_photo_003.jpg
+      // const tempImage = "file:///C:/Users/f3r30y2/Desktop/profile-pic.jpg"; // file:///var/mobile/Containers/Data/Application/E4A79B4A-E5CB-4E0C-A7D9-0603ECD48690/tmp/cdv_photo_003.jpg
       const tempFilename = tempImage.substr(tempImage.lastIndexOf('/') + 1);
       const tempBaseFilesystemPath = tempImage.substr(0, tempImage.lastIndexOf('/') + 1);
       
+      // Can use Data URL in UI instead of webviewPath
+      const dataURL = await this.file.readAsDataURL(tempBaseFilesystemPath, tempFilename);
+
       const newBaseFilesystemPath = this.file.dataDirectory;
       await this.file.copyFile(tempBaseFilesystemPath, tempFilename,
                                 newBaseFilesystemPath, tempFilename);
@@ -60,7 +68,7 @@ async getFile(path: string): Promise<FileEntry> {
       const webviewPath =  this.webview.convertFileSrc(storedPhotoPath);
 
       return {
-        webviewPath,
+        "webviewPath" : webviewPath,
         "filePath" : storedPhotoPath
       }
      

@@ -24,6 +24,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { EffectsModule } from '@ngrx/effects';
 import {ShopDetailsEffects, CustomersEffects, CatalogueEffects } from './store/effects';
 
+import { SharedModule } from './common';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,6 +36,7 @@ import {ShopDetailsEffects, CustomersEffects, CatalogueEffects } from './store/e
     HttpClientModule,
     IonicModule.forRoot(), 
     ReactiveFormsModule, 
+    SharedModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers, {
       metaReducers,

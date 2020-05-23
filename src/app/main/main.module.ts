@@ -9,6 +9,7 @@ import { MainPageRoutingModule } from './main-routing.module';
 import { MainPage } from './main.page';
 
 import { StoreTabComponent } from './store-tab/store-tab.component';
+import { NewOrderTabComponent } from './new-order-tab/new-order-tab.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,9 @@ import { StoreTabComponent } from './store-tab/store-tab.component';
     IonicModule,
     MainPageRoutingModule
   ],
-  declarations: [MainPage, StoreTabComponent]
+  declarations: [
+    MainPage, 
+    StoreTabComponent,
+    NewOrderTabComponent]
 })
 export class MainPageModule {}

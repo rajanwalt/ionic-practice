@@ -1,0 +1,31 @@
+ion-list-header  {
+    font-weight: 400;
+    font-size: 16px;
+}
+
+ion-item  {
+    width: 100%;
+    // border-bottom: 1px solid var(--ion-color-medium);
+    // --inner-padding-bottom: 10px;
+    // padding-bottom: 10px;
+}
+
+.counter  {
+    width: auto;
+    height: auto;
+    border: 1px solid var(--ion-color-favorite);
+    border-radius: 5px;
+    margin-right: 10px;
+
+    div  {
+        display: inline-flex;
+        vertical-align: middle;
+        padding: 7px; 
+
+        &:nth-child(2)  {
+            border-left: 1px solid var(--ion-color-favorite);
+            border-right: 1px solid var(--ion-color-favorite);
+            background-color: var(--ion-color-favorite1);
+        }
+    }
+}

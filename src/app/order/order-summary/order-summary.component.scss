@@ -1,0 +1,56 @@
+ion-footer  {
+    ion-grid  {
+        padding-left: 0;
+        padding-right: 0;
+
+        ion-row  {
+            border-top: 1px solid var(--ion-color-medium);
+            line-height: 1;
+            
+            &.social-icons  {
+                border-top: none;
+
+                ion-col {
+                    text-align: center;
+                    line-height: 1;
+
+                    ion-avatar  {
+                        margin: auto;
+                        text-align: center;
+                        padding: 8px 0;
+                        background-color: var(--ion-color-light);
+                    }
+
+                }
+
+                ion-icon  {
+                    font-size: 30px;
+
+                    &[name=logo-whatsapp]  {
+                        color: #4FCE5D;
+                    }
+                }
+                p  {
+                    font-size: 12px;
+                }
+            }
+
+            ion-icon  {
+                &.arrow  {
+                    height: 100%;
+                    font-size: 20px;
+                }
+            }
+            
+            .main-text  {
+                font-weight: 600;
+                font-size: 14px;
+            }
+            .sub-text  {
+                font-size: 12px;
+            }
+        }
+    }
+    
+}
+

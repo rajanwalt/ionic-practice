@@ -1,7 +1,10 @@
+import { Order } from './order.state';
+
 export interface State {
     shopDetails : any
     customers : any,
-    catalogue : any
+    catalogue : any,
+    currentOrder: Order
   }
   
 export const initialState : State = {
@@ -15,5 +18,6 @@ export const initialState : State = {
       street: ""
     },
     customers : [],
-    catalogue : []
+    catalogue : [],
+    currentOrder : {}
   }

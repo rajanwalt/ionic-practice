@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MainPage } from './main.page';
 import { StoreTabComponent } from './store-tab/store-tab.component';
-
+import { NewOrderTabComponent } from './new-order-tab/new-order-tab.component';
 
 const routes: Routes = [
   {
@@ -11,11 +11,11 @@ const routes: Routes = [
     component: MainPage,
     children: [
       {
-        path: 'home',
+        path: 'new_order',
         children: [
           {
             path: '',
-            loadChildren: '../home/home.module#HomePageModule'
+            component: NewOrderTabComponent
           }
         ]
       },
@@ -30,7 +30,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'store',
+        redirectTo: 'new_order',
         pathMatch: 'full'
       }
     ]

@@ -4,12 +4,13 @@
         <ion-back-button  color="dark" defaultHref="/" [text]="!isSerachActive ? 'Catalogue' : ''" icon="arrow-back-outline"></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end" *ngIf="!isSerachActive">
-      <ion-button (click)="isSerachActive = !isSerachActive" color="dark">
+      <ion-button (click)="isSerachActive = !isSerachActive; onEnableSearch()" color="dark">
         <ion-icon name="search"></ion-icon>
       </ion-button>
     </ion-buttons> 
     
     <ion-searchbar
+      #searchbar
       debounce="500"
       placeholder="Search for products" 
       showCancelButton="always" 
@@ -42,7 +43,7 @@
   </ion-grid>
 
   <ion-list *ngIf="((catelogue$ | async).length)">
-      <ion-item *ngFor="let item of (catelogue$ | async)" (click)="onViewItem(item)">
+      <ion-item *ngFor="let item of (catelogue$ | async) | listFilter:'productName':searchText" (click)="onViewItem(item)">
         <ion-thumbnail slot="start">
           <img [src]="item?.url">
         </ion-thumbnail>
