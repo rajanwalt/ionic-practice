@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ShopPage } from './shop.page';
 import {ShopAddressComponent} from './shop-address/shop-address.component';
 import {CatalogueComponent} from './catalogue/catalogue.component';
-import {AddCatalogueItemComponent} from './add-catalogue-item/add-catalogue-item.component';
+import {AddCatalogueItemComponent} from './../common/add-catalogue-item/add-catalogue-item.component';
 import {ViewCatalogueComponent } from './view-catalogue/view-catalogue.component';
 import {WalletComponent} from './wallet/wallet.component';
 import { AddWalletComponent } from './add-wallet/add-wallet.component';

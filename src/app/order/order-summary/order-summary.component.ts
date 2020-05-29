@@ -1,11 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, of, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
-import { State, Order, OrderDetails } from './../../store/state';
+import { State } from './../../store/state';
+import { Order, OrderDetails, OrderSummary } from './../models';
 import { selectOrders } from './../../store/selectors';
+import { PostOrderSummary } from './../../store/actions';
 
 import { SocialMediaSharingService } from './../../common';
+import * as _ from 'underscore';
+import { NavController } from '@ionic/angular';
 
 
 @Component({
@@ -13,35 +18,15 @@ import { SocialMediaSharingService } from './../../common';
   templateUrl: './order-summary.component.html',
   styleUrls: ['./order-summary.component.scss'],
 })
-export class OrderSummaryComponent implements OnInit, OnDestroy {
+export class OrderSummaryComponent implements OnInit {
 
   public orders$: Observable<any> = this._store.select(selectOrders);
-  public orders : Order = null;
-
+  public orders = null;
   public orderSub : Subscription;
-  public orders1$: Observable<Order> = of(
-    {
-      customerId : 1,
-      orderDetails : [
-        {
-          "catalogueId": 1,
-          "price": 130,
-          "productName": 'Test1',
-          "count": 1
-        },
-        {
-          "catalogueId": 2,
-          "price": 130,
-          "productName": 'Test2',
-          "count": 1
-        }
-      ]
-    });
 
-  phoneNumber: string = "9698446776";
-  
   public updatedOrders = [];
-  public subTotal: number = 0;
+  public subTotal;
+  public isCheckoutLinkGenerated = false;
   
   public SOCIALMEDIA = {
     WHATSAPP : "whatsapp",
@@ -52,82 +37,90 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
   }
 
   calculateTotal()  {
-    this.subTotal = this.updatedOrders.reduce((currentvalue: OrderDetails, nextValue: OrderDetails) => currentvalue.price + nextValue.price)
+    
+    if(this.updatedOrders.length > 1)  {
+      this.subTotal = this.updatedOrders.reduce((currentvalue, nextValue) => currentvalue.price + nextValue.price);
+    }
+    else  {
+      this.subTotal = this.updatedOrders[0]['price'];
+    }
+  
   }
-
+   
   getCounterValue(orderDetails: any)  {
-    
-    let {count, price, productName, catalogueId} = orderDetails;
+    let {item_id} = orderDetails;
 
-    let isSelected = this.updatedOrders.filter(items => items['catalogueId'] == catalogueId);
-    
-    if(Array.isArray(isSelected) && isSelected.length > 0)  {
+    let isOrderExit = _.findIndex(this.updatedOrders, {item_id});
 
-      this.updatedOrders.forEach(values => {
-        if(values['catalogueId'] == catalogueId)  {
-          values['price'] = price;
-          values['count'] = count;
-        }
-      });
-      
+    if(isOrderExit >= 0)  {
+        this.updatedOrders[isOrderExit] = {...orderDetails};
     }
     else {
-      this.updatedOrders.push({ productName, catalogueId, price, count});
+      this.updatedOrders.push(orderDetails);
     }
-    
+
     this.calculateTotal()
-    console.log(this.updatedOrders);
+
+  }
+
+  onShare(appName)  {
+      
+    switch(appName)  {
+      case this.SOCIALMEDIA.WHATSAPP : {
+        break;
+      }
+      case this.SOCIALMEDIA.MESSENGER : {
+        break;
+      }
+      case this.SOCIALMEDIA.SMS : {
+        this.socialMediaSharingService.shareViaSMS(this.message, this.orders.phoneNumber);
+        break;
+      }
+      case this.SOCIALMEDIA.COPY : {
+        break;
+      }
+      default: {
+
+      }
+    }
   }
 
   get message()  {
     return "";
   }
+  onAddItems()  {
+    this.router.navigate(['/order/add_item']);
+  }
 
+  onPostOrderSummary()  {
+    const finalOrderSummary = { ...this.orders, totalAmount: this.subTotal, status: "CREATED"};
+    finalOrderSummary.orderDetails = this.updatedOrders.splice(0);
 
+    this._store.dispatch(new PostOrderSummary(OrderSummary.formatAPI(finalOrderSummary)));
+  }
 
-  async onShare(appName)  {
-    try {
-      switch(appName)  {
-        case this.SOCIALMEDIA.WHATSAPP : {
-          break;
-        }
-        case this.SOCIALMEDIA.MESSENGER : {
-          break;
-        }
-        case this.SOCIALMEDIA.SMS : {
-          let status =  await this.socialMediaSharingService.shareViaSMS(this.message, this.phoneNumber);
-          break;
-        }
-        case this.SOCIALMEDIA.COPY : {
-          break;
-        }
-        default: {
-  
-        }
-      }
-    }
-    catch(e)  {
-      console.log(e);
-    }
+  ngOnInit() {
     
+  }
+
+  ionViewWillEnter()  {
+    this.orderSub =  this.orders$.subscribe((results: any) => {
+      this.orders = {...results};
+      if(results['orderDetails'])  {
+        this.updatedOrders = results['orderDetails'].slice(0);
+        this.calculateTotal();
+      }
+    });
+  }
+
+  goBack()  {
+    this.navCtrl.navigateBack('/order');
   }
 
   constructor(private _store: Store<State>,
-  private socialMediaSharingService: SocialMediaSharingService) { }
+    private socialMediaSharingService: SocialMediaSharingService,
+    private router: Router,
+    private navCtrl: NavController) { }
 
-  ngOnInit() {
-    this.orderSub = this.orders1$.subscribe((results: Order) => {
-      this.orders = results;
-      this.updatedOrders = results['orderDetails'].map( val => val);
-      this.calculateTotal();
-    })
-
-  }
-  ngOnDestroy(): void {
-    if(this.orderSub)  {
-      this.orderSub.unsubscribe();
-    }
-    
-  }
 
 }

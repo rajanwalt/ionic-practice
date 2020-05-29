@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { OrderDetails } from './../../store/state';
+import { OrderDetails } from './../../order/models';
 
 @Component({
   selector: 'app-counter',
@@ -25,7 +25,7 @@ export class CounterComponent implements OnInit {
       this.count = this.count - 1;
     }
 
-    this.counterValue.emit({count : this.count, productName: this.order.productName, price : this.totalPrice, catalogueId: this.order.catalogueId});
+    this.counterValue.emit({count : this.count, productName: this.order.productName, price : this.totalPrice, item_id: this.order.item_id});
     
   }
 

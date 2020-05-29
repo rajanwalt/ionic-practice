@@ -56,9 +56,9 @@ export class ViewCatalogueComponent implements OnInit {
   }
 
   onEdit()  {
-    let catalogueId = this.itemDetails.id;
+    let item_id = this.itemDetails.id;
 
-    this.router.navigate(['/shop/add_catalogue_item'], { queryParams: {id : catalogueId }});
+    this.router.navigate(['/shop/add_catalogue_item'], { queryParams: {id : item_id }});
   }
 
   constructor(private router: Router) { }

@@ -2,28 +2,28 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
-import { MonekatService } from './../../APIs';
+import { MonekatService } from '../../APIs';
 
-import { EShopDetailsActions, SetShopDetails, AddShopDetails} from './../actions';
+import { EShopActions, GetShop, PostShop, SetShop} from '../actions';
 
 @Injectable()
-export class ShopDetailsEffects {
+export class ShopEffects {
 
   getShopDetails$ = createEffect(() => this.actions$.pipe(
-    ofType(EShopDetailsActions.GetShopDetails),
+    ofType(EShopActions.GetShop),
     switchMap(() => this.monekatService.getShopDetails()
       .pipe(
-        map(shopDetails => new SetShopDetails(shopDetails)),
+        map(shopDetails => new SetShop(shopDetails)),
         catchError(() => EMPTY)
       ))
     )
   );
 
   postShopDetails$ = createEffect(() => this.actions$.pipe(
-    ofType(EShopDetailsActions.AddShopDetails),
-    switchMap((action: AddShopDetails) => this.monekatService.postShopDetails(action.payload)
+    ofType(EShopActions.PostShop),
+    switchMap((action: PostShop) => this.monekatService.postShopDetails(action.payload)
       .pipe(
-        map(shopDetails => new SetShopDetails(shopDetails)),
+        map(shopDetails => new SetShop(action.payload)),
         catchError(() => EMPTY)
       ))
     )

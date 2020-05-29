@@ -5,6 +5,7 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
+    "ion-start": "ionic serve -- --proxy-config proxy/proxy.conf.dev.json",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
@@ -48,6 +49,7 @@
     "ngx-image-cropper": "^3.1.6",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
+    "underscore": "^1.10.2",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {

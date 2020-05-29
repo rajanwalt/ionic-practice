@@ -8,6 +8,8 @@ import { SetShopAddress } from './../../store/actions';
 import { State } from './../../store/state';
 import { Observable, Subscription } from 'rxjs';
 
+import { Shop } from './../models';
+
 
 @Component({
   selector: 'app-shop-address',
@@ -30,24 +32,29 @@ export class ShopAddressComponent implements OnInit, OnDestroy {
     city: new FormControl("", [Validators.required]),
     street: new FormControl('', Validators.required)
   });
-  shopDetails: object;
-  shopDetails$ : Observable<any> = this._store.select(selectShopDetails);
+
+  shopDetails$ : Observable<Shop> = this._store.select(selectShopDetails);
   shopDetailsSub : Subscription;
 
-  // checkCountry()  {
-  //   return this.shopAddressForm.get('country') ? true : false;
-  // }
+  constructor( private router: Router, private _store: Store<State>) { }
 
+  
   onSubmit()  {
-    this._store.dispatch(new SetShopAddress({ ...this.shopDetails, ...this.shopAddressForm.value}));
+    this._store.dispatch(new SetShopAddress(this.shopAddressForm.value));
     
     this.router.navigate(['/shop']);
   }
-  constructor( private router: Router, private _store: Store<State>) { }
+  
 
   ngOnInit() {
+    
+  }
+  
+  ionViewDidEnter()  {
     this.shopDetailsSub = this.shopDetails$.subscribe( value => {
-      this.shopDetails = value;
+      if(value && value.country) {
+        this.shopAddressForm.patchValue(value)
+      }
     })
   }
 

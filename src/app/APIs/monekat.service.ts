@@ -43,6 +43,12 @@ export class MonekatService {
     return this.http.post(url, catalogue);
   }
 
+  postOrderSummary(orderSummary: any): Observable<any>  {
+    let url = '/orders/add_with_orderitems';
+    
+    return this.http.post(url, orderSummary);
+  }
+
   
 
   constructor(private http: HttpClient) { }

@@ -1,39 +1,55 @@
 <ion-header translucent>
     <ion-toolbar color="favorite" padding>
         <ion-buttons slot="start">
-            <ion-back-button  color="dark" defaultHref="/" text="Cancel"></ion-back-button>
+            <!-- <ion-back-button  color="dark" defaultHref="/" text="Cancel"></ion-back-button> -->
+            <ion-button (click)="goBack()">
+              Cancel
+            </ion-button>
         </ion-buttons>
         <ion-title color="dark">Add Item</ion-title>
         <ion-buttons slot="end">
-          <ion-button (click)="onAddItems()">
+          <ion-button (click)="onSubmitItems()">
             Add
           </ion-button>
         </ion-buttons> 
     </ion-toolbar>
 </ion-header>
 <ion-content fullscreen >
-    <ion-list-header>
-        <ion-item *ngIf="!isSerachActive" lines='none'>
-            <ion-label slot="start">
-              Choose from Catalogue
-            </ion-label>
-            <ion-icon name="search" slot="end" (click)="onEnableSearch()"></ion-icon>
-        </ion-item>
-        
+  
+  <ion-grid class="search-container">
+    <ion-row class="add-container search-text-box" (click)="onAddNewItem()">
+      <ion-col size='1'>
+          <ion-icon name="add" ></ion-icon>
+      </ion-col>
+      <ion-col size='11'>
+          <ion-text>Create New Item</ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="!isSerachActive" class="search-text-box">
+      <ion-col size='11'>
+        <ion-text>Choose from Catalogue</ion-text>
+      </ion-col>
+      <ion-col size='1'>
+        <ion-icon name="search" (click)="onEnableSearch()"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="isSerachActive">
+      <ion-col size='12'>
         <ion-searchbar
           #searchbar
           debounce="500"
           placeholder="Search for catalogue" 
           showCancelButton="always" 
-          *ngIf="isSerachActive"
           cancelButtonIcon="arrow-back-sharp" 
           (ionChange) = "onSearch($event)"
           (ionCancel) = "onCancel()">
         </ion-searchbar>
-
-  </ion-list-header>  
-  <ion-list *ngIf="((catelogue$ | async).length)">
-        <ion-item *ngFor="let item of (catelogue$ | async) | listFilter:'productName':searchText" (click)="onSelectItem(item)">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list *ngIf="(listofItems$ | async) as listofItems">
+        <ion-item *ngFor="let item of listofItems | listFilter:'productName':searchText" (click)="onSelectItem(item)">
           <ion-thumbnail slot="start">
             <img [src]="item?.url">
           </ion-thumbnail>
@@ -45,9 +61,4 @@
           <ion-checkbox slot="end" color="favorite" ></ion-checkbox>
         </ion-item>
       </ion-list>
-      <ion-fab vertical="bottom" horizontal="end"  slot="fixed">
-        <ion-fab-button (click)="onAddItem()" color="favorite">
-          <ion-icon name="add" color="dark"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
 </ion-content>

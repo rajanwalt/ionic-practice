@@ -10,13 +10,12 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 
 import { Store } from '@ngrx/store';
-import { SetShopAddress, AddShopDetails } from './../store/actions'
+import { SetShop, PostShop } from './../store/actions';
 import { selectShopDetails } from './../store/selectors';
 import { State } from './../store/state';
-import { Observable, Subscription, of } from 'rxjs';
-import { map, filter, switchMap, catchError } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
 
-import {MonekatService, PhotoService} from './../APIs';
+import { PhotoService} from './../APIs';
 
 // const formValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
 //   const shopName = control.get('name');
@@ -46,7 +45,8 @@ export class ShopPage implements OnInit, OnDestroy {
   
   shopDetails$: Observable<any> = this._store.select(selectShopDetails);
   shopDetailsSub : Subscription;
-  shopProfileForm = new FormGroup({
+  
+  public shopProfileForm = new FormGroup({
     shopName: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
     // website: new FormControl('', Validators.required),
@@ -56,7 +56,8 @@ export class ShopPage implements OnInit, OnDestroy {
     street: new FormControl('')
   }, 
   // { validators: formValidator }
-);
+  );
+  
   shopAddress : string = ""; 
   hasShopAddress : boolean = false;
   shopLogo: Photo = {
@@ -64,16 +65,15 @@ export class ShopPage implements OnInit, OnDestroy {
     webviewPath: ''
   }
 
-  geoLocation$: Observable<any> = this.shopDetails$.pipe(switchMap((detail) => {
-    if(detail['street'] && detail['city'] &&  detail['country'])  {
-      return this.service.getGoogleLatLng(detail['street']+","+detail['city']+","+detail['country']).pipe(
-        map(val => this.location),
-        catchError(error => of(this.location))
-      )
-    }
-    return of({ lat : 12.975971, lng : 80.22120919999998});
-  }));
-
+  // geoLocation$: Observable<any> = this.shopDetails$.pipe(switchMap((detail) => {
+  //   if(detail['street'] && detail['city'] &&  detail['country'])  {
+  //     return this.service.getGoogleLatLng(detail['street']+","+detail['city']+","+detail['country']).pipe(
+  //       map(val => this.location),
+  //       catchError(error => of(this.location))
+  //     )
+  //   }
+  //   return of({ lat : 12.975971, lng : 80.22120919999998});
+  // }));
 
   constructor(public geolocation: Geolocation, 
               private router: Router,
@@ -81,49 +81,24 @@ export class ShopPage implements OnInit, OnDestroy {
               public actionSheetController: ActionSheetController,
               private camera: Camera,
               private file: File,
-              private service: MonekatService,
               public photoService : PhotoService,
               private webview: WebView,
               private activatedRoute: ActivatedRoute) { 
-  }
-
-  ngOnInit() {
-    let type = this.activatedRoute.snapshot.queryParamMap.get('id');
-
-    if(type ==  'edit')  {
-      // Call API to retrive Data and set or patch customerForm
-      
-      this.shopDetailsSub = this.shopDetails$.subscribe( shopDetails => {
-        this.shopProfileForm.setValue(shopDetails);
-        this.hasShopAddress = (shopDetails['country'] && shopDetails['country'].length>0) ? true : false;
-        this.shopAddress = shopDetails['street'] + "," + shopDetails['city'] + "," + shopDetails['country'];
-      })
-    }
-    
-
   }
   
   async onSubmit()  {
     // if(this.shopProfileForm.valid)  {
       const formData = new FormData();
-
-      formData.append("shopName", this.shopProfileForm.get('shopName').value);
-      formData.append("email", this.shopProfileForm.get('email').value);
-      // formData.append("website", this.shopProfileForm.get('website').value);
-      formData.append("shopdetails", this.shopProfileForm.get('shopdetails').value);
-      formData.append("country", this.shopProfileForm.get('country').value);
-      formData.append("city", this.shopProfileForm.get('city').value);
-      formData.append("street", this.shopProfileForm.get('street').value);
       const shopLogoBlog: Blob = this.shopLogo.filePath ? await this.photoService.convertImageUriToBlob(this.shopLogo.filePath) : null;
       
       shopLogoBlog && formData.append("shopLogo", shopLogoBlog, "logo");
 
-      this._store.dispatch(new AddShopDetails(formData))
+      this._store.dispatch(new PostShop(this.shopProfileForm.value))
     // }
   }
   
   goToAddress()  {
-    this._store.dispatch(new SetShopAddress(this.shopProfileForm.value))
+    this._store.dispatch(new SetShop(this.shopProfileForm.value));
     this.router.navigate(['/shop/shop-address']);
   }
 
@@ -184,6 +159,22 @@ export class ShopPage implements OnInit, OnDestroy {
       }]
     });
     await actionSheet.present();
+  }
+
+  ngOnInit() {
+
+    
+  }
+
+  ionViewDidEnter()  {
+    this.shopDetailsSub = this.shopDetails$.subscribe( shopDetails => {
+      if(shopDetails)  {
+        this.shopProfileForm.patchValue(shopDetails);
+        
+        this.hasShopAddress = (shopDetails['country'] && shopDetails['country'].length>0) ? true : false;
+        this.shopAddress = shopDetails['street'] + "," + shopDetails['city'] + "," + shopDetails['country'];
+      }
+    })
   }
 
   ngOnDestroy(): void {

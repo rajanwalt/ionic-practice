@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 
 export enum EOrderActions  {
     SetOrder = '[Order] Set Order',
-    AddOrder = '[Order] Add Order',
+    AddOrderDetails = '[Order] Add Order Details',
     GetOrder = '[Order] Get Order'
 }
 
@@ -16,9 +16,9 @@ export class GetOrder implements Action {
     constructor(public payload: any)  {}
 }
 
-export class AddOrder implements Action {
-    public readonly type = EOrderActions.AddOrder;
+export class AddOrderDetails implements Action {
+    public readonly type = EOrderActions.AddOrderDetails;
     constructor(public payload: any)  {}
 }
 
-export type OrderActions = SetOrder | GetOrder | AddOrder;
+export type OrderActions = SetOrder | GetOrder | AddOrderDetails;

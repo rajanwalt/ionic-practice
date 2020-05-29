@@ -40,7 +40,7 @@
 
         <ion-item lines="none" [class.error]="!catalogueForm.controls.price.valid && (catalogueForm.controls.price.dirty || catalogueForm.controls.price.touched)">
             <ion-label position="stacked" class="input-label">Price</ion-label>
-            <ion-input type="text" formControlName="price" name="price"></ion-input>
+            <ion-input type="number" formControlName="price" name="price"></ion-input>
             <ion-text class="warn-text">Price canot be empty</ion-text>
         </ion-item>
         

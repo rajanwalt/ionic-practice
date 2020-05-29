@@ -22,7 +22,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from './../environments/environment';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { EffectsModule } from '@ngrx/effects';
-import {ShopDetailsEffects, CustomersEffects, CatalogueEffects } from './store/effects';
+import {ShopEffects, CustomersEffects, CatalogueEffects, OrderSummaryEffects } from './store/effects';
 
 import { SharedModule } from './common';
 
@@ -46,7 +46,7 @@ import { SharedModule } from './common';
         strictActionImmutability: true
       }
     }),
-    EffectsModule.forRoot([ShopDetailsEffects, CustomersEffects, CatalogueEffects]),
+    EffectsModule.forRoot([ShopEffects, CustomersEffects, CatalogueEffects, OrderSummaryEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     ImageCropperModule
   ],

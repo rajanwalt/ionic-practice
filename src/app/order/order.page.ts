@@ -1,11 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonSearchbar } from '@ionic/angular';
-import { of } from 'rxjs';
+import { IonSearchbar, NavController } from '@ionic/angular';
+import { of, Subscription, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { State } from './../store/state';
 import { SetOrder } from './../store/actions';
+import { selectCurrentOrder } from './../store/selectors';
 import { Router } from '@angular/router';
+import { Order } from './models';
+
 
 @Component({
   selector: 'app-order',
@@ -17,26 +20,32 @@ export class OrderPage implements OnInit {
   @ViewChild('searchbar', { static: false }) searchbar: IonSearchbar;
   isSerachActive : boolean =  false;
   searchText: string = "";
+  public currentOrder$ : Observable<Order> = this._store.select(selectCurrentOrder);
+  public currentOrderSub : Subscription;
+  public IsCustomerAlreadySelected = '';
 
   public customers$ = of([
     {
-      id : 1,
+      customerId : 1,
       firstName : "Rajan",
       lastName : "Joseph",
+      phoneNumber : "9698446776",
       totalOrders : 0,
       totalAmount : 0
     },
     {
-      id : 2,
+      customerId : 2,
       firstName : "First",
       lastName : "Last",
+      phoneNumber : "9698446776",
       totalOrders : 40,
       totalAmount : 100
     },
     {
-      id : 3,
+      customerId : 3,
       firstName : "First",
       lastName : "Last",
+      phoneNumber : "9698446776",
       totalOrders : 130,
       totalAmount : 1000
     }
@@ -62,19 +71,36 @@ export class OrderPage implements OnInit {
   }
 
   onselectCustomer(customer: any)  {
-    let customerId = customer['id'];
-    
-    this._store.dispatch(new SetOrder({customerId}));
-    this.router.navigate(['/order/add_item']);
+    const customerId = customer['customerId'];
+    const firstName = customer['firstName'];
+    const phoneNumber = customer['phoneNumber'];
+
+    if(this.IsCustomerAlreadySelected == customerId)  {
+      this.navCtrl.navigateForward('/order/order_summary');
+      this._store.dispatch(new SetOrder({customerId, firstName, phoneNumber}));
+    }
+    else {
+      this.navCtrl.navigateForward('/order/add_item');
+      this._store.dispatch(new SetOrder({customerId, firstName, phoneNumber}));
+    }
   }
 
   onAddCustomer()  {
     //Store selected Customer
   }
 
-  constructor(private _store: Store<State>, private router: Router) { }
+  constructor(private _store: Store<State>, 
+              private router: Router,
+              private navCtrl: NavController ) { }
 
   ngOnInit() {
+  }
+
+  ionViewDidEnter()  {
+    this.currentOrderSub = this.currentOrder$.subscribe(data => {
+      this.IsCustomerAlreadySelected = (data && data.customerId) ? data.customerId : '' ;
+    });
+  
   }
 
 }

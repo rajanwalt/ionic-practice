@@ -3,15 +3,16 @@ import { Validators, FormControl, FormGroup } from '@angular/forms';
 
 import { ActionSheetController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import {File, IWriteOptions, FileEntry} from '@ionic-native/file/ngx';
-import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 import { PhotoService} from './../../APIs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { State } from './../../store/state';
 import { AddCatalogue } from './../../store/actions';
+import { SetOrder } from './../../store/actions';
+
+import { Catalogue } from './../models'
 
 interface Photo  {
   filePath :  string,
@@ -27,7 +28,7 @@ export class AddCatalogueItemComponent implements OnInit {
 
   photos : Photo[] = [
     {
-      webviewPath : "https://developer.apple.com/app-store/marketing/guidelines/images/thumbnail-iMac_2x.png",
+      webviewPath : "",
       filePath : ""
     },
     {
@@ -77,7 +78,7 @@ export class AddCatalogueItemComponent implements OnInit {
     price: new FormControl('', Validators.required),
     additionalDetails: new FormControl(''),
     delivery: new FormControl(false),
-    dimension: new FormControl(''),
+    dimension: new FormControl('small'),
     dimensionDetails: new FormGroup({
       weight : new FormControl('0.0'),
       length : new FormControl('0.0'),
@@ -116,7 +117,18 @@ export class AddCatalogueItemComponent implements OnInit {
   }
   onSubmit()  {
     if(this.catalogueForm.valid)  {
-      this._store.dispatch(new AddCatalogue(this.catalogueForm.value));
+      
+      let payload = this.catalogueForm.value;
+
+      this._store.dispatch(new AddCatalogue(Catalogue.formatAPI(payload)));
+
+      if(this.router.url.indexOf('order') > 0 )  {
+        const {price, productName} = this.catalogueForm.value;
+        const orderDetails = [{ price, productName, count: 1}]
+
+        this._store.dispatch(new SetOrder({orderDetails}));
+        this.router.navigate(['/order/order_summary']);
+      }
     }
   }
   onDelete(index)  {
@@ -185,18 +197,18 @@ export class AddCatalogueItemComponent implements OnInit {
   }
   constructor(public actionSheetController: ActionSheetController,
     private camera: Camera,
-    private file: File,
     public photoService : PhotoService,
-    private webview: WebView,
     private activatedRoute: ActivatedRoute,
-    private _store: Store<State>) { 
+    private _store: Store<State>,
+    private router: Router) { 
 
     }
 
   ngOnInit() {
-    let type = this.activatedRoute.snapshot.queryParamMap.get('id');
+    let catalogueId = this.activatedRoute.snapshot.queryParamMap.get('id');
 
-    if(type !=  undefined)  {
+    if(catalogueId !=  undefined)  {
+      
       // Call API to retrive Data and set or patch customerForm
     }
   }

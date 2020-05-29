@@ -9,16 +9,20 @@ import {
 import { environment } from '../../../environments/environment';
   
 import { State } from './../state';
-import { ShopAddressReducers } from './shop-address.reducer';
+import { ShopReducers } from './shop.reducer';
 import { CustomersReducers } from './customers.reducer';
 import { CatalogueReducers } from './catalogue.reducer';
 import { OrderReducers } from './order.reducer';
-  
+import { OrderStatusReducers } from './order-status.reducer';
+
+
   export const reducers: ActionReducerMap<State> = {
-    shopDetails : ShopAddressReducers,
+    shopDetails : ShopReducers,
     customers : CustomersReducers,
     catalogue: CatalogueReducers,
-    currentOrder : OrderReducers
+    currentOrder : OrderReducers,
+    lastOrderStatus : OrderStatusReducers
+
   };
   
   
