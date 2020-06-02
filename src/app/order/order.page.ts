@@ -4,8 +4,8 @@ import { of, Subscription, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { State } from './../store/state';
-import { SetOrder } from './../store/actions';
-import { selectCurrentOrder } from './../store/selectors';
+import { SetOrder, ResetOrder } from './../store/actions';
+import { selectCurrentOrder, selectCustomers } from './../store/selectors';
 import { Router } from '@angular/router';
 import { Order } from './models';
 
@@ -23,7 +23,8 @@ export class OrderPage implements OnInit {
   public currentOrder$ : Observable<Order> = this._store.select(selectCurrentOrder);
   public currentOrderSub : Subscription;
   public IsCustomerAlreadySelected = '';
-
+  public selectedCustomer: Order = null;
+  // public customers$ : Observable<any> = this._store.select(selectCustomers);
   public customers$ = of([
     {
       customerId : 1,
@@ -75,13 +76,13 @@ export class OrderPage implements OnInit {
     const firstName = customer['firstName'];
     const phoneNumber = customer['phoneNumber'];
 
-    if(this.IsCustomerAlreadySelected == customerId)  {
-      this.navCtrl.navigateForward('/order/order_summary');
-      this._store.dispatch(new SetOrder({customerId, firstName, phoneNumber}));
+    if(this.selectedCustomer && this.selectedCustomer.customerId == customerId && this.selectedCustomer.orderDetails && this.selectedCustomer.orderDetails.length > 0)  {
+        this.navCtrl.navigateForward('/order/order_summary');
+        this._store.dispatch(new SetOrder({customerId, firstName, phoneNumber}));
     }
     else {
       this.navCtrl.navigateForward('/order/add_item');
-      this._store.dispatch(new SetOrder({customerId, firstName, phoneNumber}));
+      this._store.dispatch(new ResetOrder({customerId, firstName, phoneNumber}));
     }
   }
 
@@ -96,9 +97,10 @@ export class OrderPage implements OnInit {
   ngOnInit() {
   }
 
-  ionViewDidEnter()  {
+  ionViewWillEnter()  {
     this.currentOrderSub = this.currentOrder$.subscribe(data => {
       this.IsCustomerAlreadySelected = (data && data.customerId) ? data.customerId : '' ;
+      this.selectedCustomer = data ? {...data} : null ;
     });
   
   }

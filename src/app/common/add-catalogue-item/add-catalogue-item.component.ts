@@ -44,7 +44,6 @@ export class AddCatalogueItemComponent implements OnInit {
       filePath : ""
     }
   ];
-  selectedImageIndex: number;
 
   dimensions :  Array<any> = [
     {
@@ -136,10 +135,10 @@ export class AddCatalogueItemComponent implements OnInit {
     selectedPhoto.webviewPath && (selectedPhoto.webviewPath = "");
   }
   onSelectPhoto(index)  {
-    this.selectedImageIndex = index;
+    this.presentActionSheet(index);
   }
 
-  loadImageFromCamera()  {
+  loadImageFromCamera(index)  {
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.FILE_URI,
@@ -149,12 +148,12 @@ export class AddCatalogueItemComponent implements OnInit {
     }
 
     this.photoService.getPicture(options).then((imgData) => {
-      this.photos[this.selectedImageIndex] = imgData
+      this.photos[index] = imgData
     });
     
   }
 
-  loadImageFromLib()  {
+  loadImageFromLib(index)  {
 
     const options: CameraOptions = {
       quality: 100,
@@ -164,11 +163,11 @@ export class AddCatalogueItemComponent implements OnInit {
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
     }
     this.photoService.getPicture(options).then((imgData) => {
-      this.photos[this.selectedImageIndex] = imgData
+      this.photos[index] = imgData
     });      
   }
   
-  async presentActionSheet() {
+  async presentActionSheet(index) {
     let that = this;
     const actionSheet = await this.actionSheetController.create({
       header: 'Select Source',
@@ -176,13 +175,13 @@ export class AddCatalogueItemComponent implements OnInit {
         text: 'Load from Library',
         icon: 'image',
         handler: () => {
-          that.loadImageFromLib();
+          that.loadImageFromLib(index);
         }
       }, {
         text: 'Use Camera',
         icon: 'camera',
         handler: () => {
-          that.loadImageFromCamera();
+          that.loadImageFromCamera(index);
         }
       }, {
         text: 'Cancel',

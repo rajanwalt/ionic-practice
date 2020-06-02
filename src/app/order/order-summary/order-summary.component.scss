@@ -3,13 +3,18 @@ ion-back-button  {
 }
 
 ion-footer  {
+    
     ion-grid  {
         padding-left: 0;
         padding-right: 0;
 
         ion-row  {
-            border-top: 1px solid var(--ion-color-medium);
+            border-bottom: 2px solid var(--ion-color-light);
             line-height: 1;
+
+            &:last-child  {
+                border-bottom: none;
+            }
             
             &.social-icons  {
                 border-top: none;

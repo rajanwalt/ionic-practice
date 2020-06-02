@@ -2,12 +2,18 @@ import { Action } from '@ngrx/store';
 
 export enum EOrderActions  {
     SetOrder = '[Order] Set Order',
+    ResetOrder = '[Order] Reset Order',
     AddOrderDetails = '[Order] Add Order Details',
     GetOrder = '[Order] Get Order'
 }
 
 export class SetOrder implements Action {
     public readonly type = EOrderActions.SetOrder;
+    constructor(public payload: any)  {}
+}
+
+export class ResetOrder implements Action {
+    public readonly type = EOrderActions.ResetOrder;
     constructor(public payload: any)  {}
 }
 
@@ -21,4 +27,4 @@ export class AddOrderDetails implements Action {
     constructor(public payload: any)  {}
 }
 
-export type OrderActions = SetOrder | GetOrder | AddOrderDetails;
+export type OrderActions = SetOrder | GetOrder | AddOrderDetails | ResetOrder;

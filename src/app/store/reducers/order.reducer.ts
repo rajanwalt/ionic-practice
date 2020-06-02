@@ -6,6 +6,9 @@ export function OrderReducers(state:Order , action: OrderActions ): any  {
         case EOrderActions.SetOrder: {
             return {...state, ...action.payload};
         }
+        case EOrderActions.ResetOrder: {
+            return action.payload;
+        }
         case EOrderActions.AddOrderDetails: {
             if(state.orderDetails)  {
 

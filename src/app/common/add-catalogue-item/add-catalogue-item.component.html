@@ -20,7 +20,7 @@
         </div>
         <ion-item lines="none" class="d-flex justify-content-center">
             <div class="thumbnail-container"  *ngFor="let photo of photos; let i=index">
-                <div class="thumbnail" (click)="onSelectPhoto()">
+                <div class="thumbnail" (click)="onSelectPhoto(i)">
                     <ion-thumbnail>
                         <img *ngIf="photo.webviewPath" [src]="photo.webviewPath">
                         <ion-icon name="image-outline" *ngIf="!photo.webviewPath" color="primary"></ion-icon>

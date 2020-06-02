@@ -3,35 +3,47 @@
       <ion-buttons slot="start">
           <ion-back-button  color="dark" defaultHref="/" text="Customers" icon="arrow-back-outline"></ion-back-button>
       </ion-buttons>
-      <ion-buttons slot="end">
+      <!-- <ion-buttons slot="end">
         <ion-button (click)="onSkip()" color="dark" >Skip</ion-button>
-      </ion-buttons> 
+      </ion-buttons>  -->
     </ion-toolbar>
 </ion-header>
 <ion-content>
   
-      
-    <ion-list *ngIf="((customers$ | async).length)">
-      <ion-list-header>
-        <ion-item *ngIf="!isSerachActive" lines='none'>
-            <ion-label slot="start">
-              Customer list
-            </ion-label>
-            <ion-icon name="search" slot="end" (click)="onEnableSearch()"></ion-icon>
-        </ion-item>
-        
+  <ion-grid class="search-container">
+    <ion-row class="add-container search-text-box" (click)="onAddCustomer()">
+      <ion-col size='1'>
+          <ion-icon name="add" ></ion-icon>
+      </ion-col>
+      <ion-col size='11'>
+          <ion-text>Add New Customer</ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="!isSerachActive" class="search-text-box">
+      <ion-col size='11'>
+        <ion-text>Customer list</ion-text>
+      </ion-col>
+      <ion-col size='1'>
+        <ion-icon name="search" (click)="onEnableSearch()"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="isSerachActive">
+      <ion-col size='12'>
         <ion-searchbar
           #searchbar
           debounce="500"
           placeholder="Search for customers" 
           showCancelButton="always" 
-          *ngIf="isSerachActive"
           cancelButtonIcon="arrow-back-sharp" 
           (ionChange) = "onSearch($event)"
           (ionCancel) = "onCancel()">
         </ion-searchbar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-      </ion-list-header>
+    <ion-list >
         <ion-item  *ngFor="let item of (customers$ | async) | listFilter:'firstName,lastName':searchText" (click)="onselectCustomer(item)">
           <ion-avatar slot="start">
             <ion-text>{{item?.firstName | slice:0:1}}</ion-text>
@@ -43,9 +55,4 @@
         </ion-item>
       </ion-list>
       
-      <ion-fab vertical="bottom" horizontal="end"  slot="fixed">
-          <ion-fab-button (click)="onAddCustomer()" color="favorite">
-            <ion-icon name="add" color="dark"></ion-icon>
-          </ion-fab-button>
-      </ion-fab>
 </ion-content>

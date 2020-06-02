@@ -12,7 +12,6 @@ import { SocialMediaSharingService } from './../../common';
 import * as _ from 'underscore';
 import { NavController } from '@ionic/angular';
 
-
 @Component({
   selector: 'app-order-summary',
   templateUrl: './order-summary.component.html',
@@ -20,7 +19,7 @@ import { NavController } from '@ionic/angular';
 })
 export class OrderSummaryComponent implements OnInit {
 
-  public orders$: Observable<any> = this._store.select(selectOrders);
+  public orders$: Observable<Order> = this._store.select(selectOrders);
   public orders = null;
   public orderSub : Subscription;
 
@@ -104,10 +103,10 @@ export class OrderSummaryComponent implements OnInit {
   }
 
   ionViewWillEnter()  {
-    this.orderSub =  this.orders$.subscribe((results: any) => {
+    this.orderSub =  this.orders$.subscribe((results) => {
       this.orders = {...results};
-      if(results['orderDetails'])  {
-        this.updatedOrders = results['orderDetails'].slice(0);
+      if(results && results.orderDetails)  {
+        this.updatedOrders = results.orderDetails.slice(0);
         this.calculateTotal();
       }
     });
