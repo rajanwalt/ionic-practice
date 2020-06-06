@@ -8,19 +8,22 @@ import { Camera } from '@ionic-native/camera/ngx';
 
 import { ListFilterPipe } from './list-filter.pipe';
 import { CounterComponent } from './counter/counter.component';
-import { AddCatalogueItemComponent } from './add-catalogue-item/add-catalogue-item.component'
+import { AddCatalogueItemComponent } from './add-catalogue-item/add-catalogue-item.component';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
 
 @NgModule({
   imports: [ CommonModule, IonicModule, FormsModule, ReactiveFormsModule ],
   declarations: [
     ListFilterPipe,
     CounterComponent,
-    AddCatalogueItemComponent
+    AddCatalogueItemComponent,
+    AddCustomerComponent
   ],
   providers: [Camera, SocialSharing],
   exports: [CommonModule, 
             ListFilterPipe, 
             CounterComponent,
-            AddCatalogueItemComponent]
+            AddCatalogueItemComponent,
+            AddCustomerComponent]
 })
 export class SharedModule {}

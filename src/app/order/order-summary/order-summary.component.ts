@@ -87,6 +87,11 @@ export class OrderSummaryComponent implements OnInit {
   get message()  {
     return "";
   }
+
+  get name()  {
+    return (this.orders && this.orders.firstName) ? `${this.orders.firstName}'s` : "";
+  }
+
   onAddItems()  {
     this.router.navigate(['/order/add_item']);
   }

@@ -5,6 +5,7 @@ import { OrderPage } from './order.page';
 import { SelectCatalogueComponent } from './select-catalogue/select-catalogue.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import {AddCatalogueItemComponent} from './../common/add-catalogue-item/add-catalogue-item.component';
+import { AddCustomerComponent } from './../common/add-customer/add-customer.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,10 @@ const routes: Routes = [
     path: 'add_new_item',
     component: AddCatalogueItemComponent
   },
-
+  {
+    path: 'add_customer',
+    component: AddCustomerComponent
+  },
   {
     path: 'order_summary',
     component: OrderSummaryComponent

@@ -1,3 +1,13 @@
+// ion-title {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     padding: 0 90px 1px;
+//     width: 100%;
+//     height: 100%;
+//     text-align: center;
+// }
+
 ion-list-header  {
     ion-item  {
         width: 100%;
@@ -6,6 +16,20 @@ ion-list-header  {
 
 ion-grid  {
     background-color: var(--ion-color-light);
+
+    &.info  {
+        height: 100%;
+        ion-row {
+            height: 100%;
+            text-align: center;
+        }
+        p {
+            font-size: 21px;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
 
     &.search-container  {
         padding-left: 0;

@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
-import { map, switchMap, catchError } from 'rxjs/operators';
+import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { MonekatService } from '../../APIs';
 
-import { EShopActions, GetShop, PostShop, SetShop} from '../actions';
+import { EShopActions, ShopSuccess, PostShop, SetShop} from '../actions';
+import { NavController } from '@ionic/angular';
 
 @Injectable()
 export class ShopEffects {
@@ -23,14 +24,23 @@ export class ShopEffects {
     ofType(EShopActions.PostShop),
     switchMap((action: PostShop) => this.monekatService.postShopDetails(action.payload)
       .pipe(
-        map(shopDetails => new SetShop(action.payload)),
+        map(shopDetails => new ShopSuccess(shopDetails)),
         catchError(() => EMPTY)
       ))
     )
   );
 
+  onSuccess$ = createEffect(() => this.actions$.pipe(
+    ofType(EShopActions.ShopSuccess),
+    map((action: ShopSuccess) => new SetShop(action.payload)),
+    tap( _ => {
+      this.navCtrl.back();
+    })
+  ));
+
   constructor(
     private actions$: Actions,
-    private monekatService: MonekatService
+    private monekatService: MonekatService,
+    private navCtrl: NavController
   ) {}
 }

@@ -21,8 +21,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
-  <ion-grid *ngIf="!((catelogue$ | async).length)">
+<ion-content fullscreen *ngIf="(catelogue$ | async) as catalogue">
+  <ion-grid *ngIf="!(catalogue.length)">
     <ion-row class="ion-align-items-center">
         <ion-col class="ion-align-self-center">
           <div  class="catalogue-container">
@@ -42,8 +42,8 @@
     </ion-row>
   </ion-grid>
 
-  <ion-list *ngIf="((catelogue$ | async).length)">
-      <ion-item *ngFor="let item of (catelogue$ | async) | listFilter:'productName':searchText" (click)="onViewItem(item)">
+  <ion-list *ngIf="catalogue.length">
+      <ion-item *ngFor="let item of catalogue | listFilter:'productName':searchText" (click)="onViewItem(item)">
         <ion-thumbnail slot="start">
           <img [src]="item?.url">
         </ion-thumbnail>

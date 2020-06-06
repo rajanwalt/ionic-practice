@@ -23,7 +23,6 @@ import {ViewCatalogueComponent } from './view-catalogue/view-catalogue.component
 import {WalletComponent} from './wallet/wallet.component';
 import { AddWalletComponent } from './add-wallet/add-wallet.component';
 import { CustomersComponent } from './customers/customers.component';
-import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { ViewCustomerComponent } from './view-customer/view-customer.component';
 
 import {PopupContentComponent} from './popup-content/popup-content.component';
@@ -52,7 +51,6 @@ import { MonekatService, PhotoService } from './../APIs';
     AddWalletComponent,
     CustomersComponent,
     PopupContentComponent,
-    AddCustomerComponent,
     ViewCustomerComponent,
     // ListFilterPipe
   ],

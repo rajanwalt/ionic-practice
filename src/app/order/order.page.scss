@@ -28,12 +28,37 @@ ion-item  {
 }
 
 ion-grid  {
-    background-color: var(--ion-color-light);
+    
+
+    &.info  {
+        height: 100%;
+        ion-row {
+            height: 100%;
+            text-align: center;
+        }
+        
+        p {
+            line-height: 1.2;
+
+            &.text-bold  {
+                font-size: 21px;
+                font-weight: 600;
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+            &.text-light  {
+                color: var(--ion-color-medium);
+            }
+        }
+        
+    }
 
     &.search-container  {
         padding-left: 0;
         padding-right: 0;
         font-size: 16px;
+        background-color: var(--ion-color-light);
+
         ion-row {
             &.add-container  {
                 background-color: #ffffff;

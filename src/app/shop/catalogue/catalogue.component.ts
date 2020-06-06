@@ -61,6 +61,7 @@ export class CatalogueComponent implements OnInit {
     this.router.navigate(['/shop/view_catalogue_item']);
   }
   
+  
   constructor(private router: Router, private _store: Store<State>) { }
 
   ngOnInit() {}

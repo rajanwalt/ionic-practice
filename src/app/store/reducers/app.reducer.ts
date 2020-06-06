@@ -5,6 +5,7 @@ import {
     createSelector,
     MetaReducer
   } from '@ngrx/store';
+import { routerReducer } from '@ngrx/router-store';
 
 import { environment } from '../../../environments/environment';
   
@@ -21,8 +22,8 @@ import { OrderStatusReducers } from './order-status.reducer';
     customers : CustomersReducers,
     catalogue: CatalogueReducers,
     currentOrder : OrderReducers,
-    lastOrderStatus : OrderStatusReducers
-
+    lastOrderStatus : OrderStatusReducers,
+    router: routerReducer
   };
   
   

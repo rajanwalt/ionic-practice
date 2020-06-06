@@ -102,7 +102,7 @@ export class SelectCatalogueComponent implements OnInit {
       return original.filter(originalItems => !selectedItemsId.some(selectedItems => originalItems['item_id'] == selectedItems))
     }
     
-    this.existingCustomerId = recentlySelected.customerId;
+    this.existingCustomerId = recentlySelected && recentlySelected.customerId;
 
     return original;
 

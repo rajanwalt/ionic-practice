@@ -1,9 +1,12 @@
 import { Action } from '@ngrx/store';
+import { Customer } from './../../common/models';
 
 export enum ECustomersActions  {
     SetCustomers = '[Customers] Set Customers',
     AddCustomers = '[Customers] Add Customers',
-    GetCustomers = '[Customers] Get Customers'
+    GetCustomers = '[Customers] Get Customers',
+    UpdateCustomers = '[Customers] Update Customers',
+    CustomerSuccess = '[Customers] Customer Add Success',
 }
 
 export class SetCustomers implements Action {
@@ -21,4 +24,14 @@ export class AddCustomers implements Action {
     constructor(public payload: any)  {}
 }
 
-export type CustomersActions = SetCustomers | GetCustomers | AddCustomers;
+export class UpdateCustomers implements Action {
+    public readonly type = ECustomersActions.UpdateCustomers;
+    constructor(public payload: Customer)  {}
+}
+
+export class CustomerSuccess implements Action {
+    public readonly type = ECustomersActions.CustomerSuccess;
+    constructor(public payload: any)  {}
+}
+
+export type CustomersActions = SetCustomers | GetCustomers | AddCustomers | UpdateCustomers | CustomerSuccess;

@@ -22,7 +22,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from './../environments/environment';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import {ShopEffects, CustomersEffects, CatalogueEffects, OrderSummaryEffects } from './store/effects';
+import { CustomSerializer } from './store/router-custom-serializer';
 
 import { SharedModule } from './common';
 
@@ -46,6 +48,7 @@ import { SharedModule } from './common';
         strictActionImmutability: true
       }
     }),
+    StoreRouterConnectingModule.forRoot({ serializer: CustomSerializer}),
     EffectsModule.forRoot([ShopEffects, CustomersEffects, CatalogueEffects, OrderSummaryEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     ImageCropperModule

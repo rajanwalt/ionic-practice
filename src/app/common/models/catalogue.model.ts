@@ -1,6 +1,6 @@
 export class Catalogue {
     
-    static formatAPI(data: any) : Catalogue {
+    static formatPostAPI(data: any) : Catalogue {
         return new Catalogue(
             data.productName,
             data.price,
@@ -13,7 +13,7 @@ export class Catalogue {
             data.dimensionDetails.height
         )
     }
-    
+
     constructor(
         public productName : string,
         public price: string,
@@ -24,6 +24,7 @@ export class Catalogue {
         public length : string,
         public width : string,
         public height : string,
-        public shopId?: string
+        public shopId?: string,
+        public itemId?:number
     )  {}
 }

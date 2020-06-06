@@ -24,7 +24,7 @@ export class OrderPage implements OnInit {
   public currentOrderSub : Subscription;
   public IsCustomerAlreadySelected = '';
   public selectedCustomer: Order = null;
-  // public customers$ : Observable<any> = this._store.select(selectCustomers);
+  public customers1$ : Observable<any> = this._store.select(selectCustomers);
   public customers$ = of([
     {
       customerId : 1,
@@ -86,8 +86,9 @@ export class OrderPage implements OnInit {
     }
   }
 
-  onAddCustomer()  {
-    //Store selected Customer
+ 
+  onAddNewCustomer() {
+    this.router.navigate(['/order/add_customer']);
   }
 
   constructor(private _store: Store<State>, 

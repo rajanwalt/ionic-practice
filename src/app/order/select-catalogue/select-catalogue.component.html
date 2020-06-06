@@ -1,22 +1,39 @@
-<ion-header translucent>
-    <ion-toolbar color="favorite" padding>
+<ion-header>
+    <ion-toolbar color="favorite" mode="ios">
         <ion-buttons slot="start">
-            <!-- <ion-back-button  color="dark" defaultHref="/" text="Cancel"></ion-back-button> -->
             <ion-button (click)="goBack()">
               Cancel
             </ion-button>
         </ion-buttons>
-        <ion-title color="dark">Add Item</ion-title>
+        
         <ion-buttons slot="end">
           <ion-button (click)="onSubmitItems()">
             Add
           </ion-button>
         </ion-buttons> 
+
+        <ion-title color="dark">Add Item</ion-title>
     </ion-toolbar>
 </ion-header>
-<ion-content fullscreen >
+<ion-content fullscreen *ngIf="(listofItems$ | async) as listofItems" >
   
-  <ion-grid class="search-container">
+  <ion-grid *ngIf="!(listofItems.length)" class="info">
+    <ion-row class="ion-align-items-center">
+        <ion-col class="ion-align-self-center">
+            <p>There are no items to add.</p>
+            <ion-button 
+                    expand="full" 
+                    strong="true" 
+                    (click)="onAddNewItem()"
+                    class="add-item"
+                    color="favorite">
+              ADD A PRODUCT OR SERVICE
+            </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="search-container" *ngIf="listofItems.length">
     <ion-row class="add-container search-text-box" (click)="onAddNewItem()">
       <ion-col size='1'>
           <ion-icon name="add" ></ion-icon>

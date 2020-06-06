@@ -119,7 +119,7 @@ export class AddCatalogueItemComponent implements OnInit {
       
       let payload = this.catalogueForm.value;
 
-      this._store.dispatch(new AddCatalogue(Catalogue.formatAPI(payload)));
+      this._store.dispatch(new AddCatalogue(Catalogue.formatPostAPI(payload)));
 
       if(this.router.url.indexOf('order') > 0 )  {
         const {price, productName} = this.catalogueForm.value;
