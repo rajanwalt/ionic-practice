@@ -8,7 +8,7 @@ import { State } from './../../store/state';
 import { SetOrder, AddOrderDetails } from './../../store/actions';
 import { selectCurrentOrder } from './../../store/selectors';
 import { Order } from './../models';
-
+import { RouterStateService } from './../../common';
 
 @Component({
   selector: 'app-select-catalogue',
@@ -48,6 +48,7 @@ export class SelectCatalogueComponent implements OnInit {
 
   public listofItems$ : Observable<any>;
   public existingCustomerId : string = '';
+  previousRoute: string;
 
   onSubmitItems()  {
     const orderDetails = this.selectedItems;
@@ -109,18 +110,28 @@ export class SelectCatalogueComponent implements OnInit {
   }
 
   goBack()  {
-    this.navCtrl.back();
+    if(this.previousRoute.indexOf('add_new_item') >= 0)  {
+      this.navCtrl.navigateBack('/order');
+    }
+    else {
+      this.navCtrl.back();
+    }
   }
 
   constructor(private router: Router, 
               private _store: Store<State>,
-              private navCtrl: NavController) { }
+              private navCtrl: NavController,
+              private routerStateService: RouterStateService) { }
 
   ngOnInit() {
-    
+    this.previousRoute = this.routerStateService.getPreviousUrl();
   }
 
   ionViewDidEnter()  {
+    this.previousRoute = this.routerStateService.getPreviousUrl();
+    
+    console.log("previousRoute", this.previousRoute);
+
     this.listofItems$ = combineLatest(this.catelogue$, 
       this.currentOrder$, 
       (listofItem, listofSelectedItems) => this.filterSelectedItems(listofItem, listofSelectedItems));

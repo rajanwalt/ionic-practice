@@ -26,7 +26,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import {ShopEffects, CustomersEffects, CatalogueEffects, OrderSummaryEffects } from './store/effects';
 import { CustomSerializer } from './store/router-custom-serializer';
 
-import { SharedModule } from './common';
+import { SharedModule, RouterStateService } from './common';
 
 @NgModule({
   declarations: [AppComponent],
@@ -60,7 +60,8 @@ import { SharedModule } from './common';
     Crop,
     FileTransfer,
     File,
-    WebView
+    WebView,
+    RouterStateService
   ],
   
   bootstrap: [AppComponent]
