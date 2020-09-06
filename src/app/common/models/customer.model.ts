@@ -21,6 +21,6 @@ export class Customer {
         public city: string,
         public street : string,
         public shopId?: string,
-        public customerId?: string,
+        public id?: string,
     )  {}
 }

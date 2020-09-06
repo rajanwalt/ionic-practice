@@ -5,8 +5,8 @@ import { IonSearchbar, NavController } from '@ionic/angular';
 import { of, combineLatest, Observable, BehaviorSubject } from 'rxjs';
 
 import { State } from './../../store/state';
-import { SetOrder, AddOrderDetails } from './../../store/actions';
-import { selectCurrentOrder } from './../../store/selectors';
+import { SetOrder, AddOrderDetails, GetCatalogue } from './../../store/actions';
+import { selectCurrentOrder, selectCatalogue } from './../../store/selectors';
 import { Order } from './../models';
 import { RouterStateService } from './../../common';
 
@@ -22,38 +22,40 @@ export class SelectCatalogueComponent implements OnInit {
   public isSerachActive : boolean =  false;
   public selectedItems : Array<any> = [];
   public currentOrder$ : Observable<Order> = this._store.select(selectCurrentOrder);
-  public catelogue$ = of([
-    {
-      item_id : 1,
-      url : "https://developer.apple.com/app-store/marketing/guidelines/images/thumbnail-iMac_2x.png",
-      productName : "Test",
-      price : 130,
-      itemSold : 10
-    },
-    {
-      item_id : 2,
-      url : "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y",
-      productName : "Test",
-      price : 130,
-      itemSold : 10
-    },
-    {
-      item_id : 3,
-      url : "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y",
-      productName : "Test",
-      price : 130,
-      itemSold : 10
-    }
-  ]);
+  public catelogue$ : Observable<any> = this._store.select(selectCatalogue);
+  // public catelogue$ = of([
+  //   {
+  //     item_id : 1,
+  //     url : "https://developer.apple.com/app-store/marketing/guidelines/images/thumbnail-iMac_2x.png",
+  //     productName : "Test",
+  //     price : 130,
+  //     itemSold : 10
+  //   },
+  //   {
+  //     item_id : 2,
+  //     url : "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y",
+  //     productName : "Test",
+  //     price : 130,
+  //     itemSold : 10
+  //   },
+  //   {
+  //     item_id : 3,
+  //     url : "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y",
+  //     productName : "Test",
+  //     price : 130,
+  //     itemSold : 10
+  //   }
+  // ]);
 
   public listofItems$ : Observable<any>;
   public existingCustomerId : string = '';
   previousRoute: string;
 
   onSubmitItems()  {
-    const orderDetails = this.selectedItems;
-
+    let orderDetails = this.selectedItems;
+    console.log(this.selectedItems);
     if(orderDetails.length > 0)  {
+      orderDetails.forEach(order => order['item_id'] = order['id'] )
       this._store.dispatch(new AddOrderDetails({orderDetails}));
 
       this.router.navigate(['/order/order_summary']);
@@ -75,17 +77,17 @@ export class SelectCatalogueComponent implements OnInit {
   }
   
   onSelectItem(itemDetails)  {
-    let {item_id, price, productName} = itemDetails;
+    let {id, price, productName} = itemDetails;
     
-    let isSelected = this.selectedItems.filter(items => items['item_id'] == item_id);
+    let isSelected = this.selectedItems.filter(items => items['id'] == id);
     
 
     if(Array.isArray(isSelected) && isSelected.length > 0)  {
-      let removeExits = this.selectedItems.filter(items => items['id'] != item_id);
+      let removeExits = this.selectedItems.filter(items => items['id'] != id);
       this.selectedItems = removeExits;
     }
     else {
-      this.selectedItems.push({item_id, price, productName, count: 1});
+      this.selectedItems.push({id, price, productName, count: 1});
     }
 
     console.log("selectedItems", this.selectedItems);
@@ -136,6 +138,10 @@ export class SelectCatalogueComponent implements OnInit {
       this.currentOrder$, 
       (listofItem, listofSelectedItems) => this.filterSelectedItems(listofItem, listofSelectedItems));
     this.selectedItems = [];
+  }
+
+  ionViewWillEnter(){
+    this._store.dispatch(new GetCatalogue({'service_id':1}));
   }
 
 }

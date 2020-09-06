@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Url } from 'url';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { State } from './../../store/state';
+import { selectCatalogue } from 'src/app/store/selectors';
+import { flatMap } from 'rxjs/operators';
 
 interface Photo  {
   filePath :  string,
@@ -61,8 +65,29 @@ export class ViewCatalogueComponent implements OnInit {
     this.router.navigate(['/shop/add_catalogue_item'], { queryParams: {id : item_id }});
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private _store: Store<State>,
+    private activatedRoute: ActivatedRoute ) { }
 
   ngOnInit() {}
 
+  ionViewWillEnter(){
+    let itemId = this.activatedRoute.snapshot.queryParamMap.get('id');
+
+    if(itemId !=  undefined)  {
+      // this._store.dispatch(new GetCustomer({'this.customerForm.value'}));
+      this._store.select(selectCatalogue).pipe(
+        flatMap(items =>{ 
+          console.log(items)
+          return items.filter( entry => +itemId == entry.id)
+        })
+      ).subscribe(item => {
+        // Object.keys(customer[0]).forEach(key =>{
+        //   if(this.customerForm.value )
+        //   this.customerForm.value[key] = customer[0][key]
+        // }
+        console.log(item)
+        // this.customerForm.patchValue(customer)
+        });
+  }
+}
 }
