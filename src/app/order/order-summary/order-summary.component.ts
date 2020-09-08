@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { State } from './../../store/state';
 import { Order, OrderDetails, OrderSummary } from './../models';
 import { selectOrders } from './../../store/selectors';
-import { PostOrderSummary } from './../../store/actions';
+import { PostOrderSummary, SetOrder } from './../../store/actions';
 
 import { SocialMediaSharingService } from './../../common';
 import * as _ from 'underscore';
@@ -35,6 +35,8 @@ export class OrderSummaryComponent implements OnInit {
     MORE : "more"
   }
 
+  public removeItem;
+
   calculateTotal()  {
     
     if(this.updatedOrders.length > 1)  {
@@ -46,17 +48,26 @@ export class OrderSummaryComponent implements OnInit {
   
   }
    
-  getCounterValue(orderDetails: any)  {
-    let {item_id} = orderDetails;
+  getCounterValue(orderDetails: OrderDetails)  {
+    let {item_id, count} = orderDetails;
 
+    
     let isOrderExit = _.findIndex(this.updatedOrders, {item_id});
-
+    
+    
     if(isOrderExit >= 0)  {
-        this.updatedOrders[isOrderExit] = {...orderDetails};
+        if(count > 0)  {
+          this.updatedOrders[isOrderExit] = {...orderDetails};
+        }
+        else {
+          this.updatedOrders.splice(isOrderExit, 1);
+          this._store.dispatch(new SetOrder({orderDetails: this.updatedOrders}));
+        }
     }
     else {
       this.updatedOrders.push(orderDetails);
     }
+
 
     this.calculateTotal()
 
