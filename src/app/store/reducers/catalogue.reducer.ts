@@ -9,10 +9,10 @@ export function CatalogueReducers(state:Catalogue[] = [], action: CatalogueActio
             return action.payload
         }
         case ECatalogueActions.UpdateCatalogue: {
-            let {itemId} = action.payload;
+            let {id} = action.payload;
             let tempState = state.slice(0);
 
-            let isCatalogueExist = _.findIndex(state, {itemId});
+            let isCatalogueExist = _.findIndex(state, {id});
             if(isCatalogueExist >= 0)  {
                 tempState[isCatalogueExist] = {...action.payload};
                 return tempState;

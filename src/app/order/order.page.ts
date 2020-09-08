@@ -4,7 +4,7 @@ import { of, Subscription, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { State } from './../store/state';
-import { SetOrder, ResetOrder } from './../store/actions';
+import { SetOrder, ResetOrder, GetCustomers } from './../store/actions';
 import { selectCurrentOrder, selectCustomers } from './../store/selectors';
 import { Router } from '@angular/router';
 import { Order } from './models';
@@ -24,33 +24,33 @@ export class OrderPage implements OnInit {
   public currentOrderSub : Subscription;
   public IsCustomerAlreadySelected = '';
   public selectedCustomer: Order = null;
-  public customers1$ : Observable<any> = this._store.select(selectCustomers);
-  public customers$ = of([
-    {
-      customerId : 1,
-      firstName : "Rajan",
-      lastName : "Joseph",
-      phoneNumber : "9698446776",
-      totalOrders : 0,
-      totalAmount : 0
-    },
-    {
-      customerId : 2,
-      firstName : "First",
-      lastName : "Last",
-      phoneNumber : "9698446776",
-      totalOrders : 40,
-      totalAmount : 100
-    },
-    {
-      customerId : 3,
-      firstName : "First",
-      lastName : "Last",
-      phoneNumber : "9698446776",
-      totalOrders : 130,
-      totalAmount : 1000
-    }
-  ]);
+  public customers$ : Observable<any> = this._store.select(selectCustomers);
+  // public customers$ = of([
+  //   {
+  //     customerId : 1,
+  //     firstName : "Rajan",
+  //     lastName : "Joseph",
+  //     phoneNumber : "9698446776",
+  //     totalOrders : 0,
+  //     totalAmount : 0
+  //   },
+  //   {
+  //     customerId : 2,
+  //     firstName : "First",
+  //     lastName : "Last",
+  //     phoneNumber : "9698446776",
+  //     totalOrders : 40,
+  //     totalAmount : 100
+  //   },
+  //   {
+  //     customerId : 3,
+  //     firstName : "First",
+  //     lastName : "Last",
+  //     phoneNumber : "9698446776",
+  //     totalOrders : 130,
+  //     totalAmount : 1000
+  //   }
+  // ]);
 
   onEnableSearch()  {
     this.isSerachActive = !this.isSerachActive;
@@ -72,17 +72,18 @@ export class OrderPage implements OnInit {
   }
 
   onselectCustomer(customer: any)  {
-    const customerId = customer['customerId'];
+    const customerId = customer['id'];
     const firstName = customer['firstName'];
     const phoneNumber = customer['phoneNumber'];
+    const serviceId = customer['service_id']
 
     if(this.selectedCustomer && this.selectedCustomer.customerId == customerId && this.selectedCustomer.orderDetails && this.selectedCustomer.orderDetails.length > 0)  {
         this.navCtrl.navigateForward('/order/order_summary');
-        this._store.dispatch(new SetOrder({customerId, firstName, phoneNumber}));
+        this._store.dispatch(new SetOrder({customerId,serviceId, firstName, phoneNumber}));
     }
     else {
       this.navCtrl.navigateForward('/order/add_item');
-      this._store.dispatch(new ResetOrder({customerId, firstName, phoneNumber}));
+      this._store.dispatch(new ResetOrder({customerId,serviceId, firstName, phoneNumber}));
     }
   }
 
@@ -103,6 +104,8 @@ export class OrderPage implements OnInit {
       this.IsCustomerAlreadySelected = (data && data.customerId) ? data.customerId : '' ;
       this.selectedCustomer = data ? {...data} : null ;
     });
+
+    this._store.dispatch(new GetCustomers({'service_id':1}));
   
   }
 

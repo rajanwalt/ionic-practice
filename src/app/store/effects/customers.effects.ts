@@ -4,7 +4,7 @@ import { EMPTY } from 'rxjs';
 import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { MonekatService } from '../../APIs';
 
-import { ECustomersActions, SetCustomers, AddCustomers, CustomerSuccess, UpdateCustomers} from '../actions';
+import { ECustomersActions, SetCustomers, AddCustomers, CustomerSuccess, UpdateCustomers, GetCustomers} from '../actions';
 import { NavController } from '@ionic/angular';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class CustomersEffects {
 
   getCustomers$ = createEffect(() => this.actions$.pipe(
     ofType(ECustomersActions.GetCustomers),
-    switchMap(() => this.monekatService.getCustomers()
+    switchMap((action: GetCustomers)=> this.monekatService.getCustomers(action.payload)
       .pipe(
         map(customerdetails => new SetCustomers(customerdetails)),
         catchError(() => EMPTY)

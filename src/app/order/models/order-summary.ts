@@ -27,6 +27,7 @@ export class OrderSummary  {
             data.totalAmount,
             data.status,
             data.customerId,
+            data.serviceId,
             OrderItems.formatAPIArray(data.orderDetails)
         );
     }
@@ -35,6 +36,7 @@ export class OrderSummary  {
     public totalAmount: string,
     public status: string,
     public customerId: string,
+    public serviceId: string,
     public orderItems?: OrderItems[]
     )  {}
 } 

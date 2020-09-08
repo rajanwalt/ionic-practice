@@ -40,7 +40,7 @@ export class OrderSummaryComponent implements OnInit {
   calculateTotal()  {
     
     if(this.updatedOrders.length > 1)  {
-      this.subTotal = this.updatedOrders.reduce((currentvalue, nextValue) => currentvalue.price + nextValue.price);
+      this.subTotal = this.updatedOrders.reduce((currentvalue, nextValue) => +currentvalue.price + +nextValue.price);
     }
     else  {
       this.subTotal = this.updatedOrders[0]['price'];
@@ -110,7 +110,8 @@ export class OrderSummaryComponent implements OnInit {
   onPostOrderSummary()  {
     const finalOrderSummary = { ...this.orders, totalAmount: this.subTotal, status: "CREATED"};
     finalOrderSummary.orderDetails = this.updatedOrders.splice(0);
-
+    console.log(finalOrderSummary);
+    console.log(OrderSummary.formatAPI(finalOrderSummary));
     this._store.dispatch(new PostOrderSummary(OrderSummary.formatAPI(finalOrderSummary)));
   }
 

@@ -25,6 +25,6 @@ export class Catalogue {
         public width : string,
         public height : string,
         public shopId?: string,
-        public itemId?:number
+        public id?:number
     )  {}
 }

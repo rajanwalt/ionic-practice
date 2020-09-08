@@ -8,6 +8,7 @@ export interface OrderDetails  {
 export class Order  {
     constructor(
     public customerId?: string,
+    public serviceId?: string,
     public phoneNumber?: string,
     public firstName?: string,
     public orderDetails?: OrderDetails[],

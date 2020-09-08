@@ -5,6 +5,7 @@ export enum ECustomersActions  {
     SetCustomers = '[Customers] Set Customers',
     AddCustomers = '[Customers] Add Customers',
     GetCustomers = '[Customers] Get Customers',
+    GetCustomer = '[Customers] Get Customer',
     UpdateCustomers = '[Customers] Update Customers',
     CustomerSuccess = '[Customers] Customer Add Success',
 }
@@ -16,6 +17,11 @@ export class SetCustomers implements Action {
 
 export class GetCustomers implements Action {
     public readonly type = ECustomersActions.GetCustomers;
+    constructor(public payload: any)  {}
+}
+
+export class GetCustomer implements Action {
+    public readonly type = ECustomersActions.GetCustomer;
     constructor(public payload: any)  {}
 }
 
@@ -34,4 +40,4 @@ export class CustomerSuccess implements Action {
     constructor(public payload: any)  {}
 }
 
-export type CustomersActions = SetCustomers | GetCustomers | AddCustomers | UpdateCustomers | CustomerSuccess;
+export type CustomersActions = SetCustomers | GetCustomers | AddCustomers | UpdateCustomers | CustomerSuccess |GetCustomer;

@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
 import { selectCustomers } from './../../store/selectors';
 import { IonSearchbar } from '@ionic/angular';
+import { GetCustomers } from 'src/app/store/actions';
 
 
 @Component({
@@ -27,31 +28,31 @@ export class CustomersComponent implements OnInit {
     "ALL"
   ];
 
-  public customers$ = of([
-    {
-      id : 1,
-      firstName : "Rajan",
-      lastName : "Joseph",
-      totalOrders : 0,
-      totalAmount : 0
-    },
-    {
-      id : 2,
-      firstName : "First",
-      lastName : "Last",
-      totalOrders : 40,
-      totalAmount : 100
-    },
-    {
-      id : 3,
-      firstName : "First",
-      lastName : "Last",
-      totalOrders : 130,
-      totalAmount : 1000
-    }
-  ]);
+  // public customers$ = of([
+  //   {
+  //     id : 1,
+  //     firstName : "Rajan",
+  //     lastName : "Joseph",
+  //     totalOrders : 0,
+  //     totalAmount : 0
+  //   },
+  //   {
+  //     id : 2,
+  //     firstName : "First",
+  //     lastName : "Last",
+  //     totalOrders : 40,
+  //     totalAmount : 100
+  //   },
+  //   {
+  //     id : 3,
+  //     firstName : "First",
+  //     lastName : "Last",
+  //     totalOrders : 130,
+  //     totalAmount : 1000
+  //   }
+  // ]);
 
-  public customers1$ : Observable<any> = this._store.select(selectCustomers);
+  public customers$ : Observable<any> = this._store.select(selectCustomers);
    
   onActivateTab(activeIndex : number)  {
     this.activeTab = activeIndex;
@@ -83,7 +84,9 @@ export class CustomersComponent implements OnInit {
     private _store: Store<State>) { }
 
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._store.dispatch(new GetCustomers({'service_id':1}));
+  }
 
   
 }

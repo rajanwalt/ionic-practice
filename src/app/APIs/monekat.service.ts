@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Observable } from 'rxjs';
 
@@ -23,9 +23,10 @@ export class MonekatService {
     return this.http.post(url, shopData);
   }
 
-  getCustomers() : Observable<any>  {
+  getCustomers(queryData : any) : Observable<any>  {
     let url = '/api/customers'
-    return this.http.get(url);
+    let queryParams = new HttpParams().set('service_id', queryData['service_id']);
+    return this.http.get(url, {params: queryParams});
   }
   
   addCustomer(customerData: any) : Observable<any>  {
@@ -33,18 +34,20 @@ export class MonekatService {
     return this.http.post(url, customerData);
   }
 
-  getCatalogue() : Observable<any>  {
-    let url = '/api/catalogue'
-    return this.http.get(url);
+  getCatalogue(queryData : object) : Observable<any>  {
+    let url = '/api/items'
+    let queryParams = new HttpParams().set('service_id', queryData['service_id']);
+    return this.http.get(url, {params: queryParams});
   }
   
   addCatalogue(catalogue: any) : Observable<any>  {
-    let url = '/api/catalogue'
-    return this.http.post(url, catalogue);
+    let url = '/api/items'
+    let tempCatalogue = {...catalogue, shopId:1}
+    return this.http.post(url, tempCatalogue);
   }
 
   postOrderSummary(orderSummary: any): Observable<any>  {
-    let url = '/orders/add_with_orderitems';
+    let url = '/api/orders/add_with_orderitems';
     
     return this.http.post(url, orderSummary);
   }

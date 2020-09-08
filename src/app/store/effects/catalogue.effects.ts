@@ -4,7 +4,7 @@ import { EMPTY } from 'rxjs';
 import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { MonekatService } from '../../APIs';
 
-import { ECatalogueActions, SetCatalogue, UpdateCatalogue, AddCatalogue, CatalogueSuccess} from '../actions';
+import { ECatalogueActions, SetCatalogue, UpdateCatalogue, AddCatalogue, CatalogueSuccess, GetCatalogue} from '../actions';
 import { NavController } from '@ionic/angular';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class CatalogueEffects {
 
   getCatalogue$ = createEffect(() => this.actions$.pipe(
     ofType(ECatalogueActions.GetCatalogue),
-    switchMap(() => this.monekatService.getCatalogue()
+    switchMap((action: GetCatalogue) => this.monekatService.getCatalogue(action.payload)
       .pipe(
         map(shopDetails => new SetCatalogue(shopDetails)),
         catchError(() => EMPTY)
@@ -22,7 +22,7 @@ export class CatalogueEffects {
 
   postCatalogue$ = createEffect(() => this.actions$.pipe(
     ofType(ECatalogueActions.AddCatalogue),
-    switchMap((action: AddCatalogue) => this.monekatService.addCustomer(action.payload)
+    switchMap((action: AddCatalogue) => this.monekatService.addCatalogue(action.payload)
       .pipe(
         map(shopDetails => new CatalogueSuccess(shopDetails)),
         catchError(() => EMPTY)
