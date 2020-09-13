@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Payment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid *ngIf="!((customers$ | async).length)">
+    <ion-row>
+      <ion-col *ngFor="let item of tabs; let i=index" (click)="onActivateTab(i)" [class.active]="i==activeTab">
+        {{item}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

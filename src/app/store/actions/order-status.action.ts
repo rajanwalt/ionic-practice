@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store';
 
 export enum EOrderStatusActions  {
     GetOrderStatus = '[Order Status] Get Order Status',
+    OnOrderSuccess = '[Order Status] On Order Success',
     SetOrderStatus = '[Order Status] Set Order Status'
 }
 
@@ -15,5 +16,10 @@ export class SetOrderStatus implements Action {
     constructor(public payload: any)  {}
 }
 
+export class OnOrderSuccess implements Action {
+    public readonly type = EOrderStatusActions.OnOrderSuccess;
+    constructor(public payload: any)  {}
+}
 
-export type OrderStatusActions = GetOrderStatus | SetOrderStatus;
+
+export type OrderStatusActions = GetOrderStatus | SetOrderStatus | OnOrderSuccess;

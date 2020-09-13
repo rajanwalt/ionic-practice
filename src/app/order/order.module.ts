@@ -10,6 +10,7 @@ import { OrderPageRoutingModule } from './order-routing.module';
 import { OrderPage } from './order.page';
 import { SelectCatalogueComponent } from './select-catalogue/select-catalogue.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
   declarations: [
     OrderPage,
     SelectCatalogueComponent,
-    OrderSummaryComponent
+    OrderSummaryComponent,
+    CartComponent
   ]
 })
 export class OrderPageModule {}

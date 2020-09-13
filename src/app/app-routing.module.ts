@@ -19,7 +19,11 @@ const routes: Routes = [
     path: 'main',
     loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
   },
-  { path: '', redirectTo: 'main', pathMatch: 'full' }
+  {
+    path: 'checkout',
+    loadChildren: () => import('./checkout/checkout.module').then( m => m.CheckoutPageModule)
+  },
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
   
 ];
 

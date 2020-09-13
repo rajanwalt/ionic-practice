@@ -18,6 +18,6 @@ export const initialState : State = {
     customers : [],
     catalogue : [],
     currentOrder : null,
-    lastOrderStatus : "",
+    lastOrderStatus : null,
     
   }

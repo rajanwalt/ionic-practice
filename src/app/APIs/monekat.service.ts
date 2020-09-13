@@ -52,6 +52,19 @@ export class MonekatService {
     return this.http.post(url, orderSummary);
   }
 
+  getOrderSummary(queryData : object) : Observable<any>  {
+    let url = '/api/order/add_with_orderitems';
+
+    let queryParams = new HttpParams().set('orderId', queryData['orderId']);
+    return this.http.get(url, {params: queryParams});
+  }
+
+  updateOrderSummary(orderSummary: any): Observable<any>  {
+    let url = '/api/orders/add_with_orderitems';
+    
+    return this.http.put(url, orderSummary);
+  }
+
   
 
   constructor(private http: HttpClient) { }

@@ -1,0 +1,10 @@
+ion-col  {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-transform: capitalize;
+
+    &.active  {
+        border-bottom: 2px solid var(--ion-color-favorite1);
+    }
+}

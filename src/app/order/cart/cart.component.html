@@ -1,0 +1,90 @@
+<ion-header translucent>
+  <ion-toolbar color="favorite" padding>
+      <!-- <ion-buttons slot="start">
+          <ion-button (click)="goBack()">
+            Cancel
+          </ion-button>
+      </ion-buttons> -->
+      <ion-title color="dark" mode="ios" >Your Cart</ion-title>
+      <!-- <ion-buttons slot="end">
+        <ion-button (click)="onAddItems()">
+          <ion-icon name='add'></ion-icon>
+        </ion-button>
+      </ion-buttons>  -->
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen >
+  <ion-list *ngIf="orders">
+    <app-counter *ngFor="let order of orders?.orderDetails; let i=index" 
+      [order]= "order"
+      (counterValue)="getCounterValue($event)">
+    </app-counter>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <!-- <ion-row>
+      <ion-col size='10'>
+        <p class="main-text">Choose shipment type</p>
+        <p class="sub-text">or leave empty to let customer decide</p>
+      </ion-col>
+      <ion-col size='2'>
+        <ion-icon class="arrow" name="chevron-forward-outline"></ion-icon>
+      </ion-col>
+    </ion-row> -->
+    <ion-row>
+      <ion-col size='9'>
+        <p class="sub-text">Subtotal</p>
+        <p class="main-text">Send Invoice</p>
+      </ion-col>
+      <ion-col size='3'>
+        <p class="sub-text">{{subTotal | currency:'USD':'code'}}</p>
+        <p class="main-text">{{subTotal | currency:'USD':'code'}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button 
+          expand="full" 
+          strong="true" 
+          (click)="onUpdateOrderSummary()"
+          class="add-item"
+          color="favorite">
+          Place Order       
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row class="social-icons" *ngIf="isCheckoutLinkGenerated">
+      <ion-col (click)="onShare(SOCIALMEDIA.WHATSAPP)">
+          <ion-avatar>
+            <ion-icon name="logo-whatsapp"></ion-icon>
+          </ion-avatar>
+        <p>WhatsApp</p>
+      </ion-col>
+      <ion-col (click)="onShare(SOCIALMEDIA.MESSENGER)">
+        <ion-avatar>
+          <ion-icon name="logo-facebook"></ion-icon>
+        </ion-avatar>
+        <p>Messenger</p>
+      </ion-col>
+      <ion-col (click)="onShare(SOCIALMEDIA.SMS)">
+          <ion-avatar>
+            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+          </ion-avatar>
+        <p>SMS</p>
+      </ion-col>
+      <ion-col (click)="onShare(SOCIALMEDIA.COPY)">
+          <ion-avatar>
+            <ion-icon name="link-outline"></ion-icon>
+          </ion-avatar>
+        <p>Copy Link</p>
+      </ion-col>
+      <ion-col (click)="onShare(SOCIALMEDIA.MORE)">
+          <ion-avatar>
+            <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+          </ion-avatar>
+        <p>More</p>
+      </ion-col>
+    </ion-row> -->
+  </ion-grid>
+</ion-footer>

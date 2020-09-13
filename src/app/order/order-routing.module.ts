@@ -6,11 +6,16 @@ import { SelectCatalogueComponent } from './select-catalogue/select-catalogue.co
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import {AddCatalogueItemComponent} from './../common/add-catalogue-item/add-catalogue-item.component';
 import { AddCustomerComponent } from './../common/add-customer/add-customer.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {
     path: '',
     component: OrderPage,
+  },
+  {
+    path: ':orderId',
+    component: CartComponent,
   },
   {
     path: 'add_item',
