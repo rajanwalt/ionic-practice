@@ -10,6 +10,7 @@ import { MainPage } from './main.page';
 
 import { StoreTabComponent } from './store-tab/store-tab.component';
 import { NewOrderTabComponent } from './new-order-tab/new-order-tab.component';
+import { SettingsTabComponent } from './settings-tab/settings-tab.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { NewOrderTabComponent } from './new-order-tab/new-order-tab.component';
   declarations: [
     MainPage, 
     StoreTabComponent,
-    NewOrderTabComponent]
+    NewOrderTabComponent,
+    SettingsTabComponent]
 })
 export class MainPageModule {}

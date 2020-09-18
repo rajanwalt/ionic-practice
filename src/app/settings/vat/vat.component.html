@@ -1,0 +1,39 @@
+<ion-header >
+  <ion-toolbar color="favorite">
+    <ion-buttons slot="start">
+          <ion-button (click)="goBack()">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+    <ion-title>VAT</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onApply()" *ngIf="vatForm.valid && vatForm.dirty">
+        Apply
+      </ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-text>
+    <p>
+      VAT rate
+    </p>
+  </ion-text>
+  <ion-text color="medium">
+    Amount of taxes owed by your customer will be added to eavh product and displayed at checkout.
+  </ion-text>
+  <form [formGroup]="vatForm">
+    <ion-list>
+      <ion-item>
+        <ion-input formControlName="rate" ></ion-input>
+        <ion-text slot="end">%</ion-text>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Tax Registration Number(TRN)</ion-label>
+        <ion-input formControlName="trn" ></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

@@ -1,0 +1,89 @@
+<ion-header >
+  <ion-toolbar color="favorite">
+    <ion-buttons slot="start">
+          <ion-button (click)="goBack()">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+    <ion-title>Shipping</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onSave()">
+        Save
+      </ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="shippingForm">
+  <ion-grid>
+    <ion-row class="ship-heading">
+      <ion-col size="8">
+        Type
+      </ion-col>
+      <ion-col size="4" class="right-align">
+        Allow
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">
+        <ion-text class="text-bold">
+          Customer Pickup <br>
+        </ion-text>
+        <ion-text color="success">No cost</ion-text>
+      </ion-col>
+      <ion-col size="4" class="right-align">
+        <ion-toggle color="favorite" [checked]="(shipping$ | async)?.customer_pickup"></ion-toggle>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">
+        <ion-text class="text-bold">
+          In-house Delivery <br>
+        </ion-text>
+        <ion-text color="success">
+          Fixed Price <br>
+        </ion-text>
+        <ion-text>
+          (available for domestic only)
+        </ion-text>
+      </ion-col>
+      <ion-col size="4" class="right-align">
+        <ion-toggle color="favorite" [checked]="(shipping$ | async)?.in_house_delivery" (ionChange)="isInHouseDeliveryActive=!isInHouseDeliveryActive"></ion-toggle>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="bg-light" [hidden]="!isInHouseDeliveryActive" formArrayName="fixedPrices">
+    <ion-row>
+      <ion-col size="12">
+        <ion-text class="text-bold">
+          Set fixed courier prices
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ship-heading" *ngFor="let item of fixedPrices.controls; let i=index" [formGroupName]="i">
+      <ion-col size="6">
+        <ion-text>Destination City</ion-text>
+        <ion-select placeholder="Select city" formControlName="cityName" [value]="item.cityName" >
+          <ion-select-option *ngFor="let city of cities" [value]="city">{{city}}</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="4">
+        <ion-text>Price</ion-text>
+        <ion-input placeholder="USD 0.00" [value]="item.courierPrice" formControlName="courierPrice" ></ion-input>
+      </ion-col>
+      <ion-col size="2" class="ion-align-self-end text-center" >
+        <ion-icon name="close-circle" (click)="onReset(i)"></ion-icon>
+      </ion-col> 
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-text color="primary" (click)="onAddLocation()">
+          Add another location
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</form>
+{{shippingForm.value | json}}
+</ion-content>

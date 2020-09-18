@@ -1,0 +1,28 @@
+<ion-header >
+  <ion-toolbar color="favorite">
+    <ion-buttons slot="start">
+          <ion-button (click)="goBack()">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+    <ion-title>Payment Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <p>
+        At leat one payment option must be selected. Credit card is not available in some countries.
+      </p>
+    </ion-item>
+    <ion-item button="true" *ngFor="let paymentMethod of paymentMethods$ | async">
+      <ion-label>
+        {{paymentMethod.type}} <span (click)="onShowInfo(paymentMethod)">({{paymentMethod.fee}}%)</span>
+      </ion-label>
+      <ion-checkbox slot="end" color="favorite" 
+      [checked]="paymentMethod.selected"
+      (ionChange)="onSelectPaymentMethod($event, paymentMethod)"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+</ion-content>

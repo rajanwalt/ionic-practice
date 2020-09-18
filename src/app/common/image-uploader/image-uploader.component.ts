@@ -122,6 +122,10 @@ export class ImageUploaderComponent implements OnInit {
     await actionSheet.present();
   }
 
+  onCrop()  { }
+
+  onRotate()  {}
+
   ngOnInit() {
     this.presentActionSheet();
   }

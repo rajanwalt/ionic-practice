@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainPage } from './main.page';
 import { StoreTabComponent } from './store-tab/store-tab.component';
 import { NewOrderTabComponent } from './new-order-tab/new-order-tab.component';
+import { SettingsTabComponent } from './settings-tab/settings-tab.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,15 @@ const routes: Routes = [
           {
             path: '',
             component: StoreTabComponent
+          }
+        ]
+      },
+      {
+        path: 'settings',
+        children: [
+          {
+            path: '',
+            component: SettingsTabComponent
           }
         ]
       },

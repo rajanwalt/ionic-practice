@@ -46,6 +46,7 @@ export class WalletComponent implements OnInit {
        }
     })
   }  
+  onAddItem()  {}
   
   constructor(public popoverCtrl: PopoverController, private router: Router) { }
 

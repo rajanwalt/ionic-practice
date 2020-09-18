@@ -36,6 +36,9 @@ export class ViewCatalogueComponent implements OnInit {
       filePath : ""
     }
   ];
+  
+  isActive = 0;
+
 
   bannerPhoto : string = this.photos[0].webviewPath;
 

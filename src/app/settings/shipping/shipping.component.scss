@@ -1,0 +1,33 @@
+.ship-heading  {
+    background-color: var(--ion-color-light);
+}
+
+ion-grid  {
+    .right-align  {
+        text-align: right;
+    }
+    .text-bold  {
+        font-weight: 600;
+    }
+    &.bg-light  {
+        ion-row {
+            background-color: var(--ion-color-light);
+        }
+
+        ion-select, ion-input  {
+            border: 1px solid var(--ion-color-medium);
+            background-color: #ffffff;
+            --padding-start : 7px;
+            --padding-end : 7px;
+            --padding-bottom : 7px;
+            --padding-top : 7px;
+            margin-top: 7px;
+        }
+        ion-icon  {
+            font-size: 34px;
+        }
+        .text-center  {
+            text-align: center;
+        }
+    }
+}

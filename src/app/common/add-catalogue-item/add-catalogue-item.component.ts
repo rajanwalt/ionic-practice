@@ -72,6 +72,9 @@ export class AddCatalogueItemComponent implements OnInit {
     }
   ];
 
+  isActive = 0;
+  hasDimensions = false;
+
   catalogueForm = new FormGroup({
     productName: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),

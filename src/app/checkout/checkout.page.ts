@@ -15,6 +15,10 @@ export class CheckoutPage implements OnInit {
     "review"
   ];
 
+  onActivateTab(activeIndex : number)  {
+    this.activeTab = activeIndex;
+  }
+
   constructor() { }
 
   ngOnInit() {

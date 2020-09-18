@@ -65,6 +65,28 @@ export class MonekatService {
     return this.http.put(url, orderSummary);
   }
 
+  getPaymentSettings(): Observable<any>  {
+    let url = '/api/payment_settings'
+    return this.http.get(url);
+  }
+
+  updatePaymentSettings(paymentMethods: any): Observable<any>  {
+    let url = '/api/payment_settings';
+    
+    return this.http.post(url, paymentMethods);
+  }
+
+  getVat(): Observable<any>  {
+    let url = '/api/vat'
+    return this.http.get(url);
+  }
+
+  postVat(vatDetails: any): Observable<any>  {
+    let url = '/api/vat';
+    
+    return this.http.post(url, vatDetails);
+  }
+
   
 
   constructor(private http: HttpClient) { }
