@@ -1,0 +1,8 @@
+ion-row  {
+    border-top: 10px solid var(--ion-color-light);
+    // border-bottom: 5px solid var(--ion-color-light);
+
+    &.catalogue  {
+        border-top: unset;
+    }
+}

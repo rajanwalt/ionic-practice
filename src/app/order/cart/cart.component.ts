@@ -27,14 +27,6 @@ export class CartComponent implements OnInit {
   public subTotal;
   public isCheckoutLinkGenerated = false;
   
-  // public SOCIALMEDIA = {
-  //   WHATSAPP : "whatsapp",
-  //   MESSENGER : "messenger",
-  //   SMS : "sms",
-  //   COPY : "copy",
-  //   MORE : "more"
-  // }
-
   public removeItem;
 
   calculateTotal()  {
@@ -73,39 +65,6 @@ export class CartComponent implements OnInit {
 
   }
 
-  // onShare(appName)  {
-      
-  //   switch(appName)  {
-  //     case this.SOCIALMEDIA.WHATSAPP : {
-  //       break;
-  //     }
-  //     case this.SOCIALMEDIA.MESSENGER : {
-  //       break;
-  //     }
-  //     case this.SOCIALMEDIA.SMS : {
-  //       this.socialMediaSharingService.shareViaSMS(this.message, this.orders.phoneNumber);
-  //       break;
-  //     }
-  //     case this.SOCIALMEDIA.COPY : {
-  //       break;
-  //     }
-  //     default: {
-
-  //     }
-  //   }
-  // }
-
-  // get message()  {
-  //   return "";
-  // }
-
-  // get name()  {
-  //   return (this.orders && this.orders.firstName) ? `${this.orders.firstName}'s` : "";
-  // }
-
-  // onAddItems()  {
-  //   this.router.navigate(['/order/add_item']);
-  // }
 
   onUpdateOrderSummary()  {
     const finalOrderSummary = { ...this.orders, totalAmount: this.subTotal, status: "UPDATED"};
@@ -140,10 +99,7 @@ export class CartComponent implements OnInit {
   ionViewWillEnter()  {
   }
 
-  // goBack()  {
-  //   this.navCtrl.navigateBack('/order');
-  // }
-
+ 
   constructor(private _store: Store<State>,
     private socialMediaSharingService: SocialMediaSharingService,
     private router: Router,

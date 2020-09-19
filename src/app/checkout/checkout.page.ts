@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { RouterStateService } from './../common';
+
 
 @Component({
   selector: 'app-checkout',
@@ -7,21 +11,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutPage implements OnInit {
 
-  activeTab : number = 0;
-
+    
   tabs : string[] = [
     "delivery",
     "payment",
     "review"
   ];
 
-  onActivateTab(activeIndex : number)  {
-    this.activeTab = activeIndex;
+  activeTabLink : string = "delivery";
+
+  
+  goToNextTab()  {
+    //1. Validate current tab values 2. If valid, navigate to next Tab 3. 
   }
 
-  constructor() { }
+  onActivateTab(activeTab : string)  {
+    this.activeTabLink = activeTab;
+
+    this.router.navigate([`/checkout/${activeTab}`])
+  }
+
+  getActiveTabLinkFromURL(url)  {
+    return url ? url.replace('/checkout/', '') : '';
+  }
+
+  constructor(private router: Router, 
+              private activatedRoute : ActivatedRoute, 
+              private routerStateService: RouterStateService) { 
+  }
 
   ngOnInit() {
   }
 
+  ionViewWillEnter(){
+    let currentURL = this.router.url;
+
+    this.activeTabLink = this.getActiveTabLinkFromURL(currentURL);
+   
+  }
+
+ 
 }

@@ -14,7 +14,7 @@ const routes: Routes = [
     component: OrderPage,
   },
   {
-    path: ':orderId',
+    path: 'cart/:orderId',
     component: CartComponent,
   },
   {

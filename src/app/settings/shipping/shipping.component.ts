@@ -9,6 +9,7 @@ import { FormArray, FormGroup,  FormBuilder } from '@angular/forms';
   styleUrls: ['./shipping.component.scss'],
 })
 export class ShippingComponent implements OnInit {
+  shippingSub : Subscription;
 
   shippingForm = this.fb.group({
     customer_pickup : [true],
@@ -29,19 +30,6 @@ export class ShippingComponent implements OnInit {
     return this.shippingForm.get('fixedPrices') as FormArray;
   }
 
-
-
-  shipping$ = of({
-    "customer_pickup" : true,
-    "in_house_delivery" : false,
-    "fixedPrices" : []
-  });
-
-  shipping = null;
-  shippingSub : Subscription;
-
-
-  isInHouseDeliveryActive = false;
   cities = [
     "Dubai",
     "Abu Dhabi",
@@ -49,8 +37,7 @@ export class ShippingComponent implements OnInit {
     "Al Ain"
   ];
 
- 
-  onAddLocation()  {
+   onAddLocation()  {
     this.fixedPrices.push(this.createFixedPrice());
     
   }

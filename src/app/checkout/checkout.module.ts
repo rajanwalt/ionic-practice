@@ -7,6 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { CheckoutPageRoutingModule } from './checkout-routing.module';
 
 import { CheckoutPage } from './checkout.page';
+import { ReviewComponent } from './review/review.component';
+import { PaymentComponent } from './payment/payment.component';
+import { DeliveryComponent } from './delivery/delivery.component';
 
 @NgModule({
   imports: [
@@ -15,6 +18,6 @@ import { CheckoutPage } from './checkout.page';
     IonicModule,
     CheckoutPageRoutingModule
   ],
-  declarations: [CheckoutPage]
+  declarations: [CheckoutPage, ReviewComponent, PaymentComponent, DeliveryComponent]
 })
 export class CheckoutPageModule {}

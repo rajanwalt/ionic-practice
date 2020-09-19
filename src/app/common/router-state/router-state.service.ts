@@ -22,5 +22,9 @@ export class RouterStateService {
     return this.history[this.history.length - 2] || '/'
   }
 
+  public getCurrentURL(): string  {
+    return this.history[this.history.length-1];
+  }
+
   constructor(private router: Router) { }
 }
