@@ -23,25 +23,41 @@
 </ion-content>
 <ion-footer>
   <ion-grid>
-    <ion-row>
-      <ion-col size='10'>
+    <ion-row (click)="onChangeSettings('shipping')">
+      <ion-col size='10' class="custom-line-height">
         <p class="main-text">Choose shipment type</p>
         <p class="sub-text">or leave empty to let customer decide</p>
       </ion-col>
-      <ion-col size='2'>
+      <ion-col size='2' class="ion-text-right ">
         <ion-icon class="arrow" name="chevron-forward-outline"></ion-icon>
-      </ion-col>
+        </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col size='9'>
-        <p class="sub-text">Subtotal</p>
-        <p class="main-text">Send Invoice</p>
+    <ion-row (click)="onChangeSettings('payment_settings')">
+      <ion-col size='10' class="custom-line-height">
+        <p class="main-text">Credit Card</p>
+        <p class="sub-text">VISA, MAsterCard</p>
       </ion-col>
-      <ion-col size='3'>
-        <p class="sub-text">{{subTotal | currency:'USD':'code'}}</p>
-        <p class="main-text">{{subTotal | currency:'USD':'code'}}</p>
-      </ion-col>
+      <ion-col size='2' class="ion-text-right ">
+        <ion-icon class="arrow" name="chevron-forward-outline"></ion-icon>
+        </ion-col>
     </ion-row>
+    <ion-row class="ion-no-border sub-text">
+      <ion-col class="ion-text-left"><ion-text color="medium">Subtotal</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
+    </ion-row>
+    <ion-row class="ion-no-border sub-text">
+      <ion-col class="ion-text-left"><ion-text color="medium">Delivery (estimated)</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
+    </ion-row>
+    <ion-row class="ion-no-border sub-text">
+      <ion-col class="ion-text-left"><ion-text color="medium">Tax/(VAT{{'10%'}})</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
+    </ion-row>
+    <ion-row class="ion-no-border main-text">
+      <ion-col class="ion-text-left"><ion-text color="dark">Send Invoice</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="dark">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
+    </ion-row>
+  
     <ion-row>
       <ion-col>
         <ion-button 

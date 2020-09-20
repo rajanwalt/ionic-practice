@@ -32,15 +32,21 @@
         <ion-icon class="arrow" name="chevron-forward-outline"></ion-icon>
       </ion-col>
     </ion-row> -->
-    <ion-row>
-      <ion-col size='9'>
-        <p class="sub-text">Subtotal</p>
-        <p class="main-text">Send Invoice</p>
-      </ion-col>
-      <ion-col size='3'>
-        <p class="sub-text">{{subTotal | currency:'USD':'code'}}</p>
-        <p class="main-text">{{subTotal | currency:'USD':'code'}}</p>
-      </ion-col>
+    <ion-row class="ion-no-border sub-text">
+      <ion-col class="ion-text-left"><ion-text color="medium">Subtotal</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
+    </ion-row>
+    <ion-row class="ion-no-border sub-text">
+      <ion-col class="ion-text-left"><ion-text color="medium">Delivery (estimated)</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
+    </ion-row>
+    <ion-row class="ion-no-border sub-text">
+      <ion-col class="ion-text-left"><ion-text color="medium">Tax/(VAT{{'10%'}})</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
+    </ion-row>
+    <ion-row class="ion-no-border main-text">
+      <ion-col class="ion-text-left"><ion-text color="dark">Send Invoice</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="dark">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
@@ -54,37 +60,5 @@
         </ion-button>
       </ion-col>
     </ion-row>
-    <!-- <ion-row class="social-icons" *ngIf="isCheckoutLinkGenerated">
-      <ion-col (click)="onShare(SOCIALMEDIA.WHATSAPP)">
-          <ion-avatar>
-            <ion-icon name="logo-whatsapp"></ion-icon>
-          </ion-avatar>
-        <p>WhatsApp</p>
-      </ion-col>
-      <ion-col (click)="onShare(SOCIALMEDIA.MESSENGER)">
-        <ion-avatar>
-          <ion-icon name="logo-facebook"></ion-icon>
-        </ion-avatar>
-        <p>Messenger</p>
-      </ion-col>
-      <ion-col (click)="onShare(SOCIALMEDIA.SMS)">
-          <ion-avatar>
-            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-          </ion-avatar>
-        <p>SMS</p>
-      </ion-col>
-      <ion-col (click)="onShare(SOCIALMEDIA.COPY)">
-          <ion-avatar>
-            <ion-icon name="link-outline"></ion-icon>
-          </ion-avatar>
-        <p>Copy Link</p>
-      </ion-col>
-      <ion-col (click)="onShare(SOCIALMEDIA.MORE)">
-          <ion-avatar>
-            <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
-          </ion-avatar>
-        <p>More</p>
-      </ion-col>
-    </ion-row> -->
   </ion-grid>
 </ion-footer>

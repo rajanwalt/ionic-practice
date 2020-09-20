@@ -30,7 +30,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'settings',
+        path: 'settings_tab',
         children: [
           {
             path: '',

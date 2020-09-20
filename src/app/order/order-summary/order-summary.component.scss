@@ -3,6 +3,17 @@ ion-back-button  {
 }
 
 ion-footer  {
+
+    .main-text  {
+        font-weight: 600;
+        font-size: 16px;
+    }
+    .sub-text  {
+        font-size: 14px;
+    }
+    .custom-line-height  {
+        line-height: 7px;
+    }
     
     ion-grid  {
         padding-left: 0;
@@ -10,7 +21,11 @@ ion-footer  {
 
         ion-row  {
             border-bottom: 2px solid var(--ion-color-light);
-            line-height: 1;
+            // line-height: 1;
+
+            &.ion-no-border  {
+                border-bottom: unset;
+            }
 
             &:last-child  {
                 border-bottom: none;
@@ -51,13 +66,7 @@ ion-footer  {
                 }
             }
             
-            .main-text  {
-                font-weight: 600;
-                font-size: 14px;
-            }
-            .sub-text  {
-                font-size: 12px;
-            }
+            
         }
     }
     

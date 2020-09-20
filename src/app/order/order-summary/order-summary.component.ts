@@ -115,6 +115,14 @@ export class OrderSummaryComponent implements OnInit {
     this._store.dispatch(new PostOrderSummary(OrderSummary.formatAPI(finalOrderSummary)));
   }
 
+  onChangeSettings(type)  {
+    this.navCtrl.navigateForward(`/settings/${type}`)
+  }
+
+  onselectPaymentType()  {
+
+  }
+
   ngOnInit() {
     
   }
