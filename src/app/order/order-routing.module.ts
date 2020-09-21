@@ -7,6 +7,7 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import {AddCatalogueItemComponent} from './../common/add-catalogue-item/add-catalogue-item.component';
 import { AddCustomerComponent } from './../common/add-customer/add-customer.component';
 import { CartComponent } from './cart/cart.component';
+import { ShipmentOptionsComponent } from './shipment-options/shipment-options.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'order_summary',
     component: OrderSummaryComponent
+  },
+  {
+    path: 'shipment_options',
+    component: ShipmentOptionsComponent
   }
 ];
 

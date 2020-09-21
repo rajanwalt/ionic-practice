@@ -23,7 +23,7 @@
 </ion-content>
 <ion-footer>
   <ion-grid>
-    <ion-row (click)="onChangeSettings('shipping')">
+    <ion-row (click)="onSelectShipOptions()">
       <ion-col size='10' class="custom-line-height">
         <p class="main-text">Choose shipment type</p>
         <p class="sub-text">or leave empty to let customer decide</p>
@@ -32,7 +32,7 @@
         <ion-icon class="arrow" name="chevron-forward-outline"></ion-icon>
         </ion-col>
     </ion-row>
-    <ion-row (click)="onChangeSettings('payment_settings')">
+    <ion-row (click)="onShowPaymentTypeModal()">
       <ion-col size='10' class="custom-line-height">
         <p class="main-text">Credit Card</p>
         <p class="sub-text">VISA, MAsterCard</p>

@@ -10,7 +10,9 @@ import { PostOrderSummary, SetOrder } from './../../store/actions';
 
 import { SocialMediaSharingService } from './../../common';
 import * as _ from 'underscore';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
+
+import {PaymentTypeModalComponent} from './../payment-type-modal/payment-type-modal.component';
 
 @Component({
   selector: 'app-order-summary',
@@ -115,9 +117,10 @@ export class OrderSummaryComponent implements OnInit {
     this._store.dispatch(new PostOrderSummary(OrderSummary.formatAPI(finalOrderSummary)));
   }
 
-  onChangeSettings(type)  {
-    this.navCtrl.navigateForward(`/settings/${type}`)
+  onSelectShipOptions()  {
+    this.navCtrl.navigateForward('/order/shipment_options')
   }
+
 
   onselectPaymentType()  {
 
@@ -141,10 +144,21 @@ export class OrderSummaryComponent implements OnInit {
     this.navCtrl.navigateBack('/order');
   }
 
+  async onShowPaymentTypeModal()  {
+    
+    const modal = await this.modalController.create({
+      component: PaymentTypeModalComponent,
+      cssClass: 'payment-modal-custom-class',
+      
+    });
+    return await modal.present();
+  }
+
   constructor(private _store: Store<State>,
     private socialMediaSharingService: SocialMediaSharingService,
     private router: Router,
-    private navCtrl: NavController) { }
+    private navCtrl: NavController,
+    private modalController: ModalController) { }
 
 
 }

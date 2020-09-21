@@ -1,0 +1,37 @@
+<ion-header >
+  <ion-toolbar color="favorite">
+    <ion-buttons slot="start">
+          <ion-button (click)="goBack()">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+    <ion-title>Shipping</ion-title>
+    <!-- <ion-buttons slot="end" *ngIf="shippingForm.dirty">
+      <ion-button (click)="onSave()">
+        Save
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="info">
+    <ion-row class="ion-text-center">
+      <ion-col size="12" class="icon">
+        <ion-icon name="rocket-outline"></ion-icon>
+      </ion-col>
+      <ion-col size="12">
+        <ion-text color="danger"> No address set for this customer</ion-text>
+      </ion-col>
+      <ion-col size="12">
+        <ion-text>Add an address to get a delivery quote or set your own rate</ion-text>
+      </ion-col>
+      <ion-col size="6" >
+        <ion-text color="primary" (click)="onShowDeliveryRateModal()">Add custom rate</ion-text>
+      </ion-col>
+      <ion-col size="6" >
+        <ion-text color="primary">Edit customer address</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

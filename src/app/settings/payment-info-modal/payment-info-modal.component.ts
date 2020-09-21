@@ -15,7 +15,7 @@ export class PaymentInfoModalComponent implements OnInit {
     this.modalController.dismiss();
   }
 
-  constructor(public modalController: ModalController, ) { }
+  constructor(public modalController: ModalController ) { }
 
   ngOnInit() {}
 

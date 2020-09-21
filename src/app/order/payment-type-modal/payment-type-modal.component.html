@@ -1,0 +1,23 @@
+<ion-header translucent>
+  <ion-toolbar color="favorite" padding>
+      <!-- <ion-buttons slot="start">
+          <ion-button (click)="onDismiss()">
+            Cancel
+          </ion-button>
+      </ion-buttons> -->
+      <ion-title color="dark" mode="ios" >Payment Options</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="onDismiss()">
+          Close
+        </ion-button>
+      </ion-buttons> 
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-radio-group>
+    <ion-item class="ion-activated" (click)="onSelect()">
+      <ion-radio slot="start"></ion-radio>
+      <ion-label>Credit Card</ion-label>
+    </ion-item>
+  </ion-radio-group>
+</ion-content>

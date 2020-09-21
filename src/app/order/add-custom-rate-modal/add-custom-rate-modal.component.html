@@ -1,0 +1,29 @@
+<ion-header translucent>
+    <ion-toolbar color="favorite" padding>
+        <ion-buttons slot="start">
+            <ion-button (click)="onDismiss()">
+              Cancel
+            </ion-button>
+        </ion-buttons>
+        <ion-title color="dark" mode="ios" >Custom delivery rate</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="onAddDeliveryRate()">
+            Add
+          </ion-button>
+        </ion-buttons> 
+    </ion-toolbar>
+  </ion-header>
+<ion-content>
+  <form [formGroup]="deliveryRateForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Name of delivery method</ion-label>
+        <ion-input formControlName="name" ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input formControlName="rate" ></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>
