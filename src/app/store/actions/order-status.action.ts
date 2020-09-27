@@ -3,7 +3,10 @@ import { Action } from '@ngrx/store';
 export enum EOrderStatusActions  {
     GetOrderStatus = '[Order Status] Get Order Status',
     OnOrderSuccess = '[Order Status] On Order Success',
-    SetOrderStatus = '[Order Status] Set Order Status'
+    SetOrderStatus = '[Order Status] Set Order Status',
+    OnUpdateCustomer = '[Order Status] On Update Customer',
+    OnSelectDeliveryMethod = '[Order Status] On Select Delivery Method',
+    OnSelectPaymentMethod = '[Order Status] On Select Payment Method'
 }
 
 export class GetOrderStatus implements Action {
@@ -21,5 +24,21 @@ export class OnOrderSuccess implements Action {
     constructor(public payload: any)  {}
 }
 
+export class OnUpdateCustomer implements Action {
+    public readonly type = EOrderStatusActions.OnUpdateCustomer;
+    constructor(public payload: any)  {}
+}
 
-export type OrderStatusActions = GetOrderStatus | SetOrderStatus | OnOrderSuccess;
+export class OnSelectDeliveryMethod implements Action {
+    public readonly type = EOrderStatusActions.OnSelectDeliveryMethod;
+    constructor(public payload: any)  {}
+}
+
+export class OnSelectPaymentMethod implements Action {
+    public readonly type = EOrderStatusActions.OnSelectPaymentMethod;
+    constructor(public payload: any)  {}
+}
+
+
+
+export type OrderStatusActions = GetOrderStatus | SetOrderStatus | OnOrderSuccess | OnUpdateCustomer | OnSelectDeliveryMethod | OnSelectPaymentMethod;

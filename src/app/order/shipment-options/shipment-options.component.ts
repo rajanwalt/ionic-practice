@@ -23,6 +23,10 @@ export class ShipmentOptionsComponent implements OnInit {
     return await modal.present();
   }
 
+  onEditCustomer()  {
+    this.navCtrl.navigateForward('/shop/add_customer')
+  }
+
   constructor(private navCtrl: NavController, public modalController: ModalController) { }
 
   ngOnInit() {}

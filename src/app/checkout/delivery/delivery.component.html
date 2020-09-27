@@ -1,21 +1,19 @@
-
-
 <ion-text color="medium" class="ion-padding">
   Delivery Location
 </ion-text>
 
 <ion-card>
   <ion-card-content>
-    <ion-text color="dark">
-      714, Oakwood Residency, <br>
-      Dubai <br>
-      Ubited Arab Emirates
+    <ion-text color="dark" *ngIf="(order$ | async) as order">
+      {{order.customer?.street}} <br>
+      {{order.customer?.city}} <br>
+      {{order.customer?.country}}
     </ion-text>
   </ion-card-content>
   
-  <ion-item class="ion-text-center">
+  <ion-item class="ion-text-center" (click)="onShowAddresseModal()">
     <ion-label>
-      <ion-text color="primary">Edit</ion-text>
+      <ion-text color="primary" >Edit</ion-text>
     </ion-label>
   </ion-item>
 </ion-card>
@@ -24,16 +22,19 @@
   Delivery Method
 </ion-text>
 
-<ion-card>
-  <ion-radio-group>
-    <ion-item class="ion-activated">
-      <ion-radio slot="start"></ion-radio>
-      <ion-label>Free - Customer pickup</ion-label>
-    </ion-item>
-
-    <ion-item class="ion-activated">
-      <ion-radio slot="start"></ion-radio>
-      <ion-label>AED 5.00 - In-house Delivery</ion-label>
-    </ion-item>
-  </ion-radio-group>
+<ion-card *ngIf="(order$ | async) as order">
+    <ion-radio-group (ionChange)="onSelectDeliveryMethod($event)">
+      <ion-item class="ion-activated" *ngFor="let deliveryMethod of order.deliveryMethod">
+        <ion-radio slot="start" [value]="deliveryMethod"> </ion-radio>
+        <ion-label>{{ deliveryMethod.rate == 0 ? 'Free' : deliveryMethod.rate}} - {{deliveryMethod.type}}</ion-label>
+      </ion-item>
+    </ion-radio-group>
 </ion-card>
+
+<ion-grid class="footer-grid">
+  <ion-row>
+    <ion-col>
+      <ion-button color="favorite" expand="full" [disabled]="!selectedDeliveryMethod" (click)="goTo()"> Next </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

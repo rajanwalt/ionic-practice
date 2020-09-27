@@ -1,0 +1,103 @@
+{
+    "id": "22848586-2648-48b9-87c5-17626e4683c3",
+    "totalAmount": "110.02",
+    "status": "CREATED",
+    "customer_id": 1,
+    "service_id": 1,
+    "createdAt": "2020-09-07T16:12:56.000Z",
+    "updatedAt": "2020-09-07T16:12:56.000Z",
+    "orderItems": [
+        {
+            "id": 21,
+            "quantity": 1,
+            "order_id": "22848586-2648-48b9-87c5-17626e4683c3",
+            "item_id": 1,
+            "createdAt": "2020-09-07T16:12:57.000Z",
+            "updatedAt": "2020-09-07T16:12:57.000Z",
+            "item": {
+                "id": 1,
+                "productName": "testItem",
+                "price": "10.02",
+                "additionalDetails": "items loaded for test",
+                "delivery": true,
+                "weight": "2.34",
+                "length": "20.34",
+                "width": "90.34",
+                "height": "89.34",
+                "service_id": 1,
+                "createdAt": "2020-05-24T08:05:04.000Z",
+                "updatedAt": "2020-05-24T08:05:04.000Z"
+            }
+        },
+        {
+            "id": 22,
+            "quantity": 1,
+            "order_id": "22848586-2648-48b9-87c5-17626e4683c3",
+            "item_id": 2,
+            "createdAt": "2020-09-07T16:12:57.000Z",
+            "updatedAt": "2020-09-07T16:12:57.000Z",
+            "item": {
+                "id": 2,
+                "productName": "test123",
+                "price": "100.00",
+                "additionalDetails": "test product",
+                "delivery": false,
+                "weight": "0.00",
+                "length": "0.00",
+                "width": "0.00",
+                "height": "0.00",
+                "service_id": 1,
+                "createdAt": "2020-06-12T12:27:15.000Z",
+                "updatedAt": "2020-06-12T12:27:15.000Z"
+            }
+        }
+    ],
+    "customer": {
+        "id": 1,
+        "firstName": "test",
+        "lastName": "customer",
+        "email": "test@customer.com",
+        "phoneNumber": "0506768328",
+        "country": "UAE",
+        "city": "Dubai",
+        "street": null,
+        "service_id": 1,
+        "createdAt": "2020-05-24T08:10:00.000Z",
+        "updatedAt": "2020-05-24T08:10:00.000Z"
+    },
+    "service": {
+        "id": 1,
+        "shopName": "test",
+        "email": "test1@test.ae",
+        "website": "http://test.com",
+        "shopdetails": "test test test",
+        "country": "UAE",
+        "city": "Dubai",
+        "street": "12C",
+        "user_id": 1,
+        "createdAt": "2020-05-24T08:01:08.000Z",
+        "updatedAt": "2020-05-24T08:01:08.000Z"
+    },
+    "deliveryMethod": [
+        {
+            "type" : "customer pickup",
+            "rate" : 0
+        },
+        {
+            "type" : "in-house delivery",
+            "rate" : 10.00
+        }
+    ],
+    "paymentType": [
+        {
+            "id" : 1,
+            "type" : "Credit Card",
+            "fee" : 3.5
+        },
+        {
+             "id": 2,
+             "type" : "Debit Card",
+             "fee" : 4.0
+        }
+    ]
+}

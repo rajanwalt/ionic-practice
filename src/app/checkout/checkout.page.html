@@ -3,7 +3,7 @@
     <ion-title>{{activeTabLink}}</ion-title>
   </ion-toolbar>
 </ion-header>
-
+ 
 <ion-content>
   <ion-grid>
     <ion-row>
@@ -18,31 +18,3 @@
   <router-outlet></router-outlet>
 </ion-content>
 
-<ion-footer>
-  <ion-grid *ngIf="activeTabLink=='review'">
-    <ion-row>
-      <ion-col class="tAndc">
-        By placing the order, you agree to our <ion-text color="primary">Refund & Excahnge Policy</ion-text>
-      </ion-col>
-    </ion-row>
-    <ion-row >
-      <ion-col class="ion-text-left"><ion-text color="medium">Subtotal</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="medium">AED 90.00</ion-text></ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="ion-text-left"><ion-text color="medium">Delivery</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="medium">AED 90.00</ion-text></ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="ion-text-left"><ion-text color="medium">Taxes (VAT 3%)</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="medium">AED 90.00</ion-text></ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="ion-text-left"><ion-text color="dark">Total</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="dark">AED 90.00</ion-text></ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-button color="favorite" expand="full" (click)="goToNextTab()"> 
-      {{ activeTabLink=='review' ? 'Place Order' : 'Next'}}
-  </ion-button>
-</ion-footer>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +58,16 @@ export class MonekatService {
 
     let queryParams = new HttpParams().set('orderId', queryData['orderId']);
     return this.http.get(url, {params: queryParams});
+  }
+
+  getOrder({orderId})  {
+    let url = `api/orders/${orderId}`;
+    // let url ='./../../assets/json/order-summary.json'
+    return this.http.get(url).pipe(map(data => {
+      data['deliveryMethod'] = [];
+      data['paymentType'] = [];
+      return data;
+    }));
   }
 
   updateOrderSummary(orderSummary: any): Observable<any>  {

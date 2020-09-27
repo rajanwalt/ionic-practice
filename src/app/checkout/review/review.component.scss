@@ -1,8 +1,26 @@
-ion-row  {
-    border-top: 10px solid var(--ion-color-light);
-    // border-bottom: 5px solid var(--ion-color-light);
+ion-grid  {
+    &.main  {
+        ion-row  {
+            border-top: 10px solid var(--ion-color-light);
+            // border-bottom: 5px solid var(--ion-color-light);
+        
+            &.catalogue  {
+                border-top: unset;
+            }
+        }
+    }
+}
 
-    &.catalogue  {
-        border-top: unset;
+
+.footer-grid  {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    .tAndc  {
+        font-style: italic;
+        color: var(--ion-color-medium);
+        font-size: 11px;
     }
 }

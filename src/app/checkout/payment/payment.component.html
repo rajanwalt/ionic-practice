@@ -1,13 +1,24 @@
-<ion-list>
-  <ion-item>
-    <ion-label>
-      <img src="./.././../../assets/images/visa-card-and-mastercard-logo.png">
-    </ion-label>
-    <ion-checkbox slot="start"></ion-checkbox>
-  </ion-item>
+<ion-list *ngIf="(order$ | async) as order">
+  <ion-radio-group (ionChange)="onSelectPaymentType($event)">
+    <ion-item *ngFor="let paymentType of order.paymentType">
+      <ion-label>
+        <!-- <img src="./.././../../assets/images/visa-card-and-mastercard-logo.png"> -->
+        {{paymentType.type}}
+      </ion-label>
+      <ion-radio slot="start" [value]="paymentType"></ion-radio>
+    </ion-item>
+  </ion-radio-group>
 </ion-list>
 
-<div class="ion-text-center" *ngIf="false">
+<div class="ion-text-center" *ngIf="!(order$ | async) as order">
   <p> No payment options avilable</p>
   <ion-button color="favorite" >Contact us</ion-button>
 </div>
+
+<ion-grid class="footer-grid">
+  <ion-row>
+    <ion-col>
+      <ion-button color="favorite" expand="full" [disabled]="!selectedPaymentType" (click)="goTo()"> Next </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

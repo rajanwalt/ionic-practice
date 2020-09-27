@@ -1,4 +1,4 @@
-<ion-grid>
+<ion-grid class="main">
   <ion-row>
     <ion-col size="10">
       Name / Address
@@ -50,6 +50,35 @@
   <ion-row>
     <ion-col>
       Leave a note for seller
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-grid class="footer-grid">
+  <ion-row>
+    <ion-col class="tAndc ion-text-center">
+      By placing the order, you agree to our <ion-text color="primary">Refund & Excahnge Policy</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row >
+    <ion-col class="ion-text-left"><ion-text color="medium">Subtotal</ion-text></ion-col>
+    <ion-col class="ion-text-right"><ion-text color="medium">AED 90.00</ion-text></ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="ion-text-left"><ion-text color="medium">Delivery</ion-text></ion-col>
+    <ion-col class="ion-text-right"><ion-text color="medium">AED 90.00</ion-text></ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="ion-text-left"><ion-text color="medium">Taxes (VAT 3%)</ion-text></ion-col>
+    <ion-col class="ion-text-right"><ion-text color="medium">AED 90.00</ion-text></ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="ion-text-left"><ion-text color="dark">Total</ion-text></ion-col>
+    <ion-col class="ion-text-right"><ion-text color="dark">AED 90.00</ion-text></ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button color="favorite" expand="full" [disabled]="isInValid" (click)="goTo()"> Place Order </ion-button>
     </ion-col>
   </ion-row>
 </ion-grid>

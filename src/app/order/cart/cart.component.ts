@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { State } from './../../store/state';
-import { Order, OrderDetails, OrderSummary } from './../models';
-import { selectOrders } from './../../store/selectors';
+import { Order, OrderDetails, OrderSummary, Cart, OrderDetailsModel } from './../models';
+import { selectLastOrder } from './../../store/selectors';
 import { UpdateOrderSummary, SetOrder, GetFinalOrderSummary } from './../../store/actions';
 
 import { SocialMediaSharingService } from './../../common';
@@ -19,8 +19,8 @@ import { NavController } from '@ionic/angular';
 })
 export class CartComponent implements OnInit {
 
-  public orders$: Observable<Order> = this._store.select(selectOrders);
-  public orders = null;
+  public orders$: Observable<Cart> = this._store.select(selectLastOrder);
+  public orders : Cart = null;
   public orderSub : Subscription;
 
   public updatedOrders = [];
@@ -32,15 +32,18 @@ export class CartComponent implements OnInit {
   calculateTotal()  {
     
     if(this.updatedOrders.length > 1)  {
-      this.subTotal = this.updatedOrders.reduce((currentvalue, nextValue) => +currentvalue.price + +nextValue.price);
+      this.subTotal = this.updatedOrders.reduce((currentvalue, nextValue) => (+currentvalue.price * currentvalue.count) + (+nextValue.price * nextValue.count));
     }
-    else  {
-      this.subTotal = this.updatedOrders[0]['price'];
+    else if(this.updatedOrders.length == 1) {
+      this.subTotal = +this.updatedOrders[0]['price'] * this.updatedOrders[0]['count'];
+    }
+    else {
+      this.subTotal = 0;
     }
   
   }
    
-  getCounterValue(orderDetails: OrderDetails)  {
+  getCounterValue(orderDetails: OrderDetailsModel)  {
     let {item_id, count} = orderDetails;
 
     
@@ -53,7 +56,9 @@ export class CartComponent implements OnInit {
         }
         else {
           this.updatedOrders.splice(isOrderExit, 1);
-          this._store.dispatch(new SetOrder({orderDetails: this.updatedOrders}));
+          
+          //this._store.dispatch(new SetOrder({orderDetails: this.updatedOrders}));
+          this.orders.orderDetails = [...this.updatedOrders]
         }
     }
     else {
@@ -69,14 +74,21 @@ export class CartComponent implements OnInit {
   onUpdateOrderSummary()  {
     const finalOrderSummary = { ...this.orders, totalAmount: this.subTotal, status: "UPDATED"};
     finalOrderSummary.orderDetails = this.updatedOrders.splice(0);
-    console.log(finalOrderSummary);
-    console.log(OrderSummary.formatAPI(finalOrderSummary));
-    this._store.dispatch(new UpdateOrderSummary(OrderSummary.formatAPI(finalOrderSummary)));
+
+    // this._store.dispatch(new UpdateOrderSummary(OrderSummary.formatAPI(finalOrderSummary)));
+
+    if(this.orders.customer)  {
+      this.navCtrl.navigateForward('/checkout/delivery')
+    }
+    else {
+      //navigate to add customer page to enter the customer details 
+    }
+
     
   }
 
   ngOnInit() {
-    let orderId = this.activatedRoute.snapshot.queryParamMap.get('orderId');
+    let orderId = this.activatedRoute.snapshot.params.orderId;
     
     this._store.dispatch(new GetFinalOrderSummary({orderId}));
 

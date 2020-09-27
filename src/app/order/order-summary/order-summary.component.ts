@@ -38,6 +38,8 @@ export class OrderSummaryComponent implements OnInit {
   }
 
   public removeItem;
+  
+  paymentOption = null;
 
   calculateTotal()  {
     
@@ -151,8 +153,13 @@ export class OrderSummaryComponent implements OnInit {
       cssClass: 'payment-modal-custom-class',
       
     });
-    return await modal.present();
+
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    this.paymentOption = data;
   }
+
 
   constructor(private _store: Store<State>,
     private socialMediaSharingService: SocialMediaSharingService,

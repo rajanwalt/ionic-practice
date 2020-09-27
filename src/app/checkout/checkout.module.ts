@@ -11,6 +11,7 @@ import { ReviewComponent } from './review/review.component';
 import { PaymentComponent } from './payment/payment.component';
 import { DeliveryComponent } from './delivery/delivery.component';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -18,6 +19,10 @@ import { DeliveryComponent } from './delivery/delivery.component';
     IonicModule,
     CheckoutPageRoutingModule
   ],
-  declarations: [CheckoutPage, ReviewComponent, PaymentComponent, DeliveryComponent]
+  declarations: [
+    CheckoutPage, 
+    ReviewComponent,
+    PaymentComponent, 
+    DeliveryComponent  ]
 })
 export class CheckoutPageModule {}

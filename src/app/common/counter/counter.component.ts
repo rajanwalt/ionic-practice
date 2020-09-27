@@ -25,7 +25,8 @@ export class CounterComponent implements OnInit {
       this.count = this.count - 1;
     }
 
-    this.counterValue.emit({count : this.count, productName: this.order.productName, price : this.totalPrice, item_id: this.order.item_id});
+    // this.counterValue.emit({count : this.count, productName: this.order.productName, price : this.totalPrice, item_id: this.order.item_id});
+    this.counterValue.emit({...this.order, count : this.count});
     
   }
 

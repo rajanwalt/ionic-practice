@@ -22,7 +22,7 @@ export class OrderSummaryEffects {
 
   getFinalOrderSummary$ = createEffect(() => this.actions$.pipe(
     ofType(EOrderSummaryActions.GetFinalOrderSummary),
-    switchMap((action: GetFinalOrderSummary) => this.monekatService.getOrderSummary(action.payload)
+    switchMap((action: GetFinalOrderSummary) => this.monekatService.getOrder(action.payload)
       .pipe(
         map(status => new SetOrderStatus(status)),
         catchError(() => EMPTY)

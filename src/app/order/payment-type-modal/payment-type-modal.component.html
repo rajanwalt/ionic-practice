@@ -15,9 +15,9 @@
 </ion-header>
 <ion-content>
   <ion-radio-group>
-    <ion-item class="ion-activated" (click)="onSelect()">
+    <ion-item class="ion-activated" *ngFor="let paymentOption of paymentOptions" (click)="onSelect(paymentOption)">
       <ion-radio slot="start"></ion-radio>
-      <ion-label>Credit Card</ion-label>
+      <ion-label>{{paymentOption?.type}}</ion-label>
     </ion-item>
   </ion-radio-group>
 </ion-content>
