@@ -1,20 +1,94 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>{{activeTabLink}}</ion-title>
+  <ion-toolbar color="favorite">
+    <ion-title>Review</ion-title>
   </ion-toolbar>
 </ion-header>
  
-<ion-content>
-  <ion-grid>
+<ion-content color="light">
+  <ion-grid class="main" *ngIf="(order$ | async) as order">
     <ion-row>
-      <ion-col 
-        *ngFor="let item of tabs" 
-        (click)="onActivateTab(item)" 
-        [class.active]="item==activeTabLink">
-        {{item}}
+      <ion-col size="9">
+        <ion-text color="dark" class="text-bold"> {{order?.customer?.firstName}} {{order?.customer?.lastName}}</ion-text> <br>
+        <ion-text color="medium">
+          {{order?.customer?.firstName}}, {{order?.customer?.city}}, {{order?.customer?.country}}
+        </ion-text> <br>
+        <ion-text color="medium">{{order?.customer?.phoneNumber}}</ion-text>
+      </ion-col>
+      <ion-col size="3" class="ion-text-right">
+        <ion-button fill="outline" color="favorite" size="small" (click)="onShowAddresseModal(order?.customer)">Edit</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="9">
+        <ion-text *ngFor="let item of order?.paymentType" [hidden]="item?.status != 'selected'" class="text-bold">
+          {{item?.type}}
+        </ion-text> 
+        <!-- <br> <ion-text color="medium">
+          VISA, Mastercard
+        </ion-text> -->
+      </ion-col>
+      <ion-col size="3" class="ion-text-right">
+        <ion-button fill="outline" color="favorite" size="small" (click)="onShowPaymentType()">Edit</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="9">
+        <ion-text class="text-bold">There are {{order?.orderDetails?.length | json}} item in your cart</ion-text>
+      </ion-col>
+      <ion-col size="3" class="ion-text-right">
+        <ion-button fill="outline" color="favorite" size="small" (click)="onShowOrders(order?.orderDetails)">Edit</ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-row class="catalogue" *ngFor="let item of order?.orderDetails">
+          <ion-col size="2">
+            <ion-thumbnail>
+                <ion-img src="./../../../assets/images/test-logo.jpg"></ion-img>
+            </ion-thumbnail>
+          </ion-col>
+          <ion-col>
+            <ion-text color="dark" class="text-bold">{{item?.productName}}</ion-text> <br>
+            <ion-text color="medium"> Sold by retailer </ion-text>
+          </ion-col>
+          <ion-col class="ion-text-right">
+            {{item?.price}} X {{item?.count}}
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+         <ion-text><ion-icon name="chatbubble-ellipses-outline"></ion-icon> Leave a note for seller</ion-text>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <router-outlet></router-outlet>
+  
+  <ion-grid class="footer-grid" *ngIf="(order$ | async) as order">
+    <ion-row>
+      <ion-col class="tAndc ion-text-center">
+        By placing the order, you agree to our <ion-text color="primary">Refund & Excahnge Policy</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col class="ion-text-left"><ion-text color="dark">Subtotal</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="dark">{{subtotal(order?.orderDetails)}}</ion-text></ion-col>
+    </ion-row>
+    <ion-row *ngIf="deliveryRate(order?.deliveryMethod) as deliveryMethod">
+      <ion-col class="ion-text-left"><ion-text color="dark">Delivery</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="dark">{{deliveryMethod?.rate}}</ion-text></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-left"><ion-text color="dark">Taxes (VAT 3%)</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="dark">AED 90.00</ion-text></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-left"><ion-text color="dark" class="text-bold">Total</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="dark" class="text-bold">{{total(order)}}</ion-text></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button color="favorite" expand="full" [disabled]="isInValid" (click)="goTo()"> Place Order </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 

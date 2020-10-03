@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 
 @Component({
@@ -23,7 +24,11 @@ export class ShopPaymentSetupPage implements OnInit {
     }
   };
 
-  constructor(private router: Router) { }
+  goTo(url)  {
+    this.navCtrl.navigateForward(url)
+  }
+
+  constructor(private navCtrl: NavController) { }
 
   ngOnInit() {
   }

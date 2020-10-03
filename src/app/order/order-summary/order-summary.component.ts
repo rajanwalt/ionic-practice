@@ -12,7 +12,7 @@ import { SocialMediaSharingService } from './../../common';
 import * as _ from 'underscore';
 import { ModalController, NavController } from '@ionic/angular';
 
-import {PaymentTypeModalComponent} from './../payment-type-modal/payment-type-modal.component';
+import {PaymentTypeModalComponent} from './../../common/payment-type-modal/payment-type-modal.component';
 
 @Component({
   selector: 'app-order-summary',

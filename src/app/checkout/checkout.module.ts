@@ -10,14 +10,15 @@ import { CheckoutPage } from './checkout.page';
 import { ReviewComponent } from './review/review.component';
 import { PaymentComponent } from './payment/payment.component';
 import { DeliveryComponent } from './delivery/delivery.component';
-
+import { SharedModule } from './../common/common.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CheckoutPageRoutingModule
+    CheckoutPageRoutingModule,
+    SharedModule
   ],
   declarations: [
     CheckoutPage, 

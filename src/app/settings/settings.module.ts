@@ -9,7 +9,6 @@ import { SettingsPageRoutingModule } from './settings-routing.module';
 
 import { SettingsPage } from './settings.page';
 import {PaymentSettingsComponent} from './payment-settings/payment-settings.component';
-import { PaymentInfoModalComponent } from './payment-info-modal/payment-info-modal.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { VatComponent } from './vat/vat.component';
 
@@ -24,10 +23,8 @@ import { VatComponent } from './vat/vat.component';
   declarations: [
     SettingsPage, 
     PaymentSettingsComponent, 
-    PaymentInfoModalComponent, 
     ShippingComponent,
     VatComponent
-  ],
-  entryComponents : [PaymentInfoModalComponent]
+  ]
 })
 export class SettingsPageModule {}

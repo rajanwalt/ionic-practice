@@ -61,13 +61,15 @@ export class MonekatService {
   }
 
   getOrder({orderId})  {
-    let url = `api/orders/${orderId}`;
-    // let url ='./../../assets/json/order-summary.json'
-    return this.http.get(url).pipe(map(data => {
-      data['deliveryMethod'] = [];
-      data['paymentType'] = [];
-      return data;
-    }));
+    // let url = `api/orders/${orderId}`;
+    // return this.http.get(url).pipe(map(data => {
+    //   data['deliveryMethod'] = [];
+    //   data['paymentType'] = [];
+    //   return data;
+    // }));
+
+    let url ='./../../assets/json/order-summary.json'
+    return this.http.get(url)
   }
 
   updateOrderSummary(orderSummary: any): Observable<any>  {
@@ -96,6 +98,18 @@ export class MonekatService {
     let url = '/api/vat';
     
     return this.http.post(url, vatDetails);
+  }
+
+  createAccount(data: any): Observable<any>  {
+    let url = '/api/users';
+    
+    return this.http.post(url, data);
+  }
+
+  login(data: any): Observable<any>  {
+    let url = '/api/login';
+    
+    return this.http.post(url, data);
   }
 
   

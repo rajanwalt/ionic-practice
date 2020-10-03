@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 
@@ -9,11 +9,14 @@ import { ModalController } from '@ionic/angular';
 })
 export class DeliveryAddressModalComponent implements OnInit {
 
+  @Input() deliveryAddress : object = null;
+
   countries : Array<string> = [
-    "Dubai"
+    "UAE"
   ];
 
   cities : Array<string> = [
+    "Dubai",
     "Abu Dhabi",
     "Sharjah"
   ];
@@ -29,7 +32,7 @@ export class DeliveryAddressModalComponent implements OnInit {
   });
 
   onDismiss()  {
-    this.modalController.dismiss();
+    this.modalController.dismiss(this.deliveryAddress);
   }
 
   onSave()  {
@@ -38,6 +41,8 @@ export class DeliveryAddressModalComponent implements OnInit {
   
   constructor(public modalController: ModalController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.deliveryAddress && this.customerForm.patchValue(this.deliveryAddress)
+  }
 
 }

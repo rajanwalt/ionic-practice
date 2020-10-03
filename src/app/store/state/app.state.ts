@@ -12,6 +12,7 @@ export interface State {
     lastOrderStatus: any;
     paymentMethods: any;
     vat: any;
+    user: any;
     router?: RouterReducerState<RouterStateUrl>;
   }
   
@@ -22,6 +23,7 @@ export const initialState : State = {
     currentOrder : null,
     paymentMethods : [],
     vat: null,
+    user: null,
     lastOrderStatus : null,
     
   }

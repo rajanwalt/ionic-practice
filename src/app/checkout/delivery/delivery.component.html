@@ -2,16 +2,16 @@
   Delivery Location
 </ion-text>
 
-<ion-card>
+<ion-card *ngIf="(order$ | async) as order">
   <ion-card-content>
-    <ion-text color="dark" *ngIf="(order$ | async) as order">
+    <ion-text color="dark">
       {{order.customer?.street}} <br>
       {{order.customer?.city}} <br>
       {{order.customer?.country}}
     </ion-text>
   </ion-card-content>
   
-  <ion-item class="ion-text-center" (click)="onShowAddresseModal()">
+  <ion-item class="ion-text-center" (click)="onShowAddresseModal(order.customer)">
     <ion-label>
       <ion-text color="primary" >Edit</ion-text>
     </ion-label>

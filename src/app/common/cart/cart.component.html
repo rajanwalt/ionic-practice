@@ -1,21 +1,21 @@
 <ion-header translucent>
   <ion-toolbar color="favorite" padding>
-      <!-- <ion-buttons slot="start">
-          <ion-button (click)="goBack()">
+      <ion-buttons slot="start">
+          <ion-button (click)="onDismiss()">
             Cancel
           </ion-button>
-      </ion-buttons> -->
-      <ion-title color="dark" mode="ios" >Your Cart</ion-title>
-      <!-- <ion-buttons slot="end">
-        <ion-button (click)="onAddItems()">
-          <ion-icon name='add'></ion-icon>
+      </ion-buttons>
+      <ion-title color="dark" mode="ios" >Your Orders</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="onSave()">
+          Save
         </ion-button>
-      </ion-buttons>  -->
+      </ion-buttons> 
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen >
-  <ion-list *ngIf="orders">
-    <app-counter *ngFor="let order of orders?.orderDetails; let i=index" 
+  <ion-list *ngIf="updatedOrders">
+    <app-counter *ngFor="let order of updatedOrders; let i=index" 
       [order]= "order"
       (counterValue)="getCounterValue($event)">
     </app-counter>
@@ -23,42 +23,32 @@
 </ion-content>
 <ion-footer>
   <ion-grid>
-    <!-- <ion-row>
-      <ion-col size='10'>
-        <p class="main-text">Choose shipment type</p>
-        <p class="sub-text">or leave empty to let customer decide</p>
-      </ion-col>
-      <ion-col size='2'>
-        <ion-icon class="arrow" name="chevron-forward-outline"></ion-icon>
-      </ion-col>
-    </ion-row> -->
-    <ion-row class="ion-no-border sub-text">
+    <!-- <ion-row class="ion-no-border sub-text">
       <ion-col class="ion-text-left"><ion-text color="medium">Subtotal</ion-text></ion-col>
       <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
-    </ion-row>
-    <ion-row class="ion-no-border sub-text">
+    </ion-row> -->
+    <!-- <ion-row class="ion-no-border sub-text">
       <ion-col class="ion-text-left"><ion-text color="medium">Delivery (estimated)</ion-text></ion-col>
       <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
-    </ion-row>
-    <ion-row class="ion-no-border sub-text">
+    </ion-row> -->
+    <!-- <ion-row class="ion-no-border sub-text">
       <ion-col class="ion-text-left"><ion-text color="medium">Tax/(VAT{{'10%'}})</ion-text></ion-col>
       <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
-    </ion-row>
+    </ion-row> -->
     <ion-row class="ion-no-border main-text">
-      <ion-col class="ion-text-left"><ion-text color="dark">Send Invoice</ion-text></ion-col>
+      <ion-col class="ion-text-left"><ion-text color="dark">Total</ion-text></ion-col>
       <ion-col class="ion-text-right"><ion-text color="dark">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
     </ion-row>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col>
         <ion-button 
           expand="full" 
           strong="true" 
-          (click)="onUpdateOrderSummary()"
           class="add-item"
           color="favorite">
           Place Order       
         </ion-button>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
   </ion-grid>
 </ion-footer>

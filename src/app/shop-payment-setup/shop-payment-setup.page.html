@@ -22,7 +22,7 @@
           <ion-button 
             expand="full" 
             strong="true" 
-            href="/shop">Set up your shop</ion-button>
+            (click)="goTo('/shop')">Set up your shop</ion-button>
         </div>
       </ion-slide>
       <ion-slide>
@@ -37,13 +37,13 @@
               <ion-button 
                 expand="full" 
                 strong="true" 
-                href="/shop">Set up your shop</ion-button>
+                (click)="goTo('/shop/my_wallet')">Set up your payment</ion-button>
             </div>
       </ion-slide>
     </ion-slides>
 </ion-content>
-<ion-footer>
-    <ion-toolbar color="favorite1">
+<ion-footer class="ion-no-border"> 
+    <ion-toolbar color="favorite1" >
       <h5>
         Cancel (Logout)
       </h5>

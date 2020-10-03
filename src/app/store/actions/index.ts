@@ -6,3 +6,4 @@ export * from './order-summary.action';
 export * from './order-status.action';
 export * from './payment-setting.action';
 export * from './vat.action';
+export * from './login.actions';

@@ -10,7 +10,13 @@ import { ListFilterPipe } from './list-filter.pipe';
 import { CounterComponent } from './counter/counter.component';
 import { AddCatalogueItemComponent } from './add-catalogue-item/add-catalogue-item.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
+
 import { DeliveryAddressModalComponent } from './delivery-address-modal/delivery-address-modal.component';
+import { PaymentInfoModalComponent } from './payment-info-modal/payment-info-modal.component';
+import { PaymentTypeModalComponent } from './payment-type-modal/payment-type-modal.component';
+import { CartComponent } from './cart/cart.component';
+import { LoginComponent } from './login/login.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
 
 @NgModule({
   imports: [ CommonModule, IonicModule, FormsModule, ReactiveFormsModule ],
@@ -19,10 +25,18 @@ import { DeliveryAddressModalComponent } from './delivery-address-modal/delivery
     CounterComponent,
     AddCatalogueItemComponent,
     AddCustomerComponent,
-    DeliveryAddressModalComponent
+    PaymentInfoModalComponent, 
+    DeliveryAddressModalComponent,
+    PaymentTypeModalComponent,
+    CartComponent,
+    LoginComponent,
+    CreateAccountComponent
   ],
   entryComponents: [
-    DeliveryAddressModalComponent
+    PaymentInfoModalComponent, 
+    DeliveryAddressModalComponent,
+    PaymentTypeModalComponent,
+    CartComponent
   ],
   providers: [Camera, SocialSharing],
   exports: [
@@ -31,7 +45,12 @@ import { DeliveryAddressModalComponent } from './delivery-address-modal/delivery
     CounterComponent,
     AddCatalogueItemComponent,
     AddCustomerComponent,
-    DeliveryAddressModalComponent
+    PaymentInfoModalComponent, 
+    DeliveryAddressModalComponent,
+    PaymentTypeModalComponent,
+    CartComponent,
+    LoginComponent,
+    CreateAccountComponent
   ]
 })
 export class SharedModule {}

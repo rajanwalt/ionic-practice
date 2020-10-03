@@ -5,7 +5,7 @@ import { NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 
 import { State } from './../../store/state';
-import {PaymentInfoModalComponent} from './../payment-info-modal/payment-info-modal.component'
+import {PaymentInfoModalComponent} from './../../common/payment-info-modal/payment-info-modal.component'
 import { selectPaymentMethods } from './../../store/selectors';
 import { GetPaymentMethods, UpdatePaymentMethods } from './../../store/actions';
 
@@ -19,13 +19,13 @@ export class PaymentSettingsComponent implements OnInit {
   paymentMethods$ = of([
     {
       "id" : 1,
-      "type" : "Credit Card",
+      "type" : "Credit / Debit Card",
       "fee" : "3.5",
       "selected" : true
      },
      {
        "id": 2,
-       "type" : "Debit Card",
+       "type" : "Cash on delivery",
        "fee" : "4.0",
        "selected" : true
      }

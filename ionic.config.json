@@ -1,7 +1,8 @@
 {
   "name": "monekat",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

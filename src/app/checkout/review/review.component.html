@@ -1,7 +1,24 @@
-<ion-grid class="main">
+<ion-grid class="main" *ngIf="(order$ | async) as order">
   <ion-row>
     <ion-col size="10">
-      Name / Address
+      <ion-text color="dark"> {{order?.customer?.firstName}} {{order?.customer?.lastName}}</ion-text> <br>
+      <ion-text color="medium">
+        {{order?.customer?.firstName}}, {{order?.customer?.city}}, {{order?.customer?.country}}
+      </ion-text> <br>
+      <ion-text color="medium">{{order?.customer?.phoneNumber}}</ion-text>
+    </ion-col>
+    <ion-col size="2" class="ion-text-right">
+      <ion-button fill="outline" color="favorite" size="small" (click)="onShowAddresseModal(order?.customer)">Edit</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="10">
+      <ion-text *ngFor="let item of order?.paymentType" [hidden]="item?.status != 'selected'">
+        {{item?.type}}
+      </ion-text> <br>
+      <ion-text color="medium">
+        VISA, Mastercard
+      </ion-text>
     </ion-col>
     <ion-col size="2" class="ion-text-right">
       <ion-button fill="outline" color="favorite" size="small">Edit</ion-button>
@@ -9,7 +26,9 @@
   </ion-row>
   <ion-row>
     <ion-col size="10">
-      Credit Card
+      <ion-text *ngFor="let item of order?.deliveryMethod" [hidden]="item?.status != 'selected'">
+        {{item?.type}} - {{item?.rate}}
+      </ion-text>
     </ion-col>
     <ion-col size="2" class="ion-text-right">
       <ion-button fill="outline" color="favorite" size="small">Edit</ion-button>
@@ -17,32 +36,24 @@
   </ion-row>
   <ion-row>
     <ion-col size="10">
-      In-house Delivery - AED 30.00
-    </ion-col>
-    <ion-col size="2" class="ion-text-right">
-      <ion-button fill="outline" color="favorite" size="small">Edit</ion-button>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="10">
-      There are 1 item in your cart
+      There are {{order?.orderDetails?.length | json}} item in your cart
     </ion-col>
     <ion-col size="2" class="ion-text-right">
       <ion-button fill="outline" color="favorite" size="small">Edit</ion-button>
     </ion-col>
     <ion-col size="12">
-      <ion-row class="catalogue">
+      <ion-row class="catalogue" *ngFor="let item of order?.orderDetails">
         <ion-col size="2">
           <ion-thumbnail>
               <ion-img src="./../../../assets/images/test-logo.jpg"></ion-img>
           </ion-thumbnail>
         </ion-col>
         <ion-col>
-          Name <br>
-          Sold by retailer
+          <ion-text color="dark">{{item?.productName}}</ion-text> <br>
+          <ion-text color="medium"> Sold by retailer </ion-text>
         </ion-col>
         <ion-col class="ion-text-right">
-          AED 100.00 X 1
+          {{item?.price}} X {{item?.count}}
         </ion-col>
       </ion-row>
     </ion-col>
@@ -54,7 +65,7 @@
   </ion-row>
 </ion-grid>
 
-<ion-grid class="footer-grid">
+<ion-grid class="footer-grid" *ngIf="(order$ | async) as order">
   <ion-row>
     <ion-col class="tAndc ion-text-center">
       By placing the order, you agree to our <ion-text color="primary">Refund & Excahnge Policy</ion-text>
@@ -62,11 +73,11 @@
   </ion-row>
   <ion-row >
     <ion-col class="ion-text-left"><ion-text color="medium">Subtotal</ion-text></ion-col>
-    <ion-col class="ion-text-right"><ion-text color="medium">AED 90.00</ion-text></ion-col>
+    <ion-col class="ion-text-right"><ion-text color="medium">{{subtotal(order?.orderDetails)}}</ion-text></ion-col>
   </ion-row>
-  <ion-row>
+  <ion-row *ngIf="deliveryRate(order?.deliveryMethod) as deliveryMethod">
     <ion-col class="ion-text-left"><ion-text color="medium">Delivery</ion-text></ion-col>
-    <ion-col class="ion-text-right"><ion-text color="medium">AED 90.00</ion-text></ion-col>
+    <ion-col class="ion-text-right"><ion-text color="medium">{{deliveryMethod?.rate}}</ion-text></ion-col>
   </ion-row>
   <ion-row>
     <ion-col class="ion-text-left"><ion-text color="medium">Taxes (VAT 3%)</ion-text></ion-col>
@@ -74,7 +85,7 @@
   </ion-row>
   <ion-row>
     <ion-col class="ion-text-left"><ion-text color="dark">Total</ion-text></ion-col>
-    <ion-col class="ion-text-right"><ion-text color="dark">AED 90.00</ion-text></ion-col>
+    <ion-col class="ion-text-right"><ion-text color="dark">{{total(order)}}</ion-text></ion-col>
   </ion-row>
   <ion-row>
     <ion-col>

@@ -11,10 +11,8 @@ import { OrderPageRoutingModule } from './order-routing.module';
 import { OrderPage } from './order.page';
 import { SelectCatalogueComponent } from './select-catalogue/select-catalogue.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
-import { CartComponent } from './cart/cart.component';
 import { ShipmentOptionsComponent } from './shipment-options/shipment-options.component';
 import {AddCustomRateModalComponent} from './add-custom-rate-modal/add-custom-rate-modal.component';
-import {PaymentTypeModalComponent} from './payment-type-modal/payment-type-modal.component';
 
 @NgModule({
   imports: [
@@ -29,11 +27,9 @@ import {PaymentTypeModalComponent} from './payment-type-modal/payment-type-modal
     OrderPage,
     SelectCatalogueComponent,
     OrderSummaryComponent,
-    CartComponent,
     ShipmentOptionsComponent,
     AddCustomRateModalComponent,
-    PaymentTypeModalComponent
   ],
-  entryComponents: [AddCustomRateModalComponent, PaymentTypeModalComponent]
+  entryComponents: [AddCustomRateModalComponent]
 })
 export class OrderPageModule {}

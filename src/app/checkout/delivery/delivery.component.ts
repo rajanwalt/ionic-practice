@@ -4,11 +4,12 @@ import { State } from './../../store/state';
 import { selectLastOrder } from './../../store/selectors';
 
 import { from, Observable } from 'rxjs';
-import { Cart } from './../../order/models';
+import { Cart } from './../../common/models';
 import { ModalController, NavController } from '@ionic/angular';
 
 import { DeliveryAddressModalComponent } from './../../common/delivery-address-modal/delivery-address-modal.component';
 import { OnSelectDeliveryMethod, OnUpdateCustomer } from './../../store/actions';
+
 @Component({
   selector: 'app-delivery',
   templateUrl: './delivery.component.html',
@@ -30,10 +31,13 @@ export class DeliveryComponent implements OnInit {
     this.navCtrl.navigateForward('/checkout/payment');
   }
 
-  async onShowAddresseModal()  {
+  async onShowAddresseModal(customerDetails=null)  {
     
     const modal = await this.modalController.create({
       component: DeliveryAddressModalComponent,
+      componentProps : {
+        "deliveryAddress" : customerDetails
+      },
       cssClass: 'payment-modal-custom-class',
       
     });

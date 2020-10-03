@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
 import { selectLastOrder } from './../../store/selectors';
 
-import { Cart } from './../../order/models';
+import { Cart } from './../../common/models';
 import { OnSelectPaymentMethod } from './../../store/actions';
 
 

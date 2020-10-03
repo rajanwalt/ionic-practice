@@ -17,7 +17,7 @@ import { OrderReducers } from './order.reducer';
 import { OrderStatusReducers } from './order-status.reducer';
 import { PaymentMethodsReducer } from './payment-settings.reducer';
 import { VatReducers } from './vat.reducer';
-
+import { LoginReducers } from './login.reducer';
 
   export const reducers: ActionReducerMap<State> = {
     shopDetails : ShopReducers,
@@ -27,6 +27,7 @@ import { VatReducers } from './vat.reducer';
     lastOrderStatus : OrderStatusReducers,
     paymentMethods : PaymentMethodsReducer,
     vat: VatReducers,
+    user: LoginReducers,
     router: routerReducer
   };
   

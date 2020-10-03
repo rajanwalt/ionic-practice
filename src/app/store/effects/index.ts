@@ -4,3 +4,4 @@ export * from './catalogue.effects';
 export * from './order-summary.effects';
 export * from './payment-settings.effects';
 export * from './vat.effects';
+export * from './login.effects';

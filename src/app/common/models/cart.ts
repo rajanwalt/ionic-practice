@@ -1,5 +1,3 @@
-import { OrderDetails } from './order-items';
-
 export class OrderDetailsModel  {
 
     static formatAPIArray(data: Array<any>) : OrderDetailsModel[] {
@@ -17,10 +15,10 @@ export class OrderDetailsModel  {
     }
 
     constructor(
-        public item_id: string,
+        public item_id: any,
         public productName:  string,
         public count: number,
-        public price: number 
+        public price: any 
     ) {}
 }
 

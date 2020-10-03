@@ -32,6 +32,23 @@ export function OrderStatusReducers(state:any , action: OrderStatusActions ): an
             return {...state, ...{paymentType}}
 
         }
+        case EOrderStatusActions.OnUpdateOrderItems: {
+            let updatedDeliveryItems= action.payload;
+            let orderItems = JSON.parse(JSON.stringify(state['orderItems']));
+
+            orderItems.forEach(extValue => {
+                updatedDeliveryItems.every(upValue => {
+                    if(extValue['item_id'] == upValue['item_id'])  {
+                        extValue['quantity'] = upValue['count'];
+                        return false;
+                    }
+                    return true;
+                });
+            });
+
+            return {...state, orderItems}
+
+        }
         default:
             return state;
     }

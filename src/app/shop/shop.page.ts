@@ -11,7 +11,7 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 import { Store } from '@ngrx/store';
 import { SetShop, PostShop } from './../store/actions';
-import { selectShopDetails } from './../store/selectors';
+import { selectShopDetails, selectUser } from './../store/selectors';
 import { State } from './../store/state';
 import { Observable, Subscription } from 'rxjs';
 
@@ -44,8 +44,11 @@ export class ShopPage implements OnInit, OnDestroy {
   fileUrl: any = null;
   
   shopDetails$: Observable<any> = this._store.select(selectShopDetails);
+  user$: Observable<any> = this._store.select(selectUser)
   shopDetailsSub : Subscription;
-  
+  userSub: Subscription;
+  userId: any;
+
   public shopProfileForm = new FormGroup({
     shopName: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
@@ -93,7 +96,7 @@ export class ShopPage implements OnInit, OnDestroy {
       
       shopLogoBlog && formData.append("shopLogo", shopLogoBlog, "logo");
 
-      this._store.dispatch(new PostShop(this.shopProfileForm.value))
+      this._store.dispatch(new PostShop({...this.shopProfileForm.value, id: this.userId}))
     // }
   }
   
@@ -174,7 +177,10 @@ export class ShopPage implements OnInit, OnDestroy {
         this.hasShopAddress = (shopDetails['country'] && shopDetails['country'].length>0) ? true : false;
         this.shopAddress = shopDetails['street'] + "," + shopDetails['city'] + "," + shopDetails['country'];
       }
-    })
+    });
+
+    this.userSub = this.user$.subscribe( data => this.userId = data['id'])
+    
   }
 
   ngOnDestroy(): void {

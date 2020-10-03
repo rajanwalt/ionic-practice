@@ -85,18 +85,20 @@
         },
         {
             "type" : "in-house delivery",
-            "rate" : 10.00
+            "rate" : 10.00,
+            "status" : "selected"
         }
     ],
     "paymentType": [
         {
             "id" : 1,
-            "type" : "Credit Card",
-            "fee" : 3.5
+            "type" : "Credit/Debit Card",
+            "fee" : 3.5,
+            "status" : "selected"
         },
         {
              "id": 2,
-             "type" : "Debit Card",
+             "type" : "Cash on delivery",
              "fee" : 4.0
         }
     ]
