@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
+import { State } from './../../store/state';
+
+import { Logout } from './../../store/actions';
 
 @Component({
   selector: 'app-settings-tab',
@@ -42,16 +46,21 @@ export class SettingsTabComponent implements OnInit {
     {
       "icon" : "log-out-outline",
       "title" : "Logout",
-      "link" : " "
+      "link" : "logout"
     }
   ];
 
   navigateTo(link)  {
-    console.log("link", link)
-    link && this.navCtrl.navigateForward(`/settings/${link}`);
+    if(link && link != 'logout') {
+      this.navCtrl.navigateForward(`/settings/${link}`);
+    }
+    else {
+      this._store.dispatch(new Logout());
+      this.navCtrl.navigateForward('/');
+    }
   }
   
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController, private _store: Store<State>) { }
 
   ngOnInit() {}
 

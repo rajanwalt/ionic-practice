@@ -21,9 +21,11 @@ export class AddWalletComponent implements OnInit {
     accountNumber: new FormControl('', Validators.required),
   });
 
-  onSubmit()  {}
-  
+  onSubmit()  {
+    if(this.walletForm.valid)  {
 
+    }
+  }
   
   constructor() { }
 

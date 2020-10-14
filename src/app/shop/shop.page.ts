@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors } fro
 import { Router, ActivatedRoute} from '@angular/router'
 
 import {Geolocation} from '@ionic-native/geolocation/ngx';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, ModalController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {File, IWriteOptions, FileEntry} from '@ionic-native/file/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
@@ -16,6 +16,7 @@ import { State } from './../store/state';
 import { Observable, Subscription } from 'rxjs';
 
 import { PhotoService} from './../APIs';
+import { ShopAddressComponent } from './shop-address/shop-address.component';
 
 // const formValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
 //   const shopName = control.get('name');
@@ -86,7 +87,8 @@ export class ShopPage implements OnInit, OnDestroy {
               private file: File,
               public photoService : PhotoService,
               private webview: WebView,
-              private activatedRoute: ActivatedRoute) { 
+              private activatedRoute: ActivatedRoute,
+              private modalController: ModalController) { 
   }
   
   async onSubmit()  {
@@ -100,9 +102,28 @@ export class ShopPage implements OnInit, OnDestroy {
     // }
   }
   
-  goToAddress()  {
-    this._store.dispatch(new SetShop(this.shopProfileForm.value));
-    this.router.navigate(['/shop/shop-address']);
+  // goToAddress()  {
+  //   this._store.dispatch(new SetShop(this.shopProfileForm.value));
+  //   this.router.navigate(['/shop/shop-address']);
+  // }
+
+  async goToAddress()  {
+    
+    const modal = await this.modalController.create({
+      component: ShopAddressComponent,
+      componentProps : {
+        "shopDetails" : this.shopProfileForm.value
+      },
+      cssClass: 'payment-modal-custom-class',
+      
+    });
+
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+
+    data && this.shopProfileForm.patchValue(data);
+    
   }
 
   
@@ -110,10 +131,10 @@ export class ShopPage implements OnInit, OnDestroy {
   loadImageFromCamera()  {
     const options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      correctOrientation: true,
+      sourceType: this.camera.PictureSourceType.CAMERA,
       encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      sourceType: this.camera.PictureSourceType.CAMERA
+      destinationType: this.camera.DestinationType.FILE_URI
     }
 
     this.photoService.getPicture(options).then((imgData) => {
@@ -126,6 +147,9 @@ export class ShopPage implements OnInit, OnDestroy {
 
     const options: CameraOptions = {
       quality: 100,
+      allowEdit: true,
+      saveToPhotoAlbum: true,
+      correctOrientation: true,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
@@ -174,12 +198,12 @@ export class ShopPage implements OnInit, OnDestroy {
       if(shopDetails)  {
         this.shopProfileForm.patchValue(shopDetails);
         
-        this.hasShopAddress = (shopDetails['country'] && shopDetails['country'].length>0) ? true : false;
-        this.shopAddress = shopDetails['street'] + "," + shopDetails['city'] + "," + shopDetails['country'];
+        // this.hasShopAddress = (shopDetails['country'] && shopDetails['country'].length>0) ? true : false;
+        // this.shopAddress = shopDetails['street'] + "," + shopDetails['city'] + "," + shopDetails['country'];
       }
     });
 
-    this.userSub = this.user$.subscribe( data => this.userId = data['id'])
+    this.userSub = this.user$.subscribe( data => data && (this.userId = data['id']))
     
   }
 

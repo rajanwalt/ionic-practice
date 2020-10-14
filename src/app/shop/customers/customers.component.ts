@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router} from '@angular/router'
-import { of, Observable } from 'rxjs';
+import { of, Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { State } from './../../store/state';
-import { selectCustomers } from './../../store/selectors';
+import { selectCustomers, selectShopDetails } from './../../store/selectors';
 import { IonSearchbar } from '@ionic/angular';
 import { GetCustomers } from 'src/app/store/actions';
 
@@ -28,31 +28,9 @@ export class CustomersComponent implements OnInit {
     "ALL"
   ];
 
-  // public customers$ = of([
-  //   {
-  //     id : 1,
-  //     firstName : "Rajan",
-  //     lastName : "Joseph",
-  //     totalOrders : 0,
-  //     totalAmount : 0
-  //   },
-  //   {
-  //     id : 2,
-  //     firstName : "First",
-  //     lastName : "Last",
-  //     totalOrders : 40,
-  //     totalAmount : 100
-  //   },
-  //   {
-  //     id : 3,
-  //     firstName : "First",
-  //     lastName : "Last",
-  //     totalOrders : 130,
-  //     totalAmount : 1000
-  //   }
-  // ]);
-
   public customers$ : Observable<any> = this._store.select(selectCustomers);
+  shopDetails$: Observable<any> = this._store.select(selectShopDetails);
+  shopDetailsSub: Subscription;
    
   onActivateTab(activeIndex : number)  {
     this.activeTab = activeIndex;
@@ -80,12 +58,25 @@ export class CustomersComponent implements OnInit {
     this.router.navigate(['/shop/add_customer'], { queryParams: {id : '' }});
   }
 
-  constructor(private router: Router,
-    private _store: Store<State>) { }
+  constructor(private router: Router, private _store: Store<State>) { }
 
+
+  ionViewWillEnter(){
+    this.shopDetailsSub = this.shopDetails$.subscribe(data => {
+      if(data)  {
+        this._store.dispatch(new GetCustomers({'service_id': data['id']}));
+      }
+    })
+  }
+
+  ionViewWillLeave(){
+    if(this.shopDetailsSub)  {
+      this.shopDetailsSub.unsubscribe();
+    }
+  }
 
   ngOnInit() {
-    this._store.dispatch(new GetCustomers({'service_id':1}));
+    
   }
 
   

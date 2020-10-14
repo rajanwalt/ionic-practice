@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChanges, OnDestroy } from '@angular/core';
+import { Component, OnInit, SimpleChanges, OnDestroy, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -10,6 +10,7 @@ import { Observable, Subscription } from 'rxjs';
 
 import { Shop } from './../models';
 
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-shop-address',
@@ -25,7 +26,8 @@ export class ShopAddressComponent implements OnInit, OnDestroy {
     "Chennai",
     "Thanjavur"
   ];
-  stateData : any = {};
+
+  @Input() shopDetails : any = null;
   
   shopAddressForm = new FormGroup({
     country: new FormControl('', Validators.required),
@@ -33,17 +35,24 @@ export class ShopAddressComponent implements OnInit, OnDestroy {
     street: new FormControl('', Validators.required)
   });
 
-  shopDetails$ : Observable<Shop> = this._store.select(selectShopDetails);
-  shopDetailsSub : Subscription;
+  // shopDetails$ : Observable<Shop> = this._store.select(selectShopDetails);
+  // shopDetailsSub : Subscription;
 
-  constructor( private router: Router, private _store: Store<State>) { }
+  constructor( private router: Router, private _store: Store<State>, private modalController: ModalController) { }
 
   
   onSubmit()  {
-    this._store.dispatch(new SetShopAddress(this.shopAddressForm.value));
+    // this._store.dispatch(new SetShopAddress(this.shopAddressForm.value));
     
-    this.router.navigate(['/shop']);
+    // this.router.navigate(['/shop']);
+
+    this.shopAddressForm.valid && this.modalController.dismiss(this.shopAddressForm.value);
   }
+
+  onDismiss()  {
+    this.modalController.dismiss(this.shopDetails);
+  }
+
   
 
   ngOnInit() {
@@ -51,17 +60,19 @@ export class ShopAddressComponent implements OnInit, OnDestroy {
   }
   
   ionViewDidEnter()  {
-    this.shopDetailsSub = this.shopDetails$.subscribe( value => {
-      if(value && value.country) {
-        this.shopAddressForm.patchValue(value)
-      }
-    })
+    // this.shopDetailsSub = this.shopDetails$.subscribe( value => {
+    //   if(value && value.country) {
+    //     this.shopAddressForm.patchValue(value)
+    //   }
+    // })
+
+    this.shopDetails && this.shopAddressForm.patchValue(this.shopDetails);
   }
 
   ngOnDestroy(): void {
-    if(this.shopDetailsSub)  {
-      this.shopDetailsSub.unsubscribe();
-    }
+    // if(this.shopDetailsSub)  {
+    //   this.shopDetailsSub.unsubscribe();
+    // }
   }
 
 

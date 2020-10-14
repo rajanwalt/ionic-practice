@@ -4,6 +4,7 @@ export enum EOrderActions  {
     SetOrder = '[Order] Set Order',
     ResetOrder = '[Order] Reset Order',
     AddOrderDetails = '[Order] Add Order Details',
+    AddOrderShipmentOptions = '[Order] Add Order Shipment Options',
     GetOrder = '[Order] Get Order'
 }
 
@@ -27,4 +28,9 @@ export class AddOrderDetails implements Action {
     constructor(public payload: any)  {}
 }
 
-export type OrderActions = SetOrder | GetOrder | AddOrderDetails | ResetOrder;
+export class AddOrderShipmentOptions implements Action {
+    public readonly type = EOrderActions.AddOrderShipmentOptions;
+    constructor(public payload: any) {}
+}
+
+export type OrderActions = SetOrder | GetOrder | AddOrderDetails | ResetOrder | AddOrderShipmentOptions;

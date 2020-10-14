@@ -7,3 +7,6 @@ export * from './order-status.action';
 export * from './payment-setting.action';
 export * from './vat.action';
 export * from './login.actions';
+export * from './wallet.action';
+export * from './shipping-charges.action';
+export * from './pending-request.action';

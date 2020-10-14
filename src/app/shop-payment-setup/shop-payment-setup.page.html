@@ -9,7 +9,7 @@
         <h1>Before you start selling... </h1>
         <p class="font-14">Add a few details.</p>
   </div>  
-  <ion-slides pager="true" [options]="slideOpts" >
+  <ion-slides #slider pager="true" [options]="slideOpts" >
       <ion-slide>
         <div class="slide-container">
           <img src="./../../assets/images/store.png" alt="store-setup"class="slider-img">
@@ -44,7 +44,7 @@
 </ion-content>
 <ion-footer class="ion-no-border"> 
     <ion-toolbar color="favorite1" >
-      <h5>
+      <h5 (click)="onLogout()">
         Cancel (Logout)
       </h5>
     </ion-toolbar>

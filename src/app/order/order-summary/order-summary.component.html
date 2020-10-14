@@ -1,7 +1,7 @@
 <ion-header translucent>
   <ion-toolbar color="favorite" padding>
       <ion-buttons slot="start">
-          <ion-button (click)="goBack()">
+          <ion-button (click)="presentAlertConfirm()">
             Cancel
           </ion-button>
       </ion-buttons>
@@ -14,8 +14,8 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen >
-  <ion-list *ngIf="orders">
-    <app-counter *ngFor="let order of orders?.orderDetails; let i=index" 
+  <ion-list *ngIf="updatedOrders">
+    <app-counter *ngFor="let order of updatedOrders; let i=index" 
       [order]= "order"
       (counterValue)="getCounterValue($event)">
     </app-counter>
@@ -52,9 +52,9 @@
       <ion-col class="ion-text-left"><ion-text color="medium">Subtotal</ion-text></ion-col>
       <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
     </ion-row>
-    <ion-row class="ion-no-border sub-text">
+    <ion-row class="ion-no-border sub-text" *ngIf="deliveryCharge">
       <ion-col class="ion-text-left"><ion-text color="medium">Delivery (estimated)</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="medium">{{deliveryCharge | currency:'USD':'code'}}</ion-text></ion-col>
     </ion-row>
     <ion-row class="ion-no-border sub-text">
       <ion-col class="ion-text-left"><ion-text color="medium">Tax/(VAT{{'10%'}})</ion-text></ion-col>
@@ -62,10 +62,10 @@
     </ion-row>
     <ion-row class="ion-no-border main-text">
       <ion-col class="ion-text-left"><ion-text color="dark">Send Invoice</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="dark">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="dark">{{subTotal + +deliveryCharge | currency:'USD':'code'}}</ion-text></ion-col>
     </ion-row>
   
-    <ion-row>
+    <ion-row *ngIf="!(orderStatus$ | async) as orderStatus">
       <ion-col>
         <ion-button 
           expand="full" 
@@ -77,32 +77,32 @@
         </ion-button>
       </ion-col>
     </ion-row>
-    <ion-row class="social-icons" *ngIf="isCheckoutLinkGenerated">
-      <ion-col (click)="onShare(SOCIALMEDIA.WHATSAPP)">
+    <ion-row class="social-icons" *ngIf="(orderStatus$ | async) as orderStatus">
+      <ion-col (click)="onShare(SOCIALMEDIA.WHATSAPP, orderStatus['id'])">
           <ion-avatar>
             <ion-icon name="logo-whatsapp"></ion-icon>
           </ion-avatar>
         <p>WhatsApp</p>
       </ion-col>
-      <ion-col (click)="onShare(SOCIALMEDIA.MESSENGER)">
+      <ion-col (click)="onShare(SOCIALMEDIA.MESSENGER, orderStatus['id'])">
         <ion-avatar>
           <ion-icon name="logo-facebook"></ion-icon>
         </ion-avatar>
         <p>Messenger</p>
       </ion-col>
-      <ion-col (click)="onShare(SOCIALMEDIA.SMS)">
+      <ion-col (click)="onShare(SOCIALMEDIA.SMS, orderStatus['id'])">
           <ion-avatar>
             <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
           </ion-avatar>
         <p>SMS</p>
       </ion-col>
-      <ion-col (click)="onShare(SOCIALMEDIA.COPY)">
+      <ion-col (click)="onShare(SOCIALMEDIA.COPY, orderStatus['id'])">
           <ion-avatar>
             <ion-icon name="link-outline"></ion-icon>
           </ion-avatar>
         <p>Copy Link</p>
       </ion-col>
-      <ion-col (click)="onShare(SOCIALMEDIA.MORE)">
+      <ion-col (click)="onShare(SOCIALMEDIA.MORE, orderStatus['id'])">
           <ion-avatar>
             <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
           </ion-avatar>

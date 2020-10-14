@@ -5,6 +5,7 @@ import { MainPage } from './main.page';
 import { StoreTabComponent } from './store-tab/store-tab.component';
 import { NewOrderTabComponent } from './new-order-tab/new-order-tab.component';
 import { SettingsTabComponent } from './settings-tab/settings-tab.component';
+import { OrdersTabComponent } from './orders-tab/orders-tab.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,15 @@ const routes: Routes = [
           {
             path: '',
             component: SettingsTabComponent
+          }
+        ]
+      },
+      {
+        path: 'orders',
+        children: [
+          {
+            path: '',
+            component: OrdersTabComponent
           }
         ]
       },

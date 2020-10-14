@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    
+    <ion-title *ngIf="!isSerachActive">
+      {{!isSerachActive ? 'Orders' : ''}}
+    </ion-title>
+
+    <ion-buttons slot="end" *ngIf="!isSerachActive">
+      <ion-button (click)="isSerachActive = !isSerachActive; onEnableSearch()" color="dark">
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons> 
+    
+    <ion-searchbar
+      #searchbar
+      debounce="500"
+      placeholder="Search for orders" 
+      showCancelButton="always" 
+      *ngIf="isSerachActive"
+      cancelButtonIcon="arrow-back-sharp" 
+      (ionChange) = "onSearch($event)"
+      (ionCancel) = "onCancel()"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid *ngIf="!((orders$ | async)?.length)" class="info">
+    <ion-row class="ion-align-items-center">
+        <ion-col class="ion-align-self-center">
+            <p class="title">You haven't received any orders yet.</p>
+            <p class="sub-text">
+              It's okay! It is only a matter of time before orders start rolling in.
+              Get out there and spread the world.
+            </p>
+            <ion-button 
+                    expand="full" 
+                    strong="true" 
+                    (click)="onCreateNewOrder()"
+                    class="add-item"
+                    color="favorite">
+              CREATE INVOICE        
+            </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="((orders$ | async)?.length)" class="list">
+    <ion-row *ngFor="let item of (orders$ | async) | listFilter:'id,name':searchText" (click)="onViewOrder(item)">
+      <ion-col size="8">
+        <ion-text color="medium">#{{item?.id}}</ion-text> <br>
+        <ion-text color="dark" class="ion-text-capitalize">{{item?.name}}</ion-text> <br>
+        <ion-text>
+          <!-- <ion-chip color="success" >
+            <ion-label></ion-label>
+          </ion-chip>
+           -->
+          <ion-chip color="danger">
+            <ion-label>{{item?.paymentType}}: {{item?.paymentStatus}}</ion-label>
+          </ion-chip>
+          <ion-chip color="warning">
+            <ion-label>{{item?.orderStatus}}</ion-label>
+          </ion-chip>
+        </ion-text>
+      </ion-col>
+      <ion-col size="4" class="ion-text-right">
+        <p> {{item?.orderTotal | currency:'USD':'code'}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <ion-fab vertical="bottom" horizontal="end"  slot="fixed">
+      <ion-fab-button (click)="onCreateNewOrder()" color="favorite">
+        <ion-icon name="add" color="dark"></ion-icon>
+      </ion-fab-button>
+  </ion-fab>
+</ion-content>

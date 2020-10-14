@@ -5,6 +5,8 @@ import { SettingsPage } from './settings.page';
 import {PaymentSettingsComponent} from './payment-settings/payment-settings.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { VatComponent } from './vat/vat.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+
 
 const routes: Routes = [
   {
@@ -22,6 +24,10 @@ const routes: Routes = [
   {
     path: 'vat',
     component: VatComponent
+  },
+  {
+    path: 'profile',
+    component: UserProfileComponent
   }
 ];
 

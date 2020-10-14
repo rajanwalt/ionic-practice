@@ -10,16 +10,16 @@ import { ModalController } from '@ionic/angular';
 export class AddCustomRateModalComponent implements OnInit {
 
   deliveryRateForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    rate: new FormControl('0.00', Validators.required),
+    type: new FormControl('', Validators.required),
+    charge: new FormControl('0.00', Validators.required),
   });
   
   onDismiss()  {
-    this.modalController.dismiss();
+    this.modalController.dismiss(null);
   }
 
   onAddDeliveryRate()  {
-
+    this.deliveryRateForm.valid && this.modalController.dismiss(this.deliveryRateForm.value)
   }
 
   constructor(public modalController: ModalController) { }

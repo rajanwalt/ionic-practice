@@ -3,22 +3,24 @@ import * as _ from 'underscore';
 import { CatalogueActions, ECatalogueActions } from '../actions';
 import { Catalogue } from './../../common/models';
 
-export function CatalogueReducers(state:Catalogue[] = [], action: CatalogueActions ): any  {
+export function CatalogueReducers(state, action: CatalogueActions ): any  {
     switch (action.type)  {
         case ECatalogueActions.SetCatalogue: {
             return action.payload
         }
         case ECatalogueActions.UpdateCatalogue: {
-            let {id} = action.payload;
-            let tempState = state.slice(0);
-
-            let isCatalogueExist = _.findIndex(state, {id});
-            if(isCatalogueExist >= 0)  {
-                tempState[isCatalogueExist] = {...action.payload};
-                return tempState;
+            let tempState =  state.slice(0);
+            
+            if(tempState && tempState.length)  {
+                let {id} = action.payload;
+                let isCatalogueExist = _.findIndex(state, {id});
+                 if(isCatalogueExist >= 0)  {
+                    tempState[isCatalogueExist] = {...action.payload};
+                    return tempState;
+                }
             }
             
-            return tempState.push(action.payload);
+            return [{...action.payload}];
         }
         default:
             return state;

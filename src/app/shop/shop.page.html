@@ -68,18 +68,20 @@
                 <ion-label >
                     <ion-text>
                         <p>Address</p>
-                        <p *ngIf="hasShopAddress">
-                            {{shopAddress}}
+                        <p *ngIf="shopProfileForm.controls.country.value">
+                            <ion-text *ngIf="shopProfileForm.controls.street.value">{{shopProfileForm.controls.street.value}}, </ion-text>
+                            <ion-text *ngIf="shopProfileForm.controls.city.value">{{shopProfileForm.controls.city.value}}, </ion-text>
+                            <ion-text *ngIf="shopProfileForm.controls.country.value">{{shopProfileForm.controls.country.value}} </ion-text>
                         </p>
                     </ion-text>
                 </ion-label>
               
                 <ion-button slot="end" color="none" class="add-button" (click)="goToAddress()">
-                    <ion-text *ngIf="!hasShopAddress">Add</ion-text>
-                    <ion-text *ngIf="hasShopAddress">Edit</ion-text>
+                    <ion-text *ngIf="!shopProfileForm.controls.country.value">Add</ion-text>
+                    <ion-text *ngIf="shopProfileForm.controls.country.value">Edit</ion-text>
                   </ion-button>
               </ion-item>
-          <div class="divider"></div>
+          <!-- <div class="divider"></div> -->
           <!-- <div class="map-container" *ngIf="hasShopAddress">
             <ion-text>
                 <h5>Pin Location</h5>

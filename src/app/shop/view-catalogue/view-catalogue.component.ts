@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
 import { selectCatalogue } from 'src/app/store/selectors';
 import { flatMap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 interface Photo  {
   filePath :  string,
@@ -41,22 +42,24 @@ export class ViewCatalogueComponent implements OnInit {
 
 
   bannerPhoto : string = this.photos[0].webviewPath;
+  itemDetailsSub : Subscription;
 
+  // itemDetails = {
+  //   id : 1,
+  //   productName: "Test",
+  //   price: "13",
+  //   additionalDetails: "lorn ipsum",
+  //   delivery: true,
+  //   dimension: true,
+  //   dimensionDetails: {
+  //     weight : "1",
+  //     length : "30",
+  //     width : "40",
+  //     height : "40"
+  //   }
+  // } 
 
-  itemDetails = {
-    id : 1,
-    productName: "Test",
-    price: "13",
-    additionalDetails: "lorn ipsum",
-    delivery: true,
-    dimension: true,
-    dimensionDetails: {
-      weight : "1",
-      length : "30",
-      width : "40",
-      height : "40"
-    }
-  } 
+  itemDetails = null;
 
   onSetBannerImg(selectedImg : Photo)  {
     this.bannerPhoto = selectedImg.webviewPath;
@@ -78,19 +81,19 @@ export class ViewCatalogueComponent implements OnInit {
 
     if(itemId !=  undefined)  {
       // this._store.dispatch(new GetCustomer({'this.customerForm.value'}));
-      this._store.select(selectCatalogue).pipe(
-        flatMap(items =>{ 
-          console.log(items)
-          return items.filter( entry => +itemId == entry.id)
-        })
+      this.itemDetailsSub = this._store.select(selectCatalogue).pipe(
+        flatMap(items => items.filter( entry => +itemId == entry.id))
       ).subscribe(item => {
-        // Object.keys(customer[0]).forEach(key =>{
-        //   if(this.customerForm.value )
-        //   this.customerForm.value[key] = customer[0][key]
-        // }
-        console.log(item)
-        // this.customerForm.patchValue(customer)
-        });
+        console.log("item", item);
+        this.itemDetails = item;
+      });
+    }
   }
-}
+
+  ionViewWillLeave() {
+   if(this.itemDetailsSub)  {
+     this.itemDetailsSub.unsubscribe();
+   }
+  }
+
 }

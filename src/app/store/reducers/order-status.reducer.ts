@@ -49,6 +49,9 @@ export function OrderStatusReducers(state:any , action: OrderStatusActions ): an
             return {...state, orderItems}
 
         }
+        case EOrderStatusActions.ResetOrderStatus: {
+            return null;
+        }
         default:
             return state;
     }

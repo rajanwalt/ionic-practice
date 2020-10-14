@@ -11,8 +11,10 @@ import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
 import { AddCatalogue } from './../../store/actions';
 import { SetOrder } from './../../store/actions';
+import { selectShopDetails } from './../../store/selectors';
 
 import { Catalogue } from './../models'
+import { Observable, Subscription } from 'rxjs';
 
 interface Photo  {
   filePath :  string,
@@ -90,6 +92,10 @@ export class AddCatalogueItemComponent implements OnInit {
   }, 
   // { validators: formValidator }
   );
+
+  shopDetails$: Observable<any> = this._store.select(selectShopDetails);
+  shopDetailsSub: Subscription;
+  service_id;
    
   onSelectDimensions(type: string)  {
     this.catalogueForm.get('dimension').setValue(type);
@@ -122,14 +128,18 @@ export class AddCatalogueItemComponent implements OnInit {
       
       let payload = this.catalogueForm.value;
 
-      this._store.dispatch(new AddCatalogue(Catalogue.formatPostAPI(payload)));
 
       if(this.router.url.indexOf('order') > 0 )  {
-        const {price, productName} = this.catalogueForm.value;
-        const orderDetails = [{ price, productName, count: 1}]
+        // const {price, productName} = this.catalogueForm.value;
+        // const orderDetails = [{ price, productName, count: 1}]
+        // this._store.dispatch(new SetOrder({orderDetails}));
+        
+        this._store.dispatch(new AddCatalogue({...payload, shopId: this.service_id, from : "order" }));
 
-        this._store.dispatch(new SetOrder({orderDetails}));
-        this.router.navigate(['/order/order_summary']);
+        // this.router.navigate(['/order/order_summary']);
+      }
+      else {
+        this._store.dispatch(new AddCatalogue({...payload, shopId: this.service_id }));
       }
     }
   }
@@ -213,6 +223,14 @@ export class AddCatalogueItemComponent implements OnInit {
       
       // Call API to retrive Data and set or patch customerForm
     }
+  }
+
+  ionViewWillEnter(){
+    this.shopDetailsSub = this.shopDetails$.subscribe(data => {
+      if(data)  {
+        this.service_id = data['id'];
+      }
+    })
   }
 
 }

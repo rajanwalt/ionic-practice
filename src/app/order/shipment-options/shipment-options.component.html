@@ -14,8 +14,29 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-grid class="info">
+<ion-content *ngIf="(orders$ | async) as order">
+  
+  <ion-list *ngIf="order?.country">
+    <ion-radio-group (ionChange)="onSelectShipmentOptions($event)">
+      <ion-item lines="full">
+        <ion-label>
+          <ion-text color="dark">{{defaultShipmentOption.charge | currency:'USD':'code'}}</ion-text> - {{defaultShipmentOption.type}}
+        </ion-label>
+        <ion-radio slot="start" [value]="defaultShipmentOption"></ion-radio>
+      </ion-item>
+      <ion-item *ngIf="(inHouseDelivery$ | async) as inHouseDelivery" lines="full">
+        <ion-label>
+          <ion-text color="dark">{{ inHouseDelivery?.charge | currency:'USD':'code'}}</ion-text> - {{inHouseDelivery?.type}}
+        </ion-label>
+        <ion-radio slot="start" [value]="inHouseDelivery"></ion-radio>
+      </ion-item>
+      <ion-item button (click)="onShowDeliveryRateModal()" lines="none" >
+        <ion-label color="primary"> Add custom rate </ion-label>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+  <ion-grid class="info" *ngIf="!order?.country">
     <ion-row class="ion-text-center">
       <ion-col size="12" class="icon">
         <ion-icon name="rocket-outline"></ion-icon>

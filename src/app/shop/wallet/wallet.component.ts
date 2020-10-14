@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
-
-
-import {PopupContentComponent} from './../popup-content/popup-content.component';
+import { NavController, PopoverController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import {PopupContentComponent} from './../popup-content/popup-content.component';
+import { selectWallet } from './../../store/selectors';
+import { GetWallet } from './../../store/actions';
 
+import { State } from './../../store/state';
 
 @Component({
   selector: 'app-wallet',
@@ -13,8 +15,8 @@ import { Router } from '@angular/router';
 })
 export class WalletComponent implements OnInit {
 
-  hasData : boolean = false;
-
+  hasData : boolean = true;
+  wallet$ =  this._store.select(selectWallet);
   onSelect = () => {
 
   }
@@ -46,10 +48,25 @@ export class WalletComponent implements OnInit {
        }
     })
   }  
-  onAddItem()  {}
+
+  onReleasePayment()  {
+
+  }
+
+  onAddItem()  {
+    this.navCtrl.navigateForward('/shop/add_wallet');
+  }
   
-  constructor(public popoverCtrl: PopoverController, private router: Router) { }
+  constructor(public popoverCtrl: PopoverController, private router: Router, private _store: Store<State>, private navCtrl: NavController) { }
 
   ngOnInit() {}
+
+  ionViewDidEnter() {
+    this._store.dispatch(new GetWallet({}));
+    
+    // this.WalletSub = this._store.select(selectWallet).subscribe(data => {
+    //   data && this.vatForm.patchValue(data);
+    // })
+  }
 
 }

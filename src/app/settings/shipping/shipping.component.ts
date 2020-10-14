@@ -3,6 +3,11 @@ import { NavController } from '@ionic/angular';
 import { of, Subscription } from 'rxjs';
 import { FormArray, FormGroup,  FormBuilder } from '@angular/forms';
 
+import { Store } from '@ngrx/store';
+import { State } from './../../store/state';
+import { GetShippingCharges, PostShippingCharges } from './../../store/actions';
+
+
 @Component({
   selector: 'app-shipping',
   templateUrl: './shipping.component.html',
@@ -21,8 +26,8 @@ export class ShippingComponent implements OnInit {
 
   createFixedPrice() {
     return this.fb.group({  
-      cityName: [''],
-      courierPrice: ['']      
+      city: [''],
+      charge: ['']      
     })
   }
 
@@ -48,7 +53,10 @@ export class ShippingComponent implements OnInit {
   }
 
   onSave()  {
-    
+
+    if(this.shippingForm.valid)  {
+      this._store.dispatch(new PostShippingCharges(this.shippingForm.value));
+    }
   }
 
   goBack()  {
@@ -56,8 +64,16 @@ export class ShippingComponent implements OnInit {
   }
   
 
-  constructor(private navCtrl: NavController, private fb: FormBuilder) { }
+  constructor(private navCtrl: NavController, private fb: FormBuilder,  private _store: Store<State>) { }
 
   ngOnInit() {}
+
+  ionViewDidEnter() {
+    // this._store.dispatch(new GetShippingCharges({}));
+
+    // this.vatSub = this._store.select(selectVat).subscribe(data => {
+    //   data && this.vatForm.patchValue(data);
+    // })
+  }
 
 }

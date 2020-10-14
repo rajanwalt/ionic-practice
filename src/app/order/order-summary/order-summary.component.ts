@@ -5,12 +5,13 @@ import { Router } from '@angular/router';
 
 import { State } from './../../store/state';
 import { Order, OrderDetails, OrderSummary } from './../models';
-import { selectOrders } from './../../store/selectors';
-import { PostOrderSummary, SetOrder } from './../../store/actions';
+import { selectLastOrderID, selectOrders } from './../../store/selectors';
+import { PostOrderSummary, SetOrder, ResetOrderStatus, ResetOrder } from './../../store/actions';
 
 import { SocialMediaSharingService } from './../../common';
+import {  Cart } from './../../common/models';
 import * as _ from 'underscore';
-import { ModalController, NavController } from '@ionic/angular';
+import { ModalController, NavController, AlertController } from '@ionic/angular';
 
 import {PaymentTypeModalComponent} from './../../common/payment-type-modal/payment-type-modal.component';
 
@@ -22,12 +23,14 @@ import {PaymentTypeModalComponent} from './../../common/payment-type-modal/payme
 export class OrderSummaryComponent implements OnInit {
 
   public orders$: Observable<Order> = this._store.select(selectOrders);
+  public orderStatus$: Observable<Cart> = this._store.select(selectLastOrderID);
+
   public orders = null;
   public orderSub : Subscription;
 
   public updatedOrders = [];
   public subTotal;
-  public isCheckoutLinkGenerated = false;
+  public deliveryCharge = 0;
   
   public SOCIALMEDIA = {
     WHATSAPP : "whatsapp",
@@ -41,13 +44,19 @@ export class OrderSummaryComponent implements OnInit {
   
   paymentOption = null;
 
-  calculateTotal()  {
+  
+
+  calculateSubTotal()  {
     
     if(this.updatedOrders.length > 1)  {
-      this.subTotal = this.updatedOrders.reduce((currentvalue, nextValue) => +currentvalue.price + +nextValue.price);
+      // this.subTotal = this.updatedOrders.reduce((currentvalue, nextValue) => +currentvalue.price + +nextValue.price);
+      this.subTotal = this.updatedOrders.reduce((accumulator, currentValue) => accumulator + (+currentValue.price * currentValue.count), 0 );
     }
-    else  {
-      this.subTotal = this.updatedOrders[0]['price'];
+    else if(this.updatedOrders.length == 1) {
+      this.subTotal = +this.updatedOrders[0]['price'] * this.updatedOrders[0]['count'];
+    }
+    else {
+      this.subTotal = 0;
     }
   
   }
@@ -55,9 +64,7 @@ export class OrderSummaryComponent implements OnInit {
   getCounterValue(orderDetails: OrderDetails)  {
     let {item_id, count} = orderDetails;
 
-    
     let isOrderExit = _.findIndex(this.updatedOrders, {item_id});
-    
     
     if(isOrderExit >= 0)  {
         if(count > 0)  {
@@ -73,21 +80,30 @@ export class OrderSummaryComponent implements OnInit {
     }
 
 
-    this.calculateTotal()
+    this.calculateSubTotal()
 
   }
 
-  onShare(appName)  {
-      
+  socialSharingCallback(status)  {
+    status && this.goBack();
+  }
+
+  async onShare(appName, orderId='')  {
+    
+    let checkoutLink = `http://localhost:8100/checkout/${orderId}`;
+
     switch(appName)  {
       case this.SOCIALMEDIA.WHATSAPP : {
+        const status = await this.socialMediaSharingService.shareViaWhatsApp(checkoutLink);
+        this.socialSharingCallback(status);
         break;
       }
       case this.SOCIALMEDIA.MESSENGER : {
         break;
       }
       case this.SOCIALMEDIA.SMS : {
-        this.socialMediaSharingService.shareViaSMS(this.message, this.orders.phoneNumber);
+        const status = await this.socialMediaSharingService.shareViaSMS(checkoutLink, this.orders.phoneNumber);
+        this.socialSharingCallback(status);
         break;
       }
       case this.SOCIALMEDIA.COPY : {
@@ -99,23 +115,20 @@ export class OrderSummaryComponent implements OnInit {
     }
   }
 
-  get message()  {
-    return "";
-  }
 
   get name()  {
     return (this.orders && this.orders.firstName) ? `${this.orders.firstName}'s` : "";
   }
 
   onAddItems()  {
-    this.router.navigate(['/order/add_item']);
+    // this.router.navigate(['/order/add_item']);
+    this.navCtrl.navigateForward('/order/add_item');
   }
 
   onPostOrderSummary()  {
     const finalOrderSummary = { ...this.orders, totalAmount: this.subTotal, status: "CREATED"};
-    finalOrderSummary.orderDetails = this.updatedOrders.splice(0);
-    console.log(finalOrderSummary);
-    console.log(OrderSummary.formatAPI(finalOrderSummary));
+    finalOrderSummary.orderDetails = JSON.parse(JSON.stringify(this.updatedOrders));
+ 
     this._store.dispatch(new PostOrderSummary(OrderSummary.formatAPI(finalOrderSummary)));
   }
 
@@ -135,23 +148,60 @@ export class OrderSummaryComponent implements OnInit {
   ionViewWillEnter()  {
     this.orderSub =  this.orders$.subscribe((results) => {
       this.orders = {...results};
-      if(results && results.orderDetails)  {
-        this.updatedOrders = results.orderDetails.slice(0);
-        this.calculateTotal();
+      if(results)  {
+        if(results.orderDetails)  {
+          this.updatedOrders = JSON.parse(JSON.stringify(results.orderDetails));
+          this.calculateSubTotal();
+        }
+
+        if(results.shipmentOptions)  {
+          this.deliveryCharge = results.shipmentOptions.charge;
+        }
+        
       }
     });
+
+    this._store.dispatch(new ResetOrderStatus());
+  }
+
+  ionViewWillLeave(){
+    if(this.orderSub)  {
+      this.orderSub.unsubscribe();
+    }
+  }
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      // header: 'Confirm!',
+      message: 'Are you sure you want to cancel this order?',
+      buttons: [
+        {
+          text: "No, don't cancel it",
+          role: 'cancel',
+          cssClass: 'secondary'
+        }, {
+          text: 'Yes, cancel it',
+          handler: () => {
+            this.goBack();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   goBack()  {
-    this.navCtrl.navigateBack('/order');
+    this._store.dispatch(new ResetOrder(null));
+    this.navCtrl.navigateBack('/main/new_order');
   }
 
   async onShowPaymentTypeModal()  {
     
     const modal = await this.modalController.create({
       component: PaymentTypeModalComponent,
-      cssClass: 'payment-modal-custom-class',
-      
+      cssClass: 'payment-modal-custom-class'
     });
 
     await modal.present();
@@ -165,7 +215,8 @@ export class OrderSummaryComponent implements OnInit {
     private socialMediaSharingService: SocialMediaSharingService,
     private router: Router,
     private navCtrl: NavController,
-    private modalController: ModalController) { }
+    private modalController: ModalController,
+    public alertController: AlertController) { }
 
 
 }

@@ -1,0 +1,143 @@
+<ion-header>
+  <ion-toolbar color="favorite">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Order #id</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+  <ion-item lines="none">
+    <ion-label class="header">
+        <ion-text class="text-16 text-600">
+            PAYMENT STATUS
+        </ion-text>
+    </ion-label>
+  </ion-item>
+  <ion-card>
+    <ion-card-content>
+        <ion-grid>
+            <ion-row >
+                <ion-col size="12" class="ion-text-center status-icon">
+                  <ion-icon name="cash-outline"></ion-icon>
+                  </ion-col>  
+                <ion-col size="12" class="ion-text-center text-600">
+                    <ion-text color="success">Paid</ion-text>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-item lines="none">
+    <ion-label class="header">
+        <ion-text class="text-16 text-600">
+            ORDER SUMMARY
+        </ion-text>
+    </ion-label>
+  </ion-item>
+  <ion-card>
+    <ion-card-content>
+        <ion-grid>
+            <ion-row >
+                <ion-col size="7" class="ion-text-left">
+                  Order date:
+                </ion-col>  
+                <ion-col size="5" class="ion-text-right">
+                    February 25,2020
+                </ion-col>
+            </ion-row>
+            <ion-row >
+              <ion-col size="7" class="ion-text-left">
+                Order #:
+              </ion-col>  
+              <ion-col size="5" class="ion-text-right">
+                  February 25,2020
+              </ion-col>
+          </ion-row>
+          <ion-row >
+            <ion-col size="7" class="ion-text-left">
+              Items:
+            </ion-col>  
+            <ion-col size="5" class="ion-text-right">
+                2
+            </ion-col>
+          </ion-row>
+          <ion-row >
+            <ion-col size="7" class="ion-text-left text-600">
+              <ion-text color="dark"> Order total: </ion-text>
+            </ion-col>  
+            <ion-col size="5" class="ion-text-right text-600">
+              <ion-text color="dark"> {{0}} </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+        <ion-grid>
+            <ion-row >
+                <ion-col size="7" class="ion-text-left">
+                  Pick-up by:
+                </ion-col>  
+                <ion-col size="5" class="ion-text-right">
+                    Name
+                </ion-col>
+            </ion-row>
+            <ion-row >
+              <ion-col size="7" class="ion-text-left">
+                Phone #:
+              </ion-col>  
+              <ion-col size="5" class="ion-text-right">
+                  February 25,2020
+              </ion-col>
+          </ion-row>
+          <ion-row >
+            <ion-col size="7" class="ion-text-left">
+              Email:
+            </ion-col>  
+            <ion-col size="5" class="ion-text-right">
+                2
+            </ion-col>
+          </ion-row>
+          
+        </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-item lines="none">
+    <ion-label class="header">
+        <ion-text class="text-16 text-600">
+            ORDER ITEMS
+        </ion-text>
+    </ion-label>
+  </ion-item>
+  <ion-card>
+    <ion-card-content>
+        <ion-grid>
+            <ion-row >
+                <ion-col size="2" class="ion-text-center">
+                  <ion-thumbnail>
+                    <ion-icon class="item-icon" name="pricetags-outline"></ion-icon>
+                  </ion-thumbnail>
+                </ion-col>  
+                <ion-col size="10" class="ion-text-right">
+                  <ion-row >
+                    <ion-col size="9" class="ion-text-left">
+                      <ion-text color="dark" class="text-600">Item name</ion-text><br>
+                      <ion-text>Item price</ion-text>
+                    </ion-col>  
+                    <ion-col size="3" class="ion-text-right">
+                      <ion-chip color="dark">
+                        <ion-label >1</ion-label>
+                      </ion-chip>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

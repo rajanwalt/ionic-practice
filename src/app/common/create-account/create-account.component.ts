@@ -18,8 +18,8 @@ export class CreateAccountComponent implements OnInit {
     lastname: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
-    storename: new FormControl('', Validators.required),
-    phoneNumber: new FormControl('', Validators.required),
+    // storename: new FormControl('', Validators.required),
+    // phoneNumber: new FormControl('', Validators.required),
   });
   
   isChecked = false;

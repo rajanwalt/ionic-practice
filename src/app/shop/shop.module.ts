@@ -11,7 +11,6 @@ import { SharedModule } from './../common';
 import { ShopPageRoutingModule } from './shop-routing.module';
 
 import {Geolocation} from '@ionic-native/geolocation/ngx';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 
 import { ShopPage } from './shop.page';
@@ -55,10 +54,9 @@ import { MonekatService, PhotoService } from './../APIs';
     AddPayoutMethodComponent
     // ListFilterPipe
   ],
-  entryComponents : [PopupContentComponent],
+  entryComponents : [PopupContentComponent, ShopAddressComponent],
   providers: [
     Geolocation,
-    ImagePicker,
     Camera,
     MonekatService,
     PhotoService

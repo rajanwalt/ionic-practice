@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { of, Observable } from 'rxjs';
+import { of, Observable, Subscription } from 'rxjs';
 import { Router} from '@angular/router'
 import { Store } from '@ngrx/store';
 
 import { State } from './../../store/state';
-import { selectCatalogue } from './../../store/selectors';
+import { selectCatalogue, selectShopDetails } from './../../store/selectors';
 import { IonSearchbar } from '@ionic/angular';
 import { GetCatalogue } from 'src/app/store/actions';
 @Component({
@@ -43,6 +43,8 @@ export class CatalogueComponent implements OnInit {
   //   }
   // ]);
   isSerachActive : boolean =  false;
+  shopDetails$: Observable<any> = this._store.select(selectShopDetails);
+  shopDetailsSub: Subscription;
 
   onAddItem()  {
     this.router.navigate(['/shop/add_catalogue_item']);
@@ -73,7 +75,17 @@ export class CatalogueComponent implements OnInit {
   }
 
   ionViewWillEnter(){
-    this._store.dispatch(new GetCatalogue({'service_id':1}));
+    this.shopDetailsSub = this.shopDetails$.subscribe(data => {
+      if(data)  {
+        this._store.dispatch(new GetCatalogue({'service_id': data['id']}));
+      }
+    })
+  }
+
+  ionViewWillLeave(){
+    if(this.shopDetailsSub)  {
+      this.shopDetailsSub.unsubscribe();
+    }
   }
 
 }

@@ -4,7 +4,7 @@
    </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
-  <ion-grid *ngIf="hasData">
+  <ion-grid *ngIf="!(wallet$ | async) as wallet">
     <ion-row class="ion-align-items-center">
         <ion-col class="ion-align-self-center">
           <div  class="catalogue-container">
@@ -25,7 +25,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <div *ngIf="!hasData">
+  <div *ngIf="(wallet$ | async)  as wallet">
     <ion-item lines="none">
         <ion-label class="header">
             <ion-text class="text-16 text-600">
@@ -126,7 +126,7 @@
   </div>
 </ion-content>
 <ion-footer>
-    <ion-toolbar>
+    <ion-toolbar (click)="onReleasePayment()" *ngIf="(wallet$ | async)  as wallet">
       <p>
         RELEASE PAYMENT
       </p>

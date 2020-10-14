@@ -5,6 +5,17 @@ export interface OrderDetails  {
     price?: number 
 }
 
+// export class OrderDetails  {
+//     constructor(
+//         public item_id?: string,
+//         public productName?:  string,
+//         public count?: number,
+//         public price?: number 
+//     )  {
+//         this.count = 1;
+//     }
+// }
+
 export class Order  {
     constructor(
     public customerId?: string,
@@ -13,6 +24,11 @@ export class Order  {
     public firstName?: string,
     public orderDetails?: OrderDetails[],
     public totalAmount?: string,
-    public status?: string
+    public status?: string,
+    public email?:string,
+    public country?: string,
+    public city?: string,
+    public street?:string,
+    public shipmentOptions?: any
     )  {}
 } 

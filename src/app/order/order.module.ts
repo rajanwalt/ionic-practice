@@ -13,6 +13,7 @@ import { SelectCatalogueComponent } from './select-catalogue/select-catalogue.co
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { ShipmentOptionsComponent } from './shipment-options/shipment-options.component';
 import {AddCustomRateModalComponent} from './add-custom-rate-modal/add-custom-rate-modal.component';
+import { ViewOrderComponent } from './view-order/view-order.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import {AddCustomRateModalComponent} from './add-custom-rate-modal/add-custom-ra
     OrderSummaryComponent,
     ShipmentOptionsComponent,
     AddCustomRateModalComponent,
+    ViewOrderComponent
   ],
   entryComponents: [AddCustomRateModalComponent]
 })

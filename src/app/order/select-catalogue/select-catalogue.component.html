@@ -6,13 +6,13 @@
             </ion-button>
         </ion-buttons>
         
-        <ion-buttons slot="end">
+        <ion-buttons slot="end" *ngIf="(listofItems$ | async)">
           <ion-button (click)="onSubmitItems()">
-            Add
+            Done
           </ion-button>
         </ion-buttons> 
 
-        <ion-title color="dark">Add Item</ion-title>
+        <ion-title color="dark" >Select Items</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content fullscreen *ngIf="(listofItems$ | async) as listofItems" >

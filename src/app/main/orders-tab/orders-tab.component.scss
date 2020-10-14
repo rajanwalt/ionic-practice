@@ -1,0 +1,61 @@
+ion-toolbar  {
+  
+    --background: var(--ion-color-favorite);
+
+    ion-buttons  {
+        height: 55px;
+    }
+    ion-back-button {
+        --icon-margin-end : 10px;
+        --icon-margin-start : 5px;
+    }
+
+    ion-searchbar  {
+        --cancel-button-color: var(--ion-color-dark);
+        // padding: 27px;
+    }
+}
+
+ion-grid  {
+    
+    &.info  {
+        height: 100%;
+
+        ion-row  {
+            height: 100%;
+        }
+
+        ion-col  {
+            text-align: center;
+            
+            p  {
+                // line-height: 5px;
+                &.title  {
+                    font-size: 20px;
+                    font-weight: 550;
+                }
+                &.sub-text  {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    &.list  {
+        ion-row  {
+            border-bottom: 1px solid var(--ion-color-medium);
+        }
+    }
+    
+    
+}
+
+
+ion-item  {
+    padding-top: 10px;
+}
+
+ion-chip  {
+    border-radius: 5px !important;
+    // margin-left: 0;
+}

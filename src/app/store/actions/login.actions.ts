@@ -5,7 +5,9 @@ export enum ELoginActions  {
     CreateAccount = '[Login] Create Account',
     CreateAccountSuccess = '[Login] Create Account Success',
     LoginSuccess = '[Login] Login Success',
-    SetUser = '[Login] Set User'
+    SetUser = '[Login] Set User',
+    Logout = '[Login] Logout',
+    UpdateAccount = '[Login] Update Account'
 }
 
 export class Login implements Action {
@@ -34,4 +36,13 @@ export class SetUser implements Action {
     constructor(public payload: any)  {}
 }
 
-export type LoginActions = Login | CreateAccount |  CreateAccountSuccess | LoginSuccess | SetUser;
+export class Logout implements Action {
+    public readonly type = ELoginActions.Logout;
+}
+
+export class UpdateAccount implements Action {
+    public readonly type = ELoginActions.UpdateAccount;
+    constructor(public payload: any)  {}
+}
+
+export type LoginActions = Login | CreateAccount |  CreateAccountSuccess | LoginSuccess | SetUser | Logout | UpdateAccount;

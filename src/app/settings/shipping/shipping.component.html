@@ -64,13 +64,13 @@
     <ion-row class="ship-heading" *ngFor="let item of fixedPrices.controls; let i=index" [formGroupName]="i">
       <ion-col size="6">
         <ion-text>Destination City</ion-text>
-        <ion-select placeholder="Select city" formControlName="cityName" [value]="item.cityName" >
-          <ion-select-option *ngFor="let city of cities" [value]="city">{{city}}</ion-select-option>
+        <ion-select placeholder="Select city" formControlName="city" [value]="item.city" >
+          <ion-select-option *ngFor="let cityName of cities" [value]="cityName">{{cityName}}</ion-select-option>
         </ion-select>
       </ion-col>
       <ion-col size="4">
         <ion-text>Price</ion-text>
-        <ion-input placeholder="USD 0.00" [value]="item.courierPrice" formControlName="courierPrice" ></ion-input>
+        <ion-input placeholder="USD 0.00" [value]="item.charge" formControlName="charge" ></ion-input>
       </ion-col>
       <ion-col size="2" class="ion-align-self-end text-center" >
         <ion-icon name="close-circle" (click)="onReset(i)"></ion-icon>

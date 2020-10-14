@@ -4,6 +4,7 @@ import { RouterStateUrl } from './../router-custom-serializer';
 import { Order } from './../../order/models';
 import { Shop } from './../../shop/models';
 import { Catalogue, Customer } from './../../common/models';
+
 export interface State {
     shopDetails : Shop;
     customers : Customer[];
@@ -13,6 +14,9 @@ export interface State {
     paymentMethods: any;
     vat: any;
     user: any;
+    wallet: any;
+    shippingCharges: any,
+    pendingRequest : number,
     router?: RouterReducerState<RouterStateUrl>;
   }
   
@@ -24,6 +28,8 @@ export const initialState : State = {
     paymentMethods : [],
     vat: null,
     user: null,
+    wallet : null,
     lastOrderStatus : null,
-    
+    shippingCharges : [],
+    pendingRequest: 0
   }

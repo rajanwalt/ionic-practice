@@ -17,6 +17,7 @@ import { PaymentTypeModalComponent } from './payment-type-modal/payment-type-mod
 import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   imports: [ CommonModule, IonicModule, FormsModule, ReactiveFormsModule ],
@@ -30,7 +31,8 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     PaymentTypeModalComponent,
     CartComponent,
     LoginComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    SpinnerComponent
   ],
   entryComponents: [
     PaymentInfoModalComponent, 
@@ -50,7 +52,8 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     PaymentTypeModalComponent,
     CartComponent,
     LoginComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    SpinnerComponent
   ]
 })
 export class SharedModule {}

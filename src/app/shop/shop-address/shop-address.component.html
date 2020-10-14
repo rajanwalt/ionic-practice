@@ -1,8 +1,11 @@
 <ion-header>
   <ion-toolbar color="favorite">
     <ion-buttons slot="start">
-        <ion-back-button  color="dark" defaultHref="/" text="Business Address" icon="arrow-back-outline"></ion-back-button>
+      <ion-button (click)="onDismiss()">
+        Cancel
+      </ion-button>
     </ion-buttons>
+    <ion-title color="dark" mode="ios" >Business Address</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="onSubmit()" color="dark">Done</ion-button>
     </ion-buttons> 

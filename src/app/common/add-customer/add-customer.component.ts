@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { switchMap, filter, map, flatMap, find } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import { State } from './../../store/state';
 import { AddCustomers, GetCustomer } from './../../store/actions';
-import { selectCustomers } from 'src/app/store/selectors';
+import { selectCustomers, selectShopDetails } from './../../store/selectors';
 import { Customer } from '../models';
 
 
@@ -30,6 +30,8 @@ export class AddCustomerComponent implements OnInit {
   });
   
   private customer : Customer; 
+  private serviceId = '';
+
   countries : Array<string> = [
     "Dubai"
   ];
@@ -38,10 +40,12 @@ export class AddCustomerComponent implements OnInit {
     "Ajman"
   ];
 
+  shopDetails$: Observable<any> = this._store.select(selectShopDetails);
+  shopDetailsSub: Subscription;
+
   onSubmit()  {
     if(this.customerForm.valid)  {
-      this.customerForm.value['shopId']=1;
-      this._store.dispatch(new AddCustomers(this.customerForm.value));
+      this._store.dispatch(new AddCustomers({...this.customerForm.value, shopId: this.serviceId}));
     }
   }
   
@@ -72,6 +76,14 @@ export class AddCustomerComponent implements OnInit {
        
     }
 
+  }
+
+  ionViewWillEnter(){
+    this.shopDetailsSub = this.shopDetails$.subscribe(data => {
+      if(data)  {
+        this.serviceId = data['id'];
+      }
+    })
   }
 
 }

@@ -2,11 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IonSearchbar, NavController } from '@ionic/angular';
-import { of, combineLatest, Observable, BehaviorSubject } from 'rxjs';
+import { of, combineLatest, Observable, BehaviorSubject, Subscription } from 'rxjs';
 
 import { State } from './../../store/state';
 import { SetOrder, AddOrderDetails, GetCatalogue } from './../../store/actions';
-import { selectCurrentOrder, selectCatalogue } from './../../store/selectors';
+import { selectCurrentOrder, selectCatalogue, selectShopDetails } from './../../store/selectors';
 import { Order } from './../models';
 import { RouterStateService } from './../../common';
 
@@ -23,6 +23,9 @@ export class SelectCatalogueComponent implements OnInit {
   public selectedItems : Array<any> = [];
   public currentOrder$ : Observable<Order> = this._store.select(selectCurrentOrder);
   public catelogue$ : Observable<any> = this._store.select(selectCatalogue);
+  shopDetails$: Observable<any> = this._store.select(selectShopDetails);
+  shopDetailsSub: Subscription;
+  
   // public catelogue$ = of([
   //   {
   //     item_id : 1,
@@ -48,17 +51,18 @@ export class SelectCatalogueComponent implements OnInit {
   // ]);
 
   public listofItems$ : Observable<any>;
-  public existingCustomerId : string = '';
+  // public existingCustomerId : string = '';
   previousRoute: string;
 
   onSubmitItems()  {
     let orderDetails = this.selectedItems;
-    console.log(this.selectedItems);
+    console.log("submit orderDetails", orderDetails);
+
     if(orderDetails.length > 0)  {
       orderDetails.forEach(order => order['item_id'] = order['id'] )
       this._store.dispatch(new AddOrderDetails({orderDetails}));
 
-      this.router.navigate(['/order/order_summary']);
+      this.navCtrl.navigateForward('/order/order_summary');
     }
     
   }
@@ -94,20 +98,29 @@ export class SelectCatalogueComponent implements OnInit {
   }
 
   onAddNewItem()  {
-    this.router.navigate(['/order/add_new_item'])
+    this.navCtrl.navigateForward('/order/add_new_item')
   }
 
   filterSelectedItems(original, recentlySelected : Order)  {
-    if(!(recentlySelected == null) && recentlySelected.orderDetails && this.existingCustomerId == recentlySelected.customerId)  {
-      const selectedItemsId =  recentlySelected.orderDetails.map(items => items.item_id);
-      console.log("selectedItemsId", selectedItemsId);
+    console.log("recentlySelected", recentlySelected)
+    console.log("original", original)
 
-      return original.filter(originalItems => !selectedItemsId.some(selectedItems => originalItems['item_id'] == selectedItems))
+    if(original)  {
+      // if(!(recentlySelected == null) && recentlySelected.orderDetails && this.existingCustomerId == recentlySelected.customerId)  {
+      if( recentlySelected && recentlySelected.orderDetails)  {
+
+        const selectedItemsId =  recentlySelected.orderDetails.map(items => items.item_id);
+        console.log("selectedItemsId", selectedItemsId);
+  
+        return original.filter(originalItems => !selectedItemsId.some(selectedItems => originalItems['id'] == selectedItems))
+      }
+
+      // this.existingCustomerId = recentlySelected && recentlySelected.customerId;
+
+      return original;
     }
-    
-    this.existingCustomerId = recentlySelected && recentlySelected.customerId;
-
-    return original;
+   
+    return [];
 
   }
 
@@ -132,8 +145,6 @@ export class SelectCatalogueComponent implements OnInit {
   ionViewDidEnter()  {
     this.previousRoute = this.routerStateService.getPreviousUrl();
     
-    console.log("previousRoute", this.previousRoute);
-
     this.listofItems$ = combineLatest(this.catelogue$, 
       this.currentOrder$, 
       (listofItem, listofSelectedItems) => this.filterSelectedItems(listofItem, listofSelectedItems));
@@ -141,7 +152,11 @@ export class SelectCatalogueComponent implements OnInit {
   }
 
   ionViewWillEnter(){
-    this._store.dispatch(new GetCatalogue({'service_id':1}));
+    this.shopDetailsSub = this.shopDetails$.subscribe(data => {
+      if(data)  {
+        this._store.dispatch(new GetCatalogue({'service_id': data['id']}));
+      }
+    })
   }
 
 }

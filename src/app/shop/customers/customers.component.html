@@ -34,10 +34,10 @@
     <ion-list *ngIf="((customers$ | async).length)">
       <ion-item  *ngFor="let item of (customers$ | async) | listFilter:'firstName,lastName':searchText" (click)="onViewCustomer(item)">
         <ion-avatar slot="start">
-          <ion-text>{{item?.firstName | slice:0:1}}</ion-text>
+          <ion-text class="ion-text-uppercase">{{item?.firstName | slice:0:1}}</ion-text>
         </ion-avatar>
         <ion-label>
-          <h2>{{item?.firstName}} {{item?.lastName}}</h2>
+          <h2 class="ion-text-capitalize">{{item?.firstName}} {{item?.lastName}}</h2>
           <p>{{item?.totalOrders}} orders, {{item?.totalAmount | currency:'USD':'code'}}</p>
         </ion-label>
       </ion-item>

@@ -7,7 +7,8 @@ export enum EOrderStatusActions  {
     OnUpdateCustomer = '[Order Status] On Update Customer',
     OnSelectDeliveryMethod = '[Order Status] On Select Delivery Method',
     OnSelectPaymentMethod = '[Order Status] On Select Payment Method',
-    OnUpdateOrderItems = '[Order Status] On UPdate Order Items'
+    OnUpdateOrderItems = '[Order Status] On UPdate Order Items',
+    ResetOrderStatus = '[Order Status] Reset Order Status'
 }
 
 export class GetOrderStatus implements Action {
@@ -18,6 +19,10 @@ export class GetOrderStatus implements Action {
 export class SetOrderStatus implements Action {
     public readonly type = EOrderStatusActions.SetOrderStatus;
     constructor(public payload: any)  {}
+}
+
+export class ResetOrderStatus implements Action {
+    public readonly type = EOrderStatusActions.ResetOrderStatus;
 }
 
 export class OnOrderSuccess implements Action {
@@ -47,4 +52,4 @@ export class OnUpdateOrderItems implements Action {
 
 
 
-export type OrderStatusActions = GetOrderStatus | SetOrderStatus | OnOrderSuccess | OnUpdateCustomer | OnSelectDeliveryMethod | OnSelectPaymentMethod | OnUpdateOrderItems;
+export type OrderStatusActions = GetOrderStatus | SetOrderStatus | ResetOrderStatus | OnOrderSuccess | OnUpdateCustomer | OnSelectDeliveryMethod | OnSelectPaymentMethod | OnUpdateOrderItems;

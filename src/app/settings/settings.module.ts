@@ -11,6 +11,8 @@ import { SettingsPage } from './settings.page';
 import {PaymentSettingsComponent} from './payment-settings/payment-settings.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { VatComponent } from './vat/vat.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ChangePasswordModalComponent } from './change-password-modal/change-password-modal.component';
 
 @NgModule({
   imports: [
@@ -24,7 +26,10 @@ import { VatComponent } from './vat/vat.component';
     SettingsPage, 
     PaymentSettingsComponent, 
     ShippingComponent,
-    VatComponent
-  ]
+    VatComponent,
+    UserProfileComponent,
+    ChangePasswordModalComponent
+  ],
+  entryComponents: [ChangePasswordModalComponent]
 })
 export class SettingsPageModule {}

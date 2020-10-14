@@ -7,11 +7,13 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import {AddCatalogueItemComponent} from './../common/add-catalogue-item/add-catalogue-item.component';
 import { AddCustomerComponent } from './../common/add-customer/add-customer.component';
 import { ShipmentOptionsComponent } from './shipment-options/shipment-options.component';
+import { ViewOrderComponent } from './view-order/view-order.component';
 
 const routes: Routes = [
   {
     path: '',
     component: OrderPage,
+    pathMatch: "full"
   },
   {
     path: 'add_item',
@@ -32,6 +34,10 @@ const routes: Routes = [
   {
     path: 'shipment_options',
     component: ShipmentOptionsComponent
+  },
+  {
+    path: ':id',
+    component: ViewOrderComponent
   }
 ];
 
