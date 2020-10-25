@@ -17,7 +17,7 @@ import { Catalogue } from './../models'
 import { Observable, Subscription } from 'rxjs';
 
 interface Photo  {
-  filePath :  string,
+  imgBlob :  Blob,
   webviewPath : string
 }
 
@@ -29,22 +29,10 @@ interface Photo  {
 export class AddCatalogueItemComponent implements OnInit {
 
   photos : Photo[] = [
-    {
-      webviewPath : "",
-      filePath : ""
-    },
-    {
-      webviewPath : "",
-      filePath : ""
-    },
-    {
-      webviewPath : "",
-      filePath : ""
-    },
-    {
-      webviewPath : "",
-      filePath : ""
-    }
+    null,
+    null,
+    null,
+    null
   ];
 
   dimensions :  Array<any> = [
@@ -82,7 +70,7 @@ export class AddCatalogueItemComponent implements OnInit {
     price: new FormControl('', Validators.required),
     additionalDetails: new FormControl(''),
     delivery: new FormControl(false),
-    dimension: new FormControl('small'),
+    dimension: new FormControl('Small'),
     dimensionDetails: new FormGroup({
       weight : new FormControl('0.0'),
       length : new FormControl('0.0'),
@@ -152,15 +140,8 @@ export class AddCatalogueItemComponent implements OnInit {
   }
 
   loadImageFromCamera(index)  {
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      sourceType: this.camera.PictureSourceType.CAMERA
-    }
 
-    this.photoService.getPicture(options).then((imgData) => {
+    this.photoService.getPicture('CAMERA').then((imgData) => {
       this.photos[index] = imgData
     });
     
@@ -168,14 +149,7 @@ export class AddCatalogueItemComponent implements OnInit {
 
   loadImageFromLib(index)  {
 
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
-    }
-    this.photoService.getPicture(options).then((imgData) => {
+    this.photoService.getPicture('PHOTOLIBRARY').then((imgData) => {
       this.photos[index] = imgData
     });      
   }

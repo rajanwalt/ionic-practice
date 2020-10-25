@@ -7,7 +7,7 @@
 <ion-content>
   <ion-list mode="ios">
     <ion-item button *ngFor="let settingsItem of listOfSettings" (click)="navigateTo(settingsItem.link)">
-      <ion-icon slot="start" [name]="settingsItem.icon" ></ion-icon>
+      <ion-icon slot="start" [src]="settingsItem.icon" ></ion-icon>
       <ion-label>
         <h3>{{settingsItem.title}}</h3>
       </ion-label>

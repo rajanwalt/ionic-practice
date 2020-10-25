@@ -33,6 +33,11 @@ export class SocialMediaSharingService {
 
     return this.handleResponse(status);
   }
+
+  async share(message, subject = "checkout link")  {
+    const status = await this.socialSharing.share(message, subject);
+    return this.handleResponse(status);
+  }
   
 
   

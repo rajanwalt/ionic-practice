@@ -56,7 +56,6 @@ export class SelectCatalogueComponent implements OnInit {
 
   onSubmitItems()  {
     let orderDetails = this.selectedItems;
-    console.log("submit orderDetails", orderDetails);
 
     if(orderDetails.length > 0)  {
       orderDetails.forEach(order => order['item_id'] = order['id'] )
@@ -102,15 +101,12 @@ export class SelectCatalogueComponent implements OnInit {
   }
 
   filterSelectedItems(original, recentlySelected : Order)  {
-    console.log("recentlySelected", recentlySelected)
-    console.log("original", original)
 
     if(original)  {
       // if(!(recentlySelected == null) && recentlySelected.orderDetails && this.existingCustomerId == recentlySelected.customerId)  {
       if( recentlySelected && recentlySelected.orderDetails)  {
 
         const selectedItemsId =  recentlySelected.orderDetails.map(items => items.item_id);
-        console.log("selectedItemsId", selectedItemsId);
   
         return original.filter(originalItems => !selectedItemsId.some(selectedItems => originalItems['id'] == selectedItems))
       }

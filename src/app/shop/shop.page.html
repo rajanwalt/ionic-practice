@@ -3,7 +3,7 @@
       <ion-buttons slot="start">
           <ion-back-button  color="dark" defaultHref="/" text="Your Shop" icon="arrow-back-outline"></ion-back-button>
       </ion-buttons>
-      <ion-buttons slot="end">
+      <ion-buttons slot="end" *ngIf="shopProfileForm.valid && shopProfileForm.dirty">
         <ion-button (click)="onSubmit()">Done</ion-button>
       </ion-buttons> 
   </ion-toolbar>
@@ -24,7 +24,7 @@
                 </div>
                 
                 <ion-avatar (click)="presentActionSheet()" *ngIf="shopLogo?.webviewPath">
-                    <img [src]= "shopLogo?.webviewPath">
+                    <img src= "{{ shopLogo.webviewPath }}">
                 </ion-avatar>
             </ion-item> 
             <div class="divider"></div>
@@ -33,14 +33,15 @@
                     <h5>Basic Information </h5>
                 </ion-text>
             </ion-list-header>
-          <ion-item lines="none">
+          <ion-item lines="none" [class.error]="!shopProfileForm.controls.shopName.valid && (shopProfileForm.controls.shopName.dirty || shopProfileForm.controls.shopName.touched)">
               <ion-label position="stacked">Shop Name</ion-label>
               <ion-input type="text" formControlName="shopName" name="shopName"></ion-input>
-              <!-- <ion-text class="warn-text" >Shop name canot be empty</ion-text> -->
+              <ion-text class="warn-text" >Shop name cannot be empty</ion-text>
           </ion-item>
-          <ion-item lines="none">
+          <ion-item lines="none" [class.error]="!shopProfileForm.controls.email.valid && (shopProfileForm.controls.email.dirty || shopProfileForm.controls.email.touched)">
             <ion-label position="stacked">Email address</ion-label>
             <ion-input type="text" formControlName="email" name="email"></ion-input>
+            <ion-text class="warn-text" >Email cannot be empty</ion-text>
           </ion-item>
           <!-- <ion-item lines="none">
             <ion-label position="stacked">Website</ion-label>
@@ -91,7 +92,3 @@
          </ion-list>
     </form>
 </ion-content>
-
-<!-- <div class="overlay" padding [hidden]="overlayHidden"> -->
-    <!-- <app-image-uploader *ngIf="!overlayHidden"></app-image-uploader> -->
-<!-- </div>  -->

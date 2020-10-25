@@ -21,18 +21,20 @@
     </p>
   </ion-text>
   <ion-text color="medium">
-    Amount of taxes owed by your customer will be added to eavh product and displayed at checkout.
+    Amount of taxes owed by your customer will be added to each product and displayed at checkout.
   </ion-text>
   <form [formGroup]="vatForm">
     <ion-list>
-      <ion-item>
-        <ion-input formControlName="rate" ></ion-input>
+      <ion-item lines="none" [class.error]="!vatForm.controls.vat.valid && (vatForm.controls.vat.dirty || vatForm.controls.vat.touched)">
+        <ion-input formControlName="vat" name="vat"></ion-input>
         <ion-text slot="end">%</ion-text>
+        <!-- <ion-text class="warn-text" >Rate cannot be empty</ion-text> -->
       </ion-item>
 
-      <ion-item>
+      <ion-item lines="none" [class.error]="!vatForm.controls.trn.valid && (vatForm.controls.trn.dirty || vatForm.controls.trn.touched)">
         <ion-label position="stacked">Tax Registration Number(TRN)</ion-label>
-        <ion-input formControlName="trn" ></ion-input>
+        <ion-input formControlName="trn" name="trn"></ion-input>
+        <ion-text class="warn-text" >TRN cannot be empty</ion-text>
       </ion-item>
     </ion-list>
   </form>

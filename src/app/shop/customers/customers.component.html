@@ -38,7 +38,10 @@
         </ion-avatar>
         <ion-label>
           <h2 class="ion-text-capitalize">{{item?.firstName}} {{item?.lastName}}</h2>
-          <p>{{item?.totalOrders}} orders, {{item?.totalAmount | currency:'USD':'code'}}</p>
+          <p>
+            <ion-text *ngIf="item?.totalOrder">{{item?.totalOrders}} orders,</ion-text> 
+            <ion-text *ngIf="item?.totalAmount"> {{item?.totalAmount | currency:'USD':'code'}} </ion-text>
+          </p>
         </ion-label>
       </ion-item>
     </ion-list>

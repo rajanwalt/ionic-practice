@@ -4,9 +4,9 @@ import { NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 
 import { State } from './../../store/state';
-import { GetVat, PostVat } from './../../store/actions';
-import { selectVat} from './../../store/selectors';
-import { Subscription } from 'rxjs';
+import { PostVat } from './../../store/actions';
+import { Observable, Subscription } from 'rxjs';
+import { selectUser, selectSetting } from './../../store/selectors';
 
 @Component({
   selector: 'app-vat',
@@ -16,16 +16,20 @@ import { Subscription } from 'rxjs';
 export class VatComponent implements OnInit {
 
   vatSub: Subscription;
+  userSub: Subscription;
+  userId: any;
+  user$: Observable<any> = this._store.select(selectUser)
+  settings$: Observable<any> = this._store.select(state => selectSetting(selectUser(state)));
 
   vatForm = new FormGroup({
-    rate: new FormControl('0.00', Validators.required),
+    vat: new FormControl('0.00', Validators.required),
     trn: new FormControl('Etavjs', Validators.required),
   });
   
   
   onApply()  {
     if(this.vatForm.valid)  {
-      this._store.dispatch(new PostVat(this.vatForm.value));
+      this._store.dispatch(new PostVat({...this.vatForm.value, userId: this.userId } ));
     }
   }
 
@@ -38,11 +42,18 @@ export class VatComponent implements OnInit {
   ngOnInit() {}
 
   ionViewDidEnter() {
-    this._store.dispatch(new GetVat({}));
 
-    this.vatSub = this._store.select(selectVat).subscribe(data => {
-      data && this.vatForm.patchValue(data);
+    this.vatSub = this.settings$.subscribe(data => {
+      data && data.length && this.vatForm.patchValue(data[0]);
     })
+
+    this.userSub = this.user$.subscribe( data => data && (this.userId = data['id']));
+  }
+
+  ionViewDidLeave(){
+    if(this.vatSub)  {
+      this.vatSub.unsubscribe();
+    }
   }
 
 }

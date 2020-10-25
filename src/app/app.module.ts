@@ -12,6 +12,7 @@ import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import {File} from '@ionic-native/file/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
 
 
 import { AppComponent } from './app.component';
@@ -82,6 +83,7 @@ import { PendingRequestsInterceptor } from './APIs'
     File,
     FilePath,
     WebView,
+    Camera,
     RouterStateService
   ],
   

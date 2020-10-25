@@ -84,7 +84,6 @@ export class ViewCatalogueComponent implements OnInit {
       this.itemDetailsSub = this._store.select(selectCatalogue).pipe(
         flatMap(items => items.filter( entry => +itemId == entry.id))
       ).subscribe(item => {
-        console.log("item", item);
         this.itemDetails = item;
       });
     }

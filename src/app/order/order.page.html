@@ -71,7 +71,7 @@
           </ion-avatar>
           <ion-label>
             <h2 class="ion-text-capitalize">{{item?.firstName}} {{item?.lastName}}</h2>
-            <p>{{item?.totalOrders}} orders, {{item?.totalAmount | currency:'USD':'code'}}</p>
+            <!-- <p>{{item?.totalOrders}} orders, {{item?.totalAmount | currency:(currencyCode$ | async):'code'}}</p> -->
           </ion-label>
         </ion-item>
       </ion-list>

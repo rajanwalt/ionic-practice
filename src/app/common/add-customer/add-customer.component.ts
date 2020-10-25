@@ -11,6 +11,7 @@ import { AddCustomers, GetCustomer } from './../../store/actions';
 import { selectCustomers, selectShopDetails } from './../../store/selectors';
 import { Customer } from '../models';
 
+import { counries, cities } from './../countries_cities';
 
 @Component({
   selector: 'app-add-customer',
@@ -32,16 +33,18 @@ export class AddCustomerComponent implements OnInit {
   private customer : Customer; 
   private serviceId = '';
 
-  countries : Array<string> = [
-    "Dubai"
-  ];
+  countries : Array<string> = counries()
 
-  cities : Array<string> = [
-    "Ajman"
-  ];
+  cities : Array<any> = [];
 
   shopDetails$: Observable<any> = this._store.select(selectShopDetails);
   shopDetailsSub: Subscription;
+  customerSub : Subscription;
+
+  onChangeCountry(event)  {
+    let country = event.detail.value;
+    this.cities = cities(country) || [];
+  }
 
   onSubmit()  {
     if(this.customerForm.valid)  {
@@ -57,22 +60,17 @@ export class AddCustomerComponent implements OnInit {
 
     if(customerId !=  undefined)  {
       // this._store.dispatch(new GetCustomer({'this.customerForm.value'}));
-      this._store.select(selectCustomers).pipe(
-        flatMap(customers =>{ 
-          console.log(customers)
-          return customers.filter( entry => customerId == entry.id)
-        }
-          )
+      this.customerSub = this._store.select(selectCustomers).pipe(
+        flatMap(customers => customers.filter( entry => customerId == entry.id))
       ).subscribe(customer => {
-        // Object.keys(customer[0]).forEach(key =>{
-        //   if(this.customerForm.value )
-        //   this.customerForm.value[key] = customer[0][key]
-        // }
-        console.log(customer)
-        this.customerForm.patchValue(customer)
+
+        if(customer && customer.country)  {
+          this.cities = cities(customer.country) || [];
+        }
+
+        this.customerForm.patchValue(customer);
+
         });
-        
-      
        
     }
 
@@ -84,6 +82,11 @@ export class AddCustomerComponent implements OnInit {
         this.serviceId = data['id'];
       }
     })
+
+    if(this.customerSub)  {
+      this.customerSub.unsubscribe();
+    }
+
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { counries, cities } from './../../common/countries_cities';
 
 @Component({
   selector: 'app-delivery-address-modal',
@@ -9,17 +10,10 @@ import { ModalController } from '@ionic/angular';
 })
 export class DeliveryAddressModalComponent implements OnInit {
 
-  @Input() deliveryAddress : object = null;
+  @Input() deliveryAddress : any = null;
 
-  countries : Array<string> = [
-    "UAE"
-  ];
-
-  cities : Array<string> = [
-    "Dubai",
-    "Abu Dhabi",
-    "Sharjah"
-  ];
+  countries : Array<string> = counries()
+  cities : Array<any> = [];
 
   customerForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
@@ -30,6 +24,11 @@ export class DeliveryAddressModalComponent implements OnInit {
     city: new FormControl(''),
     street: new FormControl('')
   });
+
+  onChangeCountry(event)  {
+    let country = event.detail.value;
+    this.cities = cities(country) || [];
+  }
 
   onDismiss()  {
     this.modalController.dismiss(this.deliveryAddress);
@@ -42,7 +41,12 @@ export class DeliveryAddressModalComponent implements OnInit {
   constructor(public modalController: ModalController) { }
 
   ngOnInit() {
-    this.deliveryAddress && this.customerForm.patchValue(this.deliveryAddress)
+
+    if(this.deliveryAddress )  {
+      this.customerForm.patchValue(this.deliveryAddress)
+      this.deliveryAddress.country &&  (this.cities = cities(this.deliveryAddress.country) || []);
+    }
+
   }
 
 }

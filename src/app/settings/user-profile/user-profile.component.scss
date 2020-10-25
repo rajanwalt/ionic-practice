@@ -1,0 +1,27 @@
+ion-item  {
+    border-bottom: none;
+    
+    .warn-text  {
+        display: none;
+    }
+    
+    &.error {
+        color: var(--ion-color-danger);
+
+        ion-input, ion-select {
+            border-bottom : 1px solid var(--ion-color-danger);
+        }
+
+        .warn-text  {
+            padding-top: 5px;
+            font-size: 12px;
+            display: block;
+        }
+    }
+
+    ion-input, ion-select {
+        font-size: 16px;
+        --padding-top: 12px;
+        border-bottom : 1px solid var(--ion-color-medium);
+    }
+}

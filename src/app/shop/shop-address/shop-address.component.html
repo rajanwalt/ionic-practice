@@ -17,14 +17,13 @@
     <ion-list>
         <ion-item>
             <ion-label>Country</ion-label>
-            <ion-select value="brown" okText="Okay" cancelText="Dismiss" formControlName="country">
-              <!-- <ion-select-option [value]="null"> </ion-select-option> -->
+            <ion-select [value]="shopAddressForm.controls.country.value" okText="Okay" cancelText="Dismiss" formControlName="country" (ionChange)="onChangeCountry($event)">
               <ion-select-option *ngFor="let country of countries" [value]="country">{{country}}</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item>
               <ion-label>City</ion-label>
-              <ion-select value="brown" okText="Okay" cancelText="Dismiss" formControlName="city">
+              <ion-select [value]="shopAddressForm.controls.city.value" okText="Okay" cancelText="Dismiss" formControlName="city">
                   <ion-select-option *ngFor="let city of cities" [value]="city">{{city}}</ion-select-option>
               </ion-select>
             </ion-item>

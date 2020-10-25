@@ -19,12 +19,12 @@
             <ion-item  lines='none' [class.error]="!customerForm.controls.firstName.valid && (customerForm.controls.firstName.dirty || customerForm.controls.firstName.touched)" >
                 <ion-label position="stacked" class="input-label">First name</ion-label>
                 <ion-input type="text" formControlName="firstName" name="firstName"></ion-input>
-                <ion-text class="warn-text" >First name canot be empty</ion-text>
+                <ion-text class="warn-text" >First name cannot be empty</ion-text>
             </ion-item> 
             <ion-item lines='none' [class.error]="!customerForm.controls.lastName.valid && (customerForm.controls.lastName.dirty || customerForm.controls.lastName.touched)" >
                 <ion-label position="stacked" class="input-label">Last name</ion-label>
                 <ion-input type="text" formControlName="lastName" name="lastName"></ion-input>
-                <ion-text class="warn-text" >Last name canot be empty</ion-text>
+                <ion-text class="warn-text" >Last name cannot be empty</ion-text>
             </ion-item> 
             <ion-item lines='none'  >
                 <ion-label position="stacked" class="input-label">Email address (optional)</ion-label>
@@ -33,7 +33,7 @@
             <ion-item lines='none' [class.error]="!customerForm.controls.phoneNumber.valid && (customerForm.controls.phoneNumber.dirty || customerForm.controls.phoneNumber.touched)" >
                 <ion-label position="stacked" class="input-label">Phone number</ion-label>
                 <ion-input type="text" formControlName="phoneNumber" name="phoneNumber"></ion-input>
-                <ion-text class="warn-text" >Phone number canot be empty</ion-text>
+                <ion-text class="warn-text" >Phone number cannot be empty</ion-text>
             </ion-item> 
             <div class="divider"></div>
             <ion-list-header>
@@ -41,14 +41,19 @@
             </ion-list-header>
             <ion-item lines="none" >
                     <ion-label position="stacked" class="input-label" >Country</ion-label>
-                    <ion-select value="brown" okText="Okay" cancelText="Dismiss" formControlName="country">
+                    <ion-select 
+                        [value]="customerForm.controls.country.value" 
+                        okText="Okay" 
+                        cancelText="Dismiss" 
+                        formControlName="country"
+                        (ionChange)="onChangeCountry($event)">
                       <!-- <ion-select-option [value]="null"> </ion-select-option> -->
                       <ion-select-option *ngFor="let country of countries" [value]="country">{{country}}</ion-select-option>
                     </ion-select>
               </ion-item>  
               <ion-item lines="none" >
                     <ion-label position="stacked" class="input-label" >City</ion-label>
-                    <ion-select value="brown" okText="Okay" cancelText="Dismiss" formControlName="city">
+                    <ion-select [value]="customerForm.controls.city.value" okText="Okay" cancelText="Dismiss" formControlName="city">
                       <!-- <ion-select-option [value]="null"> </ion-select-option> -->
                       <ion-select-option *ngFor="let city of cities" [value]="city">{{city}}</ion-select-option>
                     </ion-select>
@@ -56,7 +61,7 @@
               <ion-item lines='none' [class.error]="!customerForm.controls.street.valid && (customerForm.controls.street.dirty || customerForm.controls.street.touched)" >
                     <ion-label position="stacked" class="input-label">Street</ion-label>
                     <ion-input type="text" formControlName="street" name="street"></ion-input>
-                    <ion-text class="warn-text" >Street canot be empty</ion-text>
+                    <ion-text class="warn-text" >Street cannot be empty</ion-text>
                 </ion-item> 
         </ion-list>
     </form>

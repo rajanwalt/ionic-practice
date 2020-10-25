@@ -26,9 +26,9 @@ export class CatalogueEffects {
       .pipe(
         switchMap(orderDetails => [
           new UpdateCatalogue(orderDetails),
-          ... action.payload['from'] ? [new SetOrder({ orderDetails : [ { ...orderDetails, count: 1 }] })] : []
+          // ... action.payload['from'] ? [new SetOrder({ orderDetails : [ { ...orderDetails, count: 1 }] })] : []
         ]),
-        tap( _ => action.payload['from'] ? this.navCtrl.navigateForward('/order/order_summary') : this.navCtrl.back()),
+        tap( _ => action.payload['from'] ? this.navCtrl.navigateForward('/order/add_item') : this.navCtrl.back()), //action.payload['from'] ? this.navCtrl.navigateForward('/order/order_summary') : this.navCtrl.back()),
         catchError(() => EMPTY)
       ))
     )

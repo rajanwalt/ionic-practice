@@ -22,12 +22,12 @@
             <div class="thumbnail-container"  *ngFor="let photo of photos; let i=index">
                 <div class="thumbnail" (click)="onSelectPhoto(i)">
                     <ion-thumbnail>
-                        <img *ngIf="photo.webviewPath" [src]="photo.webviewPath">
-                        <ion-icon name="image-outline" *ngIf="!photo.webviewPath" color="primary"></ion-icon>
+                        <img *ngIf="photo?.webviewPath" [src]="photo?.webviewPath">
+                        <ion-icon name="image-outline" *ngIf="!photo?.webviewPath" color="primary"></ion-icon>
                     </ion-thumbnail>
                 </div>
                 <div class="delete-icon" (click)="onDelete(i)">
-                    <ion-icon  name="trash" *ngIf="photo.webviewPath"></ion-icon>
+                    <ion-icon  name="trash" *ngIf="photo?.webviewPath"></ion-icon>
                 </div>
             </div>
         </ion-item>
@@ -35,13 +35,13 @@
         <ion-item lines="none" [class.error]="!catalogueForm.controls.productName.valid && (catalogueForm.controls.productName.dirty || catalogueForm.controls.productName.touched)" >
             <ion-label position="stacked" class="input-label">Name of product or service</ion-label>
             <ion-input type="text" formControlName="productName" name="productName"></ion-input>
-            <ion-text class="warn-text" >Name canot be empty</ion-text>
+            <ion-text class="warn-text" >Name cannot be empty</ion-text>
         </ion-item> 
 
         <ion-item lines="none" [class.error]="!catalogueForm.controls.price.valid && (catalogueForm.controls.price.dirty || catalogueForm.controls.price.touched)">
             <ion-label position="stacked" class="input-label">Price</ion-label>
             <ion-input type="number" formControlName="price" name="price"></ion-input>
-            <ion-text class="warn-text">Price canot be empty</ion-text>
+            <ion-text class="warn-text">Price cannot be empty</ion-text>
         </ion-item>
         
         <ion-item lines="none">

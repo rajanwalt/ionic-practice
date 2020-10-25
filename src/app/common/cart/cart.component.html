@@ -13,7 +13,7 @@
       </ion-buttons> 
   </ion-toolbar>
 </ion-header>
-<ion-content fullscreen >
+<ion-content >
   <ion-list *ngIf="updatedOrders">
     <app-counter *ngFor="let order of updatedOrders; let i=index" 
       [order]= "order"

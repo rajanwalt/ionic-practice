@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { counries } from './../../common/countries_cities';
 
 @Component({
   selector: 'app-add-wallet',
@@ -8,9 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class AddWalletComponent implements OnInit {
 
-  countries : Array<string> = [
-    "Dubai"
-  ];
+  countries : Array<string> = counries()
 
   walletForm = new FormGroup({
     country: new FormControl('', Validators.required),

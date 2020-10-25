@@ -21,7 +21,6 @@ export class DeliveryComponent implements OnInit {
   selectedDeliveryMethod = null;
 
   onSelectDeliveryMethod(event)  {
-    console.log(event.detail.value)
     this.selectedDeliveryMethod = event.detail.value;
   }
 

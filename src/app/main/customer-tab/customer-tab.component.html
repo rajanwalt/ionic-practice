@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar padding>
+    <!-- <ion-buttons slot="start" *ngIf="!isSerachActive">
+        <ion-back-button  color="dark" defaultHref="/" [text]="!isSerachActive ? 'Customers' : ''" icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons> -->
+    <ion-title>
+      Customers
+    </ion-title>
+    <ion-buttons slot="end" *ngIf="!isSerachActive">
+      <ion-button (click)="isSerachActive = !isSerachActive; onEnableSearch()" color="dark">
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons> 
+    
+    <ion-searchbar
+      #searchbar
+      debounce="500"
+      placeholder="Search for customers" 
+      showCancelButton="always" 
+      *ngIf="isSerachActive"
+      cancelButtonIcon="arrow-back-sharp" 
+      (ionChange) = "onSearch($event)"
+      (ionCancel) = "onCancel()"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid *ngIf="!((customers$ | async).length)">
+        <ion-row>
+          <ion-col *ngFor="let item of tabs; let i=index" (click)="onActivateTab(i)" [class.active]="i==activeTab">
+            {{item}}
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-list *ngIf="((customers$ | async).length)">
+      <ion-item  *ngFor="let item of (customers$ | async) | listFilter:'firstName,lastName':searchText" (click)="onViewCustomer(item)">
+        <ion-avatar slot="start">
+          <ion-text class="ion-text-uppercase">{{item?.firstName | slice:0:1}}</ion-text>
+        </ion-avatar>
+        <ion-label>
+          <h2 class="ion-text-capitalize">{{item?.firstName}} {{item?.lastName}}</h2>
+          <p>
+            <ion-text *ngIf="item?.totalOrder">{{item?.totalOrders}} orders,</ion-text> 
+            <ion-text *ngIf="item?.totalAmount"> {{item?.totalAmount | currency:'USD':'code'}} </ion-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    
+    <ion-fab vertical="bottom" horizontal="end"  slot="fixed">
+        <ion-fab-button (click)="onAddCustomer()" color="favorite">
+          <ion-icon name="add" color="dark"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

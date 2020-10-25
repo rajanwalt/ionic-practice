@@ -13,6 +13,7 @@ import { ShippingComponent } from './shipping/shipping.component';
 import { VatComponent } from './vat/vat.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ChangePasswordModalComponent } from './change-password-modal/change-password-modal.component';
+import { LanguagesComponent } from './languages/languages.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { ChangePasswordModalComponent } from './change-password-modal/change-pas
     ShippingComponent,
     VatComponent,
     UserProfileComponent,
-    ChangePasswordModalComponent
+    ChangePasswordModalComponent,
+    LanguagesComponent
   ],
   entryComponents: [ChangePasswordModalComponent]
 })

@@ -13,6 +13,7 @@ import { Platform } from '@ionic/angular';
 export class MonekatService {
 
   hostName:string = "http://ec2-35-180-34-177.eu-west-3.compute.amazonaws.com:8000";
+  // hostName:string = "";
 
   getGoogleLatLng(address): Observable<any> {
     let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${environment.googleKey}`
@@ -99,7 +100,7 @@ export class MonekatService {
   }
 
   postVat(vatDetails: any): Observable<any>  {
-    let url = this.hostName +'/api/vat';
+    let url = this.hostName +'/api/users/settings';
     
     return this.http.post(url, vatDetails);
   }

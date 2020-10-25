@@ -5,9 +5,10 @@ import { Store } from '@ngrx/store';
 
 import { State } from './../store/state';
 import { SetOrder, ResetOrder, GetCustomers } from './../store/actions';
-import { selectCurrentOrder, selectCustomers, selectShopDetails } from './../store/selectors';
+import { selectCurrentOrder, selectCustomers, selectShopDetails, selectCurrencyCode } from './../store/selectors';
 import { Router } from '@angular/router';
 import { Order } from './models';
+import { shareReplay } from 'rxjs/operators';
 
 
 @Component({
@@ -26,33 +27,8 @@ export class OrderPage implements OnInit {
   public selectedCustomer: Order = null;
   public customers$ : Observable<any> = this._store.select(selectCustomers);
   shopDetails$: Observable<any> = this._store.select(selectShopDetails);
+  currencyCode$: Observable<any> = this._store.select(selectCurrencyCode).pipe(shareReplay())
   shopDetailsSub: Subscription;
-  // public customers$ = of([
-  //   {
-  //     customerId : 1,
-  //     firstName : "Rajan",
-  //     lastName : "Joseph",
-  //     phoneNumber : "9698446776",
-  //     totalOrders : 0,
-  //     totalAmount : 0
-  //   },
-  //   {
-  //     customerId : 2,
-  //     firstName : "First",
-  //     lastName : "Last",
-  //     phoneNumber : "9698446776",
-  //     totalOrders : 40,
-  //     totalAmount : 100
-  //   },
-  //   {
-  //     customerId : 3,
-  //     firstName : "First",
-  //     lastName : "Last",
-  //     phoneNumber : "9698446776",
-  //     totalOrders : 130,
-  //     totalAmount : 1000
-  //   }
-  // ]);
 
   onEnableSearch()  {
     this.isSerachActive = !this.isSerachActive;

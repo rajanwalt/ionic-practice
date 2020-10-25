@@ -25,7 +25,6 @@ export class OrderDetailsModel  {
 export class Cart  {
  
     static formatAPI(data : any): Cart  {
-        console.log("data", data);
         
         return new Cart(
             data.id,

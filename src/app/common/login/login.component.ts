@@ -15,8 +15,8 @@ import { Login } from './../../store/actions';
 export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    email: new FormControl('test@test.com', Validators.required), //test@test.com
+    password: new FormControl('12345678', Validators.required), //12345678
   });
   
   

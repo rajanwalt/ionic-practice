@@ -1,0 +1,2811 @@
+﻿{
+    "data": [
+        {
+            "city": "Lyon",
+            "lat": "45.748457",
+            "lng": "4.846711",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Auvergne-Rhône-Alpes",
+            "capital": "admin",
+            "population": "1423000",
+            "population_proper": "472317"
+        },
+        {
+            "city": "Grenoble",
+            "lat": "45.171546",
+            "lng": "5.722387",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Auvergne-Rhône-Alpes",
+            "population": "388574",
+            "population_proper": "158552"
+        },
+        {
+            "city": "Saint-Étienne",
+            "lat": "45.435382",
+            "lng": "4.391051",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Auvergne-Rhône-Alpes",
+            "population": "265684",
+            "population_proper": "176280"
+        },
+        {
+            "city": "Clermont-Ferrand",
+            "lat": "45.779657",
+            "lng": "3.086281",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Auvergne-Rhône-Alpes",
+            "capital": "minor",
+            "population": "233050",
+            "population_proper": "138681"
+        },
+        {
+            "city": "Annecy",
+            "lat": "45.906206",
+            "lng": "6.126699",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Auvergne-Rhône-Alpes",
+            "population": "105749",
+            "population_proper": "49232"
+        },
+        {
+            "city": "Roanne",
+            "lat": "46.043291",
+            "lng": "4.068553",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Auvergne-Rhône-Alpes",
+            "population": "73315",
+            "population_proper": "39840"
+        },
+        {
+            "city": "Vichy",
+            "lat": "46.128264",
+            "lng": "3.423472",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Auvergne-Rhône-Alpes",
+            "population": "43158",
+            "population_proper": "27019"
+        },
+        {
+            "city": "Dijon",
+            "lat": "47.316667",
+            "lng": "5.016667",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Bourgogne-Franche-Comté",
+            "capital": "admin",
+            "population": "169946",
+            "population_proper": "149782"
+        },
+        {
+            "city": "Besançon",
+            "lat": "47.248778",
+            "lng": "6.018152",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Bourgogne-Franche-Comté",
+            "capital": "minor",
+            "population": "128426",
+            "population_proper": "119960"
+        },
+        {
+            "city": "Nevers",
+            "lat": "46.991203",
+            "lng": "3.157084",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Bourgogne-Franche-Comté",
+            "population": "45929",
+            "population_proper": "43988"
+        },
+        {
+            "city": "Auxerre",
+            "lat": "47.7996",
+            "lng": "3.57033",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Bourgogne-Franche-Comté",
+            "population": "41516",
+            "population_proper": "34552"
+        },
+        {
+            "city": "Rennes",
+            "lat": "48.111981",
+            "lng": "-1.674291",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Bretagne",
+            "capital": "admin",
+            "population": "209375",
+            "population_proper": "199284"
+        },
+        {
+            "city": "Brest",
+            "lat": "48.390756",
+            "lng": "-4.486165",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Bretagne",
+            "population": "144899",
+            "population_proper": "140929"
+        },
+        {
+            "city": "Kerbrient",
+            "lat": "47.730294",
+            "lng": "-3.410806",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Bretagne",
+            "population": "84952",
+            "population_proper": "58112"
+        },
+        {
+            "city": "Saint-Brieuc",
+            "lat": "48.510504",
+            "lng": "-2.765927",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Bretagne",
+            "population": "53223",
+            "population_proper": "52774"
+        },
+        {
+            "city": "Tours",
+            "lat": "47.394836",
+            "lng": "0.703977",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Centre-Val de Loire",
+            "population": "236096",
+            "population_proper": "141621"
+        },
+        {
+            "city": "Orléans",
+            "lat": "47.902891",
+            "lng": "1.903887",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Centre-Val de Loire",
+            "capital": "admin",
+            "population": "217301",
+            "population_proper": "124149"
+        },
+        {
+            "city": "Bourges",
+            "lat": "47.083333",
+            "lng": "2.4",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Centre-Val de Loire",
+            "population": "72340",
+            "population_proper": "67987"
+        },
+        {
+            "city": "Ajaccio",
+            "lat": "41.927226",
+            "lng": "8.734619",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Corsica",
+            "capital": "admin",
+            "population": "54364",
+            "population_proper": "39446"
+        },
+        {
+            "city": "Bastia",
+            "lat": "42.702778",
+            "lng": "9.45",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Corsica",
+            "population": "41001",
+            "population_proper": "40116"
+        },
+        {
+            "city": "Strasbourg",
+            "lat": "48.600381",
+            "lng": "7.787355",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Grand Est",
+            "capital": "admin",
+            "population": "439972",
+            "population_proper": "274845"
+        },
+        {
+            "city": "Metz",
+            "lat": "49.115461",
+            "lng": "6.175875",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Grand Est",
+            "capital": "minor",
+            "population": "409186",
+            "population_proper": "123914"
+        },
+        {
+            "city": "Nancy",
+            "lat": "48.69211",
+            "lng": "6.187756",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Grand Est",
+            "population": "268976",
+            "population_proper": "105334"
+        },
+        {
+            "city": "Mulhouse",
+            "lat": "47.738082",
+            "lng": "7.347932",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Grand Est",
+            "population": "215454",
+            "population_proper": "111430"
+        },
+        {
+            "city": "Reims",
+            "lat": "49.25",
+            "lng": "4.033333",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Grand Est",
+            "population": "196565",
+            "population_proper": "159313"
+        },
+        {
+            "city": "Troyes",
+            "lat": "48.300727",
+            "lng": "4.085244",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Grand Est",
+            "population": "61703",
+            "population_proper": "60785"
+        },
+        {
+            "city": "Châlons-en-Champagne",
+            "lat": "48.953926",
+            "lng": "4.367238",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Grand Est",
+            "capital": "minor"
+        },
+        {
+            "city": "Lille",
+            "lat": "50.632971",
+            "lng": "3.058585",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Hauts-de-France",
+            "capital": "admin",
+            "population": "1044000",
+            "population_proper": "228328"
+        },
+        {
+            "city": "Amiens",
+            "lat": "49.9",
+            "lng": "2.3",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Hauts-de-France",
+            "capital": "minor",
+            "population": "143086",
+            "population_proper": "94731"
+        },
+        {
+            "city": "Calais",
+            "lat": "50.951241",
+            "lng": "1.85899",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Hauts-de-France",
+            "population": "92201",
+            "population_proper": "74433"
+        },
+        {
+            "city": "Arras",
+            "lat": "50.291799",
+            "lng": "2.780306",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Hauts-de-France",
+            "population": "64165",
+            "population_proper": "47052"
+        },
+        {
+            "city": "Paris",
+            "lat": "48.866667",
+            "lng": "2.333333",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Île-de-France",
+            "capital": "primary",
+            "population": "9904000",
+            "population_proper": "11177"
+        },
+        {
+            "city": "Melun",
+            "lat": "48.545699",
+            "lng": "2.653562",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Île-de-France",
+            "population": "249432",
+            "population_proper": "38953"
+        },
+        {
+            "city": "Versailles",
+            "lat": "48.803593",
+            "lng": "2.134236",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Île-de-France",
+            "population": "85416",
+            "population_proper": "85416"
+        },
+        {
+            "city": "Rouen",
+            "lat": "49.433333",
+            "lng": "1.083333",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Normandie",
+            "capital": "admin",
+            "population": "532559",
+            "population_proper": "110276"
+        },
+        {
+            "city": "Le Havre",
+            "lat": "49.5",
+            "lng": "0.133333",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Normandie",
+            "population": "242124",
+            "population_proper": "185972"
+        },
+        {
+            "city": "Caen",
+            "lat": "49.197188",
+            "lng": "-0.326822",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Normandie",
+            "capital": "minor",
+            "population": "190099",
+            "population_proper": "110624"
+        },
+        {
+            "city": "Cherbourg",
+            "lat": "49.639971",
+            "lng": "-1.615505",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Normandie",
+            "population": "60991",
+            "population_proper": "60991"
+        },
+        {
+            "city": "Dieppe",
+            "lat": "49.920403",
+            "lng": "1.086542",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Normandie",
+            "population": "42461",
+            "population_proper": "35707"
+        },
+        {
+            "city": "Bordeaux",
+            "lat": "44.840439",
+            "lng": "-0.5805",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Nouvelle-Aquitaine",
+            "capital": "admin",
+            "population": "803000",
+            "population_proper": "231844"
+        },
+        {
+            "city": "Limoges",
+            "lat": "45.831534",
+            "lng": "1.257805",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Nouvelle-Aquitaine",
+            "capital": "minor",
+            "population": "152199",
+            "population_proper": "141176"
+        },
+        {
+            "city": "Biarritz",
+            "lat": "43.480119",
+            "lng": "-1.555581",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Nouvelle-Aquitaine",
+            "population": "145348",
+            "population_proper": "33188"
+        },
+        {
+            "city": "Poitiers",
+            "lat": "46.583333",
+            "lng": "0.333333",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Nouvelle-Aquitaine",
+            "capital": "minor",
+            "population": "85960",
+            "population_proper": "84807"
+        },
+        {
+            "city": "La Rochelle",
+            "lat": "46.166667",
+            "lng": "-1.15",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Nouvelle-Aquitaine",
+            "population": "76997",
+            "population_proper": "76810"
+        },
+        {
+            "city": "Agen",
+            "lat": "44.199912",
+            "lng": "0.626641",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Nouvelle-Aquitaine",
+            "population": "58223",
+            "population_proper": "34367"
+        },
+        {
+            "city": "Toulouse",
+            "lat": "43.599516",
+            "lng": "1.433188",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Occitanie",
+            "capital": "admin",
+            "population": "847000",
+            "population_proper": "433055"
+        },
+        {
+            "city": "Montpellier",
+            "lat": "43.61092",
+            "lng": "3.87723",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Occitanie",
+            "capital": "minor",
+            "population": "327254",
+            "population_proper": "248252"
+        },
+        {
+            "city": "Nîmes",
+            "lat": "43.833778",
+            "lng": "4.359623",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Occitanie",
+            "population": "169547",
+            "population_proper": "148236"
+        },
+        {
+            "city": "Perpignan",
+            "lat": "42.696172",
+            "lng": "2.897098",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Occitanie",
+            "population": "146620",
+            "population_proper": "110706"
+        },
+        {
+            "city": "Béziers",
+            "lat": "43.345287",
+            "lng": "3.222374",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Occitanie",
+            "population": "81438",
+            "population_proper": "74081"
+        },
+        {
+            "city": "Tarbes",
+            "lat": "43.233334",
+            "lng": "0.083333",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Occitanie",
+            "population": "54854",
+            "population_proper": "52106"
+        },
+        {
+            "city": "Nantes",
+            "lat": "47.216509",
+            "lng": "-1.552379",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Pays de la Loire",
+            "capital": "admin",
+            "population": "438537",
+            "population_proper": "277269"
+        },
+        {
+            "city": "Angers",
+            "lat": "47.473806",
+            "lng": "-0.54774",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Pays de la Loire",
+            "population": "188380",
+            "population_proper": "168279"
+        },
+        {
+            "city": "Le Mans",
+            "lat": "48.000386",
+            "lng": "0.204709",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Pays de la Loire",
+            "population": "144515",
+            "population_proper": "142270"
+        },
+        {
+            "city": "Marseille",
+            "lat": "43.285413",
+            "lng": "5.37606",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Provence-Alpes-Côte d’Azur",
+            "capital": "admin",
+            "population": "1400000",
+            "population_proper": "794811"
+        },
+        {
+            "city": "Nice",
+            "lat": "43.713644",
+            "lng": "7.25952",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Provence-Alpes-Côte d’Azur",
+            "population": "927000",
+            "population_proper": "338620"
+        },
+        {
+            "city": "Toulon",
+            "lat": "43.117705",
+            "lng": "5.941712",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Provence-Alpes-Côte d’Azur",
+            "population": "357693",
+            "population_proper": "168701"
+        },
+        {
+            "city": "Aix-en-Provence",
+            "lat": "43.528695",
+            "lng": "5.448791",
+            "country": "France",
+            "iso2": "FR",
+            "District": "Provence-Alpes-Côte d’Azur",
+            "population": "146821",
+            "population_proper": "143797"
+        },
+        {
+            "city": "Ras Al Khaymah",
+            "country": "United Arab Emirates",
+            "iso2": "AE"
+        },
+        {
+            "city": "Umm Al Qaywayn",
+            "country": "United Arab Emirates",
+            "iso2": "AE"
+        },
+        {
+            "city": "Fujairah",
+            "country": "United Arab Emirates",
+            "iso2": "AE"
+        },
+        {
+            "city": "Ajman",
+            "country": "United Arab Emirates",
+            "iso2": "AE"
+        },
+        {
+            "city": "Sharjah",
+            "country": "United Arab Emirates",
+            "iso2": "AE"
+        },
+        {
+            "city": "Abu Dhabi",
+            "country": "United Arab Emirates",
+            "iso2": "AE"
+        },
+        {
+            "city": "Dubai",
+            "country": "United Arab Emirates",
+            "iso2": "AE"
+        },
+        {
+            "city": "Old Aberdeen",
+            "lat": "57.166667",
+            "lng": "-2.1",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Aberdeen City",
+            "population": "189364",
+            "population_proper": "183790"
+        },
+        {
+            "city": "Aberdeen",
+            "lat": "57.133333",
+            "lng": "-2.1",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Aberdeen City",
+            "capital": "admin"
+        },
+        {
+            "city": "Forfar",
+            "lat": "56.65",
+            "lng": "-2.883333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Angus",
+            "capital": "admin"
+        },
+        {
+            "city": "Newtownabbey",
+            "lat": "54.66912",
+            "lng": "-5.904435",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Antrim and Newtownabbey",
+            "capital": "admin"
+        },
+        {
+            "city": "Antrim",
+            "lat": "54.71291",
+            "lng": "-6.20846",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Antrim and Newtownabbey",
+            "capital": "admin"
+        },
+        {
+            "city": "Bangor",
+            "lat": "54.66166",
+            "lng": "-5.66545",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Ards and North Down",
+            "capital": "admin"
+        },
+        {
+            "city": "Lochgilphead",
+            "lat": "56.033333",
+            "lng": "-5.416667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Argyll and Bute",
+            "capital": "admin"
+        },
+        {
+            "city": "Armagh",
+            "lat": "54.34812",
+            "lng": "-6.64957",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Armagh, Banbridge and Craigavon",
+            "capital": "admin"
+        },
+        {
+            "city": "Banbridge",
+            "lat": "54.35091",
+            "lng": "-6.26701",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Armagh, Banbridge and Craigavon",
+            "capital": "admin"
+        },
+        {
+            "city": "Craigavon",
+            "lat": "54.44966",
+            "lng": "-6.36457",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Armagh, Banbridge and Craigavon",
+            "capital": "admin"
+        },
+        {
+            "city": "Dagenham",
+            "lat": "51.55",
+            "lng": "0.166667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Barking and Dagenham",
+            "capital": "admin"
+        },
+        {
+            "city": "Hendon",
+            "lat": "51.6",
+            "lng": "-0.216667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Barnet",
+            "capital": "admin"
+        },
+        {
+            "city": "Barnsley",
+            "lat": "53.55",
+            "lng": "-1.483333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Barnsley",
+            "capital": "admin"
+        },
+        {
+            "city": "Bath",
+            "lat": "51.379444",
+            "lng": "-2.365556",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Bath and North East Somerset",
+            "capital": "admin",
+            "population": "93238",
+            "population_proper": "92120"
+        },
+        {
+            "city": "Bedford",
+            "lat": "52.133333",
+            "lng": "-0.45",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Bedford",
+            "capital": "admin"
+        },
+        {
+            "city": "Belfast",
+            "lat": "54.6",
+            "lng": "-5.933333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Belfast",
+            "population": "450406",
+            "population_proper": "274770"
+        },
+        {
+            "city": "Belfast",
+            "lat": "54.59682",
+            "lng": "-5.92541",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Belfast",
+            "capital": "admin"
+        },
+        {
+            "city": "Bexleyheath",
+            "lat": "51.45",
+            "lng": "0.15",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Bexley",
+            "capital": "admin"
+        },
+        {
+            "city": "Birmingham",
+            "lat": "52.466667",
+            "lng": "-1.916667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Birmingham",
+            "capital": "admin",
+            "population": "2285000",
+            "population_proper": "984333"
+        },
+        {
+            "city": "Blackburn",
+            "lat": "53.75",
+            "lng": "-2.483333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Blackburn with Darwen",
+            "capital": "admin"
+        },
+        {
+            "city": "Blackpool",
+            "lat": "53.816667",
+            "lng": "-3.05",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Blackpool",
+            "capital": "admin",
+            "population": "272792",
+            "population_proper": "143101"
+        },
+        {
+            "city": "Ebbw Vale",
+            "lat": "51.783333",
+            "lng": "-3.2",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Blaenau Gwent",
+            "capital": "admin"
+        },
+        {
+            "city": "Bolton",
+            "lat": "53.583333",
+            "lng": "-2.433333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Bolton",
+            "capital": "admin"
+        },
+        {
+            "city": "Bournemouth",
+            "lat": "50.716667",
+            "lng": "-1.883333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Bournemouth",
+            "capital": "admin",
+            "population": "426945",
+            "population_proper": "163600"
+        },
+        {
+            "city": "Bracknell",
+            "lat": "51.416667",
+            "lng": "-0.75",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Bracknell Forest",
+            "capital": "admin"
+        },
+        {
+            "city": "Bradford",
+            "lat": "53.783333",
+            "lng": "-1.75",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Bradford",
+            "capital": "admin",
+            "population": "501700",
+            "population_proper": "293717"
+        },
+        {
+            "city": "Wembley",
+            "lat": "51.55",
+            "lng": "-0.283333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Brent",
+            "capital": "admin"
+        },
+        {
+            "city": "Pen-y-Bont ar Ogwr",
+            "lat": "51.505833",
+            "lng": "-3.577222",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Bridgend",
+            "capital": "admin"
+        },
+        {
+            "city": "Brighton",
+            "lat": "50.833333",
+            "lng": "-0.15",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Brighton and Hove",
+            "population": "503008",
+            "population_proper": "139001"
+        },
+        {
+            "city": "Hove",
+            "lat": "50.833333",
+            "lng": "-0.183333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Brighton and Hove",
+            "capital": "admin"
+        },
+        {
+            "city": "Bristol",
+            "lat": "51.45",
+            "lng": "-2.583333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Bristol, City of",
+            "capital": "admin",
+            "population": "553528",
+            "population_proper": "430713"
+        },
+        {
+            "city": "Bromley",
+            "lat": "51.4",
+            "lng": "0.05",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Bromley",
+            "capital": "admin"
+        },
+        {
+            "city": "Aylesbury",
+            "lat": "51.816667",
+            "lng": "-0.8",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Buckinghamshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Bury",
+            "lat": "53.6",
+            "lng": "-2.3",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Bury",
+            "capital": "admin"
+        },
+        {
+            "city": "Ystrad Mynach",
+            "lat": "51.640278",
+            "lng": "-3.243333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Caerphilly",
+            "capital": "admin"
+        },
+        {
+            "city": "Halifax",
+            "lat": "53.716667",
+            "lng": "-1.85",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Calderdale",
+            "capital": "admin"
+        },
+        {
+            "city": "Cambridge",
+            "lat": "52.2",
+            "lng": "0.116667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Cambridgeshire",
+            "capital": "admin",
+            "population": "128488",
+            "population_proper": "128488"
+        },
+        {
+            "city": "Camden Town",
+            "lat": "51.545664",
+            "lng": "-0.140308",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Camden",
+            "capital": "admin"
+        },
+        {
+            "city": "Caerdydd",
+            "lat": "51.5",
+            "lng": "-3.2",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Cardiff",
+            "capital": "admin"
+        },
+        {
+            "city": "Caerfyrddin",
+            "lat": "51.859167",
+            "lng": "-4.311667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Carmarthenshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Coleraine",
+            "lat": "55.13489",
+            "lng": "-6.66873",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Causeway Coast and Glens",
+            "capital": "admin"
+        },
+        {
+            "city": "Chicksands",
+            "lat": "52.033333",
+            "lng": "-0.366667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Central Bedfordshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Aberaeron",
+            "lat": "52.25",
+            "lng": "-4.25",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Ceredigion",
+            "capital": "admin"
+        },
+        {
+            "city": "Sandbach",
+            "lat": "53.133333",
+            "lng": "-2.366667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Cheshire East",
+            "capital": "admin"
+        },
+        {
+            "city": "Chester",
+            "lat": "53.2",
+            "lng": "-2.916667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Cheshire West and Chester",
+            "capital": "admin",
+            "population": "89531",
+            "population_proper": "77040"
+        },
+        {
+            "city": "Alloa",
+            "lat": "56.116667",
+            "lng": "-3.8",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Clackmannanshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Conwy",
+            "lat": "53.283333",
+            "lng": "-3.833333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Conwy",
+            "capital": "admin"
+        },
+        {
+            "city": "Penzance",
+            "lat": "50.113611",
+            "lng": "-5.547778",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Cornwall",
+            "population": "20812",
+            "population_proper": "15489"
+        },
+        {
+            "city": "Truro",
+            "lat": "50.261667",
+            "lng": "-5.043333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Cornwall",
+            "capital": "admin"
+        },
+        {
+            "city": "Coventry",
+            "lat": "52.416667",
+            "lng": "-1.55",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Coventry",
+            "capital": "admin",
+            "population": "388271",
+            "population_proper": "308313"
+        },
+        {
+            "city": "Croydon",
+            "lat": "51.383333",
+            "lng": "-0.1",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Croydon",
+            "capital": "admin"
+        },
+        {
+            "city": "Carlisle",
+            "lat": "54.883333",
+            "lng": "-2.933333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Cumbria",
+            "capital": "admin",
+            "population": "72633",
+            "population_proper": "65907"
+        },
+        {
+            "city": "Darlington",
+            "lat": "54.533333",
+            "lng": "-1.566667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Darlington",
+            "capital": "admin"
+        },
+        {
+            "city": "Rhuthun",
+            "lat": "53.116667",
+            "lng": "-3.3",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Denbighshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Derby",
+            "lat": "52.933333",
+            "lng": "-1.5",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Derby",
+            "capital": "admin"
+        },
+        {
+            "city": "Matlock",
+            "lat": "53.133333",
+            "lng": "-1.533333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Derbyshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Derry",
+            "lat": "54.99899",
+            "lng": "-7.31063",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Derry and Strabane",
+            "capital": "admin"
+        },
+        {
+            "city": "Strabane",
+            "lat": "54.8224",
+            "lng": "-7.46844",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Derry and Strabane",
+            "capital": "admin"
+        },
+        {
+            "city": "Exminster",
+            "lat": "50.683333",
+            "lng": "-3.483333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Devon",
+            "population": "113118",
+            "population_proper": "103366"
+        },
+        {
+            "city": "Exeter",
+            "lat": "50.7",
+            "lng": "-3.533333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Devon",
+            "capital": "admin"
+        },
+        {
+            "city": "Doncaster",
+            "lat": "53.533333",
+            "lng": "-1.116667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Doncaster",
+            "capital": "admin"
+        },
+        {
+            "city": "Dorchester",
+            "lat": "50.716667",
+            "lng": "-2.433333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Dorset",
+            "capital": "admin"
+        },
+        {
+            "city": "Dudley",
+            "lat": "52.5",
+            "lng": "-2.083333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Dudley",
+            "capital": "admin"
+        },
+        {
+            "city": "Dumfries",
+            "lat": "55.066667",
+            "lng": "-3.55",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Dumfries and Galloway",
+            "capital": "admin",
+            "population": "31044",
+            "population_proper": "31044"
+        },
+        {
+            "city": "Dundee",
+            "lat": "56.5",
+            "lng": "-2.966667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Dundee City",
+            "capital": "admin",
+            "population": "151592",
+            "population_proper": "150435"
+        },
+        {
+            "city": "Durham",
+            "lat": "54.766667",
+            "lng": "-1.566667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Durham",
+            "capital": "admin"
+        },
+        {
+            "city": "Ealing",
+            "lat": "51.488802",
+            "lng": "-0.30479",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Ealing",
+            "capital": "admin"
+        },
+        {
+            "city": "Kilmarnock",
+            "lat": "55.633333",
+            "lng": "-4.533333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "East Ayrshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Kirkintilloch",
+            "lat": "55.916667",
+            "lng": "-4.166667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "East Dunbartonshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Haddington",
+            "lat": "55.933333",
+            "lng": "-2.766667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "East Lothian",
+            "capital": "admin"
+        },
+        {
+            "city": "Giffnock",
+            "lat": "55.8",
+            "lng": "-4.283333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "East Renfrewshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Beverley",
+            "lat": "53.833333",
+            "lng": "-0.416667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "East Riding of Yorkshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Lewes",
+            "lat": "50.866667",
+            "lng": "-0.016667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "East Sussex",
+            "capital": "admin"
+        },
+        {
+            "city": "Edinburgh",
+            "lat": "55.95",
+            "lng": "-3.2",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Edinburgh, City of",
+            "capital": "admin",
+            "population": "504966",
+            "population_proper": "435791"
+        },
+        {
+            "city": "Stornoway",
+            "lat": "58.216667",
+            "lng": "-6.366667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Eilean Siar",
+            "capital": "admin"
+        },
+        {
+            "city": "Enfield",
+            "lat": "51.666667",
+            "lng": "-0.066667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Enfield",
+            "capital": "admin"
+        },
+        {
+            "city": "Chelmsford",
+            "lat": "51.733333",
+            "lng": "0.483333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Essex",
+            "capital": "admin"
+        },
+        {
+            "city": "Falkirk",
+            "lat": "56",
+            "lng": "-3.766667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Falkirk",
+            "capital": "admin"
+        },
+        {
+            "city": "Omagh",
+            "lat": "54.60124",
+            "lng": "-7.29085",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Fermanagh and Omagh",
+            "capital": "admin",
+            "population": "21056",
+            "population_proper": "16326"
+        },
+        {
+            "city": "Enniskillen",
+            "lat": "54.3466",
+            "lng": "-7.64114",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Fermanagh and Omagh",
+            "capital": "admin"
+        },
+        {
+            "city": "Glenrothes",
+            "lat": "56.2",
+            "lng": "-3.183333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Fife",
+            "capital": "admin"
+        },
+        {
+            "city": "Mold",
+            "lat": "53.166667",
+            "lng": "-3.133333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Flintshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Gateshead",
+            "lat": "54.945",
+            "lng": "-1.6175",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Gateshead",
+            "capital": "admin"
+        },
+        {
+            "city": "Glasgow",
+            "lat": "55.833333",
+            "lng": "-4.25",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Glasgow City",
+            "capital": "admin",
+            "population": "1160000",
+            "population_proper": "610268"
+        },
+        {
+            "city": "Gloucester",
+            "lat": "51.833333",
+            "lng": "-2.25",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Gloucestershire",
+            "capital": "admin"
+        },
+        {
+            "city": "Woolwich",
+            "lat": "51.466667",
+            "lng": "0.2",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Greenwich",
+            "capital": "admin"
+        },
+        {
+            "city": "Caernarfon",
+            "lat": "53.15",
+            "lng": "-4.266667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Gwynedd",
+            "capital": "admin"
+        },
+        {
+            "city": "Hackney",
+            "lat": "51.55",
+            "lng": "-0.05",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Hackney",
+            "capital": "admin"
+        },
+        {
+            "city": "Widnes",
+            "lat": "53.35",
+            "lng": "-2.733333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Halton",
+            "capital": "admin"
+        },
+        {
+            "city": "Hammersmith",
+            "lat": "51.5",
+            "lng": "-0.233333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Hammersmith and Fulham",
+            "capital": "admin"
+        },
+        {
+            "city": "Winchester",
+            "lat": "51.016667",
+            "lng": "-1.316667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Hampshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Wood Green",
+            "lat": "51.6",
+            "lng": "-0.116667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Haringey",
+            "capital": "admin"
+        },
+        {
+            "city": "Harrow",
+            "lat": "51.583333",
+            "lng": "-0.316667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Harrow",
+            "capital": "admin"
+        },
+        {
+            "city": "Hartlepool",
+            "lat": "54.686111",
+            "lng": "-1.2125",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Hartlepool",
+            "capital": "admin"
+        },
+        {
+            "city": "Romford",
+            "lat": "51.583333",
+            "lng": "0.2",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Havering",
+            "capital": "admin"
+        },
+        {
+            "city": "Hereford",
+            "lat": "52.05",
+            "lng": "-2.716667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Herefordshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Hertford",
+            "lat": "51.8",
+            "lng": "-0.066667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Hertfordshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Inverness",
+            "lat": "57.466667",
+            "lng": "-4.233333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Highland",
+            "capital": "admin",
+            "population": "45158",
+            "population_proper": "40755"
+        },
+        {
+            "city": "Fort William",
+            "lat": "56.816667",
+            "lng": "-5.116667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Highland",
+            "population": "9652",
+            "population_proper": "9652"
+        },
+        {
+            "city": "Wick",
+            "lat": "58.433333",
+            "lng": "-3.083333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Highland",
+            "population": "7147",
+            "population_proper": "7147"
+        },
+        {
+            "city": "Uxbridge",
+            "lat": "51.55",
+            "lng": "-0.483333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Hillingdon",
+            "capital": "admin"
+        },
+        {
+            "city": "Hounslow",
+            "lat": "51.466667",
+            "lng": "-0.35",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Hounslow",
+            "capital": "admin"
+        },
+        {
+            "city": "Greenock",
+            "lat": "55.933333",
+            "lng": "-4.75",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Inverclyde",
+            "capital": "admin",
+            "population": "74635",
+            "population_proper": "43495"
+        },
+        {
+            "city": "Llangefni",
+            "lat": "53.266667",
+            "lng": "-4.333333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Isle of Anglesey",
+            "capital": "admin"
+        },
+        {
+            "city": "Newport",
+            "lat": "50.7",
+            "lng": "-1.3",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Isle of Wight",
+            "capital": "admin"
+        },
+        {
+            "city": "Hugh Town",
+            "lat": "49.914597",
+            "lng": "-6.314273",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Isles of Scilly",
+            "capital": "admin"
+        },
+        {
+            "city": "Islington",
+            "lat": "51.533333",
+            "lng": "-0.1",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Islington",
+            "capital": "admin"
+        },
+        {
+            "city": "Kensington",
+            "lat": "51.504699",
+            "lng": "-0.199827",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Kensington and Chelsea",
+            "capital": "admin"
+        },
+        {
+            "city": "River",
+            "lat": "51.133333",
+            "lng": "1.266667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Kent",
+            "population": "36384",
+            "population_proper": "28156"
+        },
+        {
+            "city": "Maidstone",
+            "lat": "51.266667",
+            "lng": "0.516667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Kent",
+            "capital": "admin"
+        },
+        {
+            "city": "Sutton on Hull",
+            "lat": "53.783333",
+            "lng": "-0.316667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Kingston upon Hull, City of",
+            "population": "302296",
+            "population_proper": "292501"
+        },
+        {
+            "city": "Kingston upon Hull",
+            "lat": "53.716667",
+            "lng": "-0.333333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Kingston upon Hull, City of",
+            "capital": "admin"
+        },
+        {
+            "city": "Kingston upon Thames",
+            "lat": "51.416667",
+            "lng": "-0.283333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Kingston upon Thames",
+            "capital": "admin"
+        },
+        {
+            "city": "Huddersfield",
+            "lat": "53.65",
+            "lng": "-1.783333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Kirklees",
+            "capital": "admin"
+        },
+        {
+            "city": "Knowsley",
+            "lat": "53.45",
+            "lng": "-2.85",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Knowsley",
+            "capital": "admin"
+        },
+        {
+            "city": "Lambeth",
+            "lat": "51.5",
+            "lng": "-0.116667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Lambeth",
+            "capital": "admin"
+        },
+        {
+            "city": "Preston",
+            "lat": "53.766667",
+            "lng": "-2.716667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Lancashire",
+            "capital": "admin"
+        },
+        {
+            "city": "Leeds",
+            "lat": "53.8",
+            "lng": "-1.583333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Leeds",
+            "capital": "admin",
+            "population": "1529000",
+            "population_proper": "455123"
+        },
+        {
+            "city": "Leicester",
+            "lat": "52.633333",
+            "lng": "-1.133333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Leicester",
+            "capital": "admin",
+            "population": "457983",
+            "population_proper": "339239"
+        },
+        {
+            "city": "Catford",
+            "lat": "51.45",
+            "lng": "-0.016667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Lewisham",
+            "capital": "admin"
+        },
+        {
+            "city": "Lincoln",
+            "lat": "53.233333",
+            "lng": "-0.533333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Lincolnshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Lisburn",
+            "lat": "54.50991",
+            "lng": "-6.0404",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Lisburn and Castlereagh",
+            "capital": "admin"
+        },
+        {
+            "city": "Liverpool",
+            "lat": "53.416667",
+            "lng": "-3",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Liverpool",
+            "capital": "admin",
+            "population": "811000",
+            "population_proper": "468945"
+        },
+        {
+            "city": "Luton",
+            "lat": "51.883333",
+            "lng": "-0.416667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Luton",
+            "capital": "admin",
+            "population": "235958",
+            "population_proper": "193669"
+        },
+        {
+            "city": "Manchester",
+            "lat": "53.5",
+            "lng": "-2.216667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Manchester",
+            "capital": "admin",
+            "population": "2230000",
+            "population_proper": "395515"
+        },
+        {
+            "city": "Rochester",
+            "lat": "51.383333",
+            "lng": "0.516667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Medway",
+            "capital": "admin"
+        },
+        {
+            "city": "Merthyr Tudful",
+            "lat": "51.75",
+            "lng": "-3.383333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Merthyr Tydfil",
+            "capital": "admin"
+        },
+        {
+            "city": "Morden",
+            "lat": "51.398217",
+            "lng": "-0.19837",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Merton",
+            "capital": "admin"
+        },
+        {
+            "city": "Ballymena",
+            "lat": "54.86121",
+            "lng": "-6.27633",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Mid and East Antrim",
+            "capital": "admin"
+        },
+        {
+            "city": "Dungannon",
+            "lat": "54.50333",
+            "lng": "-6.76427",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Mid Ulster",
+            "capital": "admin"
+        },
+        {
+            "city": "Cookstown",
+            "lat": "54.6428",
+            "lng": "-6.74519",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Mid Ulster",
+            "capital": "admin"
+        },
+        {
+            "city": "Magherafelt",
+            "lat": "54.75426",
+            "lng": "-6.60941",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Mid Ulster",
+            "capital": "admin"
+        },
+        {
+            "city": "Dalkeith",
+            "lat": "55.866667",
+            "lng": "-3.066667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Midlothian",
+            "capital": "admin"
+        },
+        {
+            "city": "Milton Keynes",
+            "lat": "52.033333",
+            "lng": "-0.7",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Milton Keynes",
+            "capital": "admin"
+        },
+        {
+            "city": "Cwmbran",
+            "lat": "51.653056",
+            "lng": "-3.026667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Monmouthshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Elgin",
+            "lat": "57.65",
+            "lng": "-3.333333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Moray",
+            "capital": "admin"
+        },
+        {
+            "city": "Port Talbot",
+            "lat": "51.6",
+            "lng": "-3.783333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Neath Port Talbot",
+            "capital": "admin"
+        },
+        {
+            "city": "Newcastle upon Tyne",
+            "lat": "54.988056",
+            "lng": "-1.619444",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Newcastle upon Tyne",
+            "capital": "admin",
+            "population": "882000",
+            "population_proper": "192382"
+        },
+        {
+            "city": "East Ham",
+            "lat": "51.533333",
+            "lng": "0.05",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Newham",
+            "capital": "admin"
+        },
+        {
+            "city": "Newport",
+            "lat": "51.583333",
+            "lng": "-2.983333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Newport",
+            "capital": "admin"
+        },
+        {
+            "city": "Newry",
+            "lat": "54.17795",
+            "lng": "-6.33807",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Newry, Mourne and Down",
+            "capital": "admin"
+        },
+        {
+            "city": "Downpatrick",
+            "lat": "54.32694",
+            "lng": "-5.71134",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Newry, Mourne and Down",
+            "capital": "admin"
+        },
+        {
+            "city": "Norwich",
+            "lat": "52.633333",
+            "lng": "1.3",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Norfolk",
+            "capital": "admin",
+            "population": "190756",
+            "population_proper": "177636"
+        },
+        {
+            "city": "Irvine",
+            "lat": "55.6",
+            "lng": "-4.666667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "North Ayrshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Grimsby",
+            "lat": "53.533333",
+            "lng": "-0.05",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "North East Lincolnshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Motherwell",
+            "lat": "55.783333",
+            "lng": "-4",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "North Lanarkshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Scunthorpe",
+            "lat": "53.583333",
+            "lng": "-0.65",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "North Lincolnshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Weston-super-Mare",
+            "lat": "51.345833",
+            "lng": "-2.967778",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "North Somerset",
+            "capital": "admin"
+        },
+        {
+            "city": "Wallsend",
+            "lat": "54.991389",
+            "lng": "-1.559722",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "North Tyneside",
+            "capital": "admin"
+        },
+        {
+            "city": "Scarborough",
+            "lat": "54.287222",
+            "lng": "-0.414167",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "North Yorkshire",
+            "population": "70571",
+            "population_proper": "70571"
+        },
+        {
+            "city": "Northallerton",
+            "lat": "54.333333",
+            "lng": "-1.433333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "North Yorkshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Northampton",
+            "lat": "52.25",
+            "lng": "-0.883333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Northamptonshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Morpeth",
+            "lat": "55.166667",
+            "lng": "-1.683333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Northumberland",
+            "capital": "admin"
+        },
+        {
+            "city": "Nottingham",
+            "lat": "52.966667",
+            "lng": "-1.166667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Nottingham",
+            "capital": "admin",
+            "population": "825600",
+            "population_proper": "305700"
+        },
+        {
+            "city": "Oldham",
+            "lat": "53.55",
+            "lng": "-2.116667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Oldham",
+            "capital": "admin"
+        },
+        {
+            "city": "Kirkwall",
+            "lat": "58.966667",
+            "lng": "-2.95",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Orkney Islands",
+            "capital": "admin",
+            "population": "8500",
+            "population_proper": "3153"
+        },
+        {
+            "city": "Oxford",
+            "lat": "51.75",
+            "lng": "-1.25",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Oxfordshire",
+            "capital": "admin",
+            "population": "192796",
+            "population_proper": "154566"
+        },
+        {
+            "city": "Hwlffordd",
+            "lat": "51.801667",
+            "lng": "-4.970833",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Pembrokeshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Perth",
+            "lat": "56.4",
+            "lng": "-3.433333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Perth and Kinross",
+            "capital": "admin",
+            "population": "39654",
+            "population_proper": "39654"
+        },
+        {
+            "city": "Peterborough",
+            "lat": "52.583333",
+            "lng": "-0.25",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Peterborough",
+            "capital": "admin",
+            "population": "140141",
+            "population_proper": "140141"
+        },
+        {
+            "city": "Plymouth",
+            "lat": "50.396389",
+            "lng": "-4.138611",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Plymouth",
+            "capital": "admin",
+            "population": "247297",
+            "population_proper": "231575"
+        },
+        {
+            "city": "Poole",
+            "lat": "50.716667",
+            "lng": "-2",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Poole",
+            "capital": "admin"
+        },
+        {
+            "city": "Portsmouth",
+            "lat": "50.766667",
+            "lng": "-1.083333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Portsmouth",
+            "capital": "admin",
+            "population": "442252",
+            "population_proper": "205100"
+        },
+        {
+            "city": "Llandrindod Wells",
+            "lat": "52.233333",
+            "lng": "-3.383333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Powys",
+            "capital": "admin"
+        },
+        {
+            "city": "Reading",
+            "lat": "51.433333",
+            "lng": "-1",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Reading",
+            "capital": "admin",
+            "population": "369804",
+            "population_proper": "145700"
+        },
+        {
+            "city": "Ilford",
+            "lat": "51.559666",
+            "lng": "0.070805",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Redbridge",
+            "capital": "admin"
+        },
+        {
+            "city": "Middlesbrough",
+            "lat": "54.572778",
+            "lng": "-1.162778",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Redcar and Cleveland",
+            "capital": "admin",
+            "population": "416042",
+            "population_proper": "142707"
+        },
+        {
+            "city": "South Bank",
+            "lat": "54.566667",
+            "lng": "-1.15",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Redcar and Cleveland",
+            "capital": "admin"
+        },
+        {
+            "city": "Paisley",
+            "lat": "55.833333",
+            "lng": "-4.433333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Renfrewshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Clydach Vale",
+            "lat": "51.626667",
+            "lng": "-3.476111",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Rhondda Cynon Taff",
+            "capital": "admin"
+        },
+        {
+            "city": "Twickenham",
+            "lat": "51.433333",
+            "lng": "-0.316667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Richmond upon Thames",
+            "capital": "admin"
+        },
+        {
+            "city": "Rochdale",
+            "lat": "53.616667",
+            "lng": "-2.15",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Rochdale",
+            "capital": "admin"
+        },
+        {
+            "city": "Rotherham",
+            "lat": "53.433333",
+            "lng": "-1.35",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Rotherham",
+            "capital": "admin"
+        },
+        {
+            "city": "Oakham",
+            "lat": "52.666667",
+            "lng": "-0.733333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Rutland",
+            "capital": "admin"
+        },
+        {
+            "city": "Salford",
+            "lat": "53.483333",
+            "lng": "-2.266667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Salford",
+            "capital": "admin"
+        },
+        {
+            "city": "Oldbury",
+            "lat": "52.5",
+            "lng": "-2.016667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Sandwell",
+            "capital": "admin"
+        },
+        {
+            "city": "Newtown Saint Boswells",
+            "lat": "55.583333",
+            "lng": "-2.683333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Scottish Borders, The",
+            "capital": "admin"
+        },
+        {
+            "city": "Southport",
+            "lat": "53.666667",
+            "lng": "-3",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Sefton",
+            "capital": "admin"
+        },
+        {
+            "city": "Sheffield",
+            "lat": "53.366667",
+            "lng": "-1.5",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Sheffield",
+            "capital": "admin",
+            "population": "1292900",
+            "population_proper": "552700"
+        },
+        {
+            "city": "Lerwick",
+            "lat": "60.15",
+            "lng": "-1.15",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Shetland Islands",
+            "capital": "admin",
+            "population": "6594",
+            "population_proper": "4614"
+        },
+        {
+            "city": "Shrewsbury",
+            "lat": "52.716667",
+            "lng": "-2.733333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Shropshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Slough",
+            "lat": "51.5",
+            "lng": "-0.583333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Slough",
+            "capital": "admin"
+        },
+        {
+            "city": "Solihull",
+            "lat": "52.416667",
+            "lng": "-1.783333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Solihull",
+            "capital": "admin"
+        },
+        {
+            "city": "Taunton",
+            "lat": "51.021111",
+            "lng": "-3.104722",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Somerset",
+            "capital": "admin"
+        },
+        {
+            "city": "Ayr",
+            "lat": "55.45",
+            "lng": "-4.616667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "South Ayrshire",
+            "capital": "admin",
+            "population": "69042",
+            "population_proper": "45513"
+        },
+        {
+            "city": "Thornbury",
+            "lat": "51.608889",
+            "lng": "-2.520278",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "South Gloucestershire",
+            "capital": "admin"
+        },
+        {
+            "city": "Hamilton",
+            "lat": "55.766667",
+            "lng": "-4.033333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "South Lanarkshire",
+            "capital": "admin"
+        },
+        {
+            "city": "South Shields",
+            "lat": "54.987778",
+            "lng": "-1.421389",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "South Tyneside",
+            "capital": "admin"
+        },
+        {
+            "city": "Southampton",
+            "lat": "50.9",
+            "lng": "-1.4",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Southampton",
+            "capital": "admin",
+            "population": "384417",
+            "population_proper": "384417"
+        },
+        {
+            "city": "Southend-on-Sea",
+            "lat": "51.533333",
+            "lng": "0.7",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Southend-on-Sea",
+            "capital": "admin",
+            "population": "618386",
+            "population_proper": "173600"
+        },
+        {
+            "city": "Camberwell",
+            "lat": "51.473619",
+            "lng": "-0.091618",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Southwark",
+            "capital": "admin"
+        },
+        {
+            "city": "Stafford",
+            "lat": "52.8",
+            "lng": "-2.1",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "St. Helens",
+            "capital": "admin"
+        },
+        {
+            "city": "Saint Helens",
+            "lat": "53.45",
+            "lng": "-2.733333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "St. Helens",
+            "capital": "admin"
+        },
+        {
+            "city": "Stirling",
+            "lat": "56.116667",
+            "lng": "-3.95",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Stirling",
+            "capital": "admin"
+        },
+        {
+            "city": "Stockport",
+            "lat": "53.4",
+            "lng": "-2.15",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Stockport",
+            "capital": "admin"
+        },
+        {
+            "city": "Stockton-on-Tees",
+            "lat": "54.583333",
+            "lng": "-1.416667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Stockton-on-Tees",
+            "capital": "admin"
+        },
+        {
+            "city": "Stoke-on-Trent",
+            "lat": "53",
+            "lng": "-2.183333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Stoke-on-Trent",
+            "capital": "admin"
+        },
+        {
+            "city": "Ipswich",
+            "lat": "52.083333",
+            "lng": "1.166667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Suffolk",
+            "capital": "admin",
+            "population": "143767",
+            "population_proper": "134257"
+        },
+        {
+            "city": "Sunderland",
+            "lat": "54.911944",
+            "lng": "-1.383333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Sunderland",
+            "capital": "admin",
+            "population": "452934",
+            "population_proper": "177965"
+        },
+        {
+            "city": "Sutton",
+            "lat": "51.35",
+            "lng": "-0.2",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Sutton",
+            "capital": "admin"
+        },
+        {
+            "city": "Abertawe",
+            "lat": "51.633333",
+            "lng": "-3.966667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Swansea",
+            "capital": "admin"
+        },
+        {
+            "city": "Swindon",
+            "lat": "51.516667",
+            "lng": "-1.783333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Swindon",
+            "capital": "admin"
+        },
+        {
+            "city": "Ashton-under-Lyne",
+            "lat": "53.5",
+            "lng": "-2.1",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Tameside",
+            "capital": "admin"
+        },
+        {
+            "city": "Telford",
+            "lat": "52.633333",
+            "lng": "-2.5",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Telford and Wrekin",
+            "capital": "admin"
+        },
+        {
+            "city": "Grays",
+            "lat": "51.483333",
+            "lng": "0.333333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Thurrock",
+            "capital": "admin"
+        },
+        {
+            "city": "Torquay",
+            "lat": "50.45",
+            "lng": "-3.5",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Torbay",
+            "capital": "admin"
+        },
+        {
+            "city": "Pont-y-pŵl",
+            "lat": "51.701111",
+            "lng": "-3.044444",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Torfaen",
+            "capital": "admin"
+        },
+        {
+            "city": "Poplar",
+            "lat": "51.5",
+            "lng": "-0.016667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Tower Hamlets",
+            "capital": "admin"
+        },
+        {
+            "city": "Stretford",
+            "lat": "53.45",
+            "lng": "-2.316667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Trafford",
+            "capital": "admin"
+        },
+        {
+            "city": "Barri",
+            "lat": "51.406667",
+            "lng": "-3.269444",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Vale of Glamorgan, The",
+            "capital": "admin"
+        },
+        {
+            "city": "Wakefield",
+            "lat": "53.7",
+            "lng": "-1.483333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Wakefield",
+            "capital": "admin"
+        },
+        {
+            "city": "Walsall",
+            "lat": "52.6",
+            "lng": "-2",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Walsall",
+            "capital": "admin"
+        },
+        {
+            "city": "Walthamstow",
+            "lat": "51.6",
+            "lng": "-0.033333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Waltham Forest",
+            "capital": "admin"
+        },
+        {
+            "city": "Wandsworth",
+            "lat": "51.45",
+            "lng": "-0.2",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Wandsworth",
+            "capital": "admin"
+        },
+        {
+            "city": "Warrington",
+            "lat": "53.383333",
+            "lng": "-2.6",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Warrington",
+            "capital": "admin"
+        },
+        {
+            "city": "Warwick",
+            "lat": "52.283333",
+            "lng": "-1.583333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Warwickshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Newbury",
+            "lat": "51.4",
+            "lng": "-1.316667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "West Berkshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Dumbarton",
+            "lat": "55.95",
+            "lng": "-4.566667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "West Dunbartonshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Livingston",
+            "lat": "55.883333",
+            "lng": "-3.533333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "West Lothian",
+            "capital": "admin"
+        },
+        {
+            "city": "Chichester",
+            "lat": "50.833333",
+            "lng": "-0.783333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "West Sussex",
+            "capital": "admin"
+        },
+        {
+            "city": "City of Westminster",
+            "lat": "51.5",
+            "lng": "-0.116667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Westminster",
+            "capital": "admin"
+        },
+        {
+            "city": "Wigan",
+            "lat": "53.533333",
+            "lng": "-2.616667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Wigan",
+            "capital": "admin"
+        },
+        {
+            "city": "Trowbridge",
+            "lat": "51.318889",
+            "lng": "-2.208611",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Wiltshire",
+            "capital": "admin"
+        },
+        {
+            "city": "Maidenhead",
+            "lat": "51.516667",
+            "lng": "-0.7",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Windsor and Maidenhead",
+            "capital": "admin"
+        },
+        {
+            "city": "Wallasey",
+            "lat": "53.433333",
+            "lng": "-3.066667",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Wirral",
+            "capital": "admin"
+        },
+        {
+            "city": "Wokingham",
+            "lat": "51.416667",
+            "lng": "-0.833333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Wokingham",
+            "capital": "admin"
+        },
+        {
+            "city": "Wolverhampton",
+            "lat": "52.583333",
+            "lng": "-2.133333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Wolverhampton",
+            "capital": "admin"
+        },
+        {
+            "city": "Worcester",
+            "lat": "52.2",
+            "lng": "-2.2",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Worcestershire",
+            "capital": "admin"
+        },
+        {
+            "city": "Wrecsam",
+            "lat": "53.05",
+            "lng": "-3",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "Wrexham",
+            "capital": "admin"
+        },
+        {
+            "city": "York",
+            "lat": "53.966667",
+            "lng": "-1.083333",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "District": "York",
+            "capital": "admin",
+            "population": "158947",
+            "population_proper": "144202"
+        },
+        {
+            "city": "London",
+            "lat": "51.514248",
+            "lng": "-0.093145",
+            "country": "United Kingdom",
+            "iso2": "GB",
+            "capital": "primary",
+            "population": "8567000",
+            "population_proper": "7421209"
+        }
+    ]
+}

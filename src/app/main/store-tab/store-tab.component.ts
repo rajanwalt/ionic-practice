@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+
+import { State } from './../../store/state';
+import { selectShopDetails } from './../../store/selectors';
 
 @Component({
   selector: 'app-store-tab',
@@ -9,14 +13,16 @@ import { Router } from '@angular/router';
 })
 export class StoreTabComponent implements OnInit {
 
-  shopDetails$ = of({
-    shopLogo : "",
-    shopName : "Test",
-    country: "India",
-    city: "Chennai",
-    street: "",
-    totalWallet : 1200
-  })
+  // shopDetails$ = of({
+  //   shopLogo : "",
+  //   shopName : "Test",
+  //   country: "India",
+  //   city: "Chennai",
+  //   street: "",
+  //   totalWallet : 1200
+  // })
+  shopDetails$: Observable<any> = this._store.select(selectShopDetails);
+
 
   onSelect(selectedItem : string)  {
     switch(selectedItem)  {
@@ -44,7 +50,7 @@ export class StoreTabComponent implements OnInit {
     }
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private _store: Store<State>) { }
 
   ngOnInit() {}
 

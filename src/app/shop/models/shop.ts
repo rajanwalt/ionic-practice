@@ -7,5 +7,6 @@ export class Shop  {
         public city?: string,
         public  street?: string,
         public serviceId?: string,
+        public currencyCode?: string
     )  {}
 }

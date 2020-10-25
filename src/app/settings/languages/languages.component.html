@@ -1,0 +1,23 @@
+<ion-header translucent>
+  <ion-toolbar color="favorite" padding>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+      <ion-title color="dark" mode="ios" >Languages</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="onApply()">
+          Apply
+        </ion-button>
+      </ion-buttons> 
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-radio-group [value]="selectedLanguage">
+    <ion-item class="ion-activated" *ngFor="let language of languages" (click)="onSelect(language)">
+      <ion-radio slot="start" [value]="language" ></ion-radio>
+      <ion-label>{{language?.name}}</ion-label>
+    </ion-item>
+  </ion-radio-group>
+</ion-content>

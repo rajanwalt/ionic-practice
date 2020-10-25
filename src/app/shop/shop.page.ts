@@ -1,12 +1,9 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterContentInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
-import { Router, ActivatedRoute} from '@angular/router'
 
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import { ActionSheetController, ModalController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import {File, IWriteOptions, FileEntry} from '@ionic-native/file/ngx';
-import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 
 import { Store } from '@ngrx/store';
@@ -26,7 +23,7 @@ import { ShopAddressComponent } from './shop-address/shop-address.component';
 // }
 
 interface Photo  {
-  filePath :  string,
+  imgBlob :  Blob,
   webviewPath : string
 }
 
@@ -57,17 +54,16 @@ export class ShopPage implements OnInit, OnDestroy {
     shopdetails: new FormControl(''),
     country: new FormControl(''),
     city: new FormControl(''),
-    street: new FormControl('')
+    street: new FormControl(''),
+    currencyCode : new FormControl('')
   }, 
   // { validators: formValidator }
   );
   
   shopAddress : string = ""; 
   hasShopAddress : boolean = false;
-  shopLogo: Photo = {
-    filePath : '',
-    webviewPath: ''
-  }
+  
+  shopLogo = null;
 
   // geoLocation$: Observable<any> = this.shopDetails$.pipe(switchMap((detail) => {
   //   if(detail['street'] && detail['city'] &&  detail['country'])  {
@@ -80,33 +76,27 @@ export class ShopPage implements OnInit, OnDestroy {
   // }));
 
   constructor(public geolocation: Geolocation, 
-              private router: Router,
               private _store: Store<State>,
               public actionSheetController: ActionSheetController,
               private camera: Camera,
-              private file: File,
               public photoService : PhotoService,
-              private webview: WebView,
-              private activatedRoute: ActivatedRoute,
               private modalController: ModalController) { 
   }
   
   async onSubmit()  {
-    // if(this.shopProfileForm.valid)  {
-      const formData = new FormData();
-      const shopLogoBlog: Blob = this.shopLogo.filePath ? await this.photoService.convertImageUriToBlob(this.shopLogo.filePath) : null;
+    if(this.shopProfileForm.valid)  {
+      let formData = new FormData();
       
-      shopLogoBlog && formData.append("shopLogo", shopLogoBlog, "logo");
+      let shopLogoBlog: Blob = this.shopLogo && this.shopLogo.imgBlob ?  this.shopLogo.imgBlob : null;
+      
+      //Have to post this formData that has image  
+      shopLogoBlog && formData.append("shopLogo", shopLogoBlog, "shopLogo");
 
-      this._store.dispatch(new PostShop({...this.shopProfileForm.value, id: this.userId}))
-    // }
+
+      this._store.dispatch(new PostShop({...this.shopProfileForm.value, userId: this.userId}))
+    }
   }
   
-  // goToAddress()  {
-  //   this._store.dispatch(new SetShop(this.shopProfileForm.value));
-  //   this.router.navigate(['/shop/shop-address']);
-  // }
-
   async goToAddress()  {
     
     const modal = await this.modalController.create({
@@ -129,33 +119,13 @@ export class ShopPage implements OnInit, OnDestroy {
   
 
   loadImageFromCamera()  {
-    const options: CameraOptions = {
-      quality: 100,
-      correctOrientation: true,
-      sourceType: this.camera.PictureSourceType.CAMERA,
-      encodingType: this.camera.EncodingType.JPEG,
-      destinationType: this.camera.DestinationType.FILE_URI
-    }
-
-    this.photoService.getPicture(options).then((imgData) => {
+    this.photoService.getPicture('CAMERA').then((imgData) => {
       this.shopLogo = imgData
     });
-    
   }
 
   loadImageFromLib()  {
-
-    const options: CameraOptions = {
-      quality: 100,
-      allowEdit: true,
-      saveToPhotoAlbum: true,
-      correctOrientation: true,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
-    }
-    this.photoService.getPicture(options).then((imgData) => {
+    this.photoService.getPicture('PHOTOLIBRARY').then((imgData) => {
       this.shopLogo = imgData
     });      
   }
@@ -197,9 +167,6 @@ export class ShopPage implements OnInit, OnDestroy {
     this.shopDetailsSub = this.shopDetails$.subscribe( shopDetails => {
       if(shopDetails)  {
         this.shopProfileForm.patchValue(shopDetails);
-        
-        // this.hasShopAddress = (shopDetails['country'] && shopDetails['country'].length>0) ? true : false;
-        // this.shopAddress = shopDetails['street'] + "," + shopDetails['city'] + "," + shopDetails['country'];
       }
     });
 

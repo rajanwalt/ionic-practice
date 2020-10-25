@@ -6,6 +6,7 @@ import { StoreTabComponent } from './store-tab/store-tab.component';
 import { NewOrderTabComponent } from './new-order-tab/new-order-tab.component';
 import { SettingsTabComponent } from './settings-tab/settings-tab.component';
 import { OrdersTabComponent } from './orders-tab/orders-tab.component';
+import { CustomerTabComponent } from './customer-tab/customer-tab.component'
 
 const routes: Routes = [
   {
@@ -14,39 +15,23 @@ const routes: Routes = [
     children: [
       {
         path: 'new_order',
-        children: [
-          {
-            path: '',
-            component: NewOrderTabComponent
-          }
-        ]
+        component: NewOrderTabComponent
       },
       {
         path: 'store',
-        children: [
-          {
-            path: '',
-            component: StoreTabComponent
-          }
-        ]
+          component: StoreTabComponent
       },
       {
         path: 'settings_tab',
-        children: [
-          {
-            path: '',
-            component: SettingsTabComponent
-          }
-        ]
+        component: SettingsTabComponent
       },
       {
         path: 'orders',
-        children: [
-          {
-            path: '',
-            component: OrdersTabComponent
-          }
-        ]
+        component: OrdersTabComponent
+      },
+      {
+        path: 'customers',
+        component: CustomerTabComponent
       },
       {
         path: '',

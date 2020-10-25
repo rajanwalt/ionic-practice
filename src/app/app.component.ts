@@ -15,6 +15,7 @@ import { Observable, of } from 'rxjs';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
   public pendingRequests$: Observable<any> = this._store.select(selectPendingRequests);
   // public pendingRequests$: Observable<any> = of(1);
 

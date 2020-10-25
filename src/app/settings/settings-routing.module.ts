@@ -6,12 +6,13 @@ import {PaymentSettingsComponent} from './payment-settings/payment-settings.comp
 import { ShippingComponent } from './shipping/shipping.component';
 import { VatComponent } from './vat/vat.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-
+import { LanguagesComponent } from './languages/languages.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: SettingsPage
+    component: SettingsPage,
+    pathMatch: "full"
   },
   {
     path: 'payment_settings',
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'profile',
     component: UserProfileComponent
+  },
+  {
+    path: 'languages',
+    component: LanguagesComponent
   }
 ];
 

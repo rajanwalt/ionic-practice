@@ -16,7 +16,6 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { ShopPage } from './shop.page';
 import {ShopAddressComponent} from './shop-address/shop-address.component';
 import { MapComponent } from './map/map.component';
-import { ImageUploaderComponent } from './../common/image-uploader/image-uploader.component';
 import {CatalogueComponent} from './catalogue/catalogue.component';
 import {ViewCatalogueComponent } from './view-catalogue/view-catalogue.component';
 import {WalletComponent} from './wallet/wallet.component';
@@ -43,7 +42,6 @@ import { MonekatService, PhotoService } from './../APIs';
     ShopPage, 
     ShopAddressComponent, 
     MapComponent, 
-    ImageUploaderComponent,
     CatalogueComponent,
     ViewCatalogueComponent,
     WalletComponent,

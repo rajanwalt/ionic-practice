@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 import { State } from './../../store/state';
 import { Order, OrderDetails, OrderSummary } from './../models';
-import { selectLastOrderID, selectOrders } from './../../store/selectors';
+import { selectLastOrderID, selectOrders, selectSetting, selectUser } from './../../store/selectors';
 import { PostOrderSummary, SetOrder, ResetOrderStatus, ResetOrder } from './../../store/actions';
 
 import { SocialMediaSharingService } from './../../common';
@@ -24,9 +24,14 @@ export class OrderSummaryComponent implements OnInit {
 
   public orders$: Observable<Order> = this._store.select(selectOrders);
   public orderStatus$: Observable<Cart> = this._store.select(selectLastOrderID);
+  user$: Observable<any> = this._store.select(selectUser)
+  settings$: Observable<any> = this._store.select(state => selectSetting(selectUser(state)));
 
+  
   public orders = null;
   public orderSub : Subscription;
+  vat = 0;
+  vatSub: Subscription;
 
   public updatedOrders = [];
   public subTotal;
@@ -110,7 +115,8 @@ export class OrderSummaryComponent implements OnInit {
         break;
       }
       default: {
-
+        const status = await this.socialMediaSharingService.share(checkoutLink, "Checkout Link");
+        this.socialSharingCallback(status);
       }
     }
   }
@@ -118,6 +124,14 @@ export class OrderSummaryComponent implements OnInit {
 
   get name()  {
     return (this.orders && this.orders.firstName) ? `${this.orders.firstName}'s` : "";
+  }
+
+  get vatAmount()  {
+    return this.vat ? ((this.subTotal * +this.vat)/100) :  this.vat
+  }
+
+  get total()  {
+    return parseFloat(this.subTotal) + (+this.deliveryCharge) + (+this.vatAmount);
   }
 
   onAddItems()  {
@@ -160,6 +174,11 @@ export class OrderSummaryComponent implements OnInit {
         
       }
     });
+
+    this.vatSub = this.settings$.subscribe(data => {
+      this.vat = data && data.length && data[0].vat;
+    })
+
 
     this._store.dispatch(new ResetOrderStatus());
   }

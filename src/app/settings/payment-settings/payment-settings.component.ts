@@ -20,15 +20,15 @@ export class PaymentSettingsComponent implements OnInit {
     {
       "id" : 1,
       "type" : "Credit / Debit Card",
-      "fee" : "3.5",
+      "fee" : "5",
       "selected" : true
      },
-     {
-       "id": 2,
-       "type" : "Cash on delivery",
-       "fee" : "4.0",
-       "selected" : true
-     }
+    //  {
+    //    "id": 2,
+    //    "type" : "Cash on delivery",
+    //    "fee" : "4.0",
+    //    "selected" : true
+    //  }
   ]);
 
   // paymentMethods$ = this._store.select(selectPaymentMethods);
@@ -38,7 +38,6 @@ export class PaymentSettingsComponent implements OnInit {
   }
 
   onSelectPaymentMethod(event, paymentMethod)  {
-    console.log("event", event);
 
     this._store.dispatch(new UpdatePaymentMethods(paymentMethod));
   }

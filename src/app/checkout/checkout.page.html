@@ -4,9 +4,9 @@
   </ion-toolbar>
 </ion-header>
  
-<ion-content color="light">
+<ion-content color="light" forceOverscroll="true" >
   <ion-grid class="main" *ngIf="(order$ | async) as order">
-    <ion-row>
+    <ion-row class="ion-text-capitalize">
       <ion-col size="9">
         <ion-text color="dark" class="text-bold"> {{order?.customer?.firstName}} {{order?.customer?.lastName}}</ion-text> <br>
         <ion-text color="medium">
@@ -42,12 +42,15 @@
         <ion-row class="catalogue" *ngFor="let item of order?.orderDetails">
           <ion-col size="2">
             <ion-thumbnail>
-                <ion-img src="./../../../assets/images/test-logo.jpg"></ion-img>
+                <!-- <ion-img src="./../../../assets/images/test-logo.jpg"></ion-img> -->
+                <ion-icon name="pricetags-outline"></ion-icon>
             </ion-thumbnail>
           </ion-col>
           <ion-col>
-            <ion-text color="dark" class="text-bold">{{item?.productName}}</ion-text> <br>
-            <ion-text color="medium"> Sold by retailer </ion-text>
+            <div>
+              <ion-text color="dark" class="text-bold ion-text-capitalize">{{item?.productName}}</ion-text> <br>
+              <ion-text color="medium"> Sold by retailer </ion-text>
+            </div>
           </ion-col>
           <ion-col class="ion-text-right">
             {{item?.price}} X {{item?.count}}
@@ -55,13 +58,15 @@
         </ion-row>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col>
          <ion-text><ion-icon name="chatbubble-ellipses-outline"></ion-icon> Leave a note for seller</ion-text>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
   </ion-grid>
-  
+</ion-content>
+
+<ion-footer>
   <ion-grid class="footer-grid" *ngIf="(order$ | async) as order">
     <ion-row>
       <ion-col class="tAndc ion-text-center">
@@ -70,19 +75,19 @@
     </ion-row>
     <ion-row >
       <ion-col class="ion-text-left"><ion-text color="dark">Subtotal</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="dark">{{subtotal(order?.orderDetails)}}</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="dark">{{subtotal(order?.orderDetails) | currency:'USD':'code'}}</ion-text></ion-col>
     </ion-row>
     <ion-row *ngIf="deliveryRate(order?.deliveryMethod) as deliveryMethod">
       <ion-col class="ion-text-left"><ion-text color="dark">Delivery</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="dark">{{deliveryMethod?.rate}}</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="dark">{{deliveryMethod?.rate | currency:'USD':'code'}}</ion-text></ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="ion-text-left"><ion-text color="dark">Taxes (VAT 3%)</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="dark">AED 90.00</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="dark">0</ion-text></ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="ion-text-left"><ion-text color="dark" class="text-bold">Total</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="dark" class="text-bold">{{total(order)}}</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="dark" class="text-bold">{{total(order) | currency:'USD':'code'}}</ion-text></ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
@@ -90,5 +95,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content>
+</ion-footer>
+  
+
 

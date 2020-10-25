@@ -14,37 +14,32 @@ export class SettingsTabComponent implements OnInit {
 
   listOfSettings = [
     {
-      "icon" : "person-outline",
+      "icon" : "./../../../assets/icon/Profile.svg",
       "title" : "Your Profile",
       "link" : "profile"
     },
     {
-      "icon" : "radio-outline",
-      "title" : "Communication Services",
-      "link" : "communication_services"
-    },
-    {
-      "icon" : "cash-outline",
+      "icon" : "./../../../assets/icon/Payment.svg",
       "title" : "Payment Settings",
       "link" : "payment_settings"
     },
     {
-      "icon" : "cart-outline",
+      "icon" : "./../../../assets/icon/Delivery.svg",
       "title" : "Shipping",
       "link" : "shipping"
     },
     {
-      "icon" : "reader-outline",
+      "icon" : "./../../../assets/icon/Wallet.svg",
       "title" : "VAT",
       "link" : "vat"
     },
     {
-      "icon" : "earth-outline",
+      "icon" : "./../../../assets/icon/Language.svg",
       "title" : "Languages",
-      "link" : "language"
+      "link" : "languages"
     },
     {
-      "icon" : "log-out-outline",
+      "icon" : "./../../../assets/icon/Logout.svg",
       "title" : "Logout",
       "link" : "logout"
     }

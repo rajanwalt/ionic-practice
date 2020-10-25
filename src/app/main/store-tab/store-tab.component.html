@@ -21,14 +21,14 @@
             </ion-avatar>
             
             <ion-text>
-                <p>{{shopDetails.shopName}}</p>
+                <p class="ion-text-capitalize">{{shopDetails.shopName}}</p>
                 <p>{{shopDetails.city}}, {{shopDetails.country}}</p>
             </ion-text>
         </ion-col>
     </ion-row>
     <ion-row class="list" (click)="onSelect('wallet')">
       <ion-col size="6">
-        <ion-icon name="wallet-outline" color="medium" class="left-icon"></ion-icon>
+        <ion-icon src="./../../../assets/icon/Wallet.svg" color="medium" class="left-icon"></ion-icon>
         <div class="sub-text">My Wallet</div>
       </ion-col>
       <ion-col size="6" class="text-right">
@@ -37,15 +37,15 @@
       </ion-col>
     </ion-row>
 
-    <ion-row class="list" (click)="onSelect('customers')">
+    <!-- <ion-row class="list" (click)="onSelect('customers')">
       <ion-col size="6">
-        <ion-icon name="people-outline" color="medium" class="left-icon"></ion-icon>
+        <ion-icon src="./../../../assets/icon/Customer.svg" color="medium" class="left-icon"></ion-icon>
         <div class="sub-text">Customers</div>
       </ion-col>
       <ion-col size="6" class="text-right">
         <ion-icon name="chevron-forward-outline" color="medium" class="right-icon"></ion-icon> 
       </ion-col>
-    </ion-row>
+    </ion-row> -->
 
     <ion-row class="list" (click)="onSelect('catalogue')">
       <ion-col size="6">
