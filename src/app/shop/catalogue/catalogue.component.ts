@@ -13,7 +13,7 @@ import { GetCatalogue } from 'src/app/store/actions';
   styleUrls: ['./catalogue.component.scss'],
 })
 export class CatalogueComponent implements OnInit {
-  @ViewChild('searchbar', { static: false }) searchbar: IonSearchbar;
+  @ViewChild('searchbar') searchbar: IonSearchbar;
 
   public catelogue$ : Observable<any> = this._store.select(selectCatalogue);
   public searchText: string = "";

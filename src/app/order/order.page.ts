@@ -18,7 +18,7 @@ import { shareReplay } from 'rxjs/operators';
 })
 export class OrderPage implements OnInit {
 
-  @ViewChild('searchbar', { static: false }) searchbar: IonSearchbar;
+  @ViewChild('searchbar') searchbar: IonSearchbar;
   isSerachActive : boolean =  false;
   searchText: string = "";
   public currentOrder$ : Observable<Order> = this._store.select(selectCurrentOrder);

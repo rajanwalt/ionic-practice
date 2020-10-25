@@ -9,7 +9,7 @@ import { Observable, of } from 'rxjs';
 })
 export class OrdersTabComponent implements OnInit {
 
-  @ViewChild('searchbar', { static: false }) searchbar: IonSearchbar;
+  @ViewChild('searchbar') searchbar: IonSearchbar;
   
   isSerachActive : boolean =  false;
   searchText: string = "";

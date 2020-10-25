@@ -17,7 +17,7 @@ import { RouterStateService } from './../../common';
 })
 export class SelectCatalogueComponent implements OnInit {
   
-  @ViewChild('searchbar', { static: false }) searchbar: IonSearchbar;
+  @ViewChild('searchbar') searchbar: IonSearchbar;
   public searchText: string = "";
   public isSerachActive : boolean =  false;
   public selectedItems : Array<any> = [];

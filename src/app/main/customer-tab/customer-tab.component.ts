@@ -15,7 +15,7 @@ import { GetCustomers } from 'src/app/store/actions';
 })
 export class CustomerTabComponent implements OnInit {
 
-  @ViewChild('searchbar', { static: false }) searchbar: IonSearchbar;
+  @ViewChild('searchbar') searchbar: IonSearchbar;
   
   isSerachActive : boolean =  false;
   searchText: string = "";

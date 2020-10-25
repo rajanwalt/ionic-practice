@@ -16,7 +16,7 @@ import { selectShopDetails } from './../store/selectors';
 })
 export class ShopPaymentSetupPage implements OnInit, AfterViewInit {
   
-  @ViewChild('slider', { static: false}) private slider: IonSlides;
+  @ViewChild('slider') private slider: IonSlides;
 
   slideOpts = {
     initialSlide: 0,
