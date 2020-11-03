@@ -10,8 +10,8 @@ ARG env=prod
 RUN mkdir -p /client
 WORKDIR /client
 COPY package.json package-lock.json  /client/
-RUN npm install @angular/cli -g && npm install -g cordova && \
-npm install -g typescript && npm install -g ionic
+RUN npm install @angular/cli -g &&  \
+npm install -g typescript && npm install -g @ionic/cli
 RUN cd /client && npm install
 COPY .  /client
 
