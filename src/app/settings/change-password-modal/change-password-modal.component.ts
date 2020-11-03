@@ -27,7 +27,7 @@ export class ChangePasswordModalComponent implements OnInit {
   }
 
   onSubmit()  {
-    this.passwordForm.valid && this.modalController.dismiss(this.passwordForm.get('newPassword'))
+    this.passwordForm.valid && this.modalController.dismiss(this.passwordForm.get('newPassword').value)
   }
 
   constructor(public modalController: ModalController) { }

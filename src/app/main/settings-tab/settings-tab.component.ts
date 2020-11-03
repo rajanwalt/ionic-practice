@@ -29,7 +29,7 @@ export class SettingsTabComponent implements OnInit {
       "link" : "shipping"
     },
     {
-      "icon" : "./../../../assets/icon/Wallet.svg",
+      "icon" : "./../../../assets/icon/VAT.svg",
       "title" : "VAT",
       "link" : "vat"
     },

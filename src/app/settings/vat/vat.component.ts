@@ -20,6 +20,7 @@ export class VatComponent implements OnInit {
   userId: any;
   user$: Observable<any> = this._store.select(selectUser)
   settings$: Observable<any> = this._store.select(state => selectSetting(selectUser(state)));
+  // vatPattern = "/^[0-9]+(\.[0-9]{1,2})?$/"
 
   vatForm = new FormGroup({
     vat: new FormControl('0.00', Validators.required),

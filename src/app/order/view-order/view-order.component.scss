@@ -57,3 +57,14 @@ ion-chip  {
     margin-left: 0;
     margin-right: 0;
 }
+
+div {
+    &.payment-type {
+        ion-icon  {
+            font-size: 25px;
+        }
+        div  {
+            display: inline;
+        }
+    }
+}

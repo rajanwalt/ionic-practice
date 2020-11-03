@@ -40,8 +40,9 @@
         <ion-label position="stacked">Phone number</ion-label>
         <ion-input formControlName="phoneNumber" ></ion-input>
       </ion-item> -->
+      <!-- {{createAccountForm.value | json}} -->
       <ion-item-divider></ion-item-divider>
-      <ion-item  button="true" color="favorite" [disabled]="!(createAccountForm.valid && createAccountForm.dirty)" (click)="onSubmit()">
+      <ion-item  button="true" color="favorite" [disabled]="!(createAccountForm.valid)" (click)="onSubmit()">
         <ion-label color="light" class="ion-text-center">Update Profile</ion-label>
       </ion-item>
     </ion-list>

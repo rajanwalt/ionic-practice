@@ -4,6 +4,7 @@ import { environment } from './../../environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Platform } from '@ionic/angular';
+import { Form } from '@angular/forms';
 
 
 
@@ -25,7 +26,7 @@ export class MonekatService {
     return this.http.get(url);
   }
 
-  postShopDetails(shopData : FormData) : Observable<any>  {
+  postShopDetails(shopData) : Observable<any>  {
     let url = this.hostName +'/api/services'
     return this.http.post(url, shopData);
   }
@@ -139,6 +140,17 @@ export class MonekatService {
     return this.http.put(url, data);
   }
 
+  postFile(formData) : Observable<any>  {
+    let url = this.hostName + "/api/services/uploadfile";  
+
+    return this.http.post(url, formData);
+  }
+  getFile(filename) : Observable<any>  {
+    let url = `${this.hostName}/api/services/downloadfile/${filename}`;
+
+    return this.http.get(url);
+  }
+
   login(data: any): Observable<any>  {
     let url = this.hostName +'/api/login';
     return this.http.post(url, data);
@@ -146,7 +158,6 @@ export class MonekatService {
     // return this.http.get(url);
 
   }
-
   
 
   constructor(private http: HttpClient, private platform: Platform) { }

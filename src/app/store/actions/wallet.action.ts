@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 
 export enum EWalletActions  {
     GetWallet = '[Wallet] Get Wallet',
-    OnWalletSuccess = '[Wallet] On Order Success',
+    OnWalletSuccess = '[Wallet] On Wallet Success',
     SetWallet = '[Wallet] Set Wallet',
     PostWallet = '[Wallet] Post Wallet'
 }

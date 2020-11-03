@@ -7,7 +7,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 
 import { Store } from '@ngrx/store';
-import { SetShop, PostShop } from './../store/actions';
+import { SetShop, PostShop, GetFile, PostFile } from './../store/actions';
 import { selectShopDetails, selectUser } from './../store/selectors';
 import { State } from './../store/state';
 import { Observable, Subscription } from 'rxjs';
@@ -85,15 +85,18 @@ export class ShopPage implements OnInit, OnDestroy {
   
   async onSubmit()  {
     if(this.shopProfileForm.valid)  {
-      let formData = new FormData();
-      
+      let shopPayload = {...this.shopProfileForm.value, userId: this.userId};
+
       let shopLogoBlog: Blob = this.shopLogo && this.shopLogo.imgBlob ?  this.shopLogo.imgBlob : null;
       
-      //Have to post this formData that has image  
-      shopLogoBlog && formData.append("shopLogo", shopLogoBlog, "shopLogo");
+      // if(this.shopLogo && this.shopLogo.imgBlob)  {
+      //   let formData = new FormData();
+      //   formData.append("file", shopLogoBlog);
+      //   formData.append("userId", this.userId);
+      //   this._store.dispatch(new PostFile({...this.shopProfileForm.value}))
+      // }
 
-
-      this._store.dispatch(new PostShop({...this.shopProfileForm.value, userId: this.userId}))
+      this._store.dispatch(new PostShop({shopPayload, shopLogoBlog}))
     }
   }
   

@@ -33,7 +33,8 @@ import {ShopEffects,
   PaymentSettingsEffects, 
   VatEffects, 
   LoginEffects,
-  ShippingChargesEffects } from './store/effects';
+  ShippingChargesEffects,
+  FileEffects } from './store/effects';
 import { CustomSerializer } from './store/router-custom-serializer';
 import { SharedModule, RouterStateService } from './common';
 import { PendingRequestsInterceptor } from './APIs'
@@ -68,7 +69,8 @@ import { PendingRequestsInterceptor } from './APIs'
       PaymentSettingsEffects, 
       VatEffects, 
       LoginEffects,
-      ShippingChargesEffects
+      ShippingChargesEffects,
+      FileEffects
     ]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     ImageCropperModule

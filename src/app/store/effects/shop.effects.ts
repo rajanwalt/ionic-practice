@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY } from 'rxjs';
+import { EMPTY, of } from 'rxjs';
 import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { MonekatService } from '../../APIs';
 
-import { EShopActions, ShopSuccess, PostShop, SetShop} from '../actions';
+import { EShopActions, ShopSuccess, PostShop, SetShop, PostFile} from '../actions';
 import { NavController } from '@ionic/angular';
 
 @Injectable()
@@ -22,13 +22,49 @@ export class ShopEffects {
 
   postShopDetails$ = createEffect(() => this.actions$.pipe(
     ofType(EShopActions.PostShop),
-    switchMap((action: PostShop) => this.monekatService.postShopDetails(action.payload)
+    switchMap((action: PostShop) => this.monekatService.postShopDetails({...action.payload['shopPayload']})
       .pipe(
         map(shopDetails => new ShopSuccess(shopDetails)),
         catchError(() => EMPTY)
       ))
     )
   );
+
+  // postShopDetails$ = createEffect(() => this.actions$.pipe(
+  //   ofType(EShopActions.PostShop),
+  //   switchMap((action: PostShop) => this.monekatService.postShopDetails({...action.payload['shopPayload']})
+  //     .pipe(
+  //       switchMap(shopDetails => [ 
+  //         ... action.payload['shopLogoBlog'] ? [new PostFile({ serviceId : shopDetails['id'], itemId : '', file : action.payload['shopLogoBlog'] })] : [],
+  //         new ShopSuccess(shopDetails), 
+  //       ]),
+  //       catchError(() => EMPTY)
+  //     ))
+  //   )
+  // );
+
+
+  // postShopDetails$ = createEffect(() => this.actions$.pipe(
+  //   ofType(EShopActions.PostShop),
+  //   switchMap((action: PostShop) => this.monekatService.postShopDetails({...action.payload['shopPayload']})
+  //     .pipe(
+  //       map( shopDetails => {
+  //         if(action.payload['shopLogoBlog'])  {
+  //           let formData = new FormData();
+
+  //           formData.append("file", action.payload['shopLogoBlog']);
+  //           formData.append("serviceId", shopDetails['id']);
+
+  //           return this.monekatService.postFile(formData).pipe(map(data => new ShopSuccess({...shopDetails, ...data})))
+  //         }
+  //         else {
+  //           return new ShopSuccess(shopDetails)
+  //         }
+  //       }),
+  //       catchError(() => EMPTY)
+  //     ))
+  // ));
+
 
   onSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(EShopActions.ShopSuccess),

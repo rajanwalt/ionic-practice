@@ -4,8 +4,12 @@ import { ModalController, NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
 import { UpdateAccount } from './../../store/actions';
+import { selectUser } from './../../store/selectors';
+import { UserProfile } from './../models';
 
 import { ChangePasswordModalComponent } from './../change-password-modal/change-password-modal.component';
+import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-profile',
@@ -22,10 +26,12 @@ export class UserProfileComponent implements OnInit {
     // storename: new FormControl('', Validators.required),
     // phoneNumber: new FormControl('', Validators.required),
   });
-
+  user$: Observable<any> = this._store.select(selectUser);
+  userSub : Subscription;
+  
   onSubmit()  {
     if(this.createAccountForm.valid)  {
-      this._store.dispatch(new UpdateAccount(this.createAccountForm.value));
+      this.createAccountForm.get('password').value == "********" ? this._store.dispatch(new UpdateAccount(UserProfile.fromAPI(this.createAccountForm.value))) : this._store.dispatch(new UpdateAccount(this.createAccountForm.value));
     }
   }
 
@@ -45,6 +51,16 @@ export class UserProfileComponent implements OnInit {
 
   goBack()  {
     this.navCtrl.back();
+  }
+
+  ionViewWillEnter(){
+    this.userSub = this.user$.pipe(map(UserProfile.fromAPI)).subscribe(data => this.createAccountForm.patchValue(data));
+  }
+
+  ionViewWillLeave(){
+    if(this.userSub)  {
+      this.userSub.unsubscribe();
+    }
   }
 
   constructor(private navCtrl: NavController, private _store: Store<State>, private modalController: ModalController) { }

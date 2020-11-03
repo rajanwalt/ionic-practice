@@ -28,6 +28,40 @@
         <ion-label position="stacked">Password</ion-label>
         <ion-input formControlName="password" type="password" ></ion-input>
       </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Business Type</ion-label>
+         <ion-select 
+            okText="Okay" 
+            cancelText="Dismiss" 
+            formControlName="businessType"
+            (ionChange)="onChangeBusinessType($event)">
+                <ion-select-option *ngFor="let businessType of businessTypes | keyvalue" [value]="businessType.value">{{businessType.value}}</ion-select-option>
+          </ion-select>
+      </ion-item>
+      <ion-item *ngIf="createAccountForm.controls.businessType.value == businessTypes.LEGAL_BUSINESS || createAccountForm.controls.businessType.value == businessTypes.LEGAL_ORGANIZATION  || createAccountForm.controls.businessType.value == businessTypes.LEAGAL_SOLETRADER ">
+        <ion-label position="stacked">Registration Date of Issue </ion-label>
+        <ion-datetime (ionChange)="getDate($event)" ></ion-datetime>
+      </ion-item>
+      <ion-item *ngIf="createAccountForm.controls.businessType.value == businessTypes.LEGAL_BUSINESS || createAccountForm.controls.businessType.value == businessTypes.LEGAL_ORGANIZATION  || createAccountForm.controls.businessType.value == businessTypes.LEAGAL_SOLETRADER ">
+        <ion-label position="stacked">Registration Date of Expiry</ion-label>
+        <ion-datetime (ionChange)="getDate($event)" ></ion-datetime>
+
+      </ion-item>
+      <ion-item *ngIf="createAccountForm.controls.businessType.value == businessTypes.FREELANCER">
+        <ion-label position="stacked">Date of Issue</ion-label>
+        <ion-datetime (ionChange)="getDate($event)" ></ion-datetime>
+
+      </ion-item>
+      <ion-item *ngIf="createAccountForm.controls.businessType.value == businessTypes.FREELANCER">
+        <ion-label position="stacked">Date of Expiry</ion-label>
+        <ion-datetime (ionChange)="getDate($event)" ></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Identity Proof</ion-label>
+        <ion-input type="file" ></ion-input>
+      </ion-item>
       <!-- <ion-item>
         <ion-label position="stacked">Store name</ion-label>
         <ion-input formControlName="storename" ></ion-input>

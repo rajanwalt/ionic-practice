@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSearchbar, NavController } from '@ionic/angular';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-orders-tab',
@@ -25,6 +27,24 @@ export class OrdersTabComponent implements OnInit {
       orderDate : "2020-03-25"
     },
     {
+      id: 1034,
+      name : "test user",
+      orderTotal : 150,
+      paymentType: "Credit Card",
+      paymentStatus : "Pending",
+      orderStatus : "Pending",
+      orderDate : "2020-03-25"
+    },
+    {
+      id: 1294,
+      name : "test user",
+      orderTotal : 150,
+      paymentType: "Credit Card",
+      paymentStatus : "Pending",
+      orderStatus : "Pending",
+      orderDate : "2020-03-25"
+    },
+    {
       id: 134,
       name : "test user2",
       orderTotal : 1500,
@@ -34,6 +54,10 @@ export class OrdersTabComponent implements OnInit {
       orderDate : "2020-09-25"
     }
   ]);
+
+  getGroupBy(order)  {
+    return order &&  (_.groupBy(order, "orderDate"))
+  }
 
   onEnableSearch()  {
     setTimeout(() => this.searchbar &&  this.searchbar.setFocus(), 500);

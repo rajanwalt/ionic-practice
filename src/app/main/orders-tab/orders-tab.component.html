@@ -25,7 +25,7 @@
 
 <ion-content>
 
-  <ion-grid *ngIf="!((orders$ | async)?.length)" class="info">
+  <ion-grid *ngIf="!((orders$ | async))" class="info">
     <ion-row class="ion-align-items-center">
         <ion-col class="ion-align-self-center">
             <p class="title">You haven't received any orders yet.</p>
@@ -44,30 +44,31 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <ion-grid *ngIf="((orders$ | async)?.length)" class="list">
-    <ion-row *ngFor="let item of (orders$ | async) | listFilter:'id,name':searchText" (click)="onViewOrder(item)">
-      <ion-col size="8">
-        <ion-text color="medium">#{{item?.id}}</ion-text> <br>
-        <ion-text color="dark" class="ion-text-capitalize">{{item?.name}}</ion-text> <br>
-        <ion-text>
-          <!-- <ion-chip color="success" >
-            <ion-label></ion-label>
-          </ion-chip>
-           -->
-          <ion-chip color="danger">
-            <ion-label>{{item?.paymentType}}: {{item?.paymentStatus}}</ion-label>
-          </ion-chip>
-          <ion-chip color="warning">
-            <ion-label>{{item?.orderStatus}}</ion-label>
-          </ion-chip>
-        </ion-text>
-      </ion-col>
-      <ion-col size="4" class="ion-text-right">
-        <p> {{item?.orderTotal | currency:'USD':'code'}}</p>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-grid  class="list" *ngIf="(orders$ | async | listFilter:'id,name':searchText) as order ">
+      <ion-row *ngFor="let item of getGroupBy(order) | keyvalue" >
+        <ion-col size="12" class="group-header">
+          {{item.key}}
+        </ion-col>
+        <ion-col size="12">
+          <ion-row *ngFor="let itemOfItem of item.value" (click)="onViewOrder(itemOfItem)" class="item-content">
+            <ion-col size="8" class="item-details">
+              <ion-text color="medium">#{{itemOfItem?.id}}</ion-text> <br>
+              <ion-text color="dark" class="ion-text-capitalize">{{itemOfItem?.name}}</ion-text> <br>
+              <ion-chip color="danger">
+                  <ion-label>{{itemOfItem?.paymentType}}: {{itemOfItem?.paymentStatus}}</ion-label>
+              </ion-chip>
+              <ion-chip color="warning">
+                  <ion-label>{{itemOfItem?.orderStatus}}</ion-label>
+              </ion-chip>
+            </ion-col>
+            <ion-col size="4" class="ion-text-right item-details">
+              <p> {{itemOfItem?.orderTotal | currency:'USD':'code'}}</p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
   
   <ion-fab vertical="bottom" horizontal="end"  slot="fixed">
       <ion-fab-button (click)="onCreateNewOrder()" color="favorite">

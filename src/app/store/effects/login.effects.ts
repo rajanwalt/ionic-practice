@@ -4,7 +4,7 @@ import { EMPTY } from 'rxjs';
 import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { MonekatService } from '../../APIs';
 
-import {  ELoginActions, Login, CreateAccount, UpdateAccount, CreateAccountSuccess, SetUser, LoginSuccess, SetShop, SetShippingCharges} from '../actions';
+import {  ELoginActions, Login, CreateAccount, UpdateAccount, CreateAccountSuccess, SetUser, LoginSuccess, SetShop, SetShippingCharges, UpdateAccountSuccess} from '../actions';
 import { NavController } from '@ionic/angular';
 
 @Injectable()
@@ -32,12 +32,14 @@ export class LoginEffects {
 
   updateAccount$ = createEffect(() => this.actions$.pipe(
     ofType(ELoginActions.UpdateAccount),
-    map((action: UpdateAccount) => this.monekatService.updateAccount(action.payload)),
-    tap( _ => {
-      this.navCtrl.back();
-    }),
+    switchMap((action: UpdateAccount) => this.monekatService.updateAccount(action.payload).pipe(
+      map(userProfile => new UpdateAccountSuccess(userProfile)),
+      tap( _ => {
+        this.navCtrl.back();
+      })
+    )),
     catchError(() => EMPTY)
-  ), { dispatch: false });
+  ));
 
   onCreateSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(ELoginActions.CreateAccountSuccess),

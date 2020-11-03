@@ -7,3 +7,4 @@ export * from './vat.effects';
 export * from './login.effects';
 export * from './wallet.effects';
 export * from './shipping-charges.effects';
+export * from './file.effects';
