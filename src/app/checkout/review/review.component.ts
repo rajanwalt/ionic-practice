@@ -19,7 +19,7 @@ import {  OnUpdateCustomer } from './../../store/actions';
   styleUrls: ['./review.component.scss'],
 })
 export class ReviewComponent implements OnInit {
-
+  isInValid = false;
   public order$: Observable<Cart> = this._store.select(selectLastOrder);
 
   subtotal(orderDetails)  {
@@ -78,6 +78,9 @@ export class ReviewComponent implements OnInit {
     return await modal.present();
   }
 
+  goTo()  {
+    
+  }
 
   constructor(private _store: Store<State>, private modalController: ModalController) { }
 

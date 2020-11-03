@@ -28,7 +28,7 @@ import { GetFinalOrderSummary } from './../store/actions';
 })
 export class CheckoutPage implements OnInit, OnDestroy {
 
-    
+  isInValid = false;
   public order$: Observable<Cart> = this._store.select(selectLastOrder);
  
   subtotal(orderDetails)  {
@@ -103,6 +103,10 @@ export class CheckoutPage implements OnInit, OnDestroy {
 
     this._store.dispatch(new OnUpdateOrderItems(data));
 
+  }
+
+  goTo()  {
+    
   }
 
   constructor(private router: Router, 

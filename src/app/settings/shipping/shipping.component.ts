@@ -15,7 +15,8 @@ import { GetShippingCharges, PostShippingCharges } from './../../store/actions';
 })
 export class ShippingComponent implements OnInit {
   shippingSub : Subscription;
-
+  isInHouseDeliveryActive = false;
+  
   shippingForm = this.fb.group({
     customer_pickup : [true],
     in_house_delivery : [false],

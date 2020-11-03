@@ -16,7 +16,7 @@ RUN cd /client && npm install
 COPY .  /client
 
 # Build with $env variable from outside
-RUN cd /client && npm run build
+RUN cd /client && ionic build --prod
 
 # Build a small nginx image with static website
 FROM nginx:latest
