@@ -43,6 +43,33 @@
   <ion-item lines="none">
     <ion-label class="header">
         <ion-text class="text-16 text-600">
+            FULFILLMENT STATUS
+        </ion-text>
+    </ion-label>
+  </ion-item>
+
+  <ion-grid class="fulfillment-status">
+    <ion-row>
+      <ion-col class="pending">
+        <p>
+          <ion-icon name="checkmark-circle"></ion-icon> <br>
+          Pending
+        </p>
+      </ion-col>
+      <ion-col class="ready">
+        <p>
+          <ion-icon name="checkmark-circle"></ion-icon> <br>Ready for delivery</p>
+      </ion-col>
+      <ion-col class="delivered">
+        <p>
+          <ion-icon name="checkmark-circle"></ion-icon> <br>Delivered to customer</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-item lines="none">
+    <ion-label class="header">
+        <ion-text class="text-16 text-600">
             ORDER SUMMARY
         </ion-text>
     </ion-label>

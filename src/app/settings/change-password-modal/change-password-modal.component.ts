@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { showValidationMsg } from './../../common/form-validator';
 
 @Component({
   selector: 'app-change-password-modal',
@@ -12,7 +13,7 @@ export class ChangePasswordModalComponent implements OnInit {
   passwordForm = new FormGroup({
     // oldPassword: new FormControl('', Validators.required),
     newPassword: new FormControl('', Validators.required),
-    confirmPassword: new FormControl(''),
+    confirmPassword: new FormControl('', Validators.required),
   }, {validators: this.checkPassword});
 
   checkPassword(group: FormGroup)  {
@@ -27,7 +28,12 @@ export class ChangePasswordModalComponent implements OnInit {
   }
 
   onSubmit()  {
-    this.passwordForm.valid && this.modalController.dismiss(this.passwordForm.get('newPassword').value)
+    if(this.passwordForm.valid) {
+      this.modalController.dismiss(this.passwordForm.get('newPassword').value)
+    } 
+    else {
+      showValidationMsg(this.passwordForm)
+    }
   }
 
   constructor(public modalController: ModalController) { }

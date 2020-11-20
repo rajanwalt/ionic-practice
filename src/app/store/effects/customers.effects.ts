@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY } from 'rxjs';
+import { EMPTY, throwError } from 'rxjs';
 import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { MonekatService } from '../../APIs';
 
-import { ECustomersActions, SetCustomers, AddCustomers, CustomerSuccess, UpdateCustomers, GetCustomers} from '../actions';
+import { ECustomersActions, SetCustomers, AddCustomers, CustomerSuccess, UpdateCustomers, GetCustomers, PutCustomer} from '../actions';
 import { NavController } from '@ionic/angular';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class CustomersEffects {
     switchMap((action: GetCustomers)=> this.monekatService.getCustomers(action.payload)
       .pipe(
         map(customerdetails => new SetCustomers(customerdetails)),
-        catchError(() => EMPTY)
+        catchError((error) => throwError(error))
       ))
     )
   );
@@ -25,6 +25,16 @@ export class CustomersEffects {
     switchMap((action: AddCustomers) => this.monekatService.addCustomer(action.payload)
       .pipe(
         map(customerdetails => new CustomerSuccess(action.payload)),
+        catchError(() => EMPTY)
+      ))
+    )
+  );
+
+  putCustomers$ = createEffect(() => this.actions$.pipe(
+    ofType(ECustomersActions.PutCustomer),
+    switchMap((action: PutCustomer) => this.monekatService.putCustomer(action.payload)
+      .pipe(
+        map(customerdetails => new CustomerSuccess(customerdetails)),
         catchError(() => EMPTY)
       ))
     )

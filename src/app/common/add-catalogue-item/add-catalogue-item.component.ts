@@ -9,12 +9,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { State } from './../../store/state';
-import { AddCatalogue } from './../../store/actions';
+import { AddCatalogue, PutCatalogue } from './../../store/actions';
 import { SetOrder } from './../../store/actions';
-import { selectShopDetails } from './../../store/selectors';
+import { selectCatalogue, selectShopDetails } from './../../store/selectors';
 
 import { Catalogue } from './../models'
 import { Observable, Subscription } from 'rxjs';
+
+import { hostName } from './../../common/hostname';
+import { showValidationMsg } from './../../common/form-validator';
 
 interface Photo  {
   imgBlob :  Blob,
@@ -28,6 +31,8 @@ interface Photo  {
 })
 export class AddCatalogueItemComponent implements OnInit {
 
+  hostName = hostName;
+  catalogueId;
   photos : Photo[] = [
     null,
     null,
@@ -82,7 +87,10 @@ export class AddCatalogueItemComponent implements OnInit {
   );
 
   shopDetails$: Observable<any> = this._store.select(selectShopDetails);
+  public catelogue$ : Observable<any> = this._store.select(selectCatalogue);
+
   shopDetailsSub: Subscription;
+  catalogueSub: Subscription;
   service_id;
    
   onSelectDimensions(type: string)  {
@@ -114,21 +122,43 @@ export class AddCatalogueItemComponent implements OnInit {
   onSubmit()  {
     if(this.catalogueForm.valid)  {
       
-      let payload = this.catalogueForm.value;
+      let itemDetails = {
+        ...this.catalogueForm.value, 
+        shopId: this.service_id, 
+        ... (this.router.url.indexOf('order') > 0 ) ? {from : "order"} : {} 
+      };
 
+      let itemImages = this.photos.filter( data => data && data['imgBlob']).map(data => data.imgBlob);
 
+      if(this.catalogueId)  {
+        let itemDetailsWithId = {...itemDetails, id : this.catalogueId};
+
+        this._store.dispatch(new PutCatalogue({ 
+          itemDetails : itemDetailsWithId,  
+          itemImages
+        }));
+      }
+      else {
+        this._store.dispatch(new AddCatalogue({ itemDetails ,  itemImages}));
+      }
+
+      /*
       if(this.router.url.indexOf('order') > 0 )  {
         // const {price, productName} = this.catalogueForm.value;
         // const orderDetails = [{ price, productName, count: 1}]
         // this._store.dispatch(new SetOrder({orderDetails}));
+
         
-        this._store.dispatch(new AddCatalogue({...payload, shopId: this.service_id, from : "order" }));
+        this._store.dispatch(new AddCatalogue({...payload,  from : "order" , itemImages}));
 
         // this.router.navigate(['/order/order_summary']);
       }
       else {
-        this._store.dispatch(new AddCatalogue({...payload, shopId: this.service_id }));
-      }
+        this._store.dispatch(new AddCatalogue({...payload,  itemImages}));
+      }*/
+    }
+    else { 
+      showValidationMsg(this.catalogueForm)
     }
   }
   onDelete(index)  {
@@ -190,12 +220,31 @@ export class AddCatalogueItemComponent implements OnInit {
 
     }
 
-  ngOnInit() {
-    let catalogueId = this.activatedRoute.snapshot.queryParamMap.get('id');
+  ngOnInit()  {}
 
-    if(catalogueId !=  undefined)  {
+  ionViewDidEnter() {
+    this.catalogueId = this.activatedRoute.snapshot.queryParamMap.get('id') ? this.activatedRoute.snapshot.queryParamMap.get('id') : ''
+
+    if(this.catalogueId)  {
+      this.catalogueSub = this.catelogue$.subscribe(catalogueItems => {
+        let [catalogue] = catalogueItems.filter(data => data['id'] == this.catalogueId);
+
+        if(catalogue)  {
+          this.catalogueForm.patchValue(catalogue);
+          if(catalogue['images'] && catalogue['images'].length)  {
+            catalogue['images'].filter((data, index) => index < 4).map((data, index) => {
+
+              let filename = data['filename'];
+              let webviewPath = `${hostName}/api/services/downloadfile/${filename}`
+              this.photos[index] = {
+                webviewPath,
+                imgBlob : null
+              }
+            })
+          }
+        }
+      })
       
-      // Call API to retrive Data and set or patch customerForm
     }
   }
 
@@ -205,6 +254,12 @@ export class AddCatalogueItemComponent implements OnInit {
         this.service_id = data['id'];
       }
     })
+  }
+
+  ionViewDidLeave(){
+   if(this.catalogueSub)  {
+     this.catalogueSub.unsubscribe();
+   }
   }
 
 }

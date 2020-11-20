@@ -1,0 +1,14 @@
+{
+    "welcome": {
+        "title": "The simplest way to complete a sale over chat"
+    },
+    "languages": {
+        "tabName" : "Languages"
+    },
+    "common" : {
+        "button" : {
+            "login" : "LOG IN",
+            "createAccount" : "CREATE AN ACCOUNT FOR FREE"
+        }
+    }
+}

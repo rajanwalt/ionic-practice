@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { of, Subscription } from 'rxjs';
+import { combineLatest, forkJoin, Observable, of, Subscription } from 'rxjs';
+
 import { FormArray, FormGroup,  FormBuilder } from '@angular/forms';
 
 import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
 import { GetShippingCharges, PostShippingCharges } from './../../store/actions';
-
+import {selectSettings, selectShippingCharges, selectShopDetails, selectUser} from './../../store/selectors';
+import { counries, cities } from './../../common/countries_cities';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-shipping',
@@ -15,20 +18,30 @@ import { GetShippingCharges, PostShippingCharges } from './../../store/actions';
 })
 export class ShippingComponent implements OnInit {
   shippingSub : Subscription;
+  SettingsSub: Subscription;
+  shippingChargesSub : Subscription;
   isInHouseDeliveryActive = false;
+  user$: Observable<any> = this._store.select(selectUser)
+  settings$: Observable<any> = this._store.select(selectSettings);
+  shippingCharges$: Observable<any> = this._store.select(selectShippingCharges);
+
+  userSub: Subscription;
+  userId: any;
+  shopDetails$: Observable<any> = this._store.select(selectShopDetails);
+  shopDetailsSub: Subscription;
   
   shippingForm = this.fb.group({
     customer_pickup : [true],
-    in_house_delivery : [false],
+    deliveryavailable : [false],
     fixedPrices : this.fb.array([
-      this.createFixedPrice()
+      // this.createFixedPrice()
     ])
   })
 
-  createFixedPrice() {
+  createFixedPrice(city='', charge='') {
     return this.fb.group({  
-      city: [''],
-      charge: ['']      
+      city: [city],
+      charge: [charge]      
     })
   }
 
@@ -36,12 +49,7 @@ export class ShippingComponent implements OnInit {
     return this.shippingForm.get('fixedPrices') as FormArray;
   }
 
-  cities = [
-    "Dubai",
-    "Abu Dhabi",
-    "Sharjah",
-    "Al Ain"
-  ];
+  cities : Array<any> = [];
 
    onAddLocation()  {
     this.fixedPrices.push(this.createFixedPrice());
@@ -56,7 +64,7 @@ export class ShippingComponent implements OnInit {
   onSave()  {
 
     if(this.shippingForm.valid)  {
-      this._store.dispatch(new PostShippingCharges(this.shippingForm.value));
+      this._store.dispatch(new PostShippingCharges({...this.shippingForm.value, userId : this.userId }));
     }
   }
 
@@ -70,11 +78,54 @@ export class ShippingComponent implements OnInit {
   ngOnInit() {}
 
   ionViewDidEnter() {
-    // this._store.dispatch(new GetShippingCharges({}));
 
-    // this.vatSub = this._store.select(selectVat).subscribe(data => {
-    //   data && this.vatForm.patchValue(data);
-    // })
+
+    this.userSub = this.user$.subscribe( data => data && (this.userId = data['id']));
+
+    this.shopDetailsSub = this.shopDetails$.subscribe(data => {
+      if(data && data.country)  {
+        this.cities = cities(data.country) || [];
+      }
+    });
+
+    this.shippingChargesSub = combineLatest(this.settings$, this.shippingCharges$).pipe(take(1)).subscribe( ([settingsVal, shippingChargesVal]) => {
+     if(settingsVal)  {
+      this.shippingForm.get('deliveryavailable').setValue(settingsVal.deliveryavailable);
+      if(shippingChargesVal && shippingChargesVal.length)  {
+        
+        shippingChargesVal.forEach(({city, charge}) => {
+          this.fixedPrices.push(this.createFixedPrice(city, charge));
+        });
+
+      }
+      else {
+        this.onAddLocation();
+      }
+
+     }
+     else {
+      this.onAddLocation();
+     }
+      
+    })
+
+  }
+  
+
+  ionViewWillLeave(){
+    if(this.userSub)  {
+      this.userSub.unsubscribe();
+    }
+
+    if(this.shopDetailsSub)  {
+      this.shopDetailsSub.unsubscribe();
+    }
+
+    if(this.shippingChargesSub)  {
+      this.shippingChargesSub.unsubscribe();
+    }
+
+
   }
 
 }

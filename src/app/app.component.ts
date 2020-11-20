@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
-
-import { Platform } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
+import { NavController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { RouterStateService } from './common';
 import {  Store } from '@ngrx/store';
 import { State } from './store/state';
-import { selectPendingRequests } from './store/selectors'
+import { selectPendingRequests } from './store/selectors';
+import { Login } from './store/actions';
 import { Observable, of } from 'rxjs';
+
+import { getStorage } from './common'
+
 
 @Component({
   selector: 'app-root',
@@ -24,16 +28,31 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private routerStateService: RouterStateService,
-    private _store: Store<State>
+    private _store: Store<State>,
+    private navCtrl: NavController,
+    private translate: TranslateService
   ) {
     this.initializeApp();
     this.routerStateService.loadRouting();
   }
 
   initializeApp() {
-    this.platform.ready().then((response) => {
+    this.platform.ready().then(async (response) => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      let login = await getStorage('login');
+      
+      if(login)  {
+        this._store.dispatch(new Login(login));
+      }
+      else {
+        this.navCtrl.navigateForward('/welcome')
+      }
+
     });
+    
+
+    this.translate.setDefaultLang('en');
   }
 }

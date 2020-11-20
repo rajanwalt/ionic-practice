@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
 
 import { Logout } from './../../store/actions';
+import { removeStorage } from './../../common';
 
 @Component({
   selector: 'app-settings-tab',
@@ -51,7 +52,9 @@ export class SettingsTabComponent implements OnInit {
     }
     else {
       this._store.dispatch(new Logout());
-      this.navCtrl.navigateForward('/');
+      removeStorage('login');
+      
+      this.navCtrl.navigateForward('/welcome');
     }
   }
   

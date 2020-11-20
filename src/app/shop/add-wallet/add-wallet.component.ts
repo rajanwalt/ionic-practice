@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { counries } from './../../common/countries_cities';
+import { showValidationMsg } from './../../common/form-validator';
 
 @Component({
   selector: 'app-add-wallet',
@@ -23,6 +24,9 @@ export class AddWalletComponent implements OnInit {
   onSubmit()  {
     if(this.walletForm.valid)  {
 
+    }
+    else {
+      showValidationMsg(this.walletForm)
     }
   }
   

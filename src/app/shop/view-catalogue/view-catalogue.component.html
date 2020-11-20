@@ -15,15 +15,15 @@
 </ion-header>
 
 <ion-content color="light">
-  <div class="bannaer-img">
+  <div class="bannaer-img" *ngIf="photos.length">
     <img [src]="bannerPhoto" />
   </div>  
   
-  <ion-item lines="none">
+  <ion-item lines="none" *ngIf="photos.length">
     <ion-thumbnail *ngFor="let photo of photos; let i=index" 
         (click)="onSetBannerImg(photo);isActive=i" 
         [class.active]="isActive==i">
-      <ion-img [src]="photo.webviewPath"></ion-img>
+      <ion-img [src]="photo"></ion-img>
     </ion-thumbnail>
   </ion-item>
 

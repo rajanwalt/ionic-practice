@@ -6,9 +6,11 @@ ion-toolbar  {
     height: 300px;
     width: 100%;
     background-color: #ffffff;
+    text-align: center;
     img  {
         height: 100%;
-        width: 100%;
+        border-radius: 5px;
+        // width: 100%;
     }
 }
 
@@ -27,13 +29,14 @@ ion-item  {
     }
 
     ion-thumbnail  {
-        margin: 15px;
-        width: 100px;
-        height: auto;
-
-        // &.active  {
-            // border: 1px solid var(--ion-color-favorite);
-        // }
+        margin: 15px 15px 15px 0;
+        width: 80px;
+        height: 80px;
+        --border-radius	 : 5px;
+        // --size: 100%;
+        &.active  {
+            border: 2px solid var(--ion-color-favorite);
+        }
     }
 
     &.item-margin  {

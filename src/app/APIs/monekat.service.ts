@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Platform } from '@ionic/angular';
 import { Form } from '@angular/forms';
 
+import { hostName } from './../common/hostname';
 
 
 @Injectable({
@@ -13,22 +14,26 @@ import { Form } from '@angular/forms';
 })
 export class MonekatService {
 
-  hostName:string = "http://ec2-35-180-34-177.eu-west-3.compute.amazonaws.com:8000";
-  // hostName:string = "";
+  hostName = hostName;
 
   getGoogleLatLng(address): Observable<any> {
     let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${environment.googleKey}`
     return this.http.get(url);
   }
 
-  getShopDetails() : Observable<any>  {
-    let url = this.hostName +'/api/services'
+  getShopDetails(serviceId) : Observable<any>  {
+    let url = `${this.hostName}/api/services/${serviceId}`
     return this.http.get(url);
   }
 
   postShopDetails(shopData) : Observable<any>  {
     let url = this.hostName +'/api/services'
     return this.http.post(url, shopData);
+  }
+
+  updateShopDetails(shopData) : Observable<any>  {
+    let url = `${this.hostName}/api/services/${shopData['id']}`
+    return this.http.put(url, shopData);
   }
 
   getCustomers(queryData : any) : Observable<any>  {
@@ -42,6 +47,11 @@ export class MonekatService {
     return this.http.post(url, customerData);
   }
 
+  putCustomer(customerData: any) : Observable<any>  {
+    let url = `${this.hostName}/api/customers/${customerData['id']}`
+    return this.http.put(url, customerData);
+  }
+
   getCatalogue(queryData : object) : Observable<any>  {
     let url = this.hostName +'/api/items'
     let queryParams = new HttpParams().set('service_id', queryData['service_id']);
@@ -51,6 +61,11 @@ export class MonekatService {
   addCatalogue(catalogue: any) : Observable<any>  {
     let url = this.hostName +'/api/items'
     return this.http.post(url, catalogue);
+  }
+
+  updateCatalogue(catalogue: any) : Observable<any>  {
+    let url = `${this.hostName}/api/items/${catalogue['id']}`
+    return this.http.put(url, catalogue);
   }
 
   postOrderSummary(orderSummary: any): Observable<any>  {
@@ -67,15 +82,15 @@ export class MonekatService {
   }
 
   getOrder({orderId})  {
-    let url = this.hostName +`api/orders/${orderId}`;
-    return this.http.get(url).pipe(map(data => {
-      data['deliveryMethod'] = [];
-      data['paymentType'] = [];
-      return data;
-    }));
+    let url = this.hostName +`/api/orders/${orderId}`;
+    // return this.http.get(url).pipe(map(data => {
+    //   data['deliveryMethod'] = [];
+    //   data['paymentType'] = [];
+    //   return data;
+    // }));
 
     // let url ='./../../assets/json/order-summary.json'
-    // return this.http.get(url)
+    return this.http.get(url)
   }
 
   updateOrderSummary(orderSummary: any): Observable<any>  {
@@ -106,6 +121,12 @@ export class MonekatService {
     return this.http.post(url, vatDetails);
   }
 
+  postSettings(settings: any): Observable<any>  {
+    let url = this.hostName +'/api/users/settings';
+    
+    return this.http.post(url, settings);
+  }
+
   getWallet(): Observable<any>  {
     let url = this.hostName +'/api/wallet'
     return this.http.get(url);
@@ -134,10 +155,10 @@ export class MonekatService {
     return this.http.post(url, data);
   }
 
-  updateAccount(data: any): Observable<any>  {
-    let url = this.hostName +'/api/register';
+  updateAccount(userData: any): Observable<any>  {
+    let url = `${this.hostName}/api/users/${userData['id']}`;
     
-    return this.http.put(url, data);
+    return this.http.put(url, userData);
   }
 
   postFile(formData) : Observable<any>  {

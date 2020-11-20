@@ -5,7 +5,7 @@
         </ion-buttons>
         <ion-buttons slot="end">
           <ion-button (click)="onSubmit()">
-            <ion-icon name="checkmark" color="dark"></ion-icon>
+            <ion-icon name="checkmark-sharp" color="dark"></ion-icon>
           </ion-button>
         </ion-buttons> 
     </ion-toolbar>
@@ -26,6 +26,11 @@
                 <ion-input type="text" formControlName="lastName" name="lastName"></ion-input>
                 <ion-text class="warn-text" >Last name cannot be empty</ion-text>
             </ion-item> 
+            <ion-item lines='none' [class.error]="!customerForm.controls.birthday.valid && (customerForm.controls.birthday.dirty || customerForm.controls.birthday.touched)">
+                <ion-label position="stacked">Date of birth</ion-label>
+                <ion-datetime name="birthday" (ionChange)="getDate($event)" ></ion-datetime>
+                <ion-text class="warn-text">Date of birth cannot be empty</ion-text>
+              </ion-item> 
             <ion-item lines='none'  >
                 <ion-label position="stacked" class="input-label">Email address (optional)</ion-label>
                 <ion-input type="text" formControlName="email" name="email"></ion-input>

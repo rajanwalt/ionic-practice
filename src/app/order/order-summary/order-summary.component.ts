@@ -15,6 +15,7 @@ import { ModalController, NavController, AlertController } from '@ionic/angular'
 
 import {PaymentTypeModalComponent} from './../../common/payment-type-modal/payment-type-modal.component';
 
+
 @Component({
   selector: 'app-order-summary',
   templateUrl: './order-summary.component.html',
@@ -95,7 +96,7 @@ export class OrderSummaryComponent implements OnInit {
 
   async onShare(appName, orderId='')  {
     
-    let checkoutLink = `http://localhost:8100/checkout/${orderId}`;
+    let checkoutLink = `http://ec2-35-181-44-11.eu-west-3.compute.amazonaws.com:8080/checkout/${orderId}`;
 
     switch(appName)  {
       case this.SOCIALMEDIA.WHATSAPP : {

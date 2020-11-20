@@ -21,6 +21,7 @@ import { LoginReducers } from './login.reducer';
 import { WalletReducers } from './wallet.reducer';
 import { ShippingChargesReducers } from './shipping-charges.reducer';
 import { PendingRequestsReducers } from './pending-request.reducer';
+import { SettingsReducers } from './settings.reducer';
 import { clearState } from './../clear-state';
 
   export const reducers: ActionReducerMap<State> = {
@@ -35,6 +36,7 @@ import { clearState } from './../clear-state';
     wallet : WalletReducers,
     shippingCharges : ShippingChargesReducers,
     pendingRequest : PendingRequestsReducers,
+    settings : SettingsReducers,
     router: routerReducer
   };
   

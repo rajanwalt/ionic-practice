@@ -10,6 +10,7 @@ import { UserProfile } from './../models';
 import { ChangePasswordModalComponent } from './../change-password-modal/change-password-modal.component';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { showValidationMsg } from './../../common/form-validator';
 
 @Component({
   selector: 'app-user-profile',
@@ -27,11 +28,15 @@ export class UserProfileComponent implements OnInit {
     // phoneNumber: new FormControl('', Validators.required),
   });
   user$: Observable<any> = this._store.select(selectUser);
+  userId : any;
   userSub : Subscription;
   
   onSubmit()  {
     if(this.createAccountForm.valid)  {
-      this.createAccountForm.get('password').value == "********" ? this._store.dispatch(new UpdateAccount(UserProfile.fromAPI(this.createAccountForm.value))) : this._store.dispatch(new UpdateAccount(this.createAccountForm.value));
+      this.createAccountForm.get('password').value == "********" ? this._store.dispatch(new UpdateAccount(UserProfile.fromAPI({...this.createAccountForm.value, id: this.userId}))) : this._store.dispatch(new UpdateAccount({...this.createAccountForm.value, id: this.userId}));
+    }
+    else {
+      showValidationMsg(this.createAccountForm)
     }
   }
 
@@ -54,7 +59,10 @@ export class UserProfileComponent implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.userSub = this.user$.pipe(map(UserProfile.fromAPI)).subscribe(data => this.createAccountForm.patchValue(data));
+    this.userSub = this.user$.pipe(map(UserProfile.fromAPI)).subscribe(data => {
+      this.userId = data.id;
+      this.createAccountForm.patchValue(data)
+    });
   }
 
   ionViewWillLeave(){

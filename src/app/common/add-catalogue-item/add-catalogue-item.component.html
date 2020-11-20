@@ -6,7 +6,7 @@
         <ion-title color="dark">Add Item</ion-title>
         <ion-buttons slot="end">
           <ion-button (click)="onSubmit()">
-            <ion-icon name="checkmark" color="dark"></ion-icon>
+            <ion-icon name="checkmark-sharp" color="dark"></ion-icon>
           </ion-button>
         </ion-buttons> 
     </ion-toolbar>
@@ -27,7 +27,7 @@
                     </ion-thumbnail>
                 </div>
                 <div class="delete-icon" (click)="onDelete(i)">
-                    <ion-icon  name="trash" *ngIf="photo?.webviewPath"></ion-icon>
+                    <ion-icon  name="close-circle-outline" *ngIf="photo?.imgBlob"></ion-icon>
                 </div>
             </div>
         </ion-item>
@@ -63,10 +63,10 @@
                       <ion-toggle 
                         formControlName="delivery" 
                         slot="end" 
-                        (ionChange)="hasDimensions = !hasDimensions">
+                        >
                     </ion-toggle>
         </ion-item>
-        <div class="form-header" *ngIf="hasDimensions">
+        <div class="form-header" *ngIf="catalogueForm.controls.delivery.value">
             <ion-text class="input-label">
                 <p>Dimensions </p>
             </ion-text>
@@ -74,7 +74,7 @@
                 <p>Choose a preset or enter manually</p>
             </ion-text>
         </div>
-        <ion-item lines="none" *ngIf="hasDimensions">
+        <ion-item lines="none" *ngIf="catalogueForm.controls.delivery.value">
             <div class="dimention-thumbnail-container" *ngFor="let dimension of dimensions; let i=index">
                     <ion-thumbnail (click)="onSelectDimensions(dimension.type);isActive=i" class="dimensions"  [class.active]="isActive==i">
                         <ion-icon [name]="dimension.logo"></ion-icon>
@@ -85,7 +85,7 @@
                     </ion-thumbnail>
             </div>
         </ion-item>
-        <div formGroupName="dimensionDetails" class="dimensionDetails" *ngIf="hasDimensions">
+        <div formGroupName="dimensionDetails" class="dimensionDetails" *ngIf="catalogueForm.controls.delivery.value">
             <ion-item lines="none">
                 <ion-label position="stacked">Weight</ion-label>
                 <ion-input type="text" formControlName="weight" name="weight"></ion-input>

@@ -14,14 +14,27 @@ import { VatComponent } from './vat/vat.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ChangePasswordModalComponent } from './change-password-modal/change-password-modal.component';
 import { LanguagesComponent } from './languages/languages.component';
+import { SharedModule, createTranslateLoader } from './../common';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 
 @NgModule({
   imports: [
+    TranslateModule.forChild({ 
+      loader: {  
+        provide: TranslateLoader, 
+        useFactory: (createTranslateLoader),  
+        deps: [HttpClient] 
+      } 
+    }),
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    SettingsPageRoutingModule
+    SettingsPageRoutingModule,
+    SharedModule,
   ],
   declarations: [
     SettingsPage, 
@@ -30,7 +43,7 @@ import { LanguagesComponent } from './languages/languages.component';
     VatComponent,
     UserProfileComponent,
     ChangePasswordModalComponent,
-    LanguagesComponent
+    LanguagesComponent,
   ],
   entryComponents: [ChangePasswordModalComponent]
 })

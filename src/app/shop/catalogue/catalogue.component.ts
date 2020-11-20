@@ -7,6 +7,8 @@ import { State } from './../../store/state';
 import { selectCatalogue, selectShopDetails } from './../../store/selectors';
 import { IonSearchbar } from '@ionic/angular';
 import { GetCatalogue } from 'src/app/store/actions';
+import { hostName } from './../../common/hostname';
+
 @Component({
   selector: 'app-catalogue',
   templateUrl: './catalogue.component.html',
@@ -17,6 +19,19 @@ export class CatalogueComponent implements OnInit {
 
   public catelogue$ : Observable<any> = this._store.select(selectCatalogue);
   public searchText: string = "";
+  hostName = hostName;
+  
+  imageURL(itemImages=[])  {
+    if(itemImages && itemImages.length)  {
+      
+      let filename = itemImages[itemImages.length - 1]['filename'];
+
+      return `${hostName}/api/services/downloadfile/${filename}`
+    }
+    
+    return '';
+  }
+
   // public catelogue$ = 
   
   // of([

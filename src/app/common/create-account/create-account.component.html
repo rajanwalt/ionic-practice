@@ -13,70 +13,171 @@
   <form [formGroup]="createAccountForm">
     <ion-list>
       <ion-item>
+        <ion-label position="stacked">Vendor Type</ion-label>
+         <ion-select 
+            okText="Okay" 
+            cancelText="Dismiss" 
+            formControlName="vendorType"
+            (ionChange)="onChangeVendorType($event)">
+                <ion-select-option *ngFor="let vendorType of vendorTypes | keyvalue" [value]="vendorType.value">{{vendorType.value}}</ion-select-option>
+          </ion-select>
+      </ion-item>
+
+     
+    <ion-item-group formGroupName="freelancer" *ngIf="createAccountForm.controls.vendorType.value == vendorTypes.FREELANCER">
+      <ion-item>
         <ion-label position="stacked">First name</ion-label>
-        <ion-input formControlName="firstname" ></ion-input>
+        <ion-input formControlName="FirstName" ></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="stacked">Last name</ion-label>
-        <ion-input formControlName="lastname" ></ion-input>
+        <ion-input formControlName="LastName" ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">Email address</ion-label>
-        <ion-input formControlName="email" ></ion-input>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input formControlName="Email" ></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="stacked">Password</ion-label>
         <ion-input formControlName="password" type="password" ></ion-input>
       </ion-item>
-
       <ion-item>
-        <ion-label position="stacked">Business Type</ion-label>
+        <ion-label position="stacked" class="input-label" >Country of residence</ion-label>
+        <ion-select 
+          [value]="createAccountForm.controls.freelancer.get('CountryOfResidence').value" 
+          okText="Okay" 
+          cancelText="Dismiss" 
+          formControlName="CountryOfResidence"
+          (ionChange)="onChangeCountry($event)">
+          <ion-select-option *ngFor="let country of countries" [value]="country">{{country}}</ion-select-option>
+        </ion-select>
+      </ion-item> 
+      <ion-item>
+        <ion-label position="stacked">Date of birth</ion-label>
+        <ion-datetime name="Birthday" (ionChange)="getDate($event)" ></ion-datetime>
+      </ion-item> 
+      <ion-item>
+        <ion-label position="stacked">Occupation</ion-label>
+        <ion-input formControlName="Occupation"></ion-input>
+      </ion-item>
+      <ion-item-group formGroupName="Address">
+        <ion-item>
+          <ion-label position="stacked" class="input-label" >Country</ion-label>
+          <ion-select 
+              okText="Okay" 
+              cancelText="Dismiss" 
+              formControlName="Country"
+              (ionChange)="onChangeCountry($event)">
+            <ion-select-option *ngFor="let country of countries" [value]="country">{{country}}</ion-select-option>
+          </ion-select>
+        </ion-item>  
+        
+        <ion-item >
+              <ion-label position="stacked" class="input-label" >City</ion-label>
+              <ion-select okText="Okay" 
+              cancelText="Dismiss" 
+              formControlName="City"
+              >
+                <ion-select-option *ngFor="let city of cities" [value]="city">{{city}}</ion-select-option>
+              </ion-select>
+        </ion-item>  
+
+        <ion-item>
+          <ion-label position="stacked">Address Line</ion-label>
+          <ion-input formControlName="AddressLine1" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Postal code</ion-label>
+          <ion-input formControlName="PostalCode" ></ion-input>
+        </ion-item>
+      </ion-item-group>
+    </ion-item-group>
+    
+    <ion-item-group formGroupName="legalEntity" *ngIf="createAccountForm.controls.vendorType.value == vendorTypes.LEGALENTITY">
+      <ion-item >
+        <ion-label position="stacked">Legal Entity Type</ion-label>
          <ion-select 
             okText="Okay" 
             cancelText="Dismiss" 
-            formControlName="businessType"
-            (ionChange)="onChangeBusinessType($event)">
-                <ion-select-option *ngFor="let businessType of businessTypes | keyvalue" [value]="businessType.value">{{businessType.value}}</ion-select-option>
+            formControlName="type"
+            (ionChange)="onChangeLegalEntityType($event)">
+                <ion-select-option *ngFor="let legalEntityType of legalEntityTypes | keyvalue" [value]="legalEntityType.value">{{legalEntityType.value}}</ion-select-option>
           </ion-select>
       </ion-item>
-      <ion-item *ngIf="createAccountForm.controls.businessType.value == businessTypes.LEGAL_BUSINESS || createAccountForm.controls.businessType.value == businessTypes.LEGAL_ORGANIZATION  || createAccountForm.controls.businessType.value == businessTypes.LEAGAL_SOLETRADER ">
-        <ion-label position="stacked">Registration Date of Issue </ion-label>
-        <ion-datetime (ionChange)="getDate($event)" ></ion-datetime>
-      </ion-item>
-      <ion-item *ngIf="createAccountForm.controls.businessType.value == businessTypes.LEGAL_BUSINESS || createAccountForm.controls.businessType.value == businessTypes.LEGAL_ORGANIZATION  || createAccountForm.controls.businessType.value == businessTypes.LEAGAL_SOLETRADER ">
-        <ion-label position="stacked">Registration Date of Expiry</ion-label>
-        <ion-datetime (ionChange)="getDate($event)" ></ion-datetime>
+      <ion-item-group *ngIf="createAccountForm.controls.legalEntity.get('type').value == legalEntityTypes.BUSINESS_ORGANIZATION_SOLETRADER">
+        <ion-item lines="none">
+          <ion-label class="header">
+              <ion-text class="text-16 text-600">
+                  Add Company Details
+              </ion-text>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Name</ion-label>
+          <ion-input  formControlName="Name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Company Number</ion-label>
+          <ion-input formControlName="CompanyNumber"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input formControlName="Email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input formControlName="password" type="password" ></ion-input>
+        </ion-item>
+      <ion-item-group formGroupName="HeadquartersAddress">
 
-      </ion-item>
-      <ion-item *ngIf="createAccountForm.controls.businessType.value == businessTypes.FREELANCER">
-        <ion-label position="stacked">Date of Issue</ion-label>
-        <ion-datetime (ionChange)="getDate($event)" ></ion-datetime>
+        <ion-item lines='none'>
+          <ion-label>Headquarters address</ion-label>
+        </ion-item>
 
-      </ion-item>
-      <ion-item *ngIf="createAccountForm.controls.businessType.value == businessTypes.FREELANCER">
-        <ion-label position="stacked">Date of Expiry</ion-label>
-        <ion-datetime (ionChange)="getDate($event)" ></ion-datetime>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="stacked">Identity Proof</ion-label>
-        <ion-input type="file" ></ion-input>
-      </ion-item>
-      <!-- <ion-item>
-        <ion-label position="stacked">Store name</ion-label>
-        <ion-input formControlName="storename" ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="stacked">Phone number</ion-label>
-        <ion-input formControlName="phoneNumber" ></ion-input>
-      </ion-item> -->
-      <ion-item lines="none">
+        <ion-item>
+          <ion-label position="stacked" class="input-label" >Country</ion-label>
+          <ion-select 
+              okText="Okay" 
+              cancelText="Dismiss" 
+              formControlName="Country"
+              (ionChange)="onChangeCountry($event)">
+            <ion-select-option *ngFor="let country of countries" [value]="country">{{country}}</ion-select-option>
+          </ion-select>
+        </ion-item>  
+        
+        <ion-item >
+              <ion-label position="stacked" class="input-label" >City</ion-label>
+              <ion-select 
+                  okText="Okay" 
+                  cancelText="Dismiss" 
+                  formControlName="City">
+                <ion-select-option *ngFor="let city of cities" [value]="city">{{city}}</ion-select-option>
+              </ion-select>
+        </ion-item>  
+        
+        <ion-item>
+          <ion-label position="stacked">Address Line</ion-label>
+          <ion-input formControlName="AddressLine1" ></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="stacked">Postal code</ion-label>
+          <ion-input formControlName="PostalCode"></ion-input>
+        </ion-item>
+      </ion-item-group>
+      
+    </ion-item-group>
+  </ion-item-group>
+      
+      <!-- <ion-item lines="none">
         <ion-checkbox slot="start" [checked]="isChecked" (ionChange)="checkTandC()"></ion-checkbox>
         <ion-label class="ion-text-wrap">By creating a store you agree to the <ion-text color="primary">T&C</ion-text> and Privacy Policy </ion-label>
-      </ion-item>
+      </ion-item> -->
       <ion-item-divider></ion-item-divider>
-      <ion-item  button="true" color="favorite" [disabled]="!(createAccountForm.valid && createAccountForm.dirty && isChecked)" (click)="onSubmit()">
-        <ion-label color="light" class="ion-text-center">Create Store</ion-label>
+      <ion-item  button="true" color="favorite" (click)="onSubmit()">
+        <!-- <ion-item  button="true" color="favorite" [disabled]="!(createAccountForm.valid && createAccountForm.dirty && isChecked)" (click)="onSubmit()"> -->
+        <ion-label color="light" class="ion-text-center">Next</ion-label>
       </ion-item>
     </ion-list>
   </form>

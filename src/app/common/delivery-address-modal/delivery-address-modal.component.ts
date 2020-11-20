@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { counries, cities } from './../../common/countries_cities';
+import { showValidationMsg } from './../../common/form-validator';
 
 @Component({
   selector: 'app-delivery-address-modal',
@@ -35,7 +36,12 @@ export class DeliveryAddressModalComponent implements OnInit {
   }
 
   onSave()  {
-    this.customerForm.valid && this.modalController.dismiss(this.customerForm.value);
+    if(this.customerForm.valid)  {
+      this.modalController.dismiss(this.customerForm.value);
+    }
+    else {
+      showValidationMsg(this.customerForm)
+    }
   }
   
   constructor(public modalController: ModalController) { }

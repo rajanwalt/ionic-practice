@@ -19,6 +19,8 @@ export class AuthGuardService implements CanActivate {
   constructor(private _store: Store<State>, private navCtrl: NavController) { }
 
   canActivate(route: ActivatedRouteSnapshot): boolean | Observable<boolean>  {
+
+    
     return this.user$.pipe(map(data => {
       if(!data)  {
         this.navCtrl.navigateForward('/login');

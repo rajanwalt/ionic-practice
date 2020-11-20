@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { ModalController } from '@ionic/angular';
 import { counries, cities, countryCode } from './../../common/countries_cities';
-
+import { showValidationMsg } from './../../common/form-validator';
 
 @Component({
   selector: 'app-shop-address',
@@ -40,7 +40,12 @@ export class ShopAddressComponent implements OnInit, OnDestroy {
   
   onSubmit()  {
 
-    this.shopAddressForm.valid && this.modalController.dismiss(this.shopAddressForm.value);
+    if(this.shopAddressForm.valid)  {
+      this.modalController.dismiss(this.shopAddressForm.value);
+    }
+    else {
+      showValidationMsg(this.shopAddressForm)
+    }
   }
 
   onDismiss()  {

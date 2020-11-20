@@ -18,6 +18,9 @@ import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { RepDetailsComponent } from './rep-details/rep-details.component';
+import { KycComponent } from './kyc/kyc.component';
+import { NumberInputDirective } from './number-input';
 
 @NgModule({
   imports: [ CommonModule, IonicModule, FormsModule, ReactiveFormsModule ],
@@ -32,13 +35,18 @@ import { SpinnerComponent } from './spinner/spinner.component';
     CartComponent,
     LoginComponent,
     CreateAccountComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    RepDetailsComponent,
+    KycComponent,
+    NumberInputDirective
   ],
   entryComponents: [
     PaymentInfoModalComponent, 
     DeliveryAddressModalComponent,
     PaymentTypeModalComponent,
-    CartComponent
+    CartComponent,
+    RepDetailsComponent,
+    KycComponent
   ],
   providers: [Camera, SocialSharing],
   exports: [
@@ -53,7 +61,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     CartComponent,
     LoginComponent,
     CreateAccountComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    NumberInputDirective
   ]
 })
 export class SharedModule {}

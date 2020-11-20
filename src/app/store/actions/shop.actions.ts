@@ -5,6 +5,8 @@ export enum EShopActions  {
     GetShopAddress = '[Shop] Get ShopAddress',
     SetShop = '[Shop] Set Shop',
     PostShop = '[Shop] Post Shop',
+    UpdateShop = '[Shop] Update Shop',
+    PostShopLogo = '[Shop] Post Shop Logo',
     GetShop = '[Shop] Get Shop',
     ShopSuccess = '[Shop] Post Shop Success',
 }
@@ -29,6 +31,16 @@ export class PostShop implements Action {
     constructor(public payload: any)  {}
 }
 
+export class UpdateShop implements Action {
+    public readonly type = EShopActions.UpdateShop;
+    constructor(public payload: any)  {}
+}
+
+export class PostShopLogo implements Action {
+    public readonly type = EShopActions.PostShopLogo;
+    constructor(public payload: any)  {}
+}
+
 export class GetShop implements Action {
     public readonly type = EShopActions.GetShop;
     constructor(public payload: any)  {}
@@ -39,4 +51,4 @@ export class ShopSuccess implements Action {
     constructor(public payload: any)  {}
 }
 
-export type ShopActions = SetShop | SetShopAddress | GetShopAddress | PostShop | GetShop | ShopSuccess;
+export type ShopActions = SetShop | SetShopAddress | GetShopAddress | PostShop | GetShop | ShopSuccess | UpdateShop;

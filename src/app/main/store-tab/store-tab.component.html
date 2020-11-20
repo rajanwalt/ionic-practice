@@ -16,8 +16,8 @@
           </ion-col>  
         <ion-col size="12" class="ion-align-self-center text-center">
             <ion-avatar >
-                <img *ngIf="shopDetails.shopLogo" [src]= "shopDetails.shopLogo">
-                <ion-icon *ngIf="!(shopDetails.shopLogo)" name="image-outline"></ion-icon>
+                <img *ngIf="getShopLogo(shopDetails?.images)" [src]= "getShopLogo(shopDetails?.images)">
+                <ion-icon *ngIf="!getShopLogo(shopDetails?.images)" name="image-outline"></ion-icon>
             </ion-avatar>
             
             <ion-text>

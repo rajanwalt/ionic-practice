@@ -7,7 +7,7 @@ import { Logout } from './../store/actions';
 import { Observable, Subscription } from 'rxjs';
 
 import { selectShopDetails } from './../store/selectors';
-
+import { removeStorage } from './../common';
 
 @Component({
   selector: 'app-shop-payment-setup',
@@ -42,7 +42,9 @@ export class ShopPaymentSetupPage implements OnInit, AfterViewInit {
 
   onLogout()  {
     this._store.dispatch(new Logout());
-    this.navCtrl.navigateForward('/');
+    removeStorage('login');
+      
+    this.navCtrl.navigateForward('/welcome');
   }
 
   constructor(private navCtrl: NavController, private _store: Store<State>) { }

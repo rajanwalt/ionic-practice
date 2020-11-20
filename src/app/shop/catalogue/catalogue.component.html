@@ -45,7 +45,7 @@
   <ion-list *ngIf="catalogue.length">
       <ion-item *ngFor="let item of catalogue | listFilter:'productName':searchText" (click)="onViewItem(item)">
         <ion-thumbnail slot="start">
-          <img [src]="item?.url">
+          <img [src]="imageURL(item?.images)" >
         </ion-thumbnail>
         <ion-label>
           <h2>{{item?.productName}}</h2>

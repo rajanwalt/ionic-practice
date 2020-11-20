@@ -1,0 +1,92 @@
+<ion-header >
+  <ion-toolbar color="favorite">
+    <ion-buttons slot="start">
+          <ion-button (click)="onDismiss()">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+    <ion-title>Document Verification</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- {{payload | json }} -->
+  <!-- {{createAccountForm.value | json }} -->
+  <form [formGroup]="createAccountForm">
+    <ion-list>
+      <ion-item lines='none'>
+        <ion-label  class="ion-text-wrap ion-text-justify">
+          <ion-text color="medium">
+            <p>
+              Monekat uses safe and secure menthods of verifying their users, in order to process the payment from our various financial institutions.
+            </p>
+            <p>
+              As our next step, we would like you to complete the below form and upload the following documents as applicable.
+            </p>
+            <p>
+              You may contact us at support@monekat.com for further queries or concerns.
+            </p>
+            <p>
+              We appreciate your cooperation.
+            </p>
+          </ion-text>
+        </ion-label>
+      </ion-item>
+      <ion-item-group *ngIf="payload.hasOwnProperty('freelancer')">
+        <ion-item >
+          <ion-label position="stacked">Date of Issue of ID Proof</ion-label>
+          <ion-datetime (ionChange)="getDate($event)" name="IDProofIssuedDate"></ion-datetime>
+        </ion-item>
+        <ion-item >
+          <ion-label position="stacked">Date of Expiry of ID Proof</ion-label>
+          <ion-datetime name="IDProofExpiryDate" (ionChange)="getDate($event)"  [min]="minDate" [max]="maxData" ></ion-datetime>
+        </ion-item>
+        <ion-item lines='none'>
+          <ion-label position="stacked">Identity Proof</ion-label>
+          <ion-input 
+            type="file" 
+            accept="application/pdf, image/jpeg"
+            name="IDENTITY_PROOF" 
+            (change)="onFileChange($event, 'freelancer')" ></ion-input>
+          <ion-text color="medium"> Please hold the passport/national ID next your face and click a picture </ion-text>
+        </ion-item>
+      </ion-item-group>
+
+      <ion-item-group *ngIf="payload.hasOwnProperty('legalEntity')">
+        <ion-item >
+          <ion-label position="stacked">Registration Date of Issue </ion-label>
+          <ion-datetime (ionChange)="getDate($event)" name="RegistrationIssuedDate"  ></ion-datetime>
+        </ion-item>
+        <ion-item >
+          <ion-label position="stacked">Registration Date of Expiry</ion-label>
+          <ion-datetime (ionChange)="getDate($event)" name="RegistrationExpiryDate" [min]="minDate" [max]="maxData" ></ion-datetime>
+        </ion-item>
+        <ion-item lines='none'>
+          <ion-label position="stacked">Identity Proof</ion-label>
+          <ion-input type="file" name="IDENTITY_PROOF" (change)="onFileChange($event, 'legalEntity')" ></ion-input>
+          <ion-text color="medium"> Please hold the passport/national ID next your face and click a picture </ion-text>
+        </ion-item>
+  
+        <ion-item lines='none'>
+          <ion-label position="stacked">Registration Proof</ion-label>
+          <ion-input type="file" name="REGISTRATION_PROOF" (change)="onFileChange($event, 'legalEntity')" ></ion-input>
+          <ion-text color="medium">  Upload PDF/JPG/JPEG/PNG format of the document less than 3 months old</ion-text>
+        </ion-item>
+  
+        <ion-item lines='none'>
+          <ion-label position="stacked">Articles of Association</ion-label>
+          <ion-input type="file" name="ARTICLES_OF_ASSOCIATION" (change)="onFileChange($event, 'legalEntity')" ></ion-input>
+          <ion-text color="medium">  Upload PDF/JPG/JPEG/PNG format of the document (updated and signed)</ion-text>
+        </ion-item>
+      </ion-item-group>
+      
+
+      
+
+      <ion-item-divider></ion-item-divider>
+        <ion-item  button="true" color="favorite" (click)="onSubmit()">
+          <ion-label color="light" class="ion-text-center">Submit</ion-label>
+        </ion-item>
+      </ion-list>
+  </form>
+</ion-content>

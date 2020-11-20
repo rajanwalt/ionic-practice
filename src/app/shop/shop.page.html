@@ -3,7 +3,7 @@
       <ion-buttons slot="start">
           <ion-back-button  color="dark" defaultHref="/" text="Your Shop" icon="arrow-back-outline"></ion-back-button>
       </ion-buttons>
-      <ion-buttons slot="end" *ngIf="shopProfileForm.valid && shopProfileForm.dirty">
+      <ion-buttons slot="end" *ngIf="shopProfileForm.valid">
         <ion-button (click)="onSubmit()">Done</ion-button>
       </ion-buttons> 
   </ion-toolbar>

@@ -1,0 +1,14 @@
+{
+    "welcome": {
+        "title": "Le moyen le plus simple de conclure une vente par chat"
+    },
+    "languages": {
+        "tabName" : "Langue"
+    },
+    "common" : {
+        "button" : {
+            "login" : "s'identifier",
+            "createAccount" : "CRÉER UN COMPTE GRATUITEMENT"
+        }
+    }
+}

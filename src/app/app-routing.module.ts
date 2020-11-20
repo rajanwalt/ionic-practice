@@ -45,11 +45,10 @@ const routes: Routes = [
     component: CreateAccountComponent
   },
   {
-    path: '',
+    path: 'welcome',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
-    pathMatch: 'full'
   },
-  // { path: '', redirectTo: 'login', pathMatch: 'full' },
+  // { path: '', redirectTo: 'login', pathMatch: 'full' }
 
 
   

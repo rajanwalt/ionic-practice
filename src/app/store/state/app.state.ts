@@ -17,6 +17,7 @@ export interface State {
     wallet: any;
     shippingCharges: any,
     pendingRequest : number,
+    settings : any,
     router?: RouterReducerState<RouterStateUrl>;
   }
   
@@ -31,5 +32,6 @@ export const initialState : State = {
     wallet : null,
     lastOrderStatus : null,
     shippingCharges : [],
-    pendingRequest: 0
+    pendingRequest: 0,
+    settings : null
   }

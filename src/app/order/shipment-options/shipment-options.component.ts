@@ -5,7 +5,7 @@ import { AddCustomRateModalComponent } from './../add-custom-rate-modal/add-cust
 
 import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
-import { selectOrders, selectUser, shippingCharges } from './../../store/selectors';
+import { selectOrders, selectShippingCharges, selectUser, shippingCharges } from './../../store/selectors';
 import { SetOrder } from './../../store/actions';
 import { Order } from './../models';
 
@@ -18,23 +18,24 @@ import { Order } from './../models';
 export class ShipmentOptionsComponent implements OnInit {
 
   public orders$: Observable<Order> = this._store.select(selectOrders);
-  public shippingCharges$: Observable<any> = this._store.select(state => shippingCharges(selectUser(state)));
+  shippingCharges$: Observable<any> = this._store.select(selectShippingCharges);
+
 
   inHouseDelivery$: Observable<any> = combineLatest(
     this.orders$, 
     this.shippingCharges$,
     (order, shippingCharges) => {
       if(shippingCharges && shippingCharges.length && order['city'])  {
+        let [matchedCity] = shippingCharges.filter( data => data['city'] == order['city']);
+        if(matchedCity)  {
+          return {
+            type : "In-house Delivery",
+            charge : matchedCity['charge']
+          }
+        }
         return null;
       }
       else {
-        let charge = shippingCharges.filter( data => data['city'] == order['city']);
-        if(charge && charge.legth)  {
-          return {
-            type : "In-house Delivery",
-            charge : charge[0]['charge']
-          }
-        }
         return null;
       }
     })

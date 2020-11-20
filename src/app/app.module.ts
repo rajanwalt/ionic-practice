@@ -1,8 +1,10 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -34,11 +36,11 @@ import {ShopEffects,
   VatEffects, 
   LoginEffects,
   ShippingChargesEffects,
-  FileEffects } from './store/effects';
+  FileEffects,
+  SettingsEffects } from './store/effects';
 import { CustomSerializer } from './store/router-custom-serializer';
-import { SharedModule, RouterStateService } from './common';
-import { PendingRequestsInterceptor } from './APIs'
-
+import { SharedModule, RouterStateService, ErrorHandlerService, createTranslateLoader } from './common';
+import { PendingRequestsInterceptor } from './APIs';
 
 
 @NgModule({
@@ -70,9 +72,17 @@ import { PendingRequestsInterceptor } from './APIs'
       VatEffects, 
       LoginEffects,
       ShippingChargesEffects,
-      FileEffects
+      FileEffects,
+      SettingsEffects
     ]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    TranslateModule.forRoot({ 
+      loader: {  
+        provide: TranslateLoader, 
+        useFactory: (createTranslateLoader),  
+        deps: [HttpClient] 
+      } 
+    }), 
     ImageCropperModule
   ],
   providers: [
@@ -80,6 +90,7 @@ import { PendingRequestsInterceptor } from './APIs'
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: PendingRequestsInterceptor, multi: true},
+    { provide: ErrorHandler, useClass: ErrorHandlerService },
     Crop,
     FileTransfer,
     File,

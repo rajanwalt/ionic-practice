@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, Validators, FormControl, FormGroupDirective } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs';
@@ -7,11 +7,12 @@ import { switchMap, filter, map, flatMap, find } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import { State } from './../../store/state';
-import { AddCustomers, GetCustomer } from './../../store/actions';
+import { AddCustomers, GetCustomer, PutCustomer } from './../../store/actions';
 import { selectCustomers, selectShopDetails } from './../../store/selectors';
 import { Customer } from '../models';
 
 import { counries, cities } from './../countries_cities';
+import { showValidationMsg } from './../../common/form-validator';
 
 @Component({
   selector: 'app-add-customer',
@@ -23,14 +24,15 @@ export class AddCustomerComponent implements OnInit {
   customerForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
-    email: new FormControl(''),
+    email: new FormControl('', Validators.required),
     phoneNumber: new FormControl('', Validators.required),
-    country: new FormControl(''),
-    city: new FormControl(''),
-    street: new FormControl('')
+    country: new FormControl('', Validators.required),
+    city: new FormControl('', Validators.required),
+    street: new FormControl('', Validators.required),
+    birthday: new FormControl('', Validators.required)
   });
   
-  private customer : Customer; 
+  private customerId : any; 
   private serviceId = '';
 
   countries : Array<string> = counries()
@@ -48,20 +50,38 @@ export class AddCustomerComponent implements OnInit {
 
   onSubmit()  {
     if(this.customerForm.valid)  {
-      this._store.dispatch(new AddCustomers({...this.customerForm.value, shopId: this.serviceId}));
+      if(this.customerId)  {
+        this._store.dispatch(new PutCustomer({...this.customerForm.value, shopId: this.serviceId, id: this.customerId}));
+      }
+      else {
+        this._store.dispatch(new AddCustomers({...this.customerForm.value, shopId: this.serviceId}));
+      }
     }
+    else { 
+      showValidationMsg(this.customerForm)
+    }
+  }
+
+  getDate(e) {
+    let date = new Date(e.target.value).toISOString().substring(0, 10);
+    let name = e.target.name;
+
+    this.customerForm.get(name).setValue(date, {
+      onlyself: true
+    })
+ 
   }
   
   constructor(private activatedRoute: ActivatedRoute, private _store: Store<State>) { }
 
   ngOnInit() {
 
-    let customerId = this.activatedRoute.snapshot.queryParamMap.get('id');
+    this.customerId = this.activatedRoute.snapshot.queryParamMap.get('id');
 
-    if(customerId !=  undefined)  {
+    if(this.customerId !=  undefined)  {
       // this._store.dispatch(new GetCustomer({'this.customerForm.value'}));
       this.customerSub = this._store.select(selectCustomers).pipe(
-        flatMap(customers => customers.filter( entry => customerId == entry.id))
+        flatMap(customers => customers.filter( entry => this.customerId == entry.id))
       ).subscribe(customer => {
 
         if(customer && customer.country)  {

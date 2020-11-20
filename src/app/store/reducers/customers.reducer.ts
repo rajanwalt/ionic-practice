@@ -12,9 +12,9 @@ export function CustomersReducers(state:Customer[] = [] , action: CustomersActio
             let {id} = action.payload;
             let tempState = state.slice(0);
 
-            let isCatalogueExist = _.findIndex(state, {id});
-            if(isCatalogueExist >= 0)  {
-                tempState[isCatalogueExist] = {...action.payload};
+            let isCustomerExist = _.findIndex(state, {id});
+            if(isCustomerExist >= 0)  {
+                tempState[isCustomerExist] = action.payload;
                 return tempState;
             }
             

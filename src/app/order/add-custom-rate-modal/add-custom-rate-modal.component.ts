@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { showValidationMsg } from './../../common/form-validator';
 
 @Component({
   selector: 'app-add-custom-rate-modal',
@@ -19,7 +20,12 @@ export class AddCustomRateModalComponent implements OnInit {
   }
 
   onAddDeliveryRate()  {
-    this.deliveryRateForm.valid && this.modalController.dismiss(this.deliveryRateForm.value)
+    if(this.deliveryRateForm.valid) {
+      this.modalController.dismiss(this.deliveryRateForm.value)
+    }
+    else {
+      showValidationMsg(this.deliveryRateForm)
+    }
   }
 
   constructor(public modalController: ModalController) { }

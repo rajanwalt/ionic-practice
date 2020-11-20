@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { State } from './../../store/state';
-import { selectShopDetails } from './../../store/selectors';
+import { selectShopDetails, selectUser } from './../../store/selectors';
+import { GetShop } from 'src/app/store/actions';
+import { hostName } from './../../common/hostname';
 
 @Component({
   selector: 'app-store-tab',
@@ -22,7 +24,20 @@ export class StoreTabComponent implements OnInit {
   //   totalWallet : 1200
   // })
   shopDetails$: Observable<any> = this._store.select(selectShopDetails);
+  user$: Observable<any> = this._store.select(selectUser);
+  // hostName = hostName;
 
+  shopDetailsSub: Subscription;
+
+  getShopLogo(shopImages=[])  {
+    if(shopImages && shopImages.length)  {
+      let filename = shopImages[shopImages.length - 1]['filename'];
+
+      return `${hostName}/api/services/downloadfile/${filename}`
+    }
+   
+    return '';
+  }
 
   onSelect(selectedItem : string)  {
     switch(selectedItem)  {
@@ -53,5 +68,18 @@ export class StoreTabComponent implements OnInit {
   constructor(private router: Router, private _store: Store<State>) { }
 
   ngOnInit() {}
+
+  ionViewDidEnter(){
+    this.shopDetailsSub = this.user$.subscribe(details => {
+      let service = details['services'][0];
+      this._store.dispatch(new GetShop(service['id']));
+    })
+  }
+
+  ionViewDidLeave(){
+    if(this.shopDetailsSub)  {
+      this.shopDetailsSub.unsubscribe();
+    }
+  }
 
 }

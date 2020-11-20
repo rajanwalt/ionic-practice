@@ -4,9 +4,10 @@ import { NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 
 import { State } from './../../store/state';
-import { PostVat } from './../../store/actions';
+import { PostSettings, PostVat } from './../../store/actions';
 import { Observable, Subscription } from 'rxjs';
-import { selectUser, selectSetting } from './../../store/selectors';
+import { selectUser, selectSettings } from './../../store/selectors';
+import { showValidationMsg } from './../../common/form-validator';
 
 @Component({
   selector: 'app-vat',
@@ -15,11 +16,11 @@ import { selectUser, selectSetting } from './../../store/selectors';
 })
 export class VatComponent implements OnInit {
 
-  vatSub: Subscription;
+  SettingsSub: Subscription;
   userSub: Subscription;
   userId: any;
   user$: Observable<any> = this._store.select(selectUser)
-  settings$: Observable<any> = this._store.select(state => selectSetting(selectUser(state)));
+  settings$: Observable<any> = this._store.select(selectSettings);
   // vatPattern = "/^[0-9]+(\.[0-9]{1,2})?$/"
 
   vatForm = new FormGroup({
@@ -30,7 +31,10 @@ export class VatComponent implements OnInit {
   
   onApply()  {
     if(this.vatForm.valid)  {
-      this._store.dispatch(new PostVat({...this.vatForm.value, userId: this.userId } ));
+      this._store.dispatch(new PostSettings({...this.vatForm.value, userId: this.userId } ));
+    }
+    else {
+      showValidationMsg(this.vatForm)
     }
   }
 
@@ -44,16 +48,16 @@ export class VatComponent implements OnInit {
 
   ionViewDidEnter() {
 
-    this.vatSub = this.settings$.subscribe(data => {
-      data && data.length && this.vatForm.patchValue(data[0]);
+    this.SettingsSub = this.settings$.subscribe(data => {
+      data && this.vatForm.patchValue(data);
     })
 
     this.userSub = this.user$.subscribe( data => data && (this.userId = data['id']));
   }
 
   ionViewDidLeave(){
-    if(this.vatSub)  {
-      this.vatSub.unsubscribe();
+    if(this.SettingsSub)  {
+      this.SettingsSub.unsubscribe();
     }
   }
 

@@ -7,13 +7,16 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 
 import { Store } from '@ngrx/store';
-import { SetShop, PostShop, GetFile, PostFile } from './../store/actions';
+import { SetShop, PostShop, GetFile, PostFile, UpdateShop } from './../store/actions';
 import { selectShopDetails, selectUser } from './../store/selectors';
 import { State } from './../store/state';
 import { Observable, Subscription } from 'rxjs';
 
 import { PhotoService} from './../APIs';
 import { ShopAddressComponent } from './shop-address/shop-address.component';
+import { hostName } from './../common/hostname';
+
+import { showValidationMsg } from './../common/form-validator';
 
 // const formValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
 //   const shopName = control.get('name');
@@ -26,6 +29,7 @@ interface Photo  {
   imgBlob :  Blob,
   webviewPath : string
 }
+
 
 @Component({
   selector: 'app-shop',
@@ -40,8 +44,11 @@ export class ShopPage implements OnInit, OnDestroy {
   
   overlayHidden : boolean = true;
   fileUrl: any = null;
-  
+  hostName = hostName;
+    
   shopDetails$: Observable<any> = this._store.select(selectShopDetails);
+  serviceId = '';
+
   user$: Observable<any> = this._store.select(selectUser)
   shopDetailsSub : Subscription;
   userSub: Subscription;
@@ -85,18 +92,23 @@ export class ShopPage implements OnInit, OnDestroy {
   
   async onSubmit()  {
     if(this.shopProfileForm.valid)  {
-      let shopPayload = {...this.shopProfileForm.value, userId: this.userId};
+
+      let shopPayload = {
+        ...this.shopProfileForm.value, 
+        userId: this.userId,
+        ... this.serviceId ? { id : this.serviceId } : {}
+      };
 
       let shopLogoBlog: Blob = this.shopLogo && this.shopLogo.imgBlob ?  this.shopLogo.imgBlob : null;
-      
-      // if(this.shopLogo && this.shopLogo.imgBlob)  {
-      //   let formData = new FormData();
-      //   formData.append("file", shopLogoBlog);
-      //   formData.append("userId", this.userId);
-      //   this._store.dispatch(new PostFile({...this.shopProfileForm.value}))
-      // }
-
-      this._store.dispatch(new PostShop({shopPayload, shopLogoBlog}))
+      if(this.serviceId)  {
+        this._store.dispatch(new UpdateShop({shopPayload, shopLogoBlog}))
+      }
+      else {
+        this._store.dispatch(new PostShop({shopPayload, shopLogoBlog}))
+      }
+    }
+    else {
+      showValidationMsg(this.shopProfileForm)
     }
   }
   
@@ -170,6 +182,17 @@ export class ShopPage implements OnInit, OnDestroy {
     this.shopDetailsSub = this.shopDetails$.subscribe( shopDetails => {
       if(shopDetails)  {
         this.shopProfileForm.patchValue(shopDetails);
+        this.serviceId = shopDetails['id'];
+
+        if(shopDetails['images'] && shopDetails['images'].length)  {
+          let filename = shopDetails['images'][shopDetails['images'].length - 1]['filename'];
+
+          let webviewPath = `${hostName}/api/services/downloadfile/${filename}`
+          this.shopLogo = {
+            webviewPath
+          }
+          
+        }
       }
     });
 

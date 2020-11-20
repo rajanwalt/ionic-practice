@@ -9,3 +9,5 @@ export * from './last-order-status.selector';
 export * from './user.selector';
 export * from './wallet.selector';
 export * from './pending-requests.selector';
+export * from './settings.selector';
+export * from './shipping-charges.selector';

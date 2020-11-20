@@ -18,19 +18,16 @@
         <ion-button fill="outline" color="favorite" size="small" (click)="onShowAddresseModal(order?.customer)">Edit</ion-button>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col size="9">
         <ion-text *ngFor="let item of order?.paymentType" [hidden]="item?.status != 'selected'" class="text-bold">
           {{item?.type}}
         </ion-text> 
-        <!-- <br> <ion-text color="medium">
-          VISA, Mastercard
-        </ion-text> -->
       </ion-col>
       <ion-col size="3" class="ion-text-right">
         <ion-button fill="outline" color="favorite" size="small" (click)="onShowPaymentType()">Edit</ion-button>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
     <ion-row>
       <ion-col size="9">
         <ion-text class="text-bold">There are {{order?.orderDetails?.length | json}} item in your cart</ion-text>
