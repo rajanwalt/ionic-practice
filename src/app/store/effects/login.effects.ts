@@ -5,7 +5,7 @@ import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { MonekatService } from '../../APIs';
 
 import {  ELoginActions, Login, CreateAccount, UpdateAccount, CreateAccountSuccess, SetUser, LoginSuccess, SetShop, SetShippingCharges, UpdateAccountSuccess, SetSettings, LoginFailed} from '../actions';
-import { NavController } from '@ionic/angular';
+import { NavController, ModalController } from '@ionic/angular';
 import { setStorage } from './../../common';
 
 @Injectable()
@@ -54,7 +54,8 @@ export class LoginEffects {
     ofType(ELoginActions.CreateAccountSuccess),
     map((action: CreateAccountSuccess) => new SetUser(action.payload)),
     tap( _ => {
-      this.navCtrl.navigateForward('/shop-payment-setup');
+      this.modalController.dismiss({});
+      this.navCtrl.navigateRoot('/shop-payment-setup');
     })
   ));
 
@@ -84,6 +85,7 @@ export class LoginEffects {
   constructor(
     private actions$: Actions,
     private monekatService: MonekatService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private modalController: ModalController
   ) {}
 }

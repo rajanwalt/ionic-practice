@@ -19,6 +19,8 @@ import { CartComponent } from './../common/cart/cart.component';
 import {  OnSelectPaymentMethod, OnUpdateCustomer, OnUpdateOrderItems } from './../store/actions';
 import { GetFinalOrderSummary } from './../store/actions';
 
+import { MonekatService } from './../APIs'
+
 
 
 @Component({
@@ -30,6 +32,8 @@ export class CheckoutPage implements OnInit, OnDestroy {
 
   isInValid = false;
   public order$: Observable<Cart> = this._store.select(selectLastOrder);
+  checkoutLinkSub : Subscription;
+  orderId; 
  
   subtotal(orderDetails)  {
     if(orderDetails && orderDetails.length)  {
@@ -105,14 +109,29 @@ export class CheckoutPage implements OnInit, OnDestroy {
 
   }
 
-  goTo()  {
+  onSubmit(order)  {
+
+    let payload = {
+      id : this.orderId,
+      amount : this.total(order),
+      fee : 10
+    }
+
+    this.checkoutLinkSub = this.monekatService.checkout(payload).subscribe( data => {
+      let {RedirectURL} = data;
+
+      window.open(RedirectURL, '_self'); 
+    })
     
+
   }
 
   constructor(private router: Router, 
               private activatedRoute : ActivatedRoute, 
               private routerStateService: RouterStateService,
-              private _store: Store<State>, private modalController: ModalController) { 
+              private _store: Store<State>, 
+              private modalController: ModalController,
+              private monekatService: MonekatService) { 
 
   
 
@@ -120,14 +139,16 @@ export class CheckoutPage implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    let orderId = this.activatedRoute.snapshot.params.orderId;
+    this.orderId = this.activatedRoute.snapshot.params.orderId;
     
-    this._store.dispatch(new GetFinalOrderSummary({orderId}));
+    this._store.dispatch(new GetFinalOrderSummary({orderId : this.orderId}));
   }
 
   
   ngOnDestroy()  {
- 
+    if(this.checkoutLinkSub)  {
+      this.checkoutLinkSub.unsubscribe();
+    }
   }
 
  

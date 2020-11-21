@@ -41,14 +41,19 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      let login = await getStorage('login');
+      console.log(response);
+
+      if(response != "dom")  {
+        let login = await getStorage('login');
       
-      if(login)  {
-        this._store.dispatch(new Login(login));
+        if(login)  {
+          this._store.dispatch(new Login(login));
+        }
+        else {
+          this.navCtrl.navigateForward('/welcome')
+        }
       }
-      else {
-        this.navCtrl.navigateForward('/welcome')
-      }
+      
 
     });
     

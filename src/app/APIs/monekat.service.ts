@@ -180,6 +180,11 @@ export class MonekatService {
 
   }
   
+  checkout(data): Observable<any>  {
+    let url = this.hostName +'/api/payorder';
+
+    return this.http.post(url, data);
+  }
 
   constructor(private http: HttpClient, private platform: Platform) { }
 }

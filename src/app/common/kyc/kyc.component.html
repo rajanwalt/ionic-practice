@@ -45,7 +45,7 @@
           <ion-label position="stacked">Identity Proof</ion-label>
           <ion-input 
             type="file" 
-            accept="application/pdf, image/jpeg"
+            accept="application/pdf, image/jpeg, image/png"
             name="IDENTITY_PROOF" 
             (change)="onFileChange($event, 'freelancer')" ></ion-input>
           <ion-text color="medium"> Please hold the passport/national ID next your face and click a picture </ion-text>
@@ -63,19 +63,19 @@
         </ion-item>
         <ion-item lines='none'>
           <ion-label position="stacked">Identity Proof</ion-label>
-          <ion-input type="file" name="IDENTITY_PROOF" (change)="onFileChange($event, 'legalEntity')" ></ion-input>
+          <ion-input type="file" accept="application/pdf, image/jpeg, image/png" name="IDENTITY_PROOF" (change)="onFileChange($event, 'legalEntity')" ></ion-input>
           <ion-text color="medium"> Please hold the passport/national ID next your face and click a picture </ion-text>
         </ion-item>
   
         <ion-item lines='none'>
           <ion-label position="stacked">Registration Proof</ion-label>
-          <ion-input type="file" name="REGISTRATION_PROOF" (change)="onFileChange($event, 'legalEntity')" ></ion-input>
+          <ion-input type="file" accept="application/pdf, image/jpeg, image/png" name="REGISTRATION_PROOF" (change)="onFileChange($event, 'legalEntity')" ></ion-input>
           <ion-text color="medium">  Upload PDF/JPG/JPEG/PNG format of the document less than 3 months old</ion-text>
         </ion-item>
   
         <ion-item lines='none'>
           <ion-label position="stacked">Articles of Association</ion-label>
-          <ion-input type="file" name="ARTICLES_OF_ASSOCIATION" (change)="onFileChange($event, 'legalEntity')" ></ion-input>
+          <ion-input type="file" accept="application/pdf, image/jpeg, image/png" name="ARTICLES_OF_ASSOCIATION" (change)="onFileChange($event, 'legalEntity')" ></ion-input>
           <ion-text color="medium">  Upload PDF/JPG/JPEG/PNG format of the document (updated and signed)</ion-text>
         </ion-item>
       </ion-item-group>

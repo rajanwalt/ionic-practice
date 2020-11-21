@@ -28,4 +28,6 @@ export class GetFinalOrderSummary implements Action {
 }
 
 
-export type OrderSummaryActions = PostOrderSummary | GetOrderSummary | UpdateOrderSummary | GetFinalOrderSummary;
+
+
+export type OrderSummaryActions = PostOrderSummary | GetOrderSummary | UpdateOrderSummary | GetFinalOrderSummary ;
