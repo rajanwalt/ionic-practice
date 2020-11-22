@@ -30,7 +30,7 @@ export class KycComponent implements OnInit {
     RegistrationExpiryDate: new FormControl('', Validators.required),
     IDENTITY_PROOF: new FormControl('', Validators.required),
     REGISTRATION_PROOF: new FormControl('', Validators.required),
-    AssociationArticelProof: new FormControl('', Validators.required),
+    ARTICLES_OF_ASSOCIATION: new FormControl('', Validators.required),
   });
 
   onDismiss()  {

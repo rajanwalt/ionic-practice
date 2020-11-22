@@ -6,8 +6,6 @@ import { filter } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
 import { State } from './../store/state';
 
-import { RouterStateService } from './../common';
-
 import { selectLastOrder } from './../store/selectors';
 
 import { Cart } from './../common/models';
@@ -128,7 +126,6 @@ export class CheckoutPage implements OnInit, OnDestroy {
 
   constructor(private router: Router, 
               private activatedRoute : ActivatedRoute, 
-              private routerStateService: RouterStateService,
               private _store: Store<State>, 
               private modalController: ModalController,
               private monekatService: MonekatService) { 

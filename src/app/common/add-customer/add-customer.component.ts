@@ -22,8 +22,8 @@ import { showValidationMsg } from './../../common/form-validator';
 export class AddCustomerComponent implements OnInit {
 
   customerForm = new FormGroup({
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
+    firstname: new FormControl('', Validators.required),
+    lastname: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
     phoneNumber: new FormControl('', Validators.required),
     country: new FormControl('', Validators.required),
