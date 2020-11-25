@@ -24,8 +24,8 @@ export class CustomersEffects {
     ofType(ECustomersActions.AddCustomers),
     switchMap((action: AddCustomers) => this.monekatService.addCustomer(action.payload)
       .pipe(
-        map(customerdetails => new CustomerSuccess(action.payload)),
-        catchError(() => EMPTY)
+        map(customerdetails => new CustomerSuccess(customerdetails)),
+        catchError((error) => throwError(error))
       ))
     )
   );
@@ -35,7 +35,7 @@ export class CustomersEffects {
     switchMap((action: PutCustomer) => this.monekatService.putCustomer(action.payload)
       .pipe(
         map(customerdetails => new CustomerSuccess(customerdetails)),
-        catchError(() => EMPTY)
+        catchError((error) => throwError(error))
       ))
     )
   );

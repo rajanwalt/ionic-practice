@@ -20,7 +20,7 @@ ion-item  {
         &.error {
             color: var(--ion-color-danger);
     
-            ion-input, ion-select {
+            ion-input, ion-select, ion-datetime {
                 border-bottom : 1px solid var(--ion-color-danger);
             }
     
@@ -31,7 +31,7 @@ ion-item  {
             }
         }
     
-        ion-input, ion-select {
+        ion-input, ion-select, ion-datetime {
             font-size: 16px;
             --padding-top: 12px;
             border-bottom : 1px solid var(--ion-color-medium);

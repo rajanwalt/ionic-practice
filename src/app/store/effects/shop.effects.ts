@@ -49,8 +49,14 @@ export class ShopEffects {
 
       return this.monekatService.postFile(formData).pipe(
         map( shopImage => {
-          let payload = action.payload['shopDetails'];
-          payload['images'].push(shopImage)
+          let payload = {...action.payload['shopDetails']};
+          if(payload['images'])  {
+            payload['images'].push(shopImage)
+          }
+          else {
+            payload['images'] = [shopImage]
+          }
+          
           return new ShopSuccess(payload)
         }),
         catchError((error) => of(new ShopFailed(error)))

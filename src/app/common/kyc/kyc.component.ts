@@ -6,6 +6,8 @@ import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
 import { showValidationMsg } from './../../common/form-validator';
 
+import { throwError } from 'rxjs';
+
 @Component({
   selector: 'app-kyc',
   templateUrl: './kyc.component.html',
@@ -54,9 +56,15 @@ export class KycComponent implements OnInit {
     }
   }
 
+  getFileReader(): FileReader {
+    const fileReader = new FileReader();
+    const zoneOriginalInstance = (fileReader as any)["__zone_symbol__originalInstance"];
+    return zoneOriginalInstance || fileReader;
+  }
+
   readFileAsBlob(file: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      const reader = new FileReader();
+      let reader: FileReader = this.getFileReader();
       reader.onloadend = () => {
         // const imgBlob = new Blob([reader.result], { type: 'image/jpeg' });
         // resolve(imgBlob);
@@ -64,21 +72,31 @@ export class KycComponent implements OnInit {
         var base64data = reader.result;   
         resolve(base64data);
       };
+
+      reader.onerror = (e) => {
+        console.log('Failed file read: ' + e.toString());
+        reject(e);
+      };
       // reader.readAsArrayBuffer(file);
       reader.readAsDataURL(file); 
     })  
   }
 
   async onFileChange(event, type)  {
-    if (event.target.files.length > 0) {
-      const name = event.target.name;
-      const file = event.target.files[0];
-      const blob = await this.readFileAsBlob(file);
-      
-      this.createAccountForm.get(type).patchValue({
-        [name]: blob
-      });
+    try {
+      if (event.target.files.length > 0) {
+        const name = event.target.name;
+        const file = event.target.files[0];
+        const blob = await this.readFileAsBlob(file);
+        
+        this.createAccountForm.get(type).patchValue({
+          [name]: blob
+        });
+      }
+    } catch(e)  {
+      throwError(e)
     }
+    
   }
 
   async presentToast() {

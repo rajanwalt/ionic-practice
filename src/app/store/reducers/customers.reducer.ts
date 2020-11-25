@@ -9,16 +9,20 @@ export function CustomersReducers(state:Customer[] = [] , action: CustomersActio
             return action.payload
         }
         case ECustomersActions.UpdateCustomers: {
-            let {id} = action.payload;
             let tempState = state.slice(0);
-
-            let isCustomerExist = _.findIndex(state, {id});
-            if(isCustomerExist >= 0)  {
-                tempState[isCustomerExist] = action.payload;
-                return tempState;
-            }
             
-            return tempState.push(action.payload);
+            if(tempState && tempState.length)  {
+                let {id} = action.payload;
+                let isCustomerExist = _.findIndex(state, {id});
+                if(isCustomerExist >= 0)  {
+                    tempState[isCustomerExist] = {...action.payload};
+                    return tempState;
+                }
+                else {
+                    return [...tempState, {...action.payload} ]
+                }
+            }
+            return [{...action.payload}];
         }
         case ECustomersActions.GetCustomer: {
             let {customerId} = action.payload;

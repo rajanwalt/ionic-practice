@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   goBack()  {
-    this.navCtrl.back();
+    this.navCtrl.navigateRoot('/welcome');
   }
 
   constructor(private navCtrl: NavController, private _store: Store<State>) { }
