@@ -17,10 +17,10 @@ export class DeliveryAddressModalComponent implements OnInit {
   cities : Array<any> = [];
 
   customerForm = new FormGroup({
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
+    firstname: new FormControl('', Validators.required),
+    lastname: new FormControl('', Validators.required),
     email: new FormControl(''),
-    phoneNumber: new FormControl('', Validators.required),
+    phonenumber: new FormControl('', Validators.required),
     country: new FormControl(''),
     city: new FormControl(''),
     street: new FormControl('')

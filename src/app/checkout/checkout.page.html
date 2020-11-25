@@ -8,9 +8,9 @@
   <ion-grid class="main" *ngIf="(order$ | async) as order">
     <ion-row class="ion-text-capitalize">
       <ion-col size="9">
-        <ion-text color="dark" class="text-bold"> {{order?.customer?.firstName}} {{order?.customer?.lastName}}</ion-text> <br>
+        <ion-text color="dark" class="text-bold"> {{order?.customer?.firstname}} {{order?.customer?.lastname}}</ion-text> <br>
         <ion-text color="medium">
-          {{order?.customer?.firstName}}, {{order?.customer?.city}}, {{order?.customer?.country}}
+          {{order?.customer?.firstname}}, {{order?.customer?.city}}, {{order?.customer?.country}}
         </ion-text> <br>
         <ion-text color="medium">{{order?.customer?.phoneNumber}}</ion-text>
       </ion-col>
@@ -78,9 +78,9 @@
       <ion-col class="ion-text-left"><ion-text color="dark">Delivery</ion-text></ion-col>
       <ion-col class="ion-text-right"><ion-text color="dark">{{deliveryMethod?.rate | currency:'USD':'code'}}</ion-text></ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="vat(order) as vatAmount">
       <ion-col class="ion-text-left"><ion-text color="dark">Taxes (VAT 3%)</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="dark">0</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="dark">{{vatAmount | currency:'USD':'code'}}</ion-text></ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="ion-text-left"><ion-text color="dark" class="text-bold">Total</ion-text></ion-col>

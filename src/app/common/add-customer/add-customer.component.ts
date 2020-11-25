@@ -25,7 +25,7 @@ export class AddCustomerComponent implements OnInit {
     firstname: new FormControl('', Validators.required),
     lastname: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
-    phoneNumber: new FormControl('', Validators.required),
+    phonenumber: new FormControl('', Validators.required),
     country: new FormControl('', Validators.required),
     city: new FormControl('', Validators.required),
     street: new FormControl('', Validators.required),
@@ -79,10 +79,9 @@ export class AddCustomerComponent implements OnInit {
     this.customerId = this.activatedRoute.snapshot.queryParamMap.get('id');
 
     if(this.customerId !=  undefined)  {
-      // this._store.dispatch(new GetCustomer({'this.customerForm.value'}));
       this.customerSub = this._store.select(selectCustomers).pipe(
         flatMap(customers => customers.filter( entry => this.customerId == entry.id))
-      ).subscribe(customer => {
+      ).subscribe((customer) => {
 
         if(customer && customer.country)  {
           this.cities = cities(customer.country) || [];

@@ -21,6 +21,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { RepDetailsComponent } from './rep-details/rep-details.component';
 import { KycComponent } from './kyc/kyc.component';
 import { NumberInputDirective } from './number-input';
+import { TransactionStatusComponent } from './transaction-status/transaction-status.component';
 
 @NgModule({
   imports: [ CommonModule, IonicModule, FormsModule, ReactiveFormsModule ],
@@ -38,7 +39,8 @@ import { NumberInputDirective } from './number-input';
     SpinnerComponent,
     RepDetailsComponent,
     KycComponent,
-    NumberInputDirective
+    NumberInputDirective,
+    TransactionStatusComponent
   ],
   entryComponents: [
     PaymentInfoModalComponent, 
@@ -62,7 +64,8 @@ import { NumberInputDirective } from './number-input';
     LoginComponent,
     CreateAccountComponent,
     SpinnerComponent,
-    NumberInputDirective
+    NumberInputDirective,
+    TransactionStatusComponent
   ]
 })
 export class SharedModule {}

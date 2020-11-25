@@ -54,6 +54,32 @@ ion-toolbar  {
   --min-height :55px;
 }
 
+p {
+  &.trans-processing {
+    color:  var(--ion-color-warning);
+    font-size: 22px;
+  }
+  &.trans-success {
+    color:  var(--ion-color-favorite);
+    font-size: 22px;
+  }
+  
+  &.trans-failed {
+    color: var(--ion-color-danger);
+    font-size: 22px;
+
+  }
+
+  &.trans-message  {
+    font-size: 18px;
+
+    span  {
+      text-transform: lowercase;
+    }
+  }
+}
+
+
 // Text color, darker and lighter
 // $text: #444;
 // $text-darker: darken($text, 15);

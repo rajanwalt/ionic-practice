@@ -46,16 +46,34 @@ export class CheckoutPage implements OnInit, OnDestroy {
   }
 
   deliveryRate(deliveryMethod = [])  {
-    let selected =  deliveryMethod.filter(data => data['status'] == 'selected');
-    return selected.length ? selected[0] : {}
+    if(!deliveryMethod.length)  {
+      return null
+    }
+    else {
+      let selected =  deliveryMethod.filter(data => data['status'] == 'selected');
+      return selected.length ? selected[0] : null
+    }
+      
+  }
+
+  vat(order)  {
+    if(order['VAT'])  {
+      let subTotal = this.subtotal(order.orderDetails);
+
+      return this.subtotal(order.orderDetails) * (order['VAT'] / 100)
+    }
+    return 0;
   }
 
   total(order)  {
     let subTotal = this.subtotal(order.orderDetails);
-    let delivaeryRate = this.deliveryRate(order.deliveryMethod);
     
-    return subTotal + delivaeryRate['rate'];
-
+    if(order['deliveryMethod'])  {
+      let delivaeryRate = this.deliveryRate(order.deliveryMethod) ;
+      return subTotal + delivaeryRate['rate'];
+    }
+    
+    return subTotal
   }
 
   async onShowAddresseModal(customerDetails=null)  {

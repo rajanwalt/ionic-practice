@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './common/login/login.component';
+import { TransactionStatusComponent } from './common/transaction-status/transaction-status.component';
 import { CreateAccountComponent } from './common/create-account/create-account.component';
 import { AuthGuardService } from './APIs';
 
@@ -43,6 +44,10 @@ const routes: Routes = [
   {
     path: 'create-account',
     component: CreateAccountComponent
+  },
+  {
+    path: 'transaction-status',
+    component: TransactionStatusComponent
   },
   {
     path: 'welcome',

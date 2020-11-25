@@ -179,9 +179,15 @@ export class MonekatService {
     // return this.http.get(url);
 
   }
+
+  getPayStatus(id) : Observable<any>  {
+    let url = `${this.hostName}/api/orders/paystatus/${id}`;
+
+    return this.http.get(url);
+  }
   
   checkout(data): Observable<any>  {
-    let url = this.hostName +'/api/payorder';
+    let url = this.hostName +'/api/orders/payorder';
 
     return this.http.post(url, data);
   }

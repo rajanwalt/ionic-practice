@@ -9,6 +9,7 @@ export enum EShopActions  {
     PostShopLogo = '[Shop] Post Shop Logo',
     GetShop = '[Shop] Get Shop',
     ShopSuccess = '[Shop] Post Shop Success',
+    ShopFailed = '[Shop] Post Shop Failed'
 }
 
 export class SetShopAddress implements Action {
@@ -51,4 +52,9 @@ export class ShopSuccess implements Action {
     constructor(public payload: any)  {}
 }
 
-export type ShopActions = SetShop | SetShopAddress | GetShopAddress | PostShop | GetShop | ShopSuccess | UpdateShop;
+export class ShopFailed implements Action {
+    public readonly type = EShopActions.ShopFailed;
+    constructor(public payload: any)  {}
+}
+
+export type ShopActions = SetShop | SetShopAddress | GetShopAddress | PostShop | GetShop | ShopSuccess | UpdateShop |  ShopFailed;
