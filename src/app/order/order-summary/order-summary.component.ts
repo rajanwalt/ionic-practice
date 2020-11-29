@@ -96,7 +96,7 @@ export class OrderSummaryComponent implements OnInit {
 
   async onShare(appName, orderId='')  {
     
-    let checkoutLink = `http://ec2-35-181-44-11.eu-west-3.compute.amazonaws.com:8080/checkout/${orderId}`;
+    let checkoutLink = `http://ec2-35-181-44-11.eu-west-3.compute.amazonaws.com/checkout/${orderId}`;
 
     switch(appName)  {
       case this.SOCIALMEDIA.WHATSAPP : {
