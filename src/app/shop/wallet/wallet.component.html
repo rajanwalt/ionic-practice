@@ -3,8 +3,8 @@
         <ion-back-button  slot="start" color="dark" defaultHref="/" text="My Wallet" icon="arrow-back-outline"></ion-back-button>
    </ion-toolbar>
 </ion-header>
-<ion-content fullscreen>
-  <ion-grid *ngIf="!(wallet$ | async) as wallet">
+<ion-content fullscreen   >
+  <ion-grid *ngIf="!hasPayoutMethod">
     <ion-row class="ion-align-items-center">
         <ion-col class="ion-align-self-center">
           <div  class="catalogue-container">
@@ -25,15 +25,16 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <div *ngIf="(wallet$ | async)  as wallet">
-    <ion-item lines="none">
+  
+  <div *ngIf="hasPayoutMethod">
+    <ion-item lines="none" >
         <ion-label class="header">
             <ion-text class="text-16 text-600">
                 PAYOUT SUMMARY
             </ion-text>
         </ion-label>
     </ion-item>
-    <ion-card>
+    <ion-card color="light">
         <ion-card-content>
             <ion-grid>
                 <ion-row >
@@ -41,21 +42,21 @@
                         <ion-text>Account Balance</ion-text>
                       </ion-col>  
                     <ion-col class="text-right">
-                        <ion-text>value</ion-text>
+                        <ion-text>{{wallet?.Balance?.Amount | currency : wallet?.Balance?.Currency }}</ion-text>
                     </ion-col>
                 </ion-row>
-                <ion-row >
+                <!-- <ion-row >
                     <ion-col class="text-left">
                         <ion-text>Currently Available</ion-text>
                       </ion-col>  
                     <ion-col class="text-right">
                         <ion-text>value</ion-text>
                     </ion-col>
-                </ion-row>
+                </ion-row> -->
             </ion-grid>
         </ion-card-content>
       </ion-card>
-      <ion-item lines="none">
+      <ion-item lines="none" >
           <ion-label class="ion-text-wrap">
             <ion-text>
                 <h2 class="text-600">Select a payout method</h2>
@@ -69,7 +70,7 @@
             </ion-text>
           </ion-label>
       </ion-item>
-      <ion-card>
+      <ion-card color="light">
           <ion-card-header>
               <ion-card-title>
                   <ion-grid>
@@ -78,7 +79,7 @@
                               <ion-text>Bank Transfer</ion-text>
                             </ion-col>  
                           <ion-col size="5">
-                              <ion-text>Bank Name</ion-text>
+                              <ion-text>{{payoutDetails?.bankname}}</ion-text>
                             </ion-col>
                           <ion-col class="icon-container" size="2">
                             <ion-icon name="ellipsis-vertical" (click)="onShowPopup($event)"></ion-icon>
@@ -103,7 +104,7 @@
                           <ion-text>Fees</ion-text>
                         </ion-col>  
                       <ion-col class="text-right">
-                          <ion-text>value</ion-text>
+                          <ion-text>{{fee}}%</ion-text>
                       </ion-col>
                   </ion-row>
                   <ion-row >
@@ -111,7 +112,7 @@
                           <ion-text>Currency</ion-text>
                         </ion-col>  
                       <ion-col class="text-right">
-                          <ion-text>USD</ion-text>
+                          <ion-text>{{wallet?.Balance?.Currency}}</ion-text>
                       </ion-col>
                   </ion-row>
                   <ion-row >
@@ -125,10 +126,8 @@
 
   </div>
 </ion-content>
-<ion-footer>
-    <ion-toolbar (click)="onReleasePayment()" *ngIf="(wallet$ | async)  as wallet">
-      <p>
+<ion-footer *ngIf="wallet" >
+    <ion-button expand="full" (click)="onReleasePayment()" [disabled]="!wallet.Balance.Amount">
         RELEASE PAYMENT
-      </p>
-    </ion-toolbar>
-  </ion-footer>
+    </ion-button>
+</ion-footer>

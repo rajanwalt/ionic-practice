@@ -59,6 +59,10 @@ export class VatComponent implements OnInit {
     if(this.SettingsSub)  {
       this.SettingsSub.unsubscribe();
     }
+
+    if(this.userSub)  {
+      this.userSub.unsubscribe();
+    }
   }
 
 }

@@ -1,9 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController, NavController, ToastController } from '@ionic/angular';
 import { counries, cities } from './../countries_cities';
 import { KycComponent } from './../kyc/kyc.component';
 import { showValidationMsg } from './../../common/form-validator';
+import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { State } from './../../store/state';
+import { selectCreateAccount} from './../../store/selectors';
+import { SetCreateAccount } from './../../store/actions';
 
 @Component({
   selector: 'app-rep-details',
@@ -11,7 +16,9 @@ import { showValidationMsg } from './../../common/form-validator';
   styleUrls: ['./rep-details.component.scss'],
 })
 export class RepDetailsComponent implements OnInit {
-  @Input() payload : any = null;
+  payload = {}
+  createAccount$ : Observable<any> = this._store.select(selectCreateAccount)
+  createAccountSub : Subscription;
   
   createAccountForm = new FormGroup({
     LegalRepresentativeFirstName: new FormControl('', Validators.required),
@@ -44,7 +51,16 @@ export class RepDetailsComponent implements OnInit {
   }
 
   onDismiss()  {
-    this.modalController.dismiss(this.payload);
+    // this.modalController.dismiss(this.payload);
+    let finalPayload = {};
+    this.payload['vendorType'] && (finalPayload['vendorType'] = this.payload['vendorType']);
+
+    if(this.payload && this.payload.hasOwnProperty('legalEntity'))  { 
+      finalPayload['legalEntity'] = {...this.payload['legalEntity'], ...this.createAccountForm.value}
+      this._store.dispatch(new SetCreateAccount(finalPayload));
+    }
+
+    this.navCtrl.navigateBack('/create-account');
   }
 
   
@@ -62,18 +78,21 @@ export class RepDetailsComponent implements OnInit {
       let formData = { ...this.payload }
       formData['legalEntity'] = {...formData['legalEntity'], ...this.createAccountForm.value}
       
-      const modal = await this.modalController.create({
-        component: KycComponent,
-        componentProps : {
-          "payload" : formData
-        }
-      });
+      // const modal = await this.modalController.create({
+      //   component: KycComponent,
+      //   componentProps : {
+      //     "payload" : formData
+      //   }
+      // });
       
-      await modal.present();
+      // await modal.present();
   
-      const { data } = await modal.onWillDismiss();
+      // const { data } = await modal.onWillDismiss();
       
-      this.createAccountForm.patchValue(data);
+      this._store.dispatch(new SetCreateAccount(formData));
+      this.navCtrl.navigateForward('/kyc')
+      
+      // this.createAccountForm.patchValue(data);
     }
     else { 
       showValidationMsg(this.createAccountForm);
@@ -83,8 +102,35 @@ export class RepDetailsComponent implements OnInit {
   }
 
 
-  constructor(public modalController: ModalController, public toastController: ToastController ) { }
+  constructor(public modalController: ModalController, 
+              public toastController: ToastController, 
+              private _store: Store<State>,
+              private navCtrl: NavController ) { }
 
   ngOnInit() {}
+
+  ionViewWillEnter() {
+    this.createAccountSub = this.createAccount$.subscribe(payload => {
+      if(payload)  {
+        this.payload = payload;
+        if(payload['legalEntity']) {
+          this.createAccountForm.patchValue(payload['legalEntity']);
+        }
+        else {
+          console.log("no data in the payload")
+          
+          this.navCtrl.navigateBack('/create-account')
+        }
+      }
+     
+    })
+  }
+
+  ionViewWillLeave(){
+    if(this.createAccountSub)  {
+      this.createAccountSub.unsubscribe()
+    }
+  }
+  
 
 }

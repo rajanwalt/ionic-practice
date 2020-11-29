@@ -16,8 +16,8 @@ import { showValidationMsg } from './../../common/form-validator';
 export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
-    email: new FormControl('', Validators.required), //test@test.com
-    password: new FormControl('', Validators.required), //12345678
+    email: new FormControl('user@test.com', Validators.required), //test@test.com
+    password: new FormControl('12345678', Validators.required), //12345678
   });
   
   

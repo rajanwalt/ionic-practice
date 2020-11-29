@@ -31,6 +31,14 @@ export class MonekatService {
     return this.http.post(url, shopData);
   }
 
+  getOrderList(serviceId) : Observable<any>  {
+    let url = `${this.hostName}/api/orders`
+    let queryParams = new HttpParams().set('service_id', serviceId);
+    return this.http.get(url, { params: queryParams });
+  }
+  
+
+
   updateShopDetails(shopData) : Observable<any>  {
     let url = `${this.hostName}/api/services/${shopData['id']}`
     return this.http.put(url, shopData);
@@ -127,13 +135,13 @@ export class MonekatService {
     return this.http.post(url, settings);
   }
 
-  getWallet(): Observable<any>  {
-    let url = this.hostName +'/api/wallet'
+  getWallet(payUserId): Observable<any>  {
+    let url = `${this.hostName}/api/users/balance/${payUserId}`
     return this.http.get(url);
   }
 
-  postWallet(data: any): Observable<any>  {
-    let url = this.hostName +'/api/wallet';
+  ReleaseWallet(data: any): Observable<any>  {
+    let url = this.hostName +'api/users/payout';
     
     return this.http.post(url, data);
   }

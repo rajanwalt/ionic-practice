@@ -11,14 +11,14 @@
 
 <ion-content class="ion-padding">
   <!-- {{payload | json }} -->
-  <!-- {{createAccountForm.value | json }} -->
+  {{createAccountForm.value | json }}
   <form [formGroup]="createAccountForm">
     <ion-list>
       <ion-item lines='none'>
         <ion-label  class="ion-text-wrap ion-text-justify">
           <ion-text color="medium">
             <p>
-              Monekat uses safe and secure menthods of verifying their users, in order to process the payment from our various financial institutions.
+              Monekat uses safe and secure methods of verifying their users, in order to process the payment from our various financial institutions.
             </p>
             <p>
               As our next step, we would like you to complete the below form and upload the following documents as applicable.
@@ -35,11 +35,11 @@
       <ion-item-group *ngIf="payload.hasOwnProperty('freelancer')">
         <ion-item >
           <ion-label position="stacked">Date of Issue of ID Proof</ion-label>
-          <ion-datetime (ionChange)="getDate($event)" name="IDProofIssuedDate"></ion-datetime>
+          <ion-datetime (ionChange)="getDate($event)" name="IDProofIssuedDate" [value]="createAccountForm.controls.freelancer.controls.IDProofIssuedDate.value"></ion-datetime>
         </ion-item>
         <ion-item >
           <ion-label position="stacked">Date of Expiry of ID Proof</ion-label>
-          <ion-datetime name="IDProofExpiryDate" (ionChange)="getDate($event)"  [min]="minDate" [max]="maxData" ></ion-datetime>
+          <ion-datetime name="IDProofExpiryDate" (ionChange)="getDate($event)"  [min]="minDate" [max]="maxData" [value]="createAccountForm.controls.freelancer.controls.IDProofExpiryDate.value"></ion-datetime>
         </ion-item>
         <ion-item lines='none'>
           <ion-label position="stacked">Identity Proof</ion-label>
@@ -55,11 +55,11 @@
       <ion-item-group *ngIf="payload.hasOwnProperty('legalEntity')">
         <ion-item >
           <ion-label position="stacked">Registration Date of Issue </ion-label>
-          <ion-datetime (ionChange)="getDate($event)" name="RegistrationIssuedDate"  ></ion-datetime>
+          <ion-datetime (ionChange)="getDate($event)" name="RegistrationIssuedDate" [value]="createAccountForm.controls.legalEntity.controls.RegistrationIssuedDate.value"></ion-datetime>
         </ion-item>
         <ion-item >
           <ion-label position="stacked">Registration Date of Expiry</ion-label>
-          <ion-datetime (ionChange)="getDate($event)" name="RegistrationExpiryDate" [min]="minDate" [max]="maxData" ></ion-datetime>
+          <ion-datetime (ionChange)="getDate($event)" name="RegistrationExpiryDate" [min]="minDate" [max]="maxData" [value]="createAccountForm.controls.legalEntity.controls.RegistrationExpiryDate.value" ></ion-datetime>
         </ion-item>
         <ion-item lines='none'>
           <ion-label position="stacked">Identity Proof</ion-label>

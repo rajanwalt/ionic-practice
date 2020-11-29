@@ -54,7 +54,7 @@
       </ion-item> 
       <ion-item>
         <ion-label position="stacked">Date of birth</ion-label>
-        <ion-datetime name="Birthday" (ionChange)="getDate($event)" ></ion-datetime>
+        <ion-datetime name="Birthday" (ionChange)="getDate($event)" [value]="createAccountForm.controls.freelancer.controls.Birthday.value"></ion-datetime>
       </ion-item> 
       <ion-item>
         <ion-label position="stacked">Occupation</ion-label>

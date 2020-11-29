@@ -4,7 +4,7 @@ import { EMPTY } from 'rxjs';
 import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { MonekatService } from '../../APIs';
 
-import { EWalletActions, SetWallet, OnWalletSuccess, GetWallet, PostWallet} from '../actions';
+import { EWalletActions, SetWallet, OnWalletSuccess, GetWallet, ReleaseWallet} from '../actions';
 import { NavController } from '@ionic/angular';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class WalletEffects {
 
   getWallet$ = createEffect(() => this.actions$.pipe(
     ofType(EWalletActions.GetWallet),
-    switchMap((action: GetWallet)=> this.monekatService.getWallet()
+    switchMap((action: GetWallet)=> this.monekatService.getWallet(action.payload)
       .pipe(
         map(WalletDetails => new SetWallet(WalletDetails)),
         catchError(() => EMPTY)
@@ -20,11 +20,11 @@ export class WalletEffects {
     )
   );
 
-  postWallet$ = createEffect(() => this.actions$.pipe(
-    ofType(EWalletActions.PostWallet),
-    switchMap((action: PostWallet) => this.monekatService.postWallet(action.payload)
+  ReleaseWallet$ = createEffect(() => this.actions$.pipe(
+    ofType(EWalletActions.ReleaseWallet),
+    switchMap((action: ReleaseWallet) => this.monekatService.ReleaseWallet(action.payload)
       .pipe(
-        map(customerdetails => new OnWalletSuccess(action.payload)),
+        map(wallet => new OnWalletSuccess(wallet)),
         catchError(() => EMPTY)
       ))
     )

@@ -37,7 +37,9 @@ import {ShopEffects,
   LoginEffects,
   ShippingChargesEffects,
   FileEffects,
-  SettingsEffects } from './store/effects';
+  SettingsEffects,
+  OrderListEffects, 
+  WalletEffects} from './store/effects';
 import { CustomSerializer } from './store/router-custom-serializer';
 import { SharedModule, RouterStateService, ErrorHandlerService, createTranslateLoader } from './common';
 import { PendingRequestsInterceptor } from './APIs';
@@ -73,7 +75,9 @@ import { PendingRequestsInterceptor } from './APIs';
       LoginEffects,
       ShippingChargesEffects,
       FileEffects,
-      SettingsEffects
+      SettingsEffects,
+      OrderListEffects,
+      WalletEffects
     ]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     TranslateModule.forRoot({ 

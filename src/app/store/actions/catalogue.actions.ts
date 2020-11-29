@@ -10,6 +10,7 @@ export enum ECatalogueActions  {
     CatalogueSuccess = '[Catalogue] Catalogue Success',
     CatalogueFailure = '[Catalogue] Catalogue Failure',
     PostCatalogueImages = '[Catalogue] Post Catalogue images',
+    GoBack = '[Catalogue] Go Back'
 }
 
 export class SetCatalogue implements Action {
@@ -51,4 +52,9 @@ export class PostCatalogueImages implements Action {
     constructor(public payload: any)  {}
 }
 
-export type CatalogueActions = SetCatalogue | GetCatalogue | AddCatalogue | UpdateCatalogue | CatalogueSuccess | CatalogueFailure | PostCatalogueImages | PutCatalogue;
+export class GoBack implements Action {
+    public readonly type = ECatalogueActions.GoBack;
+    constructor(public payload: any)  {}
+}
+
+export type CatalogueActions = SetCatalogue | GetCatalogue | AddCatalogue | UpdateCatalogue | CatalogueSuccess | CatalogueFailure | PostCatalogueImages | PutCatalogue | GoBack;

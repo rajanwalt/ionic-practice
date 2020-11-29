@@ -25,7 +25,7 @@
 
 <ion-content>
 
-  <ion-grid *ngIf="!((orders$ | async))" class="info">
+  <ion-grid *ngIf="(orders$ | async) as order" [ngClass]="{'info' : true, 'hidden' : order.length, 'display': !order.length  }">
     <ion-row class="ion-align-items-center">
         <ion-col class="ion-align-self-center">
             <p class="title">You haven't received any orders yet.</p>
@@ -44,15 +44,15 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-grid  class="list" *ngIf="(orders$ | async | listFilter:'id,name':searchText) as order ">
+  <ion-grid  [ngClass]="{'list' : true, 'hidden' : !order.length, 'display': order.length }" *ngIf="(orders$ | async | listFilter:'id,name':searchText) as order">
       <ion-row *ngFor="let item of getGroupBy(order) | keyvalue" >
         <ion-col size="12" class="group-header">
-          {{item.key}}
+          {{item.key  | date: 'mediumDate'}}
         </ion-col>
         <ion-col size="12">
           <ion-row *ngFor="let itemOfItem of item.value" (click)="onViewOrder(itemOfItem)" class="item-content">
             <ion-col size="8" class="item-details">
-              <ion-text color="medium">#{{itemOfItem?.id}}</ion-text> <br>
+              <!-- <ion-text color="medium">#{{itemOfItem?.id}}</ion-text> <br> -->
               <ion-text color="dark" class="ion-text-capitalize">{{itemOfItem?.name}}</ion-text> <br>
               <ion-chip color="danger">
                   <ion-label>{{itemOfItem?.paymentType}}: {{itemOfItem?.paymentStatus}}</ion-label>

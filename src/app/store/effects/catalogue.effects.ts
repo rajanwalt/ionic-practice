@@ -12,7 +12,8 @@ import {  ECatalogueActions,
           GetCatalogue, 
           SetOrder,
           PostCatalogueImages, 
-          PutCatalogue} from '../actions';
+          PutCatalogue,
+          GoBack} from '../actions';
 import { NavController } from '@ionic/angular';
 
 @Injectable()
@@ -75,15 +76,15 @@ export class CatalogueEffects {
 
   onSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(ECatalogueActions.CatalogueSuccess),
-    map((action: CatalogueSuccess) => {
-      action.payload['from'] ? this.navCtrl.navigateForward('/order/add_item') : this.navCtrl.back();
-
-      return new UpdateCatalogue(action.payload['response'])
-    }),
-    // tap( _ => {
-    //   action.payload['from'] ? this.navCtrl.navigateForward('/order/add_item') : this.navCtrl.back()
-    // })
+    switchMap((action: CatalogueSuccess) => [ new UpdateCatalogue(action.payload['response']), new GoBack(action.payload) ])
   ));
+
+  goBack$ = createEffect(() => this.actions$.pipe(
+    ofType(ECatalogueActions.GoBack),
+    tap( (action : GoBack) => {
+      action.payload['from'] ? this.navCtrl.navigateForward('/order/add_item') : this.navCtrl.back()
+    })
+  ), { dispatch: false })
 
   constructor(
     private actions$: Actions,

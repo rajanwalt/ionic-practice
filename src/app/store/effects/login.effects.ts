@@ -20,7 +20,6 @@ export class LoginEffects {
           return new LoginSuccess(customerdetails)
         }),
         catchError((error) => {
-          // throwError(error)
           return of(new LoginFailed(error))
         })
       )
@@ -39,6 +38,16 @@ export class LoginEffects {
     ))
   );
 
+  // createAccount$ = createEffect(() => this.actions$.pipe(
+  //   ofType(ELoginActions.CreateAccount),
+  //   tap( async _ => {
+  //     this.modalController.dismiss({});
+  //     this.modalController.dismiss({});
+
+  //     this.navCtrl.navigateForward('/shop-payment-setup');
+  //   })), { dispatch: false }
+  // );
+
   updateAccount$ = createEffect(() => this.actions$.pipe(
     ofType(ELoginActions.UpdateAccount),
     switchMap((action: UpdateAccount) => this.monekatService.updateAccount(action.payload).pipe(
@@ -54,7 +63,7 @@ export class LoginEffects {
     ofType(ELoginActions.CreateAccountSuccess),
     map((action: CreateAccountSuccess) => new SetUser(action.payload)),
     tap( _ => {
-      this.modalController.dismiss({});
+      // this.modalController.dismiss({});
       this.navCtrl.navigateRoot('/shop-payment-setup');
     })
   ));
@@ -74,8 +83,8 @@ export class LoginEffects {
 
   onLoginFailed$ = createEffect(() => this.actions$.pipe(
     ofType(ELoginActions.LoginFailed),
-    map((action: LoginFailed) => throwError(action.payload)),
-    tap( () => {
+    map((action: LoginFailed) => { throw new Error(action.payload['name']) }),
+    tap(() => {
       this.navCtrl.navigateForward('/login');
     })
     ),

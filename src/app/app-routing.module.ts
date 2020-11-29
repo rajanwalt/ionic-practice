@@ -4,6 +4,9 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './common/login/login.component';
 import { TransactionStatusComponent } from './common/transaction-status/transaction-status.component';
 import { CreateAccountComponent } from './common/create-account/create-account.component';
+import { KycComponent } from './common/kyc/kyc.component';
+import { RepDetailsComponent } from './common/rep-details/rep-details.component';
+
 import { AuthGuardService } from './APIs';
 
 const routes: Routes = [
@@ -46,13 +49,21 @@ const routes: Routes = [
     component: CreateAccountComponent
   },
   {
+    path: 'kyc',
+    component: KycComponent
+  },
+  {
+    path: 'representative-details',
+    component: RepDetailsComponent
+  },
+  {
     path: 'transaction-status',
     component: TransactionStatusComponent
   },
   {
     path: 'welcome',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
-  },
+  }
   // { path: '', redirectTo: 'login', pathMatch: 'full' }
 
 

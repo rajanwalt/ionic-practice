@@ -1,0 +1,1 @@
+export const fees = 5  // 5%

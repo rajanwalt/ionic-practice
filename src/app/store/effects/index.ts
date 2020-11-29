@@ -9,3 +9,4 @@ export * from './wallet.effects';
 export * from './shipping-charges.effects';
 export * from './file.effects';
 export * from './settings.effects';
+export * from './order-list.effects ';

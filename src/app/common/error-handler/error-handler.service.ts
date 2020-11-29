@@ -9,7 +9,7 @@ export class ErrorHandlerService implements ErrorHandler {
   constructor(public alertController: AlertController, public toastController: ToastController) { }
 
   async handleError(error)  {
-    var message = (error['error'] && error['error']['msg']) ? error['error']['msg'] : error['statusText']
+    var message = (error['error'] && error['error']['msg']) ? error['error']['msg'] : (error['statusText'] ? error['statusText'] : error['message'])
 
     this.presentToast(message);
     

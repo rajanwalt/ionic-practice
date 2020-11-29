@@ -11,3 +11,5 @@ export * from './wallet.selector';
 export * from './pending-requests.selector';
 export * from './settings.selector';
 export * from './shipping-charges.selector';
+export * from './create-account.selector';
+export * from './order-list.selector';

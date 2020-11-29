@@ -4,7 +4,7 @@ export enum EWalletActions  {
     GetWallet = '[Wallet] Get Wallet',
     OnWalletSuccess = '[Wallet] On Wallet Success',
     SetWallet = '[Wallet] Set Wallet',
-    PostWallet = '[Wallet] Post Wallet'
+    ReleaseWallet = '[Wallet] Post Wallet'
 }
 
 export class GetWallet implements Action {
@@ -17,8 +17,8 @@ export class SetWallet implements Action {
     constructor(public payload: any)  {}
 }
 
-export class PostWallet implements Action {
-    public readonly type = EWalletActions.PostWallet;
+export class ReleaseWallet implements Action {
+    public readonly type = EWalletActions.ReleaseWallet;
     constructor(public payload: any)  {}
 }
 
@@ -28,4 +28,4 @@ export class OnWalletSuccess implements Action {
 }
 
 
-export type WalletActions = GetWallet | SetWallet | PostWallet | OnWalletSuccess;
+export type WalletActions = GetWallet | SetWallet | ReleaseWallet | OnWalletSuccess;

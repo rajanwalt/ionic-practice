@@ -5,11 +5,14 @@ import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
 import { counries, cities } from './../countries_cities';
 
-import { CreateAccount } from './../../store/actions';
+import { CreateAccount, ResetCreateAccount, SetCreateAccount } from './../../store/actions';
+import { selectCreateAccount} from './../../store/selectors';
+
 import { showValidationMsg } from './../../common/form-validator';
 
 import { RepDetailsComponent } from './../rep-details/rep-details.component';
 import { KycComponent } from './../kyc/kyc.component';
+import { Observable, Subscription } from 'rxjs';
 
 enum BUSINESSTYPES {
   LEGAL_BUSINESS = "Legal Business",
@@ -41,6 +44,10 @@ export class CreateAccountComponent implements OnInit {
   //   password: new FormControl('', Validators.required),
   //   vendorType: new FormControl('', Validators.required),
   // });
+
+  payload = {}
+  createAccount$ : Observable<any> = this._store.select(selectCreateAccount)
+  createAccountSub : Subscription;
 
   createAccountForm = new FormGroup({
     vendorType: new FormControl('', Validators.required)
@@ -102,6 +109,10 @@ export class CreateAccountComponent implements OnInit {
       }
     }
 
+    if(selectedBusinessType != this.payload['vendorType'])  {
+      this._store.dispatch(new ResetCreateAccount(this.createAccountForm.value))
+    }
+
   }
 
   onChangeCountry(event)  {
@@ -127,34 +138,43 @@ export class CreateAccountComponent implements OnInit {
     toast.present();
   }
 
-  async onSubmit()  {
+
+  onSubmit()  {
+
     if(this.createAccountForm.valid)  {
-      if(this.createAccountForm.get('vendorType').value == this.vendorTypes.LEGALENTITY )  {
-        const modal = await this.modalController.create({
-          component: RepDetailsComponent,
-          componentProps : {
-            "payload" : this.createAccountForm.value
-          }
-        });
         
-        await modal.present();
+      // let modal = await this.modalController.create({
+      //     component: (this.createAccountForm.get('vendorType').value == this.vendorTypes.LEGALENTITY ) ? RepDetailsComponent : KycComponent,
+      //     componentProps : {
+      //       "payload" : this.createAccountForm.value
+      //     }
+      // });
+        
+      // await modal.present();
     
-        const { data } = await modal.onWillDismiss();
-        this.createAccountForm.patchValue(data);
+      // const { data } = await modal.onWillDismiss();
+      // data && this.createAccountForm.patchValue(data);
+
+      let finalPayload = {};
+
+      this.payload['vendorType'] && (finalPayload['vendorType'] = this.payload['vendorType']);
+      
+      if(this.payload.hasOwnProperty('legalEntity'))  {
+        finalPayload['legalEntity'] =  {...this.payload['legalEntity'], ...this.createAccountForm.get('legalEntity').value}
+
+        this._store.dispatch(new SetCreateAccount(finalPayload));
+      }
+      else if(this.payload.hasOwnProperty('freelancer')) {
+        finalPayload['freelancer'] =  {...this.payload['freelancer'], ...this.createAccountForm.get('freelancer').value}
+        
+        this._store.dispatch(new SetCreateAccount(finalPayload));
       }
       else {
-        const modal = await this.modalController.create({
-          component: KycComponent,
-          componentProps : {
-            "payload" : this.createAccountForm.value
-          }
-        });
-        
-        await modal.present();
-    
-        const { data } = await modal.onWillDismiss();
-        this.createAccountForm.patchValue(data);
+        this._store.dispatch(new SetCreateAccount(this.createAccountForm.value));
       }
+
+      (this.createAccountForm.get('vendorType').value == this.vendorTypes.LEGALENTITY ) ? this.navCtrl.navigateForward('/representative-details') : this.navCtrl.navigateForward('/kyc');
+
       
     }
     else { 
@@ -171,8 +191,6 @@ export class CreateAccountComponent implements OnInit {
   checkTandC()  {
     this.isChecked = !this.isChecked;
   }
-
-  
 
   onChangeLegalEntityType(event)  {
 
@@ -202,5 +220,29 @@ export class CreateAccountComponent implements OnInit {
 
 
   ngOnInit() {}
+
+  ionViewWillEnter() {
+    this.createAccountSub = this.createAccount$.subscribe(payload => {
+      this.payload = payload;
+
+      if(payload)  {
+        if(payload.hasOwnProperty('legalEntity'))  {
+          this.createAccountForm.addControl('legalEntity', this.legalEntityFrom);
+        }
+        else if(payload.hasOwnProperty('freelancer')) {
+          this.createAccountForm.addControl('freelancer', this.freelancerFrom);
+        }
+        else {
+          console.log("no data in the payload");
+        }
+      }
+    })
+  }
+
+  ionViewWillLeave(){
+    if(this.createAccountSub)  {
+      this.createAccountSub.unsubscribe()
+    }
+  }
 
 }

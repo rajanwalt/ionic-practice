@@ -232,7 +232,8 @@ export class AddCatalogueItemComponent implements OnInit {
         if(catalogue)  {
           this.catalogueForm.patchValue(catalogue);
           if(catalogue['images'] && catalogue['images'].length)  {
-            catalogue['images'].filter((data, index) => index < 4).map((data, index) => {
+            let images = [...catalogue['images']].reverse();
+            images.filter((data, index) => index < 4).map((data, index) => {
 
               let filename = data['filename'];
               let webviewPath = `${hostName}/api/services/downloadfile/${filename}`

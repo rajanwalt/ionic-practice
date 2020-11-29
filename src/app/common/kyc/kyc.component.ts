@@ -1,12 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController, NavController, ToastController } from '@ionic/angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CreateAccount } from './../../store/actions';
+import { CreateAccount, SetCreateAccount } from './../../store/actions';
 import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
+import { selectCreateAccount} from './../../store/selectors';
 import { showValidationMsg } from './../../common/form-validator';
 
-import { throwError } from 'rxjs';
+import { Observable, Subscription, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-kyc',
@@ -15,7 +16,10 @@ import { throwError } from 'rxjs';
 })
 export class KycComponent implements OnInit {
 
-  @Input() payload : any = null;
+  // @Input() payload : any = null;
+  payload = {}
+  createAccount$ : Observable<any> = this._store.select(selectCreateAccount)
+  createAccountSub : Subscription;
   
   createAccountForm = new FormGroup({});
   minDate: string = new Date().toISOString();
@@ -36,7 +40,20 @@ export class KycComponent implements OnInit {
   });
 
   onDismiss()  {
-    this.modalController.dismiss(this.payload);
+    // this.modalController.dismiss(this.payload);
+      let finalPayload = {};
+
+      if(this.payload && this.payload.hasOwnProperty('legalEntity'))  {
+        finalPayload['legalEntity'] =  {...this.payload['legalEntity'], ...this.createAccountForm.get('legalEntity').value}
+      }
+      else {
+        finalPayload['freelancer'] =  {...this.payload['freelancer'], ...this.createAccountForm.get('freelancer').value}
+      }
+
+      this.payload['vendorType'] && (finalPayload['vendorType'] = this.payload['vendorType']);
+
+      this._store.dispatch(new SetCreateAccount(finalPayload));
+      this.navCtrl.back();
   }
 
   getDate(e) {
@@ -87,10 +104,10 @@ export class KycComponent implements OnInit {
       if (event.target.files.length > 0) {
         const name = event.target.name;
         const file = event.target.files[0];
-        const blob = await this.readFileAsBlob(file);
-        
+        let blob = await this.readFileAsBlob(file);
+        let blobOptimized = blob.split(',')[1];
         this.createAccountForm.get(type).patchValue({
-          [name]: blob
+          [name]: blobOptimized
         });
       }
     } catch(e)  {
@@ -111,8 +128,8 @@ export class KycComponent implements OnInit {
 
   onSubmit()  {
     if(this.createAccountForm.valid)  {
-      let finalPayload = {};
       let formData = new FormData();
+      let finalPayload = {};
 
       if(this.payload && this.payload.hasOwnProperty('legalEntity'))  {
         finalPayload =  {...this.payload['legalEntity'], ...this.createAccountForm.get('legalEntity').value}
@@ -124,10 +141,10 @@ export class KycComponent implements OnInit {
       finalPayload['vendorType'] = this.payload['vendorType'];
 
       for(const property in finalPayload)  {
+
         formData.append(property, finalPayload[property]);
       }
 
-      console.log("formData", formData);
       // this._store.dispatch(new CreateAccount(formData));
       this._store.dispatch(new CreateAccount(finalPayload));
     }
@@ -137,14 +154,53 @@ export class KycComponent implements OnInit {
     }
   }
 
-  constructor(private modalController: ModalController, private _store: Store<State>, public toastController: ToastController) { }
+   
+    constructor(private modalController: ModalController, private _store: Store<State>, public toastController: ToastController,  private navCtrl: NavController) { }
+
+  // ngOnInit() {
+  //   if(this.payload && this.payload.hasOwnProperty('legalEntity'))  {
+  //     this.createAccountForm.addControl('legalEntity', this.legalEntityFrom);
+  //   }
+  //   else {
+  //     this.createAccountForm.addControl('freelancer', this.freelancerFrom);
+  //   }
+  // }
 
   ngOnInit() {
-    if(this.payload && this.payload.hasOwnProperty('legalEntity'))  {
-      this.createAccountForm.addControl('legalEntity', this.legalEntityFrom);
-    }
-    else {
-      this.createAccountForm.addControl('freelancer', this.freelancerFrom);
+  }
+
+  ionViewWillEnter() {
+    this.createAccountSub = this.createAccount$.subscribe(payload => {
+      this.payload = payload;
+      let formdata = { ...payload};
+
+      if(payload)  {
+        if(payload.hasOwnProperty('legalEntity'))  {
+          this.createAccountForm.addControl('legalEntity', this.legalEntityFrom);
+          formdata['legalEntity'] = {...payload['legalEntity'], IDENTITY_PROOF : ''}
+
+        }
+        else if(payload.hasOwnProperty('freelancer')) {
+          this.createAccountForm.addControl('freelancer', this.freelancerFrom);
+          formdata['freelancer'] = {...payload['freelancer'], IDENTITY_PROOF : '', REGISTRATION_PROOF : '', ARTICLES_OF_ASSOCIATION: ''}
+
+        }
+        else {
+          console.log("no data in the payload");
+
+          this.navCtrl.navigateBack('/create-account');
+        }
+
+        this.createAccountForm.patchValue(formdata)
+
+        
+      }
+    })
+  }
+
+  ionViewWillLeave(){
+    if(this.createAccountSub)  {
+      this.createAccountSub.unsubscribe()
     }
   }
 

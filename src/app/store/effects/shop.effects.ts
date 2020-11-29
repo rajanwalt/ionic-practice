@@ -51,7 +51,8 @@ export class ShopEffects {
         map( shopImage => {
           let payload = {...action.payload['shopDetails']};
           if(payload['images'])  {
-            payload['images'].push(shopImage)
+            // payload['images'].push(shopImage)
+            payload['images'] = [ ...payload['images'], {...shopImage }]
           }
           else {
             payload['images'] = [shopImage]

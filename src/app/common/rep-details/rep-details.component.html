@@ -67,7 +67,7 @@
       </ion-item>  -->
       <ion-item>
         <ion-label position="stacked">Date of birth</ion-label>
-        <ion-datetime name="LegalRepresentativeBirthday" (ionChange)="getDate($event)" ></ion-datetime>
+        <ion-datetime name="LegalRepresentativeBirthday" (ionChange)="getDate($event)" [value]="createAccountForm.controls.LegalRepresentativeBirthday.value"></ion-datetime>
       </ion-item> 
       <ion-item-group formGroupName="LegalRepresentativeAddress">
         <ion-item lines='none'>
