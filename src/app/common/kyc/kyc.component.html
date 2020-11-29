@@ -35,11 +35,11 @@
       <ion-item-group *ngIf="payload.hasOwnProperty('freelancer')">
         <ion-item >
           <ion-label position="stacked">Date of Issue of ID Proof</ion-label>
-          <ion-datetime (ionChange)="getDate($event)" name="IDProofIssuedDate" [value]="createAccountForm.controls.freelancer.controls.IDProofIssuedDate.value"></ion-datetime>
+          <ion-datetime (ionChange)="getDate($event)" name="IDProofIssuedDate" [value]="createAccountForm.get('freelancer').get('IDProofIssuedDate').value"></ion-datetime>
         </ion-item>
         <ion-item >
           <ion-label position="stacked">Date of Expiry of ID Proof</ion-label>
-          <ion-datetime name="IDProofExpiryDate" (ionChange)="getDate($event)"  [min]="minDate" [max]="maxData" [value]="createAccountForm.controls.freelancer.controls.IDProofExpiryDate.value"></ion-datetime>
+          <ion-datetime name="IDProofExpiryDate" (ionChange)="getDate($event)"  [min]="minDate" [max]="maxData" [value]="createAccountForm.get('freelancer').get('IDProofExpiryDate').value"></ion-datetime>
         </ion-item>
         <ion-item lines='none'>
           <ion-label position="stacked">Identity Proof</ion-label>
@@ -55,11 +55,11 @@
       <ion-item-group *ngIf="payload.hasOwnProperty('legalEntity')">
         <ion-item >
           <ion-label position="stacked">Registration Date of Issue </ion-label>
-          <ion-datetime (ionChange)="getDate($event)" name="RegistrationIssuedDate" [value]="createAccountForm.controls.legalEntity.controls.RegistrationIssuedDate.value"></ion-datetime>
+          <ion-datetime (ionChange)="getDate($event)" name="RegistrationIssuedDate" [value]="createAccountForm.get('legalEntity').get('RegistrationIssuedDate').value"></ion-datetime>
         </ion-item>
         <ion-item >
           <ion-label position="stacked">Registration Date of Expiry</ion-label>
-          <ion-datetime (ionChange)="getDate($event)" name="RegistrationExpiryDate" [min]="minDate" [max]="maxData" [value]="createAccountForm.controls.legalEntity.controls.RegistrationExpiryDate.value" ></ion-datetime>
+          <ion-datetime (ionChange)="getDate($event)" name="RegistrationExpiryDate" [min]="minDate" [max]="maxData" [value]="createAccountForm.get('legalEntity').get('RegistrationExpiryDate').value" ></ion-datetime>
         </ion-item>
         <ion-item lines='none'>
           <ion-label position="stacked">Identity Proof</ion-label>

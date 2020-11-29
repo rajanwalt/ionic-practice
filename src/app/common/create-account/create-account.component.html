@@ -24,7 +24,7 @@
       </ion-item>
 
      
-    <ion-item-group formGroupName="freelancer" *ngIf="createAccountForm.controls.vendorType.value == vendorTypes.FREELANCER">
+    <ion-item-group formGroupName="freelancer" *ngIf="createAccountForm.get('vendorType').value == vendorTypes.FREELANCER">
       <ion-item>
         <ion-label position="stacked">First name</ion-label>
         <ion-input formControlName="FirstName" ></ion-input>
@@ -44,7 +44,7 @@
       <ion-item>
         <ion-label position="stacked" class="input-label" >Country of residence</ion-label>
         <ion-select 
-          [value]="createAccountForm.controls.freelancer.get('CountryOfResidence').value" 
+          [value]="createAccountForm.get('freelancer').get('CountryOfResidence').value" 
           okText="Okay" 
           cancelText="Dismiss" 
           formControlName="CountryOfResidence"
@@ -54,7 +54,7 @@
       </ion-item> 
       <ion-item>
         <ion-label position="stacked">Date of birth</ion-label>
-        <ion-datetime name="Birthday" (ionChange)="getDate($event)" [value]="createAccountForm.controls.freelancer.controls.Birthday.value"></ion-datetime>
+        <ion-datetime name="Birthday" (ionChange)="getDate($event)" [value]="createAccountForm.get('freelancer').get('Birthday').value"></ion-datetime>
       </ion-item> 
       <ion-item>
         <ion-label position="stacked">Occupation</ion-label>
@@ -94,7 +94,7 @@
       </ion-item-group>
     </ion-item-group>
     
-    <ion-item-group formGroupName="legalEntity" *ngIf="createAccountForm.controls.vendorType.value == vendorTypes.LEGALENTITY">
+    <ion-item-group formGroupName="legalEntity" *ngIf="createAccountForm.get('vendorType').value == vendorTypes.LEGALENTITY">
       <ion-item >
         <ion-label position="stacked">Legal Entity Type</ion-label>
          <ion-select 
@@ -105,7 +105,7 @@
                 <ion-select-option *ngFor="let legalEntityType of legalEntityTypes | keyvalue" [value]="legalEntityType.value">{{legalEntityType.value}}</ion-select-option>
           </ion-select>
       </ion-item>
-      <ion-item-group *ngIf="createAccountForm.controls.legalEntity.get('type').value == legalEntityTypes.BUSINESS_ORGANIZATION_SOLETRADER">
+      <ion-item-group *ngIf="createAccountForm.get('legalEntity').get('type').value == legalEntityTypes.BUSINESS_ORGANIZATION_SOLETRADER">
         <ion-item lines="none">
           <ion-label class="header">
               <ion-text class="text-16 text-600">
