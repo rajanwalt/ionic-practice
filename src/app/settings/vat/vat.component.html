@@ -5,10 +5,10 @@
             <ion-icon name="arrow-back-outline"></ion-icon>
           </ion-button>
       </ion-buttons>
-    <ion-title>VAT</ion-title>
+    <ion-title>{{ 'settings.vat' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="onApply()" *ngIf="vatForm.valid && vatForm.dirty">
-        Apply
+        {{ 'common.button.apply' | translate }}
       </ion-button>
   </ion-buttons>
   </ion-toolbar>
@@ -17,11 +17,11 @@
 <ion-content class="ion-padding">
   <ion-text>
     <p>
-      VAT rate
+      {{ 'vat.rate' | translate }}
     </p>
   </ion-text>
   <ion-text color="medium">
-    Amount of taxes owed by your customer will be added to each product and displayed at checkout.
+    {{ 'vat.text' | translate }}
   </ion-text>
   <form [formGroup]="vatForm">
     <ion-list>
@@ -33,13 +33,13 @@
           numberInput >
         </ion-input>
         <ion-text slot="end">%</ion-text>
-        <!-- <ion-text class="warn-text" >Vat cannot be empty</ion-text> -->
+        <!-- <ion-text class="warn-text" >Vat {{ 'common.label.cantEmpty' | translate }}</ion-text> -->
       </ion-item>
 
       <ion-item lines="none" [class.error]="!vatForm.controls.trn.valid && (vatForm.controls.trn.dirty || vatForm.controls.trn.touched)">
-        <ion-label position="stacked">Tax Registration Number(TRN)</ion-label>
+        <ion-label position="stacked">{{ 'vat.trnText' | translate }}</ion-label>
         <ion-input formControlName="trn" name="trn"></ion-input>
-        <ion-text class="warn-text" >TRN cannot be empty</ion-text>
+        <ion-text class="warn-text" >{{ 'vat.trn' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
       </ion-item>
     </ion-list>
   </form>

@@ -1,10 +1,10 @@
 <ion-header>
     <ion-toolbar color="favorite">
       <ion-buttons slot="start">
-          <ion-back-button  color="dark" defaultHref="/" text="Add Payout Method" icon="arrow-back-outline"></ion-back-button>
+          <ion-back-button  color="dark" defaultHref="/" text="{{ 'wallet.button.title' | translate }}" icon="arrow-back-outline"></ion-back-button>
       </ion-buttons>
       <ion-buttons slot="end">
-        <ion-button (click)="onSubmit()" color="dark" *ngIf="walletForm.valid">Done</ion-button>
+        <ion-button (click)="onSubmit()" color="dark" *ngIf="walletForm.valid">{{ 'common.button.done' | translate }}</ion-button>
       </ion-buttons> 
     </ion-toolbar>
   </ion-header>
@@ -16,32 +16,32 @@
             <ion-select [value]="walletForm.controls.country.value" okText="Okay" cancelText="Dismiss" formControlName="country" >
               <ion-select-option *ngFor="let country of countries" [value]="country">{{country}}</ion-select-option>
             </ion-select>
-        <ion-text class="warn-text" >Country cannot be empty</ion-text>
+        <ion-text class="warn-text" >Country {{ 'common.label.cantEmpty' | translate }}</ion-text>
       </ion-item>   -->
       <ion-item lines="none" [class.error]="!walletForm.controls.swiftcode.valid && (walletForm.controls.swiftcode.dirty || walletForm.controls.swiftcode.touched)">
-            <ion-label position="stacked" class="input-label">SWIFT</ion-label>
+            <ion-label position="stacked" class="input-label">{{ 'wallet.SWIFT' | translate }}</ion-label>
             <ion-input type="text" formControlName="swiftcode" name="swiftcode"></ion-input>
-            <ion-text class="warn-text" >SWIFT cannot be empty</ion-text>
+            <ion-text class="warn-text" >{{ 'wallet.SWIFT' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
         </ion-item>
         <ion-item lines="none" [class.error]="!walletForm.controls.iban.valid && (walletForm.controls.iban.dirty || walletForm.controls.iban.touched)">
-            <ion-label position="stacked" class="input-label">IBAN</ion-label>
+            <ion-label position="stacked" class="input-label">{{ 'wallet.IBAN' | translate }}</ion-label>
             <ion-input type="text" formControlName="iban" name="iban"></ion-input>
-            <ion-text class="warn-text" >IBAN cannot be empty</ion-text>
+            <ion-text class="warn-text" >{{ 'wallet.IBAN' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
         </ion-item>
         <ion-item lines="none" [class.error]="!walletForm.controls.bankname.valid && (walletForm.controls.bankname.dirty || walletForm.controls.bankname.touched)">
-            <ion-label position="stacked" class="input-label">Bank Name</ion-label>
+            <ion-label position="stacked" class="input-label">{{ 'wallet.BankName' | translate }}</ion-label>
             <ion-input type="text" formControlName="bankname" name="bankname"></ion-input>
-            <ion-text class="warn-text" >Bank name cannot be empty</ion-text>
+            <ion-text class="warn-text" >{{ 'wallet.BankName' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
         </ion-item>
         <!-- <ion-item lines="none" [class.error]="!walletForm.controls.accountName.valid && (walletForm.controls.accountName.dirty || walletForm.controls.accountName.touched)">
             <ion-label position="stacked" class="input-label">Account Name</ion-label>
             <ion-input type="text" formControlName="accountName" name="accountName"></ion-input>
-            <ion-text class="warn-text" >Account name cannot be empty</ion-text>
+            <ion-text class="warn-text" >Account name {{ 'common.label.cantEmpty' | translate }}</ion-text>
         </ion-item>
         <ion-item lines="none" [class.error]="!walletForm.controls.accountNumber.valid && (walletForm.controls.accountNumber.dirty || walletForm.controls.accountNumber.touched)">
             <ion-label position="stacked" class="input-label">Account Number</ion-label>
             <ion-input type="number" formControlName="accountNumber" name="accountNumber"></ion-input>
-            <ion-text class="warn-text" >Account Number cannot be empty</ion-text>
+            <ion-text class="warn-text" >Account Number {{ 'common.label.cantEmpty' | translate }}</ion-text>
         </ion-item> -->
       </ion-list>
     </form>

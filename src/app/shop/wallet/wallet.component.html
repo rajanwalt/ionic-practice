@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar padding>
-        <ion-back-button  slot="start" color="dark" defaultHref="/" text="My Wallet" icon="arrow-back-outline"></ion-back-button>
+        <ion-back-button  slot="start" color="dark" defaultHref="/" text="{{ 'common.tabs.wallet' | translate }}" icon="arrow-back-outline"></ion-back-button>
    </ion-toolbar>
 </ion-header>
 <ion-content fullscreen   >
@@ -12,14 +12,14 @@
               <ion-icon name="cash-outline"></ion-icon>
             </p>
             <p class="font-weight-light">
-              Monekat release payouts about 7 days after a sale has been made. The time it takes for the funds to appear in your account depends on your payout method.
+              {{ 'wallet.title' | translate }}
             </p>
             <ion-button 
                     expand="full" 
                     strong="true" 
                     (click)="onAddItem()"
                     class="add-item">
-              ADD PAYOUT METHOD            
+                    {{ 'wallet.button.title' | translate }}
             </ion-button>
           </div>
       </ion-col>
@@ -30,7 +30,7 @@
     <ion-item lines="none" >
         <ion-label class="header">
             <ion-text class="text-16 text-600">
-                PAYOUT SUMMARY
+              {{ 'wallet.PAYOUTSUMMARY' | translate }}
             </ion-text>
         </ion-label>
     </ion-item>
@@ -39,7 +39,7 @@
             <ion-grid>
                 <ion-row >
                     <ion-col class="text-left">
-                        <ion-text>Account Balance</ion-text>
+                        <ion-text>{{ 'wallet.AccountBalance' | translate }}</ion-text>
                       </ion-col>  
                     <ion-col class="text-right">
                         <ion-text>{{wallet?.Balance?.Amount | currency : wallet?.Balance?.Currency }}</ion-text>
@@ -59,13 +59,12 @@
       <ion-item lines="none" >
           <ion-label class="ion-text-wrap">
             <ion-text>
-                <h2 class="text-600">Select a payout method</h2>
+                <h2 class="text-600"> {{ 'wallet.selectPayout' | translate }}</h2>
                 
             </ion-text>
             <ion-text color="medium">
                 <p class="sub-text">
-                    Monekat releases payout about 7 days after a sale has been made.
-                    The time it takes for thr funds to appear in your account depends on your payout method.
+                  {{ 'wallet.title' | translate }}
                 </p>
             </ion-text>
           </ion-label>
@@ -76,7 +75,7 @@
                   <ion-grid>
                       <ion-row >
                           <ion-col size="5">
-                              <ion-text>Bank Transfer</ion-text>
+                              <ion-text>{{ 'wallet.BankTransfer' | translate }}</ion-text>
                             </ion-col>  
                           <ion-col size="5">
                               <ion-text>{{payoutDetails?.bankname}}</ion-text>
@@ -93,15 +92,15 @@
               <ion-grid>
                   <ion-row >
                       <ion-col class="text-left">
-                          <ion-text>Processing in</ion-text>
+                          <ion-text>{{ 'wallet.BankTransfer' | translate }}</ion-text>
                         </ion-col>  
                       <ion-col class="text-right">
-                          <ion-text>3 - 5 business days</ion-text>
+                          <ion-text>{{ 'wallet.payoutDays' | translate }}</ion-text>
                       </ion-col>
                   </ion-row>
                   <ion-row >
                       <ion-col class="text-left">
-                          <ion-text>Fees</ion-text>
+                          <ion-text>{{ 'common.label.Fees' | translate }}</ion-text>
                         </ion-col>  
                       <ion-col class="text-right">
                           <ion-text>{{fee}}%</ion-text>
@@ -109,7 +108,7 @@
                   </ion-row>
                   <ion-row >
                       <ion-col class="text-left">
-                          <ion-text>Currency</ion-text>
+                          <ion-text>{{ 'common.label.Currency' | translate }}</ion-text>
                         </ion-col>  
                       <ion-col class="text-right">
                           <ion-text>{{wallet?.Balance?.Currency}}</ion-text>
@@ -117,7 +116,7 @@
                   </ion-row>
                   <ion-row >
                       <ion-col >
-                        Details: Business day processing only; weekends and banking holidays may cause delays.
+                        {{ 'wallet.selectPayoutText' | translate }}
                       </ion-col>
                   </ion-row>
               </ion-grid>
@@ -128,6 +127,6 @@
 </ion-content>
 <ion-footer *ngIf="wallet" >
     <ion-button expand="full" (click)="onReleasePayment()" [disabled]="!wallet.Balance.Amount">
-        RELEASE PAYMENT
+      {{ 'wallet.RELEASEPAYMENT' | translate }}
     </ion-button>
 </ion-footer>

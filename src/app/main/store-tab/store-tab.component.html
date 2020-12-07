@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="favorite" padding>
     <ion-title>
-      Store
+      {{ 'common.tabs.store' | translate }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,7 +11,7 @@
       <ion-row (click)="onSelect('shop')">
           <ion-col size="12" class="text-right">
             <ion-text color="primary" >
-              Edit
+              {{ 'common.button.edit' | translate }}
             </ion-text>
           </ion-col>  
         <ion-col size="12" class="ion-align-self-center text-center">
@@ -29,7 +29,7 @@
     <ion-row class="list" (click)="onSelect('wallet')">
       <ion-col size="6">
         <ion-icon src="./../../../assets/icon/Wallet.svg" color="medium" class="left-icon"></ion-icon>
-        <div class="sub-text">My Wallet</div>
+        <div class="sub-text">{{ 'common.tabs.wallet' | translate }}</div>
       </ion-col>
       <ion-col size="6" class="text-right">
           <div class="sub-text">{{shopDetails.totalWallet | currency:'USD':'code'}}</div>
@@ -50,7 +50,7 @@
     <ion-row class="list" (click)="onSelect('catalogue')">
       <ion-col size="6">
         <ion-icon src="./../../../assets/icon/Catalogue.svg" color="medium" class="left-icon"></ion-icon>
-        <div class="sub-text">Catalogue</div>
+        <div class="sub-text">{{ 'common.tabs.catalogue' | translate }}</div>
       </ion-col>
       <ion-col size="6" class="text-right">
         <ion-icon name="chevron-forward-outline" color="medium" class="right-icon"></ion-icon> 

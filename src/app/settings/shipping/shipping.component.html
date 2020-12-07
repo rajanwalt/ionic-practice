@@ -5,10 +5,10 @@
             <ion-icon name="arrow-back-outline"></ion-icon>
           </ion-button>
       </ion-buttons>
-    <ion-title>Shipping</ion-title>
+    <ion-title>{{ 'settings.shipping' | translate }}</ion-title>
     <ion-buttons slot="end" *ngIf="shippingForm.dirty">
       <ion-button (click)="onSave()">
-        Save
+        {{ 'common.button.Save' | translate }}
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -19,18 +19,18 @@
   <ion-grid>
     <ion-row class="ship-heading">
       <ion-col size="8">
-        Type
+        {{ 'shipping.Type' | translate }}
       </ion-col>
       <ion-col size="4" class="right-align">
-        Allow
+        {{ 'shipping.Allow' | translate }}
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col size="8">
         <ion-text class="text-bold">
-          Customer Pickup <br>
+          {{ 'shipping.CustomerPickup' | translate }} <br>
         </ion-text>
-        <ion-text color="success">No cost</ion-text>
+        <ion-text color="success">{{ 'shipping.NoCost' | translate }}</ion-text>
       </ion-col>
       <ion-col size="4" class="right-align">
         <ion-toggle color="favorite" formControlName="customer_pickup"></ion-toggle>
@@ -39,13 +39,13 @@
     <ion-row>
       <ion-col size="8">
         <ion-text class="text-bold">
-          In-house Delivery <br>
+          {{ 'shipping.InHouseDelivery' | translate }} <br>
         </ion-text>
         <ion-text color="success">
-          Fixed Price <br>
+          {{ 'shipping.FixedPrice' | translate }} <br>
         </ion-text>
         <ion-text>
-          (available for domestic only)
+          ({{ 'shipping.domesticOnly' | translate }})
         </ion-text>
       </ion-col>
       <ion-col size="4" class="right-align">
@@ -57,19 +57,19 @@
     <ion-row>
       <ion-col size="12">
         <ion-text class="text-bold">
-          Set fixed courier prices
+          {{ 'shipping.setFixed' | translate }}
         </ion-text>
       </ion-col>
     </ion-row>
     <ion-row class="ship-heading" *ngFor="let item of fixedPrices.controls; let i=index" [formGroupName]="i">
       <ion-col size="6">
-        <ion-text>Destination City</ion-text>
+        <ion-text>{{ 'shipping.DestinationCity' | translate }}</ion-text>
         <ion-select placeholder="Select city" formControlName="city" [value]="item.city" >
           <ion-select-option *ngFor="let cityName of cities" [value]="cityName">{{cityName}}</ion-select-option>
         </ion-select>
       </ion-col>
       <ion-col size="4">
-        <ion-text>Price</ion-text>
+        <ion-text>{{ 'shipping.Price' | translate }}</ion-text>
         <ion-input placeholder="USD 0.00" [value]="item.charge" formControlName="charge" ></ion-input>
       </ion-col>
       <ion-col size="2" class="ion-align-self-end text-center" >
@@ -79,7 +79,7 @@
     <ion-row>
       <ion-col>
         <ion-text color="primary" (click)="onAddLocation()">
-          Add another location
+          {{ 'shipping.AddAnother' | translate }}
         </ion-text>
       </ion-col>
     </ion-row>

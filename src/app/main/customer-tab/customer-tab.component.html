@@ -3,8 +3,8 @@
     <!-- <ion-buttons slot="start" *ngIf="!isSerachActive">
         <ion-back-button  color="dark" defaultHref="/" [text]="!isSerachActive ? 'Customers' : ''" icon="arrow-back-outline"></ion-back-button>
     </ion-buttons> -->
-    <ion-title>
-      Customers
+    <ion-title *ngIf="!isSerachActive">
+      {{ 'common.tabs.customers' | translate }}
     </ion-title>
     <ion-buttons slot="end" *ngIf="!isSerachActive">
       <ion-button (click)="isSerachActive = !isSerachActive; onEnableSearch()" color="dark">
@@ -15,7 +15,7 @@
     <ion-searchbar
       #searchbar
       debounce="500"
-      placeholder="Search for customers" 
+      placeholder="{{ 'customers.searchCustomer' | translate }}" 
       showCancelButton="always" 
       *ngIf="isSerachActive"
       cancelButtonIcon="arrow-back-sharp" 

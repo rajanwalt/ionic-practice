@@ -8,10 +8,20 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { createTranslateLoader } from './../common';
+import { HttpClient } from '@angular/common/http';
 
 
 @NgModule({
   imports: [
+    TranslateModule.forChild({ 
+      loader: {  
+        provide: TranslateLoader, 
+        useFactory: (createTranslateLoader),  
+        deps: [HttpClient] 
+      } 
+    }),
     CommonModule,
     FormsModule,
     IonicModule,

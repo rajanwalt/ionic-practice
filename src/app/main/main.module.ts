@@ -15,9 +15,19 @@ import { OrdersTabComponent } from './orders-tab/orders-tab.component';
 import { SettingsTabComponent } from './settings-tab/settings-tab.component';
 import { CustomerTabComponent } from './customer-tab/customer-tab.component'
 
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { createTranslateLoader } from './../common';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   imports: [
+    TranslateModule.forChild({ 
+      loader: {  
+        provide: TranslateLoader, 
+        useFactory: (createTranslateLoader),  
+        deps: [HttpClient] 
+      } 
+    }),
     CommonModule,
     FormsModule,
     IonicModule,

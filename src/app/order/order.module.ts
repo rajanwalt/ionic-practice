@@ -15,8 +15,19 @@ import { ShipmentOptionsComponent } from './shipment-options/shipment-options.co
 import {AddCustomRateModalComponent} from './add-custom-rate-modal/add-custom-rate-modal.component';
 import { ViewOrderComponent } from './view-order/view-order.component';
 
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { createTranslateLoader } from './../common';
+import { HttpClient } from '@angular/common/http';
+
 @NgModule({
   imports: [
+    TranslateModule.forChild({ 
+      loader: {  
+        provide: TranslateLoader, 
+        useFactory: (createTranslateLoader),  
+        deps: [HttpClient] 
+      } 
+    }),
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

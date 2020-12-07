@@ -1,14 +1,203 @@
 {
     "welcome": {
-        "title": "The simplest way to complete a sale over chat"
+        "title": "The simplest way to complete a sale over chat",
+        "login" : "LOG IN",
+        "createAccount" : "Create an Account"
     },
     "languages": {
         "tabName" : "Languages"
     },
-    "common" : {
+    "login": {
+        "tabName" : "welcome back",
+        "login" : "Log in",
+        "forgotPassword" : "Forgot Password"
+    },
+    "createAccount" : {
+        "vendorType" : "Vendor Type",
+        "freelancer" : "Freelancer",
+        "legalEntity" : "Legal Entity",
+        "business" : "Business",
+        "organization" : "Organization",
+        "soletrader": "Soletrader",
+        "Occupation" : "Occupation",
+        "registrationDateofIssue" : "Registration Date of Issue",
+        "registrationDateofExpiry": "Registration Date of Expiry",
+        "IDENTITYPROOF" : "IDENTITY PROOF",
+        "REGISTRATIONPROOF" : "REGISTRATION PROOF",
+        "ARTICLESOFASSOCIATION" : "ARTICLES OF ASSOCIATION",
+        "kycMessage1" : "Monekat uses safe and secure methods of verifying their users, in order to process the payment from our various financial institutions.",
+        "kycMessage2" : "As our next step, we would like you to complete the below form and upload the following documents as applicable.",
+        "kycMessage3" : "You may contact us at support@monekat.com for further queries or concerns.",
+        "kycMessage4" : "We appreciate your cooperation.",
+        "CompanyNumber" : "Company Number",
+        "AddCompanyDetails" : "Add Company Details",
+        "HeadquartersAddress" : "Headquarters address",
+        "AddLegalRepresentativeDetails" : "Add Legal Representative Details",
+        "LegalRepresentativeAddress" : "Legal Representative Address"
+    },
+    "newOrder" : {
+        "title" : "Send a checkout link. Get paid.",
+        "subTitle" : "Let your customers checkout on chat",
         "button" : {
-            "login" : "LOG IN",
-            "createAccount" : "CREATE AN ACCOUNT FOR FREE"
+            "createOrder" : "CREATE ORDER"
+        }
+    },
+    "orders" : {
+        "title" : "You haven't received any orders yet.",
+        "subTitle" : "It's okay! It is only a matter of time before orders start rolling in. Get out there and spread the world.",
+        "SearchForOrders" : "Search for orders",
+        "button" : {
+            "title" : "Create Invoice"
+        }
+    },
+    "customers" : {
+        "title" : "You haven't added any customers yet.",
+        "subTitle" : "You can add details on behalf of a customer or let them complete it upon checkout",
+        "customerList" : "Customer List",
+        "searchCustomer" : "Search for customers",
+        "button" : {
+            "createCustomer" : "Add new customer"
+        }
+    },
+    "catalogue" : {
+        "title" : "You don't have anything in your catalogue yet",
+        "subTitle" : "Ajoutez des produits ou services à votre catalogue. Juste un nom et un prix sont nécessaires pour démarrer.",
+        "noItem" : "There are no items to add.",
+        "SelectItems" : "Select Items",
+        "createItem" : "Create New Item",
+        "chooseItems" : "Choose from Catalogue",
+        "SearchItems" : "Search for catalogue",
+        "addItem" : {
+            "title" : "Add Item",
+            "label" : {
+                "AddPicture" : "Add picture",
+                "productName" : "Name of product or service",
+                "Price" : "Price",
+                "AdditionalDetails" : "Additional Details",
+                "Delivery" : "Delivery",
+                "DeliveryText1" : "Applicable for physical products",
+                "DeliveryText2" : "Delivery address and options will be required for the customers to complete a purchase",
+                "Dimensions" : "Dimensions",
+                "DimensionsText1" : "Choose a preset or enter manually",
+                "Weight" : "Weight",
+                "Length" : "Length",
+                "Width" : "Width",
+                "Height" : "Height",
+                "Small" : "Small",
+                "Medium" :"Medium",
+                "Large" : "Large"
+            }
+        },
+        "button" : {
+            "createProduct" : "ADD A PRODUCT OR SERVICE"
+        }
+    },
+    "shop" : {
+        "title" : "Your Shop",
+        "Shoplogo" : "Shop logo",
+        "ShoplogoText" : "Your shop logo is visible on invoice, checkout link, and your online shop.",
+        "BasicInformation" : "Basic Information",
+        "ShopName" : "Shop Name",
+        "ShopDetails" : "Shop Details",
+        "ShopDetailsText" : "Your customers will see shop details on your online store, other sales channels, and web search results.",
+        "BusinessAddress" : "Business Address",
+        "BusinessAddressText" : "This is where shopping companies will pick up your products for delivery. We won't share your business address with anyone."
+
+    },
+    "wallet" : {
+        "title" : "Monekat release payouts about 7 days after a sale has been made. The time it takes for the funds to appear in your account depends on your payout method.",
+        "button" : {
+            "title" : "ADD PAYOUT METHOD"
+        },
+        "PAYOUTSUMMARY" : "PAYOUT SUMMARY",
+        "AccountBalance" : "Account Balance",
+        "selectPayout" : "Select a payout method",
+        "selectPayoutText" : "Details: Business day processing only; weekends and banking holidays may cause delays.",
+        "RELEASEPAYMENT" : "RELEASE PAYMENT",
+        "BankTransfer" : "Bank Transfer",
+        "ProcessingIn" : "Processing in",
+        "payoutDays" : "3 - 5 business days",
+        "BankName" : "Bank Name",
+        "SWIFT" : "SWIFT",
+        "IBAN" : "IBAN"
+    },
+    "settings" : {
+        "profile" : "Your Profile",
+        "payment_settings" : "Payment Settings",
+        "shipping": "Shipping",
+        "vat": "VAT",
+        "languages": "Languages",
+        "logout": "Logout",
+        "ChangeYourPassword" : "Change Your Password",
+        "NewPassword" : "New Password",
+        "ConfirmPassword" : "Confirm Password",
+        "UpdateProfile" : "Update Profile"
+    },
+    "vat" : {
+        "rate" : "VAT rate",
+        "text" : "Amount of taxes owed by your customer will be added to each product and displayed at checkout.",
+        "trnText" : "Tax Registration Number (TRN)",
+        "trn" : "TRN"
+    },
+    "payment_settings" : {
+        "text" : "At leat one payment option must be selected. Credit card is not available in some countries."
+    },
+    "shipping": {
+        "Type" : "Type",
+        "Allow" : "Allow",
+        "CustomerPickup" : "Customer Pickup",
+        "NoCost" : "No cost",
+        "InHouseDelivery" : "In-house Delivery",
+        "FixedPrice" : "Fixed Price",
+        "domesticOnly" : "available for domestic only",
+        "setFixed" : "Set fixed courier prices",
+        "DestinationCity" : "Destination City",
+        "Price" : "Price",
+        "AddAnother" : "Add another location"
+    },
+    "common" : {
+        "tabs" : {
+            "newOrder" : "New Order",
+            "orders" : "Orders",
+            "customers" : "Customers",
+            "store" : "Store",
+            "settings" : "Settings",
+            "wallet" : "My Wallet",
+            "catalogue" : "Catalogue"
+        },
+        "button" : {
+            "edit" : "Edit",
+            "done" : "Done",
+            "cancel" : "Cancel",
+            "Next" : "Next",
+            "Okay" : "Okay",
+            "Dismiss" : "Dismiss",
+            "add" : "Add",
+            "Save" : "Save",
+            "apply" : "Apply"
+
+        },
+        "label" : {
+            "firstName" : "First Name",
+            "lastName" : "Last Name",
+            "email" : "Email Address",
+            "optional" : "optional",
+            "phone": "Phone Number",
+            "country" : "Country",
+            "DateofBirth" : "Date of birth",
+            "city" : "City",
+            "address" : "Address",
+            "postalCode" : "Postal Code",
+            "password" : "Password",
+            "CountryOfResidence" : "Country of residence",
+            "type" : "Type",
+            "Name" : "Name",
+            "phonenumber" : "Phone Number",
+            "cantEmpty" : "cannot be empty",
+            "BasicInformation" : "Basic Information",
+            "ShippingDetails" : "Shipping Details",
+            "Fees" : "Fees",
+            "Currency" : "Currency"
         }
     }
 }

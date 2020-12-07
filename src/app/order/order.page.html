@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar color="favorite">
       <ion-buttons slot="start">
-          <ion-back-button  color="dark" defaultHref="/" text="Customers" icon="arrow-back-outline"></ion-back-button>
+          <ion-back-button  color="dark" defaultHref="/" text="{{ 'common.tabs.customers' | translate }}" icon="arrow-back-outline"></ion-back-button>
       </ion-buttons>
       <!-- <ion-buttons slot="end">
         <ion-button (click)="onSkip()" color="dark" >Skip</ion-button>
@@ -14,9 +14,9 @@
     <ion-row class="ion-align-items-center">
         <ion-col class="ion-align-self-center">
           <!-- <div  class="catalogue-container"> -->
-            <p class="text-bold">You haven't added any customers yet.</p>
+            <p class="text-bold"> {{ 'customers.title' | translate }} </p>
             <p class="text-light">
-              You can add details on behalf of a customer or let them complete it upon checkout
+              {{ 'customers.subTitle' | translate }}
             </p>
             <ion-button 
                     expand="full" 
@@ -24,7 +24,7 @@
                     (click)="onAddNewCustomer()"
                     class="add-item"
                     color="favorite">
-              CREATE NEW CUSTOMER
+                    {{ 'customers.button.createCustomer' | translate }}
             </ion-button>
           <!-- </div> -->
       </ion-col>
@@ -37,13 +37,13 @@
           <ion-icon name="add" ></ion-icon>
       </ion-col>
       <ion-col size='11'>
-          <ion-text>Add New Customer</ion-text>
+          <ion-text>{{ 'customers.button.createCustomer' | translate }}</ion-text>
       </ion-col>
     </ion-row>
 
     <ion-row *ngIf="!isSerachActive" class="search-text-box">
       <ion-col size='11'>
-        <ion-text>Customer list</ion-text>
+        <ion-text>{{ 'customers.customerList' | translate }}</ion-text>
       </ion-col>
       <ion-col size='1'>
         <ion-icon name="search" (click)="onEnableSearch()"></ion-icon>
@@ -54,7 +54,7 @@
         <ion-searchbar
           #searchbar
           debounce="500"
-          placeholder="Search for customers" 
+          placeholder="{{ 'customers.searchCustomer' | translate }}" 
           showCancelButton="always" 
           cancelButtonIcon="arrow-back-sharp" 
           (ionChange) = "onSearch($event)"

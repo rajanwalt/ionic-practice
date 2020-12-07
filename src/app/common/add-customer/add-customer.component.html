@@ -14,42 +14,42 @@
     <form [formGroup]="customerForm">
         <ion-list>
             <ion-list-header>
-                <ion-label>Basic Information</ion-label>
+                <ion-label>{{ 'common.label.BasicInformation' | translate }}</ion-label>
             </ion-list-header>
             <ion-item  lines='none' [class.error]="!customerForm.controls.firstname.valid && (customerForm.controls.firstname.dirty || customerForm.controls.firstname.touched)" >
-                <ion-label position="stacked" class="input-label">First name</ion-label>
+                <ion-label position="stacked" class="input-label">{{ 'common.label.firstName' | translate }}</ion-label>
                 <ion-input type="text" formControlName="firstname" name="firstname"></ion-input>
-                <ion-text class="warn-text" >First name cannot be empty</ion-text>
+                <ion-text class="warn-text" >{{ 'common.label.firstName' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
             </ion-item> 
             <ion-item lines='none' [class.error]="!customerForm.controls.lastname.valid && (customerForm.controls.lastname.dirty || customerForm.controls.lastname.touched)" >
-                <ion-label position="stacked" class="input-label">Last name</ion-label>
+                <ion-label position="stacked" class="input-label">{{ 'common.label.lastName' | translate }}</ion-label>
                 <ion-input type="text" formControlName="lastname" name="lastname"></ion-input>
-                <ion-text class="warn-text" >Last name cannot be empty</ion-text>
+                <ion-text class="warn-text" >{{ 'common.label.lastName' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
             </ion-item> 
             <ion-item lines='none' [class.error]="!customerForm.controls.birthday.valid && (customerForm.controls.birthday.dirty || customerForm.controls.birthday.touched)">
-                <ion-label position="stacked">Date of birth</ion-label>
-                <ion-datetime name="birthday" (ionChange)="getDate($event)" ></ion-datetime>
-                <ion-text class="warn-text">Date of birth cannot be empty</ion-text>
+                <ion-label position="stacked">{{ 'common.label.DateofBirth' | translate }}</ion-label>
+                <ion-datetime name="birthday" (ionChange)="getDate($event)" cancelText="{{ 'common.button.cancel' | translate }}" doneText="{{ 'common.button.done' | translate }}"></ion-datetime>
+                <ion-text class="warn-text">{{ 'common.label.DateofBirth' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
               </ion-item> 
             <ion-item lines='none'  >
-                <ion-label position="stacked" class="input-label">Email address (optional)</ion-label>
+                <ion-label position="stacked" class="input-label">{{ 'common.label.email' | translate }}</ion-label>
                 <ion-input type="text" formControlName="email" name="email"></ion-input>
             </ion-item> 
             <ion-item lines='none' [class.error]="!customerForm.controls.phonenumber.valid && (customerForm.controls.phonenumber.dirty || customerForm.controls.phonenumber.touched)" >
-                <ion-label position="stacked" class="input-label">Phone number</ion-label>
+                <ion-label position="stacked" class="input-label">{{ 'common.label.phonenumber' | translate }}</ion-label>
                 <ion-input type="text" formControlName="phonenumber" name="phonenumber"></ion-input>
-                <ion-text class="warn-text" >Phone number cannot be empty</ion-text>
+                <ion-text class="warn-text" >{{ 'common.label.phonenumber' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
             </ion-item> 
             <div class="divider"></div>
             <ion-list-header>
-                    <ion-label>Shipping Details</ion-label>
+                    <ion-label>{{ 'common.label.ShippingDetails' | translate }}</ion-label>
             </ion-list-header>
             <ion-item lines="none" >
-                    <ion-label position="stacked" class="input-label" >Country</ion-label>
+                    <ion-label position="stacked" class="input-label" >{{ 'common.label.country' | translate }}</ion-label>
                     <ion-select 
                         [value]="customerForm.controls.country.value" 
-                        okText="Okay" 
-                        cancelText="Dismiss" 
+                        okText="{{ 'common.button.Okay' | translate }}" 
+                        cancelText="{{ 'common.button.Dismiss' | translate }}" 
                         formControlName="country"
                         (ionChange)="onChangeCountry($event)">
                       <!-- <ion-select-option [value]="null"> </ion-select-option> -->
@@ -57,16 +57,20 @@
                     </ion-select>
               </ion-item>  
               <ion-item lines="none" >
-                    <ion-label position="stacked" class="input-label" >City</ion-label>
-                    <ion-select [value]="customerForm.controls.city.value" okText="Okay" cancelText="Dismiss" formControlName="city">
+                    <ion-label position="stacked" class="input-label" >{{ 'common.label.city' | translate }}</ion-label>
+                    <ion-select 
+                        [value]="customerForm.controls.city.value" 
+                        okText="{{ 'common.button.Okay' | translate }}" 
+                        cancelText="{{ 'common.button.Dismiss' | translate }}"  
+                        formControlName="city">
                       <!-- <ion-select-option [value]="null"> </ion-select-option> -->
                       <ion-select-option *ngFor="let city of cities" [value]="city">{{city}}</ion-select-option>
                     </ion-select>
               </ion-item>  
               <ion-item lines='none' [class.error]="!customerForm.controls.street.valid && (customerForm.controls.street.dirty || customerForm.controls.street.touched)" >
-                    <ion-label position="stacked" class="input-label">Street</ion-label>
+                    <ion-label position="stacked" class="input-label">{{ 'common.label.address' | translate }}</ion-label>
                     <ion-input type="text" formControlName="street" name="street"></ion-input>
-                    <ion-text class="warn-text" >Street cannot be empty</ion-text>
+                    <ion-text class="warn-text" >{{ 'common.label.address' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
                 </ion-item> 
         </ion-list>
     </form>

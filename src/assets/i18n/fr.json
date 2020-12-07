@@ -1,14 +1,202 @@
 {
     "welcome": {
-        "title": "Le moyen le plus simple de conclure une vente par chat"
+        "title": "Le moyen le plus simple de conclure une vente par chat",
+        "login" : "Connexion",
+        "createAccount" : "Créer un compte"
     },
     "languages": {
         "tabName" : "Langue"
     },
-    "common" : {
+    "login": {
+        "tabName" : "Nous saluons le retour",
+        "forgotPassword" : "Mot de passe oublié"
+    },
+    "createAccount" : {
+        "vendorType" : "Type de fournisseur",
+        "freelancer" : "Pigiste",
+        "legalEntity" : "Entité légale",
+        "business" : "Affaires",
+        "organization" : "Organisation",
+        "soletrader": "Soletrader",
+        "Occupation" : "Occupation",
+        "registrationDateofIssue" : "Date de délivrance du KBIS",
+        "registrationDateofExpiry": "Date d'expiration du KBIS",
+        "IDENTITYPROOF" : "Preuve d'identité",
+        "REGISTRATIONPROOF" : "Extrait RCS ou KBIS",
+        "ARTICLESOFASSOCIATION" : "Statuts de l'entreprise",
+        "kycMessage1" : "Monekat uses safe and secure methods of verifying their users, in order to process the payment from our various financial institutions.",
+        "kycMessage2" : "As our next step, we would like you to complete the below form and upload the following documents as applicable.",
+        "kycMessage3" : "You may contact us at support@monekat.com for further queries or concerns.",
+        "kycMessage4" : "We appreciate your cooperation.",
+        "AddCompanyDetails" : "Ajouter les détails de l'entreprise",
+        "CompanyNumber" : "Numéro d'entreprise",
+        "HeadquartersAddress" : "Adresse du siège",
+        "AddLegalRepresentativeDetails" : "Ajouter les détails du représentant légal",
+        "LegalRepresentativeAddress" : "Adresse du représentant légal"
+    },
+    "newOrder" : {
+        "title" : "Envoyer un lien de paiement.",
+        "subTitle" : "Permettez à vos clients de payer via les réseaux sociaux",
         "button" : {
-            "login" : "s'identifier",
-            "createAccount" : "CRÉER UN COMPTE GRATUITEMENT"
+            "createOrder" : "Créer une commande"
+        }
+    },
+    "orders" : {
+        "title" : "Vous n'avez encore reçu aucune commande.",
+        "subTitle" : "Ça va! Ce n'est qu'une question de temps avant que les commandes ne commencent à arriver. Sortez et répandez le monde.",
+        "SearchForOrders" : "Rechercher des commandes",
+        "button" : {
+            "title" : "Créer une facture"
+        }
+    },
+    "customers" : {
+        "title" : "Vous n'avez encore ajouté aucun client.",
+        "subTitle" : "Vous pouvez ajouter des détails au nom d'un client ou le laisser le compléter lors du paiement",
+        "customerList" : "Liste des clients",
+        "searchCustomer" : "Rechercher des clients",
+        "button" : {
+            "createCustomer" : "Ajouter un nouveau client "
+        }
+    },
+    "catalogue" : {
+        "title" : "Vous n'avez encore rien dans votre catalogue",
+        "subTitle" : "Permettez à vos clients de payer via les réseaux sociaux",
+        "noItem" : "Il n'y a aucun élément à ajouter.",
+        "SelectItems" : "Sélectionner des éléments",
+        "createItem" : "Créer un nouveau produit",
+        "chooseItems" : "Choisissez dans le catalogue",
+        "SearchItems" : "Recherche de catalogue",
+        "addItem" : {
+            "title" : "Ajouter un item",
+            "label" : {
+                "AddPicture" : "Ajouter une image",
+                "productName" : "Nom du produit ou service",
+                "Price" : "Prix",
+                "AdditionalDetails" : "Additional Details",
+                "Delivery" : "Livraison",
+                "DeliveryText1" : "Applicable aux produits physiques",
+                "DeliveryText2" : "L'adresse de livraison et les options seront nécessaires pour que les clients puissent effectuer un achat",
+                "Dimensions" : "Dimensions",
+                "DimensionsText1" : "Choisissez un préréglage ou entrez manuellement",
+                "Weight" : "Poids",
+                "Length" : "Longueur",
+                "Width" : "Largeur",
+                "Height" : "la taille",
+                "Small" : "Petit",
+                "Medium" :"Moyen",
+                "Large" : "Grand"
+
+            }
+        },
+        "button" : {
+            "createProduct" : "AJOUTER UN PRODUIT OU UN SERVICE"
+        }
+    },
+    "shop" : {
+        "title" : "Votre magasin",
+        "Shoplogo" : "Logo de la boutique",
+        "ShoplogoText" : "Le logo de votre boutique est visible sur la facture, le lien de paiement et votre boutique en ligne.",
+        "BasicInformation" : "Informations de base",
+        "ShopName" : "Nom de la boutique",
+        "ShopDetails" : "Détails de la boutique",
+        "ShopDetailsText" : "Vos clients verront les détails de la boutique sur votre boutique en ligne, d'autres canaux de vente et les résultats de recherche sur le Web.",
+        "BusinessAddress" : "Adresse d'affaires",
+        "BusinessAddressText" : "C'est ici que les entreprises d'achat récupèrent vos produits pour livraison. Nous ne partagerons votre adresse professionnelle avec personne."
+
+    },
+    "wallet" : {
+        "title" : "Monekat effectue le versement du paiement 7 à 14 jours après la vente. Le temps que votre versement apparaisse sur votre compte dépend de votre mode de paiement.",
+        "button" : {
+            "title" : "Ajouter un mode de paiement"
+        },
+        "PAYOUTSUMMARY" : "RÉSUMÉ DES PAIEMENTS",
+        "AccountBalance" : "Solde du compte",
+        "selectPayout" : "Sélectionnez une méthode de paiement",
+        "selectPayoutText" : "Détails: traitement le jour ouvrable uniquement; les week-ends et jours fériés peuvent entraîner des retards.",
+        "RELEASEPAYMENT" : "PAIEMENT DE LIBÉRATION",
+        "BankTransfer" : "Virement",
+        "ProcessingIn" : "Traitement en",
+        "payoutDays" : "3 à 5 jours ouvrables",
+        "BankName" : "Nom de la banque",
+        "SWIFT" : "SWIFT",
+        "IBAN" : "IBAN"
+    },
+    "settings" : {
+        "profile" : "Votre profil",
+        "payment_settings" : "Réglages de paiement",
+        "shipping": "Livraison",
+        "vat": "TVA",
+        "languages": "Langues",
+        "logout": "Déconnexion",
+        "ChangeYourPassword" : "Changez votre mot de passe",
+        "NewPassword" : "nouveau mot de passe",
+        "ConfirmPassword" : "Confirmez le mot de passe",
+        "UpdateProfile" : "Mettre à jour le profil"
+    },
+    "vat" : {
+        "rate" : "Taux de TVA",
+        "text" : "Le montant des taxes dues par votre client sera ajouté à chaque produit et affiché à la caisse.",
+        "trnText" : "Numéro d'enregistrement fiscal (TRN)",
+        "trn" : "TRN"
+    },
+    "payment_settings" : {
+        "text" : "Au moins, une option de paiement doit être sélectionnée. La carte de crédit n'est pas disponible dans certains pays."
+    },
+    "shipping": {
+        "Type" : "Type",
+        "Allow" : "Autoriser",
+        "CustomerPickup" : "Ramassage des clients",
+        "NoCost" : "Sans frais",
+        "InHouseDelivery" : "Livraison en interne",
+        "FixedPrice" : "Prix ​​fixe",
+        "domesticOnly" : "disponible pour domestique seulement",
+        "setFixed" : "Définir des prix de messagerie fixes",
+        "DestinationCity" : "ville de destination",
+        "Price" : "Prix",
+        "AddAnother" : "Ajouter un autre emplacement"
+    },
+    "common" : {
+        "tabs" : {
+            "newOrder" : "Nouvelle commande",
+            "orders" : "Commandes",
+            "customers" : "Clients",
+            "store" : "Boutique",
+            "settings" : "Réglages",
+            "wallet" : "Mon portefeuille",
+            "catalogue" : "Catalogue"
+        },
+        "button" : {
+            "edit" : "Modifier",
+            "done" : "Ok",
+            "cancel" : "Annuler",
+            "Next" : "Prochaine",
+            "Okay" : "d'accord",
+            "Dismiss" : "Rejeter",
+            "add" : "ajouter",
+            "Save" : "sauvegarder",
+            "apply" : "Appliquer"
+        },
+        "label" : {
+            "firstName" : "Prénom",
+            "lastName" : "Non de famille",
+            "email" : "Adresse e-mail",
+            "optional" : "optionnel",
+            "phone": "Téléphone",
+            "country" : "Pays",
+            "city" : "Ville",
+            "DateofBirth" : "Date de naissance",
+            "address" : "Adresse postale",
+            "postalCode" : "Code postal",
+            "password" : "Mot de passe",
+            "CountryOfResidence" : "Pays de résidence",
+            "type" : "Type",
+            "Name" : "Nom",
+            "phonenumber" : "Téléphone",
+            "cantEmpty" : "ne peux pas être vide",
+            "BasicInformation" : "Informations de base",
+            "ShippingDetails" : "Les détails d'expédition",
+            "Fees" : "Honoraires",
+            "Currency" : "Devise"
         }
     }
 }

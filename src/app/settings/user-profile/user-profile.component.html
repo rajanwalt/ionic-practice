@@ -5,7 +5,7 @@
             <ion-icon name="arrow-back-outline"></ion-icon>
           </ion-button>
       </ion-buttons>
-    <ion-title>Your Profile</ion-title>
+    <ion-title>{{ 'settings.profile' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,24 +13,24 @@
   <form [formGroup]="createAccountForm">
     <ion-list>
       <ion-item lines="none" [class.error]="!createAccountForm.controls.firstname.valid && (createAccountForm.controls.firstname.dirty || createAccountForm.controls.firstname.touched)">
-        <ion-label position="stacked">First name</ion-label>
+        <ion-label position="stacked">{{ 'common.label.firstName' | translate }}</ion-label>
         <ion-input formControlName="firstname" ></ion-input>
-        <ion-text class="warn-text" >First name cannot be empty</ion-text>
+        <ion-text class="warn-text" >{{ 'common.label.firstName' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
       </ion-item>
       <ion-item lines="none"  [class.error]="!createAccountForm.controls.lastname.valid && (createAccountForm.controls.lastname.dirty || createAccountForm.controls.lastname.touched)">
-        <ion-label position="stacked">Last name</ion-label>
+        <ion-label position="stacked">{{ 'common.label.lastName' | translate }}</ion-label>
         <ion-input formControlName="lastname" ></ion-input>
-        <ion-text class="warn-text" >Last name cannot be empty</ion-text>
+        <ion-text class="warn-text" >{{ 'common.label.lastName' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
       </ion-item>
       <ion-item lines="none" [class.error]="!createAccountForm.controls.email.valid && (createAccountForm.controls.email.dirty || createAccountForm.controls.email.touched)">
-        <ion-label position="stacked">Email address</ion-label>
+        <ion-label position="stacked">{{ 'common.label.email' | translate }}</ion-label>
         <ion-input formControlName="email" ></ion-input>
-        <ion-text class="warn-text" >Email cannot be empty</ion-text>
+        <ion-text class="warn-text" >{{ 'common.label.email' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
       </ion-item>
       <ion-item lines="none" [class.error]="!createAccountForm.controls.password.valid && (createAccountForm.controls.password.dirty || createAccountForm.controls.password.touched)">
-        <ion-label position="stacked">Password</ion-label>
+        <ion-label position="stacked">{{ 'common.label.password' | translate }}</ion-label>
         <ion-input formControlName="password" type="password" (click)="onShowChangePasswordModal()"></ion-input>
-        <ion-text class="warn-text" >password cannot be empty</ion-text>
+        <ion-text class="warn-text" >{{ 'common.label.password' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
       </ion-item>
       <!-- <ion-item>
         <ion-label position="stacked">Store name</ion-label>
@@ -43,7 +43,7 @@
       <!-- {{createAccountForm.value | json}} -->
       <ion-item-divider></ion-item-divider>
       <ion-item  button="true" color="favorite" [disabled]="!(createAccountForm.valid)" (click)="onSubmit()">
-        <ion-label color="light" class="ion-text-center">Update Profile</ion-label>
+        <ion-label color="light" class="ion-text-center">{{ 'settings.UpdateProfile' | translate }}</ion-label>
       </ion-item>
     </ion-list>
   </form>

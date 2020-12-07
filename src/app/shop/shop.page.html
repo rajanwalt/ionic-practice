@@ -1,10 +1,10 @@
 <ion-header translucent>
   <ion-toolbar color="favorite">
       <ion-buttons slot="start">
-          <ion-back-button  color="dark" defaultHref="/" text="Your Shop" icon="arrow-back-outline"></ion-back-button>
+          <ion-back-button  color="dark" defaultHref="/" text="{{ 'shop.title' | translate }}" icon="arrow-back-outline"></ion-back-button>
       </ion-buttons>
       <ion-buttons slot="end" *ngIf="shopProfileForm.valid">
-        <ion-button (click)="onSubmit()">Done</ion-button>
+        <ion-button (click)="onSubmit()">{{ 'common.button.done' | translate }}</ion-button>
       </ion-buttons> 
   </ion-toolbar>
 </ion-header>
@@ -14,8 +14,8 @@
         <ion-list>
             <ion-list-header>
                 <ion-text>
-                    <h5>Shop logo (optional) </h5>
-                    <p class="font-14">Your shop logo is visible on invoice, checkout link, and your online shop.</p>
+                    <h5>{{ 'shop.Shoplogo' | translate }} ({{ 'common.label.optional' | translate }}) </h5>
+                    <p class="font-14">{{ 'shop.ShoplogoText' | translate }}</p>
                 </ion-text>
             </ion-list-header>
             <ion-item lines="none" class="d-flex justify-content-center">
@@ -30,18 +30,18 @@
             <div class="divider"></div>
             <ion-list-header>
                 <ion-text>
-                    <h5>Basic Information </h5>
+                    <h5>{{ 'shop.BasicInformation' | translate }}</h5>
                 </ion-text>
             </ion-list-header>
           <ion-item lines="none" [class.error]="!shopProfileForm.controls.shopName.valid && (shopProfileForm.controls.shopName.dirty || shopProfileForm.controls.shopName.touched)">
-              <ion-label position="stacked">Shop Name</ion-label>
+              <ion-label position="stacked">{{ 'shop.ShopName' | translate }}</ion-label>
               <ion-input type="text" formControlName="shopName" name="shopName"></ion-input>
-              <ion-text class="warn-text" >Shop name cannot be empty</ion-text>
+              <ion-text class="warn-text" >{{ 'shop.ShopName' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
           </ion-item>
           <ion-item lines="none" [class.error]="!shopProfileForm.controls.email.valid && (shopProfileForm.controls.email.dirty || shopProfileForm.controls.email.touched)">
-            <ion-label position="stacked">Email address</ion-label>
+            <ion-label position="stacked">{{ 'common.label.email' | translate }}</ion-label>
             <ion-input type="text" formControlName="email" name="email"></ion-input>
-            <ion-text class="warn-text" >Email cannot be empty</ion-text>
+            <ion-text class="warn-text" >{{ 'common.label.email' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
           </ion-item>
           <!-- <ion-item lines="none">
             <ion-label position="stacked">Website</ion-label>
@@ -50,25 +50,25 @@
          <div class="divider"></div>
          <ion-list-header>
             <ion-text>
-                <h5>Shop Details (optional) </h5>
-                <p class="font-14">Your customers will see shop details on your online store, other sales channels, and web search results.</p>
+                <h5>{{ 'shop.ShopDetails' | translate }} ({{ 'common.label.optional' | translate }}) </h5>
+                <p class="font-14">{{ 'shop.ShopDetailsText' | translate }}</p>
             </ion-text>
         </ion-list-header>
           <ion-item lines="none">
-            <ion-label position="stacked">Shop Details</ion-label>
+            <ion-label position="stacked">{{ 'shop.ShopDetails' | translate }}</ion-label>
             <ion-input type="text" formControlName="shopdetails" name="shopdetails"></ion-input>
           </ion-item>
          <div class="divider"></div>
          <ion-list-header>
                 <ion-text>
-                    <h5>Business Address </h5>
-                    <p class="font-14">This is where shopping companies will pick up your products for delivery. We won't share your business address with anyone.</p>
+                    <h5>{{ 'shop.BusinessAddress' | translate }} </h5>
+                    <p class="font-14">{{ 'shop.BusinessAddressText' | translate }}</p>
                 </ion-text>
             </ion-list-header>
             <ion-item lines="none" >
                 <ion-label >
                     <ion-text>
-                        <p>Address</p>
+                        <p>{{ 'common.label.address' | translate }}</p>
                         <p *ngIf="shopProfileForm.controls.country.value">
                             <ion-text *ngIf="shopProfileForm.controls.street.value">{{shopProfileForm.controls.street.value}}, </ion-text>
                             <ion-text *ngIf="shopProfileForm.controls.city.value">{{shopProfileForm.controls.city.value}}, </ion-text>
@@ -78,8 +78,8 @@
                 </ion-label>
               
                 <ion-button slot="end" color="none" class="add-button" (click)="goToAddress()">
-                    <ion-text *ngIf="!shopProfileForm.controls.country.value">Add</ion-text>
-                    <ion-text *ngIf="shopProfileForm.controls.country.value">Edit</ion-text>
+                    <ion-text *ngIf="!shopProfileForm.controls.country.value">{{ 'common.button.add' | translate }}</ion-text>
+                    <ion-text *ngIf="shopProfileForm.controls.country.value">{{ 'common.button.edit' | translate }}</ion-text>
                   </ion-button>
               </ion-item>
           <!-- <div class="divider"></div> -->

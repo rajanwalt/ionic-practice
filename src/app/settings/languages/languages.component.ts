@@ -3,6 +3,8 @@ import { NavController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core'; 
 import { State } from './../../store/state';
+import { setStorage, getStorage } from './../../common';
+
 
 interface LanguageModel  {
   name: string
@@ -31,12 +33,14 @@ export class LanguagesComponent implements OnInit {
 
   onApply()  {
     // this._store.dispatch(new SetOrder({shipmentOptions}))
+    this.translate.use(this.selectedLanguage.LOCALE_ID);
+    setStorage("language", this.selectedLanguage.LOCALE_ID);
+    
+    this.goBack();
   }
 
   onSelect(language: LanguageModel)  {
     this.selectedLanguage = language;
-    this.translate.use(language.LOCALE_ID);
-
     // this.translate.setDefaultLang(language.LOCALE_ID);
   }
 
@@ -47,5 +51,14 @@ export class LanguagesComponent implements OnInit {
   constructor(private navCtrl: NavController, private _store: Store<State>, public translate: TranslateService) { }
 
   ngOnInit() {}
+
+  async ionViewWillEnter(){
+    let language = await getStorage('language');
+    if(language)  {
+      let [resLanguage] = this.languages.filter( data => data.LOCALE_ID == language);
+      resLanguage && (this.selectedLanguage = resLanguage)
+    }
+    
+  }
 
 }

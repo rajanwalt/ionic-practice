@@ -22,9 +22,24 @@ import { RepDetailsComponent } from './rep-details/rep-details.component';
 import { KycComponent } from './kyc/kyc.component';
 import { NumberInputDirective } from './number-input';
 import { TransactionStatusComponent } from './transaction-status/transaction-status.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { createTranslateLoader } from './language-translator';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
-  imports: [ CommonModule, IonicModule, FormsModule, ReactiveFormsModule ],
+  imports: [ 
+    TranslateModule.forChild({ 
+      loader: {  
+        provide: TranslateLoader, 
+        useFactory: (createTranslateLoader),  
+        deps: [HttpClient] 
+      } 
+    }),
+    CommonModule, 
+    IonicModule, 
+    FormsModule, 
+    ReactiveFormsModule 
+  ],
   declarations: [
     ListFilterPipe,
     CounterComponent,

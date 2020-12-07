@@ -3,14 +3,14 @@
     <ion-row >
       <ion-col size='12' class="ion-text-center">
         <ion-text>
-          The simplest way to complete a sale over chat
+          {{ 'welcome.title' | translate }} 
         </ion-text>
       </ion-col>
       <ion-col size='12'>
-        <ion-button expand='block' fill='outline' color="favorite" (click)="goToLogin()">Log in</ion-button>
+        <ion-button expand='block' fill='outline' color="favorite" (click)="goToLogin()">{{ 'welcome.login' | translate }}</ion-button>
       </ion-col>
       <ion-col size='12'>
-        <ion-button expand='block' fill='outline' color="favorite" (click)="goToCreateAccount()">Create an account for free</ion-button>
+        <ion-button expand='block' fill='outline' color="favorite" (click)="goToCreateAccount()">{{ 'welcome.createAccount' | translate }}</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

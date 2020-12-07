@@ -5,4 +5,8 @@ ion-tab-bar  {
 }
 ion-tab-button  {
     --color-selected : var(--ion-color-favorite1);
+
+    ion-label  {
+        text-transform: uppercase;
+    }
 }

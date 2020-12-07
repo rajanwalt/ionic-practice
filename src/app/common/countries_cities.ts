@@ -3,7 +3,7 @@ import * as _ from 'underscore';
 
 export const counries = () => _.chain(countries_cities.data).pluck( 'country').uniq().value()
 
-export const cities_code = (value) => _.filter(countries_cities.data, (data) => data.country == value)
+export const cities_code = (value) => _.chain(countries_cities.data).filter((data) => data.country == value).sortBy('city').value()
 
 export const cities = (value) => _.pluck(cities_code(value), 'city')
 

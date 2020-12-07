@@ -2,17 +2,17 @@
     <ion-toolbar color="favorite" mode="ios">
         <ion-buttons slot="start">
             <ion-button (click)="goBack()">
-              Cancel
+              {{ 'common.button.cancel' | translate }}
             </ion-button>
         </ion-buttons>
         
         <ion-buttons slot="end" *ngIf="(listofItems$ | async)">
           <ion-button (click)="onSubmitItems()">
-            Done
+            {{ 'common.button.done' | translate }}
           </ion-button>
         </ion-buttons> 
 
-        <ion-title color="dark" >Select Items</ion-title>
+        <ion-title color="dark" >{{ 'catalogue.SelectItems' | translate }}</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content fullscreen *ngIf="(listofItems$ | async) as listofItems" >
@@ -20,14 +20,14 @@
   <ion-grid *ngIf="!(listofItems.length)" class="info">
     <ion-row class="ion-align-items-center">
         <ion-col class="ion-align-self-center">
-            <p>There are no items to add.</p>
+            <p>{{ 'catalogue.noItem' | translate }}</p>
             <ion-button 
                     expand="full" 
                     strong="true" 
                     (click)="onAddNewItem()"
                     class="add-item"
                     color="favorite">
-              ADD A PRODUCT OR SERVICE
+                    {{ 'catalogue.button.createProduct' | translate }}
             </ion-button>
       </ion-col>
     </ion-row>
@@ -39,13 +39,13 @@
           <ion-icon name="add" ></ion-icon>
       </ion-col>
       <ion-col size='11'>
-          <ion-text>Create New Item</ion-text>
+          <ion-text>{{ 'catalogue.createItem' | translate }}</ion-text>
       </ion-col>
     </ion-row>
 
     <ion-row *ngIf="!isSerachActive" class="search-text-box">
       <ion-col size='11'>
-        <ion-text>Choose from Catalogue</ion-text>
+        <ion-text>{{ 'catalogue.chooseItems' | translate }}</ion-text>
       </ion-col>
       <ion-col size='1'>
         <ion-icon name="search" (click)="onEnableSearch()"></ion-icon>
@@ -56,7 +56,7 @@
         <ion-searchbar
           #searchbar
           debounce="500"
-          placeholder="Search for catalogue" 
+          placeholder="{{ 'catalogue.SearchItems' | translate }}" 
           showCancelButton="always" 
           cancelButtonIcon="arrow-back-sharp" 
           (ionChange) = "onSearch($event)"

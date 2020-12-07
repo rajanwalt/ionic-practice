@@ -5,7 +5,7 @@
             <ion-icon name="arrow-back-outline"></ion-icon>
           </ion-button>
       </ion-buttons>
-    <ion-title>Payment Settings</ion-title>
+    <ion-title>{{ 'settings.payment_settings' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,7 +13,7 @@
   <ion-list>
     <ion-item>
       <p>
-        At leat one payment option must be selected. Credit card is not available in some countries.
+        {{ 'payment_settings.text' | translate }}
       </p>
     </ion-item>
     <ion-item button="true" *ngFor="let paymentMethod of paymentMethods$ | async">

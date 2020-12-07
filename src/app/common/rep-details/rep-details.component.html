@@ -15,34 +15,34 @@
       <ion-item lines="none">
         <ion-label >
             <ion-text class="ion-text-bold">
-                Vendor Type - Legal Entity
+              {{ 'createAccount.vendorType' | translate }} - {{ 'createAccount.legalEntity' | translate }}
             </ion-text>
         </ion-label>
       </ion-item>
       <ion-item lines="none">
         <ion-label >
             <ion-text>
-                Legal Entity Type - Business/Organization/Soletrader
+              {{ 'createAccount.legalEntity' | translate }} {{ 'common.label.type' | translate }} - {{ 'createAccount.organization' | translate }}/{{ 'createAccount.business' | translate }}/{{ 'createAccount.soletrader' | translate }}
             </ion-text>
         </ion-label>
       </ion-item>
       <ion-item lines="none">
         <ion-label class="header">
             <ion-text>
-                Add Legal Representative Details
+              {{ 'createAccount.AddLegalRepresentativeDetails' | translate }}
             </ion-text>
         </ion-label>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">First name</ion-label>
+        <ion-label position="stacked">{{ 'common.label.firstName' | translate }}</ion-label>
         <ion-input formControlName="LegalRepresentativeFirstName" ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">Last name</ion-label>
+        <ion-label position="stacked">{{ 'common.label.lastName' | translate }}</ion-label>
         <ion-input formControlName="LegalRepresentativeLastName" ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">Email</ion-label>
+        <ion-label position="stacked">{{ 'common.label.email' | translate }}</ion-label>
         <ion-input formControlName="LegalRepresentativeEmail" ></ion-input>
       </ion-item>
       <!-- <ion-item>
@@ -66,19 +66,19 @@
         </ion-select>
       </ion-item>  -->
       <ion-item>
-        <ion-label position="stacked">Date of birth</ion-label>
-        <ion-datetime name="LegalRepresentativeBirthday" (ionChange)="getDate($event)" [value]="createAccountForm.controls.LegalRepresentativeBirthday.value"></ion-datetime>
+        <ion-label position="stacked">{{ 'common.label.DateofBirth' | translate }}</ion-label>
+        <ion-datetime name="LegalRepresentativeBirthday" (ionChange)="getDate($event)" [value]="createAccountForm.controls.LegalRepresentativeBirthday.value" cancelText="{{ 'common.button.cancel' | translate }}" doneText="{{ 'common.button.done' | translate }}"></ion-datetime>
       </ion-item> 
       <ion-item-group formGroupName="LegalRepresentativeAddress">
         <ion-item lines='none'>
-          <ion-label class="header">Legal Representative Address</ion-label>
+          <ion-label class="header">{{ 'createAccount.LegalRepresentativeAddress' | translate }}</ion-label>
         </ion-item>
 
         <ion-item >
-          <ion-label position="stacked" class="input-label" >Country</ion-label>
+          <ion-label position="stacked" class="input-label" >{{ 'common.label.country' | translate }}</ion-label>
           <ion-select 
-              okText="Okay" 
-              cancelText="Dismiss" 
+              okText="{{ 'common.button.Okay' | translate }}" 
+              cancelText="{{ 'common.button.Dismiss' | translate }}" 
               formControlName="Country"
               (ionChange)="onChangeCountry($event)">
             <ion-select-option *ngFor="let country of countries" [value]="country">{{country}}</ion-select-option>
@@ -86,19 +86,19 @@
         </ion-item>  
         
         <ion-item>
-              <ion-label position="stacked" class="input-label" >City</ion-label>
-              <ion-select okText="Okay" 
-                          cancelText="Dismiss" 
+              <ion-label position="stacked" class="input-label" >{{ 'common.label.city' | translate }}</ion-label>
+              <ion-select okText="{{ 'common.button.Okay' | translate }}" 
+              cancelText="{{ 'common.button.Dismiss' | translate }}" 
                           formControlName="City" >
                 <ion-select-option *ngFor="let city of cities" [value]="city" >{{city}}</ion-select-option>
               </ion-select>
         </ion-item>  
         <ion-item>
-          <ion-label position="stacked">Address Line</ion-label>
+          <ion-label position="stacked">{{ 'common.label.address' | translate }}</ion-label>
           <ion-input formControlName="AddressLine1" ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="stacked">Postal code</ion-label>
+          <ion-label position="stacked">{{ 'common.label.postalCode' | translate }}</ion-label>
           <ion-input formControlName="PostalCode" ></ion-input>
         </ion-item>
       </ion-item-group>
@@ -118,7 +118,7 @@
       </ion-item> -->
       <ion-item-divider></ion-item-divider>
       <ion-item  button="true" color="favorite" (click)="onSubmit()">
-        <ion-label color="light" class="ion-text-center">Next</ion-label>
+        <ion-label color="light" class="ion-text-center">{{ 'common.button.Next' | translate }}</ion-label>
       </ion-item>
     </ion-list>
   </form>

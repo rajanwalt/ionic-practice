@@ -4,7 +4,8 @@ import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
 
 import { Logout } from './../../store/actions';
-import { removeStorage } from './../../common';
+import { removeStorage, getStorage } from './../../common';
+import { TranslateService } from '@ngx-translate/core'; 
 
 @Component({
   selector: 'app-settings-tab',
@@ -46,19 +47,29 @@ export class SettingsTabComponent implements OnInit {
     }
   ];
 
-  navigateTo(link)  {
+  getTranslate(input)  {
+    return input ? this.translate.instant(`settings.${input}`) : ""
+  }
+
+  async navigateTo(link)  {
     if(link && link != 'logout') {
       this.navCtrl.navigateForward(`/settings/${link}`);
     }
     else {
       this._store.dispatch(new Logout());
       removeStorage('login');
+
+      let language = await getStorage('language');
+      if(language) {
+        this.translate.use('en');
+        removeStorage('language');
+      }
       
       this.navCtrl.navigateForward('/welcome');
     }
   }
   
-  constructor(private navCtrl: NavController, private _store: Store<State>) { }
+  constructor(private navCtrl: NavController, private _store: Store<State>, private translate: TranslateService) { }
 
   ngOnInit() {}
 

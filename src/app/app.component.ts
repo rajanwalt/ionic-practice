@@ -36,7 +36,7 @@ export class AppComponent {
     this.routerStateService.loadRouting();
   }
 
-  initializeApp() {
+  async initializeApp() {
     this.platform.ready().then(async (response) => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
@@ -57,7 +57,12 @@ export class AppComponent {
 
     });
     
-
-    this.translate.setDefaultLang('en');
+    let language = await getStorage('language');
+    if(language)  {
+      this.translate.setDefaultLang(language);
+    }
+    else {
+      this.translate.setDefaultLang('en');
+    }
   }
 }

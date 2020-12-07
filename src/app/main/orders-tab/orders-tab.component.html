@@ -2,7 +2,7 @@
   <ion-toolbar>
     
     <ion-title *ngIf="!isSerachActive">
-      {{!isSerachActive ? 'Orders' : ''}}
+      {{ 'common.tabs.orders' | translate }}
     </ion-title>
 
     <ion-buttons slot="end" *ngIf="!isSerachActive">
@@ -14,7 +14,7 @@
     <ion-searchbar
       #searchbar
       debounce="500"
-      placeholder="Search for orders" 
+      placeholder="{{ 'orders.SearchForOrders' | translate }}" 
       showCancelButton="always" 
       *ngIf="isSerachActive"
       cancelButtonIcon="arrow-back-sharp" 
@@ -28,10 +28,9 @@
   <ion-grid *ngIf="(orders$ | async) as order" [ngClass]="{'info' : true, 'hidden' : order.length, 'display': !order.length  }">
     <ion-row class="ion-align-items-center">
         <ion-col class="ion-align-self-center">
-            <p class="title">You haven't received any orders yet.</p>
+            <p class="title">{{ 'orders.title' | translate }}</p>
             <p class="sub-text">
-              It's okay! It is only a matter of time before orders start rolling in.
-              Get out there and spread the world.
+              {{ 'orders.subTitle' | translate }}
             </p>
             <ion-button 
                     expand="full" 
@@ -39,7 +38,7 @@
                     (click)="onCreateNewOrder()"
                     class="add-item"
                     color="favorite">
-              CREATE INVOICE        
+                    {{ 'orders.button.title' | translate }}     
             </ion-button>
       </ion-col>
     </ion-row>

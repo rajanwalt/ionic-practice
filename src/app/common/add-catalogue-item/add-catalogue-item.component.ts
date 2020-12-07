@@ -18,6 +18,7 @@ import { Observable, Subscription } from 'rxjs';
 
 import { hostName } from './../../common/hostname';
 import { showValidationMsg } from './../../common/form-validator';
+import { TranslateService } from '@ngx-translate/core'; 
 
 interface Photo  {
   imgBlob :  Blob,
@@ -211,12 +212,18 @@ export class AddCatalogueItemComponent implements OnInit {
     });
     await actionSheet.present();
   }
+
+  getTranslate(input)  {
+    return input ? this.translate.instant(`catalogue.addItem.label.${input}`) : ""
+  }
+
   constructor(public actionSheetController: ActionSheetController,
     private camera: Camera,
     public photoService : PhotoService,
     private activatedRoute: ActivatedRoute,
     private _store: Store<State>,
-    private router: Router) { 
+    private router: Router,
+    private translate: TranslateService) { 
 
     }
 
