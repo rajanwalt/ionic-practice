@@ -10,7 +10,8 @@ export class OrderDetailsModel  {
             data.item_id,
             data.item.productName,
             data.quantity,
-            data.item.price
+            data.item.price,
+            data.item.images
         )
     }
 
@@ -18,7 +19,8 @@ export class OrderDetailsModel  {
         public item_id: any,
         public productName:  string,
         public count: number,
-        public price: any 
+        public price: any ,
+        public images: any
     ) {}
 }
 

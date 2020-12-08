@@ -77,7 +77,7 @@ export class ShopEffects {
 
   onFailed$ = createEffect(() => this.actions$.pipe(
     ofType(EShopActions.ShopFailed),
-    map((action: ShopFailed) => throwError(action.payload))), 
+    switchMap((action: ShopFailed) => throwError(action.payload))), 
     {
      dispatch: false 
     }

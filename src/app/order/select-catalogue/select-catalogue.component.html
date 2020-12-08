@@ -68,7 +68,8 @@
   <ion-list *ngIf="(listofItems$ | async) as listofItems">
         <ion-item *ngFor="let item of listofItems | listFilter:'productName':searchText" (click)="onSelectItem(item)">
           <ion-thumbnail slot="start">
-            <img [src]="item?.url">
+            <img *ngIf="item?.url" [src]="item?.url">
+            <ion-icon *ngIf="!item?.url" name="pricetags-outline"></ion-icon>
           </ion-thumbnail>
           <ion-label>
             <h2>{{item?.productName}}</h2>

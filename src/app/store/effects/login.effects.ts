@@ -20,6 +20,8 @@ export class LoginEffects {
           return new LoginSuccess(customerdetails)
         }),
         catchError((error) => {
+          // this.navCtrl.navigateForward('/login');
+          // return throwError(error)
           return of(new LoginFailed(error))
         })
       )
@@ -83,7 +85,7 @@ export class LoginEffects {
 
   onLoginFailed$ = createEffect(() => this.actions$.pipe(
     ofType(ELoginActions.LoginFailed),
-    map((action: LoginFailed) => { throw new Error(action.payload['name']) }),
+    switchMap((action: LoginFailed) => throwError(action.payload)),
     tap(() => {
       this.navCtrl.navigateForward('/login');
     })

@@ -17,6 +17,16 @@ ion-toolbar  {
     }
 }
 
+ion-thumbnail  {
+    background-color: var(--ion-color-light);
+    text-align: center;
+
+    ion-icon  {
+        padding: 15px;
+        font-size: 22px;
+    }
+}
+
 ion-grid, ion-row  {
     height: 100%;
 }

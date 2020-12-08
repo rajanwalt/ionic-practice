@@ -18,6 +18,7 @@ import {  OnSelectPaymentMethod, OnUpdateCustomer, OnUpdateOrderItems } from './
 import { GetFinalOrderSummary } from './../store/actions';
 
 import { MonekatService } from './../APIs'
+import { hostName } from './../common/hostname';
 
 
 
@@ -140,6 +141,17 @@ export class CheckoutPage implements OnInit, OnDestroy {
     })
     
 
+  }
+
+  imageURL(itemImages=[])  {
+    if(itemImages && itemImages.length)  {
+      
+      let filename = itemImages[itemImages.length - 1]['filename'];
+
+      return `${hostName}/api/services/downloadfile/${filename}`
+    }
+    
+    return '';
   }
 
   constructor(private router: Router, 

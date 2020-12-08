@@ -39,8 +39,8 @@
         <ion-row class="catalogue" *ngFor="let item of order?.orderDetails">
           <ion-col size="2">
             <ion-thumbnail>
-                <!-- <ion-img src="./../../../assets/images/test-logo.jpg"></ion-img> -->
-                <ion-icon name="pricetags-outline"></ion-icon>
+                <ion-img [src]="imageURL(item?.images)" *ngIf="imageURL(item?.images)"></ion-img>
+                <ion-icon name="pricetags-outline" *ngIf="imageURL(item?.images)"></ion-icon>
             </ion-thumbnail>
           </ion-col>
           <ion-col>

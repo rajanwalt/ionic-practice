@@ -45,11 +45,13 @@
   <ion-list *ngIf="catalogue.length">
       <ion-item *ngFor="let item of catalogue | listFilter:'productName':searchText" (click)="onViewItem(item)">
         <ion-thumbnail slot="start">
-          <img [src]="imageURL(item?.images)" >
+          <img [src]="imageURL(item?.images)" *ngIf="imageURL(item?.images)" >
+          <ion-icon *ngIf="!imageURL(item?.images)" name="pricetags-outline"></ion-icon>
         </ion-thumbnail>
         <ion-label>
           <h2>{{item?.productName}}</h2>
-          <p>{{item?.itemSold}} sold, {{item?.price | currency:'USD':'code'}}</p>
+          <!-- <p>{{item?.itemSold}} sold, {{item?.price | currency:'USD':'code'}}</p> -->
+          <p> {{item?.price | currency:'USD':'code'}}</p>
         </ion-label>
       </ion-item>
     </ion-list>
