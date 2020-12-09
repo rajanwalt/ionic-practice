@@ -71,8 +71,10 @@ export class StoreTabComponent implements OnInit {
 
   ionViewDidEnter(){
     this.shopDetailsSub = this.user$.subscribe(details => {
-      let service = details['services'][0];
-      this._store.dispatch(new GetShop(service['id']));
+      if(details && details['services'] && details['services'].length)  {
+        let service = details['services'][0];
+        this._store.dispatch(new GetShop(service['id']));
+      }
     })
   }
 

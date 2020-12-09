@@ -9,6 +9,7 @@
     },
     "login": {
         "tabName" : "Nous saluons le retour",
+        "login" : "s'identifier",
         "forgotPassword" : "Mot de passe oublié"
     },
     "createAccount" : {
