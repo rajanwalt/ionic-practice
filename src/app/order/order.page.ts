@@ -49,7 +49,7 @@ export class OrderPage implements OnInit {
 
   }
 
-  onselectCustomer({id:customerId, firstName, phoneNumber, service_id:serviceId, email, country, city, street })  {
+  onselectCustomer({id:customerId, firstname:firstName, phonenumber:phoneNumber, service_id:serviceId, email, country, city, street })  {
     // const customerId = customer['id'];
     // const firstName = customer['firstName'];
     // const phoneNumber = customer['phoneNumber'];

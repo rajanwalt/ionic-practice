@@ -70,7 +70,7 @@
       </ion-col>
       <ion-col size="4">
         <ion-text>{{ 'shipping.Price' | translate }}</ion-text>
-        <ion-input placeholder="USD 0.00" [value]="item.charge" formControlName="charge" ></ion-input>
+        <ion-input placeholder="0" [value]="item.charge" formControlName="charge" ></ion-input>
       </ion-col>
       <ion-col size="2" class="ion-align-self-end text-center" >
         <ion-icon name="close-circle" (click)="onReset(i)"></ion-icon>

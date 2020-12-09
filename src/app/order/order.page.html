@@ -65,7 +65,7 @@
   </ion-grid>
 
     <ion-list *ngIf="customers.length">
-        <ion-item  *ngFor="let item of customers | listFilter:'firstName,lastName':searchText" (click)="onselectCustomer(item)">
+        <ion-item  *ngFor="let item of customers | listFilter:'firstname,lastname':searchText" (click)="onselectCustomer(item)">
           <ion-avatar slot="start">
             <ion-text class="ion-text-uppercase">{{item?.firstname | slice:0:1}}</ion-text>
           </ion-avatar>

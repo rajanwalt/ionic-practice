@@ -155,6 +155,18 @@
         "Price" : "Price",
         "AddAnother" : "Add another location"
     },
+    "orderSummary" : {
+        "ChooseShipment" : "Choose shipment type",
+        "customerDecide" : "or leave empty to let customer decide",
+        "Order" : "Order",
+        "generateLink" : "GENERATE & SHARE THE CHECKOUT LINK",
+        "Subtotal" : "Subtotal",
+        "Delivery" : "Delivery (estimated)",
+        "Tax" : "Tax",
+        "VAT" : "VAT",
+        "SendInvoice" : "Send Invoice"
+
+    },
     "common" : {
         "tabs" : {
             "newOrder" : "New Order",

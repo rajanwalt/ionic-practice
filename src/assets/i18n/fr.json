@@ -156,6 +156,17 @@
         "Price" : "Prix",
         "AddAnother" : "Ajouter un autre emplacement"
     },
+    "orderSummary" : {
+        "ChooseShipment" : "Choisir type de livraison",
+        "customerDecide" : "Ou laisser le champ libre au choix du client",
+        "Order" : "Commande",
+        "generateLink" : "Générer et Partager un lien de Paiement",
+        "Subtotal" : "Sous-total",
+        "Delivery" : "Livraison (estimée)",
+        "Tax" : "Taxe",
+        "VAT" : "TVA",
+        "SendInvoice" : "Envoyer une facture"
+    },
     "common" : {
         "tabs" : {
             "newOrder" : "Nouvelle commande",

@@ -85,7 +85,7 @@ export class WalletComponent implements OnInit {
   ionViewDidEnter() {
     
     this.SettingsSub = this.settings$.subscribe(bankData => {
-      if(bankData['iban'] && bankData['bankname'])  {
+      if(bankData && bankData['iban'] && bankData['bankname'])  {
         this.payoutDetails = {
           bankname : bankData['bankname']
         }

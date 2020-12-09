@@ -2,10 +2,10 @@
   <ion-toolbar color="favorite" padding>
       <ion-buttons slot="start">
           <ion-button (click)="presentAlertConfirm()">
-            Cancel
+            {{ 'common.button.cancel' | translate }}
           </ion-button>
       </ion-buttons>
-      <ion-title color="dark" mode="ios" >{{name}} Order</ion-title>
+      <ion-title color="dark" mode="ios" >{{name}} {{ 'orderSummary.Order' | translate }}</ion-title>
       <ion-buttons slot="end">
         <ion-button (click)="onAddItems()">
           <ion-icon name='add'></ion-icon>
@@ -25,8 +25,8 @@
   <ion-grid>
     <ion-row (click)="onSelectShipOptions()">
       <ion-col size='10' class="custom-line-height">
-        <p class="main-text">Choose shipment type</p>
-        <p class="sub-text">or leave empty to let customer decide</p>
+        <p class="main-text">{{ 'orderSummary.ChooseShipment' | translate }}</p>
+        <p class="sub-text">{{ 'orderSummary.customerDecide' | translate }}</p>
       </ion-col>
       <ion-col size='2' class="ion-text-right ">
         <ion-icon class="arrow" name="chevron-forward-outline"></ion-icon>
@@ -49,19 +49,19 @@
         </ion-col>
     </ion-row> -->
     <ion-row class="ion-no-border sub-text">
-      <ion-col class="ion-text-left"><ion-text color="medium">Subtotal</ion-text></ion-col>
+      <ion-col class="ion-text-left"><ion-text color="medium">{{ 'orderSummary.Subtotal' | translate }}</ion-text></ion-col>
       <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
     </ion-row>
     <ion-row class="ion-no-border sub-text" *ngIf="deliveryCharge">
-      <ion-col class="ion-text-left"><ion-text color="medium">Delivery (estimated)</ion-text></ion-col>
+      <ion-col class="ion-text-left"><ion-text color="medium">{{ 'orderSummary.Delivery' | translate }}</ion-text></ion-col>
       <ion-col class="ion-text-right"><ion-text color="medium">{{deliveryCharge | currency:'USD':'code'}}</ion-text></ion-col>
     </ion-row>
     <ion-row class="ion-no-border sub-text">
-      <ion-col class="ion-text-left"><ion-text color="medium">Tax/(VAT {{vat}} %)</ion-text></ion-col>
+      <ion-col class="ion-text-left"><ion-text color="medium">{{ 'orderSummary.Tax' | translate }}/({{ 'orderSummary.VAT' | translate }} {{vat}} %)</ion-text></ion-col>
       <ion-col class="ion-text-right"><ion-text color="medium">{{vatAmount | currency:'USD':'code'}}</ion-text></ion-col>
     </ion-row>
     <ion-row class="ion-no-border main-text">
-      <ion-col class="ion-text-left"><ion-text color="dark">Send Invoice</ion-text></ion-col>
+      <ion-col class="ion-text-left"><ion-text color="dark">{{ 'orderSummary.SendInvoice' | translate }}</ion-text></ion-col>
       <ion-col class="ion-text-right"><ion-text color="dark">{{total | currency:'USD':'code'}}</ion-text></ion-col>
     </ion-row>
   
@@ -73,7 +73,7 @@
           (click)="onPostOrderSummary()"
           class="add-item"
           color="favorite">
-          GENERATE & SHARE THE CHECKOUT LINK       
+          {{ 'orderSummary.generateLink' | translate }}       
         </ion-button>
       </ion-col>
     </ion-row>
