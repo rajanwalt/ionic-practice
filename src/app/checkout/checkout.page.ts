@@ -154,6 +154,13 @@ export class CheckoutPage implements OnInit, OnDestroy {
     return '';
   }
 
+  itemText(count = 0)  {
+    if(count)  {
+      return count > 1 ? `${count} Items in Cart` : `${count} Item in Cart` 
+    } 
+    return ''
+  }
+
   constructor(private router: Router, 
               private activatedRoute : ActivatedRoute, 
               private _store: Store<State>, 

@@ -31,9 +31,10 @@
                 <ion-datetime name="birthday" (ionChange)="getDate($event)" cancelText="{{ 'common.button.cancel' | translate }}" doneText="{{ 'common.button.done' | translate }}"></ion-datetime>
                 <ion-text class="warn-text">{{ 'common.label.DateofBirth' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
               </ion-item> 
-            <ion-item lines='none'  >
+            <ion-item lines='none'  [class.error]="!customerForm.controls.email.valid && (customerForm.controls.email.dirty || customerForm.controls.email.touched)">
                 <ion-label position="stacked" class="input-label">{{ 'common.label.email' | translate }}</ion-label>
                 <ion-input type="text" formControlName="email" name="email"></ion-input>
+                <ion-text class="warn-text">{{ 'common.label.email' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
             </ion-item> 
             <ion-item lines='none' [class.error]="!customerForm.controls.phonenumber.valid && (customerForm.controls.phonenumber.dirty || customerForm.controls.phonenumber.touched)" >
                 <ion-label position="stacked" class="input-label">{{ 'common.label.phonenumber' | translate }}</ion-label>
@@ -44,7 +45,7 @@
             <ion-list-header>
                     <ion-label>{{ 'common.label.ShippingDetails' | translate }}</ion-label>
             </ion-list-header>
-            <ion-item lines="none" >
+            <ion-item lines="none" [class.error]="!customerForm.controls.country.valid && (customerForm.controls.country.dirty || customerForm.controls.country.touched)">
                     <ion-label position="stacked" class="input-label" >{{ 'common.label.country' | translate }}</ion-label>
                     <ion-select 
                         [value]="customerForm.controls.country.value" 
@@ -55,8 +56,9 @@
                       <!-- <ion-select-option [value]="null"> </ion-select-option> -->
                       <ion-select-option *ngFor="let country of countries" [value]="country">{{country}}</ion-select-option>
                     </ion-select>
+                    <ion-text class="warn-text" >{{ 'common.label.country' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
               </ion-item>  
-              <ion-item lines="none" >
+              <ion-item lines="none" [class.error]="!customerForm.controls.city.valid && (customerForm.controls.city.dirty || customerForm.controls.city.touched)">
                     <ion-label position="stacked" class="input-label" >{{ 'common.label.city' | translate }}</ion-label>
                     <ion-select 
                         [value]="customerForm.controls.city.value" 
@@ -66,6 +68,7 @@
                       <!-- <ion-select-option [value]="null"> </ion-select-option> -->
                       <ion-select-option *ngFor="let city of cities" [value]="city">{{city}}</ion-select-option>
                     </ion-select>
+                    <ion-text class="warn-text" >{{ 'common.label.city' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
               </ion-item>  
               <ion-item lines='none' [class.error]="!customerForm.controls.street.valid && (customerForm.controls.street.dirty || customerForm.controls.street.touched)" >
                     <ion-label position="stacked" class="input-label">{{ 'common.label.address' | translate }}</ion-label>
