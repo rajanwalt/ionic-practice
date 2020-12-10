@@ -11,7 +11,7 @@ import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
 import { AddCatalogue, PutCatalogue } from './../../store/actions';
 import { SetOrder } from './../../store/actions';
-import { selectCatalogue, selectShopDetails } from './../../store/selectors';
+import { selectCatalogue, selectShopDetails, selectCurrency} from './../../store/selectors';
 
 import { Catalogue } from './../models'
 import { Observable, Subscription } from 'rxjs';
@@ -70,7 +70,8 @@ export class AddCatalogueItemComponent implements OnInit {
 
   isActive = 0;
   hasDimensions = false;
-
+  currency$ = this._store.select(selectCurrency);
+  
   catalogueForm = new FormGroup({
     productName: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),

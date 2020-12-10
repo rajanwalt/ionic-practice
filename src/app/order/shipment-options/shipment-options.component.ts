@@ -5,7 +5,7 @@ import { AddCustomRateModalComponent } from './../add-custom-rate-modal/add-cust
 
 import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
-import { selectOrders, selectShippingCharges, selectUser, shippingCharges } from './../../store/selectors';
+import { selectOrders, selectShippingCharges, selectUser, shippingCharges, selectCurrency } from './../../store/selectors';
 import { SetOrder } from './../../store/actions';
 import { Order } from './../models';
 
@@ -19,7 +19,7 @@ export class ShipmentOptionsComponent implements OnInit {
 
   public orders$: Observable<Order> = this._store.select(selectOrders);
   shippingCharges$: Observable<any> = this._store.select(selectShippingCharges);
-
+  currency$ = this._store.select(selectCurrency);
 
   inHouseDelivery$: Observable<any> = combineLatest(
     this.orders$, 

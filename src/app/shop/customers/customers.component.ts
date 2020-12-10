@@ -4,7 +4,7 @@ import { of, Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { State } from './../../store/state';
-import { selectCustomers, selectShopDetails } from './../../store/selectors';
+import { selectCustomers, selectShopDetails, selectCurrency } from './../../store/selectors';
 import { IonSearchbar } from '@ionic/angular';
 import { GetCustomers } from 'src/app/store/actions';
 
@@ -17,6 +17,7 @@ import { GetCustomers } from 'src/app/store/actions';
 export class CustomersComponent implements OnInit {
   
   @ViewChild('searchbar') searchbar: IonSearchbar;
+  currency$ = this._store.select(selectCurrency);
   
   isSerachActive : boolean =  false;
   searchText: string = "";

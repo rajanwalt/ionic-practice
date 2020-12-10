@@ -33,7 +33,7 @@
         <p>{{itemDetails?.productName}}</p>
       </ion-text>
       <ion-text>
-          <p class="bold">{{itemDetails?.price | currency:'USD':'code' }}</p>
+        <p class="bold">{{itemDetails?.price | currency:(currency$ | async):'symbol' }}</p>
       </ion-text>
     </ion-label>
   </ion-item>

@@ -40,7 +40,7 @@
           <h2 class="ion-text-capitalize">{{item?.firstname}} {{item?.lastname}}</h2>
           <p>
             <ion-text *ngIf="item?.totalOrder">{{item?.totalOrders}} orders,</ion-text> 
-            <ion-text *ngIf="item?.totalAmount"> {{item?.totalAmount | currency:'USD':'code'}} </ion-text>
+            <ion-text *ngIf="item?.totalAmount"> {{item?.totalAmount | currency:(currency$ | async):'symbol'}} </ion-text>
           </p>
         </ion-label>
       </ion-item>

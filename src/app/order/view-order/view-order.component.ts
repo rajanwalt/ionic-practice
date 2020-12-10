@@ -6,7 +6,7 @@ import { Observable, of, Subscription } from 'rxjs';
 import { filter, flatMap, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
-import { selectOrderList } from './../../store/selectors';
+import { selectOrderList, selectCurrency } from './../../store/selectors';
 
 @Component({
   selector: 'app-view-order',
@@ -17,7 +17,8 @@ export class ViewOrderComponent implements OnInit {
   orders$: Observable<any> = this._store.select(selectOrderList);
   order = null;
   orderSub : Subscription;
-
+  currency$ = this._store.select(selectCurrency);
+  
   constructor(private activatedRoute : ActivatedRoute, 
               private navCtrl: NavController,  
               private _store: Store<State>

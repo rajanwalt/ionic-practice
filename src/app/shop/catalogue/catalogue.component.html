@@ -50,8 +50,8 @@
         </ion-thumbnail>
         <ion-label>
           <h2>{{item?.productName}}</h2>
-          <!-- <p>{{item?.itemSold}} sold, {{item?.price | currency:'USD':'code'}}</p> -->
-          <p> {{item?.price | currency:'USD':'code'}}</p>
+          <!-- <p>{{item?.itemSold}} sold, {{item?.price | currency:(currency$ | async):'symbol'}}</p> -->
+          <p> {{item?.price | currency:(currency$ | async):'symbol'}}</p>
         </ion-label>
       </ion-item>
     </ion-list>

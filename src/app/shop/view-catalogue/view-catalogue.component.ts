@@ -3,7 +3,7 @@ import { Url } from 'url';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
-import { selectCatalogue } from 'src/app/store/selectors';
+import { selectCatalogue, selectCurrency } from 'src/app/store/selectors';
 import { flatMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { hostName } from './../../common/hostname';
@@ -19,7 +19,9 @@ interface Photo  {
   styleUrls: ['./view-catalogue.component.scss'],
 })
 export class ViewCatalogueComponent implements OnInit {
-
+  
+  currency$ = this._store.select(selectCurrency);
+  
   photos = [];
   
   isActive = 0;

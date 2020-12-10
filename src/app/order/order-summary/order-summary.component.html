@@ -50,19 +50,19 @@
     </ion-row> -->
     <ion-row class="ion-no-border sub-text">
       <ion-col class="ion-text-left"><ion-text color="medium">{{ 'orderSummary.Subtotal' | translate }}</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:(currency$ | async):'symbol'}}</ion-text></ion-col>
     </ion-row>
     <ion-row class="ion-no-border sub-text" *ngIf="deliveryCharge">
       <ion-col class="ion-text-left"><ion-text color="medium">{{ 'orderSummary.Delivery' | translate }}</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="medium">{{deliveryCharge | currency:'USD':'code'}}</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="medium">{{deliveryCharge | currency:(currency$ | async):'symbol'}}</ion-text></ion-col>
     </ion-row>
     <ion-row class="ion-no-border sub-text">
       <ion-col class="ion-text-left"><ion-text color="medium">{{ 'orderSummary.Tax' | translate }}/({{ 'orderSummary.VAT' | translate }} {{vat}} %)</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="medium">{{vatAmount | currency:'USD':'code'}}</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="medium">{{vatAmount | currency:(currency$ | async):'symbol'}}</ion-text></ion-col>
     </ion-row>
     <ion-row class="ion-no-border main-text">
       <ion-col class="ion-text-left"><ion-text color="dark">{{ 'orderSummary.SendInvoice' | translate }}</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="dark">{{total | currency:'USD':'code'}}</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="dark">{{total | currency:(currency$ | async):'symbol'}}</ion-text></ion-col>
     </ion-row>
   
     <ion-row *ngIf="!(orderStatus$ | async) as orderStatus">

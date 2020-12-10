@@ -4,7 +4,7 @@ import { Router} from '@angular/router'
 import { Store } from '@ngrx/store';
 
 import { State } from './../../store/state';
-import { selectCatalogue, selectShopDetails } from './../../store/selectors';
+import { selectCatalogue, selectShopDetails, selectCurrency } from './../../store/selectors';
 import { IonSearchbar } from '@ionic/angular';
 import { GetCatalogue } from 'src/app/store/actions';
 import { hostName } from './../../common/hostname';
@@ -20,7 +20,7 @@ export class CatalogueComponent implements OnInit {
   public catelogue$ : Observable<any> = this._store.select(selectCatalogue);
   public searchText: string = "";
   hostName = hostName;
-  
+  currency$ = this._store.select(selectCurrency);
   imageURL(itemImages=[])  {
     if(itemImages && itemImages.length)  {
       

@@ -12,6 +12,6 @@
                 <div (click)="onClickCounter('increase')">
                     <ion-icon name="add" ></ion-icon>
                 </div>
-    </div> X {{price | currency:'USD':'code'}}
-    <ion-text slot="end">{{totalPrice | currency:'USD':'code'}}</ion-text>
+    </div> X {{price | currency:(currency$ | async):'symbol'}}
+    <ion-text slot="end">{{totalPrice | currency:(currency$ | async):'symbol'}}</ion-text>
 </ion-item>

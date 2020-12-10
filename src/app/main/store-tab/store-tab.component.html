@@ -32,7 +32,7 @@
         <div class="sub-text">{{ 'common.tabs.wallet' | translate }}</div>
       </ion-col>
       <ion-col size="6" class="text-right">
-          <div class="sub-text">{{shopDetails.totalWallet | currency:'USD':'code'}}</div>
+          <div class="sub-text">{{shopDetails.totalWallet | currency:(currency$ | async):'symbol'}}</div>
         <ion-icon name="chevron-forward-outline" color="medium" class="right-icon"></ion-icon> 
       </ion-col>
     </ion-row>

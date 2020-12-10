@@ -39,7 +39,7 @@
         </ion-item> 
 
         <ion-item lines="none" [class.error]="!catalogueForm.controls.price.valid && (catalogueForm.controls.price.dirty || catalogueForm.controls.price.touched)">
-            <ion-label position="stacked" class="input-label">{{ 'catalogue.addItem.label.Price' | translate }}</ion-label>
+            <ion-label position="stacked" class="input-label">{{ 'catalogue.addItem.label.Price' | translate }} ({{currency$ | async}}) </ion-label>
             <ion-input type="number" formControlName="price" name="price"></ion-input>
             <ion-text class="warn-text">{{ 'catalogue.addItem.label.Price' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
         </ion-item>

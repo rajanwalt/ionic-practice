@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { State } from './../../store/state';
-import { selectShopDetails, selectUser } from './../../store/selectors';
+import { selectShopDetails, selectUser, selectCurrency } from './../../store/selectors';
 import { GetShop } from 'src/app/store/actions';
 import { hostName } from './../../common/hostname';
 
@@ -25,6 +25,8 @@ export class StoreTabComponent implements OnInit {
   // })
   shopDetails$: Observable<any> = this._store.select(selectShopDetails);
   user$: Observable<any> = this._store.select(selectUser);
+  
+  currency$ = this._store.select(selectCurrency);
   // hostName = hostName;
 
   shopDetailsSub: Subscription;
@@ -70,12 +72,18 @@ export class StoreTabComponent implements OnInit {
   ngOnInit() {}
 
   ionViewDidEnter(){
-    this.shopDetailsSub = this.user$.subscribe(details => {
-      if(details && details['services'] && details['services'].length)  {
-        let service = details['services'][0];
-        this._store.dispatch(new GetShop(service['id']));
-      }
+    // this.shopDetailsSub = this.user$.subscribe(details => {
+    //   if(details && details['services'] && details['services'].length)  {
+    //     let service = details['services'][0];
+    //     this._store.dispatch(new GetShop(service['id']));
+    //   }
+    // })
+
+    this.shopDetailsSub = this.shopDetails$.subscribe(service => {
+      service && new GetShop(service['id'])
     })
+
+
   }
 
   ionViewDidLeave(){

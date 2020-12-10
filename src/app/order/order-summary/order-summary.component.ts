@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 import { State } from './../../store/state';
 import { Order, OrderDetails, OrderSummary } from './../models';
-import { selectLastOrderID, selectOrders, selectSetting, selectUser } from './../../store/selectors';
+import { selectLastOrderID, selectOrders, selectSetting, selectUser, selectCurrency } from './../../store/selectors';
 import { PostOrderSummary, SetOrder, ResetOrderStatus, ResetOrder } from './../../store/actions';
 
 import { SocialMediaSharingService } from './../../common';
@@ -27,7 +27,7 @@ export class OrderSummaryComponent implements OnInit {
   public orderStatus$: Observable<Cart> = this._store.select(selectLastOrderID);
   user$: Observable<any> = this._store.select(selectUser)
   settings$: Observable<any> = this._store.select(state => selectSetting(selectUser(state)));
-
+  currency$ = this._store.select(selectCurrency);
   
   public orders = null;
   public orderSub : Subscription;

@@ -73,7 +73,7 @@
           </ion-thumbnail>
           <ion-label>
             <h2>{{item?.productName}}</h2>
-            <p>{{item?.itemSold}} sold, {{item?.price | currency:'USD':'code'}}</p>
+            <p>{{item?.itemSold}} sold, {{item?.price | currency:(currency$ | async):'symbol'}}</p>
             
           </ion-label>
           <ion-checkbox slot="end" color="favorite" ></ion-checkbox>

@@ -6,7 +6,7 @@ import * as _ from 'underscore';
 
 import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
-import { selectOrderList, selectUser } from './../../store/selectors';
+import { selectOrderList, selectShopDetails, selectUser, selectCurrency } from './../../store/selectors';
 import { GetOrderList } from './../../store/actions';
 
 import { ListOfOrders } from './../models'
@@ -21,6 +21,9 @@ export class OrdersTabComponent implements OnInit {
   @ViewChild('searchbar') searchbar: IonSearchbar;
 
   user$: Observable<any> = this._store.select(selectUser);
+  shopDetails$: Observable<any> = this._store.select(selectShopDetails);
+  currency$ = this._store.select(selectCurrency);
+  
   orders$: Observable<any> = this._store.select(selectOrderList).pipe(map(ListOfOrders.formatAPIArray));
   shopDetailsSub: Subscription;
 
@@ -99,9 +102,14 @@ export class OrdersTabComponent implements OnInit {
   ngOnInit() {}
 
   ionViewDidEnter(){
-    this.shopDetailsSub = this.user$.subscribe(details => {
-      let service = details['services'][0];
-      this._store.dispatch(new GetOrderList(service['id']));
+    // this.shopDetailsSub = this.user$.subscribe(details => {
+    //   if(details && details['services'] && details['services'].length)  {
+    //     let service = details['services'][0];
+    //     this._store.dispatch(new GetOrderList(service['id']));
+    //   }
+    // })
+    this.shopDetailsSub = this.shopDetails$.subscribe(service => {
+      service && new GetOrderList(service['id'])
     })
   }
 

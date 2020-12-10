@@ -93,9 +93,10 @@ export class WalletComponent implements OnInit {
         this.userSub = this.user$.subscribe( userData => {
           if(userData)  {
             this.userId = userData['id'];
-            this.payUserId = userData['payuserid'];
-    
-            this._store.dispatch(new GetWallet(this.payUserId));
+            if(userData['payuserid'])  {
+              this.payUserId = userData['payuserid'];
+              this._store.dispatch(new GetWallet(this.payUserId));
+            }
           }
         
         });

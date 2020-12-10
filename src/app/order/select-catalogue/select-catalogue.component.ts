@@ -6,7 +6,7 @@ import { of, combineLatest, Observable, BehaviorSubject, Subscription } from 'rx
 
 import { State } from './../../store/state';
 import { SetOrder, AddOrderDetails, GetCatalogue } from './../../store/actions';
-import { selectCurrentOrder, selectCatalogue, selectShopDetails } from './../../store/selectors';
+import { selectCurrentOrder, selectCatalogue, selectShopDetails, selectCurrency } from './../../store/selectors';
 import { Order } from './../models';
 import { RouterStateService } from './../../common';
 
@@ -25,6 +25,7 @@ export class SelectCatalogueComponent implements OnInit {
   public catelogue$ : Observable<any> = this._store.select(selectCatalogue);
   shopDetails$: Observable<any> = this._store.select(selectShopDetails);
   shopDetailsSub: Subscription;
+  currency$ = this._store.select(selectCurrency);
   
   // public catelogue$ = of([
   //   {
