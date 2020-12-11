@@ -165,7 +165,7 @@
         "Delivery" : "Livraison (estimée)",
         "Tax" : "Taxe",
         "VAT" : "TVA",
-        "SendInvoice" : "Envoyer une facture"
+        "SendInvoice" : "Total"
     },
     "common" : {
         "tabs" : {

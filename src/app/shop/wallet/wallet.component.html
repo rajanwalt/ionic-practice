@@ -126,7 +126,7 @@
   </div>
 </ion-content>
 <ion-footer *ngIf="wallet" >
-    <ion-button expand="full" (click)="onReleasePayment()" [disabled]="!wallet.Balance.Amount">
+    <ion-button size="large" expand="full" (click)="onReleasePayment()" [disabled]="!wallet.Balance.Amount">
       {{ 'wallet.RELEASEPAYMENT' | translate }}
     </ion-button>
 </ion-footer>

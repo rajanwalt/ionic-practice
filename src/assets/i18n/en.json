@@ -164,7 +164,7 @@
         "Delivery" : "Delivery (estimated)",
         "Tax" : "Tax",
         "VAT" : "VAT",
-        "SendInvoice" : "Send Invoice"
+        "SendInvoice" : "Total"
 
     },
     "common" : {

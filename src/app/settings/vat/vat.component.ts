@@ -25,7 +25,7 @@ export class VatComponent implements OnInit {
 
   vatForm = new FormGroup({
     vat: new FormControl('0.00', Validators.required),
-    trn: new FormControl('Etavjs', Validators.required),
+    trn: new FormControl('', Validators.required),
   });
   
   

@@ -124,7 +124,7 @@ export class OrderSummaryComponent implements OnInit {
 
 
   get name()  {
-    return (this.orders && this.orders.firstName) ? `${this.orders.firstName}'s` : "";
+    return (this.orders && this.orders.firstName) ? this.orders.firstName : "";
   }
 
   get vatAmount()  {
