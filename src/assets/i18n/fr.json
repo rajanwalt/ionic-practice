@@ -102,7 +102,8 @@
         "ShopDetails" : "Détails de la boutique",
         "ShopDetailsText" : "Vos clients verront les détails de la boutique sur votre boutique en ligne, d'autres canaux de vente et les résultats de recherche sur le Web.",
         "BusinessAddress" : "Adresse d'affaires",
-        "BusinessAddressText" : "C'est ici que les entreprises d'achat récupèrent vos produits pour livraison. Nous ne partagerons votre adresse professionnelle avec personne."
+        "BusinessAddressText" : "C'est ici que les entreprises d'achat récupèrent vos produits pour livraison. Nous ne partagerons votre adresse professionnelle avec personne.",
+        "policy" : "Politique de remboursement et d'échange"
 
     },
     "wallet" : {
@@ -165,7 +166,10 @@
         "Delivery" : "Livraison (estimée)",
         "Tax" : "Taxe",
         "VAT" : "TVA",
-        "SendInvoice" : "Total"
+        "SendInvoice" : "Total",
+        "wantCantel" : "Êtes-vous sûr de vouloir annuler cette commande?",
+        "yesCancel" : "Oui, annulez-le",
+        "noCancel" : "Non, ne l'annule pas"
     },
     "common" : {
         "tabs" : {

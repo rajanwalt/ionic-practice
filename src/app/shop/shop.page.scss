@@ -2,6 +2,7 @@ ion-input {
     --padding-top: 12px;
     border-bottom : 2px solid #e2e2e2;
 }
+
 ion-item  {
     --padding-bottom : 15px;
     border-bottom: none;
@@ -16,6 +17,9 @@ ion-item  {
         ion-input, ion-select {
             border-bottom : 1px solid var(--ion-color-danger);
         }
+        ion-textarea  {
+            border : 1px solid var(--ion-color-danger);
+        }
 
         .warn-text  {
             padding-top: 5px;
@@ -28,6 +32,10 @@ ion-item  {
         font-size: 16px;
         --padding-top: 12px;
         border-bottom : 1px solid var(--ion-color-medium);
+    }
+
+    ion-textarea  {
+        border : 1px solid var(--ion-color-medium);
     }
 }
 .divider {

@@ -81,7 +81,17 @@
                     <ion-text *ngIf="!shopProfileForm.controls.country.value">{{ 'common.button.add' | translate }}</ion-text>
                     <ion-text *ngIf="shopProfileForm.controls.country.value">{{ 'common.button.edit' | translate }}</ion-text>
                   </ion-button>
-              </ion-item>
+                </ion-item>
+                <div class="divider"></div>
+                <ion-list-header>
+                        <ion-text>
+                            <h5>{{ 'shop.policy' | translate }} </h5>
+                        </ion-text>
+                </ion-list-header>
+                <ion-item lines="none">
+                    <!-- <ion-label position="stacked" class="input-label">{{ 'catalogue.addItem.label.AdditionalDetails' | translate }} ({{ 'common.label.optional' | translate }}) </ion-label> -->
+                    <ion-textarea clearOnEdit="true" rows="6" cols="20" formControlName="refundExchangePolicy" name="refundExchangePolicy" ></ion-textarea>
+                </ion-item>
           <!-- <div class="divider"></div> -->
           <!-- <div class="map-container" *ngIf="hasShopAddress">
             <ion-text>

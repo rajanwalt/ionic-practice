@@ -26,6 +26,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { createTranslateLoader } from './language-translator';
 import { HttpClient } from '@angular/common/http';
 
+import { RefundExchangePolicyComponent } from './refund-exchange-policy/refund-exchange-policy.component'
+
 @NgModule({
   imports: [ 
     TranslateModule.forChild({ 
@@ -55,7 +57,8 @@ import { HttpClient } from '@angular/common/http';
     RepDetailsComponent,
     KycComponent,
     NumberInputDirective,
-    TransactionStatusComponent
+    TransactionStatusComponent,
+    RefundExchangePolicyComponent
   ],
   entryComponents: [
     PaymentInfoModalComponent, 
@@ -63,7 +66,8 @@ import { HttpClient } from '@angular/common/http';
     PaymentTypeModalComponent,
     CartComponent,
     RepDetailsComponent,
-    KycComponent
+    KycComponent,
+    RefundExchangePolicyComponent
   ],
   providers: [Camera, SocialSharing],
   exports: [

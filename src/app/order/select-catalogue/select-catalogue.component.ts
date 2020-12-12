@@ -9,6 +9,7 @@ import { SetOrder, AddOrderDetails, GetCatalogue } from './../../store/actions';
 import { selectCurrentOrder, selectCatalogue, selectShopDetails, selectCurrency } from './../../store/selectors';
 import { Order } from './../models';
 import { RouterStateService } from './../../common';
+import { hostName } from './../../common/hostname';
 
 @Component({
   selector: 'app-select-catalogue',
@@ -27,29 +28,7 @@ export class SelectCatalogueComponent implements OnInit {
   shopDetailsSub: Subscription;
   currency$ = this._store.select(selectCurrency);
   
-  // public catelogue$ = of([
-  //   {
-  //     item_id : 1,
-  //     url : "https://developer.apple.com/app-store/marketing/guidelines/images/thumbnail-iMac_2x.png",
-  //     productName : "Test",
-  //     price : 130,
-  //     itemSold : 10
-  //   },
-  //   {
-  //     item_id : 2,
-  //     url : "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y",
-  //     productName : "Test",
-  //     price : 130,
-  //     itemSold : 10
-  //   },
-  //   {
-  //     item_id : 3,
-  //     url : "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y",
-  //     productName : "Test",
-  //     price : 130,
-  //     itemSold : 10
-  //   }
-  // ]);
+
 
   public listofItems$ : Observable<any>;
   // public existingCustomerId : string = '';
@@ -65,6 +44,17 @@ export class SelectCatalogueComponent implements OnInit {
       this.navCtrl.navigateForward('/order/order_summary');
     }
     
+  }
+
+  imageURL(itemImages=[])  {
+    if(itemImages && itemImages.length)  {
+      
+      let filename = itemImages[itemImages.length - 1]['filename'];
+
+      return `${hostName}/api/services/downloadfile/${filename}`
+    }
+    
+    return '';
   }
 
   onEnableSearch()  {

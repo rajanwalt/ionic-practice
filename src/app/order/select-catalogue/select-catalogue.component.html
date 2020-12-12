@@ -68,12 +68,13 @@
   <ion-list *ngIf="(listofItems$ | async) as listofItems">
         <ion-item *ngFor="let item of listofItems | listFilter:'productName':searchText" (click)="onSelectItem(item)">
           <ion-thumbnail slot="start">
-            <img *ngIf="item?.url" [src]="item?.url">
-            <ion-icon *ngIf="!item?.url" name="pricetags-outline"></ion-icon>
+            <img [src]="imageURL(item?.images)" *ngIf="imageURL(item?.images)" >
+            <ion-icon *ngIf="!imageURL(item?.images)" name="pricetags-outline"></ion-icon>
           </ion-thumbnail>
           <ion-label>
             <h2>{{item?.productName}}</h2>
-            <p>{{item?.itemSold}} sold, {{item?.price | currency:(currency$ | async):'symbol'}}</p>
+            <!-- <p>{{item?.itemSold}} sold, {{item?.price | currency:(currency$ | async):'symbol'}}</p> -->
+            <p>{{item?.price | currency:(currency$ | async):'symbol'}}</p>
             
           </ion-label>
           <ion-checkbox slot="end" color="favorite" ></ion-checkbox>

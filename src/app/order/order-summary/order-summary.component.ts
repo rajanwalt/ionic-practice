@@ -2,10 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, of, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core'; 
 
 import { State } from './../../store/state';
 import { Order, OrderDetails, OrderSummary } from './../models';
-import { selectLastOrderID, selectOrders, selectSetting, selectUser, selectCurrency } from './../../store/selectors';
+import { selectLastOrderID, selectOrders, selectSetting, selectUser, selectCurrency, selectShopDetails } from './../../store/selectors';
 import { PostOrderSummary, SetOrder, ResetOrderStatus, ResetOrder } from './../../store/actions';
 
 import { SocialMediaSharingService } from './../../common';
@@ -28,11 +29,14 @@ export class OrderSummaryComponent implements OnInit {
   user$: Observable<any> = this._store.select(selectUser)
   settings$: Observable<any> = this._store.select(state => selectSetting(selectUser(state)));
   currency$ = this._store.select(selectCurrency);
+  shopDetails$: Observable<any> = this._store.select(selectShopDetails);
   
   public orders = null;
   public orderSub : Subscription;
+  shopDetailsSub: Subscription;
   vat = 0;
   vatSub: Subscription;
+  shopName = ''
 
   public updatedOrders = [];
   public subTotal;
@@ -96,7 +100,7 @@ export class OrderSummaryComponent implements OnInit {
 
   async onShare(appName, orderId='')  {
     
-    let checkoutLink = `http://ec2-35-181-44-11.eu-west-3.compute.amazonaws.com/checkout/${orderId}`;
+    let checkoutLink = `http://ec2-35-181-44-11.eu-west-3.compute.amazonaws.com/${this.shopName}/${orderId}`;
 
     switch(appName)  {
       case this.SOCIALMEDIA.WHATSAPP : {
@@ -180,6 +184,10 @@ export class OrderSummaryComponent implements OnInit {
       this.vat = data && data.length && data[0].vat;
     })
 
+    this.shopDetailsSub = this.shopDetails$.subscribe(service => {
+      service && (this.shopName = service.shopName)
+    })
+
 
     this._store.dispatch(new ResetOrderStatus());
   }
@@ -194,14 +202,14 @@ export class OrderSummaryComponent implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       // header: 'Confirm!',
-      message: 'Are you sure you want to cancel this order?',
+      message: this.getTranslate('wantCantel'),
       buttons: [
         {
-          text: "No, don't cancel it",
+          text: this.getTranslate('noCancel'),
           role: 'cancel',
           cssClass: 'secondary'
         }, {
-          text: 'Yes, cancel it',
+          text: this.getTranslate('yesCancel'),
           handler: () => {
             this.goBack();
           }
@@ -230,13 +238,17 @@ export class OrderSummaryComponent implements OnInit {
     this.paymentOption = data;
   }
 
+  getTranslate(input)  {
+    return input ? this.translate.instant(`orderSummary.${input}`) : ""
+  }
 
   constructor(private _store: Store<State>,
     private socialMediaSharingService: SocialMediaSharingService,
     private router: Router,
     private navCtrl: NavController,
     private modalController: ModalController,
-    public alertController: AlertController) { }
+    public alertController: AlertController, 
+    private translate: TranslateService) { }
 
 
 }

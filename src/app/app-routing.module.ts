@@ -31,10 +31,7 @@ const routes: Routes = [
     loadChildren: () => import('./main/main.module').then( m => m.MainPageModule),
     canActivate: [AuthGuardService]
   },
-  {
-    path: 'checkout',
-    loadChildren: () => import('./checkout/checkout.module').then( m => m.CheckoutPageModule)
-  },
+  
   {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule),
@@ -63,7 +60,12 @@ const routes: Routes = [
   {
     path: 'welcome',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
-  }
+  },
+  {
+    // path: 'checkout',
+    path: ':shopName',
+    loadChildren: () => import('./checkout/checkout.module').then( m => m.CheckoutPageModule)
+  },
   // { path: '', redirectTo: 'login', pathMatch: 'full' }
 
 

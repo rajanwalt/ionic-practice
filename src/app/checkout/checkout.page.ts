@@ -12,6 +12,7 @@ import { Cart } from './../common/models';
 
 import { DeliveryAddressModalComponent } from './../common/delivery-address-modal/delivery-address-modal.component';
 import { PaymentTypeModalComponent } from './../common/payment-type-modal/payment-type-modal.component';
+import { RefundExchangePolicyComponent } from './../common/refund-exchange-policy/refund-exchange-policy.component';
 import { CartComponent } from './../common/cart/cart.component';
 
 import {  OnSelectPaymentMethod, OnUpdateCustomer, OnUpdateOrderItems } from './../store/actions';
@@ -106,6 +107,16 @@ export class CheckoutPage implements OnInit, OnDestroy {
     const { data } = await modal.onWillDismiss();
 
     this._store.dispatch(new OnSelectPaymentMethod(data));
+
+  }
+
+  async showExchangePolicy()  {
+    const modal = await this.modalController.create({
+      component: RefundExchangePolicyComponent
+    });
+
+    await modal.present();
+    await modal.onWillDismiss();
 
   }
   

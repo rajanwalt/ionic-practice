@@ -40,7 +40,7 @@
           <ion-col size="2">
             <ion-thumbnail>
                 <ion-img [src]="imageURL(item?.images)" *ngIf="imageURL(item?.images)"></ion-img>
-                <ion-icon name="pricetags-outline" *ngIf="imageURL(item?.images)"></ion-icon>
+                <ion-icon name="pricetags-outline" *ngIf="!imageURL(item?.images)"></ion-icon>
             </ion-thumbnail>
           </ion-col>
           <ion-col>
@@ -67,7 +67,7 @@
   <ion-grid class="footer-grid" *ngIf="(order$ | async) as order">
     <ion-row>
       <ion-col class="tAndc ion-text-center">
-        By placing the order, you agree to our <ion-text color="primary">Refund & Exchange Policy</ion-text>
+        By placing the order, you agree to our <ion-text color="primary" (click)="showExchangePolicy()">Refund & Exchange Policy</ion-text>
       </ion-col>
     </ion-row>
     <ion-row >

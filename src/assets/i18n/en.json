@@ -101,8 +101,8 @@
         "ShopDetails" : "Shop Details",
         "ShopDetailsText" : "Your customers will see shop details on your online store, other sales channels, and web search results.",
         "BusinessAddress" : "Business Address",
-        "BusinessAddressText" : "This is where shopping companies will pick up your products for delivery. We won't share your business address with anyone."
-
+        "BusinessAddressText" : "This is where shopping companies will pick up your products for delivery. We won't share your business address with anyone.",
+        "policy" : "Refund & Exchange Policy"
     },
     "wallet" : {
         "title" : "Monekat release payouts about 7 days after a sale has been made. The time it takes for the funds to appear in your account depends on your payout method.",
@@ -164,7 +164,10 @@
         "Delivery" : "Delivery (estimated)",
         "Tax" : "Tax",
         "VAT" : "VAT",
-        "SendInvoice" : "Total"
+        "SendInvoice" : "Total",
+        "wantCantel" : "Are you sure you want to cancel this order?",
+        "yesCancel" : "Yes, cancel it",
+        "noCancel" : "No, don't cancel it"
 
     },
     "common" : {

@@ -58,7 +58,10 @@ export class ViewCatalogueComponent implements OnInit {
         this.itemDetails = item;
         
         if(item['images'] && item['images'].length)  {
-          let images = [...item['images']].reverse();
+          // let images = [...item['images']].reverse();
+          let images = [...item['images']].sort(function(a,b) {
+            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          });
 
           images.filter((data, index) => index < 4).map((data, index) => {
 
