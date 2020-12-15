@@ -62,14 +62,15 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
   },
   {
+    path: 'reset-password',
+    loadChildren: () => import('./reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
+  },
+  {
     // path: 'checkout',
     path: ':shopName',
     loadChildren: () => import('./checkout/checkout.module').then( m => m.CheckoutPageModule)
   },
   // { path: '', redirectTo: 'login', pathMatch: 'full' }
-
-
-  
 ];
 
 @NgModule({

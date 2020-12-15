@@ -76,7 +76,7 @@ export class CatalogueEffects {
 
   onSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(ECatalogueActions.CatalogueSuccess),
-    switchMap((action: CatalogueSuccess) => [ new UpdateCatalogue(action.payload['response']), new GoBack(action.payload) ])
+    switchMap((action: CatalogueSuccess) => [ new UpdateCatalogue(action.payload), new GoBack(action.payload) ])
   ));
 
   goBack$ = createEffect(() => this.actions$.pipe(

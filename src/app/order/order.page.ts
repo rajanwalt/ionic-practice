@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { State } from './../store/state';
 import { SetOrder, ResetOrder, GetCustomers } from './../store/actions';
-import { selectCurrentOrder, selectCustomers, selectShopDetails, selectCurrencyCode } from './../store/selectors';
+import { selectCurrentOrder, selectCustomers, selectShopDetails, selectCurrency } from './../store/selectors';
 import { Router } from '@angular/router';
 import { Order } from './models';
 import { shareReplay } from 'rxjs/operators';
@@ -27,7 +27,7 @@ export class OrderPage implements OnInit {
   public selectedCustomer: Order = null;
   public customers$ : Observable<any> = this._store.select(selectCustomers);
   shopDetails$: Observable<any> = this._store.select(selectShopDetails);
-  currencyCode$: Observable<any> = this._store.select(selectCurrencyCode).pipe(shareReplay())
+  currencyCode$: Observable<any> = this._store.select(selectCurrency)
   shopDetailsSub: Subscription;
 
   onEnableSearch()  {

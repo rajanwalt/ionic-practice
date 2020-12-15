@@ -28,7 +28,12 @@
             </ion-item> 
             <ion-item lines='none' [class.error]="!customerForm.controls.birthday.valid && (customerForm.controls.birthday.dirty || customerForm.controls.birthday.touched)">
                 <ion-label position="stacked">{{ 'common.label.DateofBirth' | translate }}</ion-label>
-                <ion-datetime name="birthday" (ionChange)="getDate($event)" cancelText="{{ 'common.button.cancel' | translate }}" doneText="{{ 'common.button.done' | translate }}"></ion-datetime>
+                <ion-datetime name="birthday" 
+                    (ionChange)="getDate($event)" 
+                    cancelText="{{ 'common.button.cancel' | translate }}" 
+                    doneText="{{ 'common.button.done' | translate }}"
+                    [value]="customerForm.get('birthday').value"
+                    ></ion-datetime>
                 <ion-text class="warn-text">{{ 'common.label.DateofBirth' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
               </ion-item> 
             <ion-item lines='none'  [class.error]="!customerForm.controls.email.valid && (customerForm.controls.email.dirty || customerForm.controls.email.touched)">

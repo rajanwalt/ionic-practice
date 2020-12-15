@@ -27,7 +27,10 @@ enum VENDORTYPES {
 }
 
 enum LEGALENTITYTYPES {
-  BUSINESS_ORGANIZATION_SOLETRADER = "Business/Organization/Soletrader"
+  // BUSINESS_ORGANIZATION_SOLETRADER = "Business/Organization/Soletrader",
+  BUSINESS = "Business",
+  ORGANIZATION = "Organization",
+  SOLETRADER = "Soletrader"
 }
 
 @Component({

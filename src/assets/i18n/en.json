@@ -50,6 +50,24 @@
             "title" : "Create Invoice"
         }
     },
+    "viewOrder" : {
+        "title" : "Order",
+        "paymentStatus" : "PAYMENT STATUS",
+        "paid" : "Paid",
+        "CardPayment" : "Card Payment",
+        "fulfillmentStatus" : "FULFILLMENT STATUS",
+        "Pending" : "Pending",
+        "ReadyForDelivery" : "Ready for delivery",
+        "DeliveredToCustomer" : "Delivered to customer",
+        "orderSummary" : "ORDER SUMMARY",
+        "OrderDate" : "Order date",
+        "Items" : "Items",
+        "pickUp" : "Pick-up by",
+        "Phone" : "Phone",
+        "Email" : "Email",
+        "orderItems" : "ORDER ITEMS"
+
+    },
     "customers" : {
         "title" : "You haven't added any customers yet.",
         "subTitle" : "You can add details on behalf of a customer or let them complete it upon checkout",
@@ -173,6 +191,7 @@
     "common" : {
         "tabs" : {
             "newOrder" : "New Order",
+            "newOrderSpace" : "New Order",
             "orders" : "Orders",
             "customers" : "Customers",
             "store" : "Store",

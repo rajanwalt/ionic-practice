@@ -9,6 +9,13 @@ import { showValidationMsg } from './../../common/form-validator';
 
 import { Observable, Subscription, throwError } from 'rxjs';
 
+enum LEGALENTITYTYPES {
+  // BUSINESS_ORGANIZATION_SOLETRADER = "Business/Organization/Soletrader",
+  BUSINESS = "Business",
+  ORGANIZATION = "Organization",
+  SOLETRADER = "Soletrader"
+}
+
 @Component({
   selector: 'app-kyc',
   templateUrl: './kyc.component.html',
@@ -38,6 +45,15 @@ export class KycComponent implements OnInit {
     REGISTRATION_PROOF: new FormControl('', Validators.required),
     ARTICLES_OF_ASSOCIATION: new FormControl('', Validators.required),
   });
+
+  legalEntityForSoletraderFrom = new FormGroup({
+    RegistrationIssuedDate: new FormControl('', Validators.required),
+    RegistrationExpiryDate: new FormControl('', Validators.required),
+    IDENTITY_PROOF: new FormControl('', Validators.required),
+    REGISTRATION_PROOF: new FormControl('', Validators.required)
+  });
+
+  legalEntityTypes = LEGALENTITYTYPES;
 
   onDismiss()  {
     // this.modalController.dismiss(this.payload);
@@ -175,10 +191,14 @@ export class KycComponent implements OnInit {
       let formdata = { ...payload};
 
       if(payload)  {
-        if(payload.hasOwnProperty('legalEntity'))  {
+        if(payload.hasOwnProperty('legalEntity') && (payload.legalEntity.type != LEGALENTITYTYPES.SOLETRADER) )  {
           this.createAccountForm.addControl('legalEntity', this.legalEntityFrom);
           formdata['legalEntity'] = {...payload['legalEntity'], IDENTITY_PROOF : ''}
 
+        }
+        else if(payload.hasOwnProperty('legalEntity') && (payload.legalEntity.type == LEGALENTITYTYPES.SOLETRADER) )  {
+          this.createAccountForm.addControl('legalEntity', this.legalEntityForSoletraderFrom);
+          formdata['legalEntity'] = {...payload['legalEntity'], IDENTITY_PROOF : ''}
         }
         else if(payload.hasOwnProperty('freelancer')) {
           this.createAccountForm.addControl('freelancer', this.freelancerFrom);

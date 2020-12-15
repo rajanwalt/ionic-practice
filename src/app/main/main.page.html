@@ -3,7 +3,8 @@
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="new_order">
         <ion-icon src="./../../assets/icon/NewOrder.svg"></ion-icon>
-      <ion-label> {{ 'common.tabs.newOrder' | translate }}</ion-label>
+      <!-- <ion-label > {{ 'common.tabs.newOrder' | translate }}</ion-label> -->
+      <ion-label [innerHtml]=" 'common.tabs.newOrderSpace' | translate "></ion-label>
     </ion-tab-button>
 
     <!-- <ion-tab-button tab="notification">

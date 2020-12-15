@@ -50,6 +50,24 @@
             "title" : "Créer une facture"
         }
     },
+    "viewOrder" : {
+        "title" : "Ordre",
+        "paymentStatus" : "STATUT DE PAIEMENT",
+        "paid" : "Payé",
+        "CardPayment" : "Paiement par carte",
+        "fulfillmentStatus" : "ÉTAT D'EXÉCUTION",
+        "Pending" : "En attente",
+        "ReadyForDelivery" : "Prêt pour la livraison",
+        "DeliveredToCustomer" : "Livré au client",
+        "orderSummary" : "RÉCAPITULATIF DE LA COMMANDE",
+        "OrderDate" : "Date de commande",
+        "Items" : "Articles",
+        "pickUp" : "Prise en charge par",
+        "Phone" : "Téléphone",
+        "Email" : "Email",
+        "orderItems" : "ITEMS COMMANDÉS"
+
+    },
     "customers" : {
         "title" : "Vous n'avez encore ajouté aucun client.",
         "subTitle" : "Vous pouvez ajouter des détails au nom d'un client ou le laisser le compléter lors du paiement",
@@ -174,6 +192,7 @@
     "common" : {
         "tabs" : {
             "newOrder" : "Nouvelle commande",
+            "newOrderSpace" : "Nouvelle <br> commande",
             "orders" : "Commandes",
             "customers" : "Clients",
             "store" : "Boutique",

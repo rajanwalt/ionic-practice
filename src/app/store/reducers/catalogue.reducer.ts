@@ -12,15 +12,25 @@ export function CatalogueReducers(state, action: CatalogueActions ): any  {
             let tempState =  state.slice(0);
             
             if(tempState && tempState.length)  {
-                let {id} = action.payload;
+                let {id} = action.payload['response'];
                 let isCatalogueExist = _.findIndex(state, {id});
+                let images = (action.payload['images'] && action.payload['images'].length) ? action.payload['images'] : []
+
                  if(isCatalogueExist >= 0)  {
-                    tempState[isCatalogueExist] = {...action.payload};
+                    tempState[isCatalogueExist] = {...action.payload['response']};
+
+                    if(images.length)  {
+                        tempState[isCatalogueExist]['images'] = [...tempState[isCatalogueExist]['images'], ...images]
+                    }
+
                     return tempState;
+                }
+                else {
+                    return [...tempState, action.payload['response'] ]
                 }
             }
             
-            return [{...action.payload}];
+            return [{...action.payload['response']}];
         }
         default:
             return state;

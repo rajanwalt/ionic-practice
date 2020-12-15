@@ -8,6 +8,12 @@ import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
 import { selectOrderList, selectCurrency } from './../../store/selectors';
 
+enum DeliveryStatus  {
+  Pending = "Pending",
+  ReadyForDelivery = "ReadyForDelivery",
+  DeliveredToCustomer = "DeliveredToCustomer"
+}
+
 @Component({
   selector: 'app-view-order',
   templateUrl: './view-order.component.html',
@@ -18,6 +24,8 @@ export class ViewOrderComponent implements OnInit {
   order = null;
   orderSub : Subscription;
   currency$ = this._store.select(selectCurrency);
+  deliveryStatus = DeliveryStatus
+ 
   
   constructor(private activatedRoute : ActivatedRoute, 
               private navCtrl: NavController,  
@@ -37,6 +45,10 @@ export class ViewOrderComponent implements OnInit {
 
   goBack()  {
     this.navCtrl.back();
+  }
+
+  sendStatusMail(status)  {
+    console.log("status", status);
   }
 
   ionViewDidEnter(){

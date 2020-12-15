@@ -106,7 +106,7 @@
                 <ion-select-option *ngFor="let legalEntityType of legalEntityTypes | keyvalue" [value]="legalEntityType.value">{{legalEntityType.value}}</ion-select-option>
           </ion-select>
       </ion-item>
-      <ion-item-group *ngIf="createAccountForm.get('legalEntity').get('type').value == legalEntityTypes.BUSINESS_ORGANIZATION_SOLETRADER">
+      <ion-item-group *ngIf="createAccountForm.get('legalEntity').get('type').value">
         <ion-item lines="none">
           <ion-label class="header">
               <ion-text class="text-16 text-600">

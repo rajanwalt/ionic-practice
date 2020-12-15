@@ -73,7 +73,7 @@
           <ion-text color="medium">  Upload PDF/JPG/JPEG/PNG format of the document less than 3 months old</ion-text>
         </ion-item>
   
-        <ion-item lines='none'>
+        <ion-item lines='none' *ngIf="payload.legalEntity.type != legalEntityTypes.SOLETRADER">
           <ion-label position="stacked">Articles of Association</ion-label>
           <ion-input type="file" accept="application/pdf, image/jpeg, image/png" name="ARTICLES_OF_ASSOCIATION" (change)="onFileChange($event, 'legalEntity')" ></ion-input>
           <ion-text color="medium">  Upload PDF/JPG/JPEG/PNG format of the document (updated and signed)</ion-text>

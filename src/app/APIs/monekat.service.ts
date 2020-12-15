@@ -163,6 +163,12 @@ export class MonekatService {
     return this.http.post(url, data);
   }
 
+  forgotPassword(data): Observable<any>  {
+    let url = this.hostName +'/api/forgot';
+    
+    return this.http.post(url, data);
+  }
+
   updateAccount(userData: any): Observable<any>  {
     let url = `${this.hostName}/api/users/${userData['id']}`;
     

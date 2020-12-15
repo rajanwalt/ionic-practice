@@ -109,7 +109,7 @@ export class OrdersTabComponent implements OnInit {
     //   }
     // })
     this.shopDetailsSub = this.shopDetails$.subscribe(service => {
-      service && new GetOrderList(service['id'])
+      service && (this._store.dispatch(new GetOrderList(service['id'])))
     })
   }
 

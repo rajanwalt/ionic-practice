@@ -80,7 +80,7 @@ export class StoreTabComponent implements OnInit {
     // })
 
     this.shopDetailsSub = this.shopDetails$.subscribe(service => {
-      service && new GetShop(service['id'])
+      service && (this._store.dispatch(new GetShop(service['id'])))
     })
 
 
