@@ -23,7 +23,7 @@
         <ion-label >
             <ion-text>
               <!-- {{ 'createAccount.legalEntity' | translate }} {{ 'common.label.type' | translate }} - {{ 'createAccount.organization' | translate }}/{{ 'createAccount.business' | translate }}/{{ 'createAccount.soletrader' | translate }} -->
-              {{ 'createAccount.legalEntity' | translate }} {{ 'common.label.type' | translate }} - {{payload?.legalEntity?.type}}
+              {{ 'createAccount.legalEntity' | translate }} {{ 'common.label.type' | translate }} - {{payload['legalEntity']['type']}}
             </ion-text>
         </ion-label>
       </ion-item>
