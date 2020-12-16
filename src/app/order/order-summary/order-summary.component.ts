@@ -99,8 +99,8 @@ export class OrderSummaryComponent implements OnInit {
   }
 
   async onShare(appName, orderId='')  {
-    
-    let checkoutLink = `http://ec2-35-181-44-11.eu-west-3.compute.amazonaws.com/${this.shopName}/${orderId}`;
+    let shopName = this.shopName.replace(/\s/g, '')
+    let checkoutLink = `http://merchants.monekat.com/${shopName}/${orderId}`;
 
     switch(appName)  {
       case this.SOCIALMEDIA.WHATSAPP : {
@@ -145,7 +145,7 @@ export class OrderSummaryComponent implements OnInit {
   }
 
   onPostOrderSummary()  {
-    const finalOrderSummary = { ...this.orders, totalAmount: this.subTotal, status: "CREATED"};
+    const finalOrderSummary = { ...this.orders, totalAmount: this.subTotal, vat: this.vat, shippingcharge: this.deliveryCharge , status: "CREATED"};
     finalOrderSummary.orderDetails = JSON.parse(JSON.stringify(this.updatedOrders));
  
     this._store.dispatch(new PostOrderSummary(OrderSummary.formatAPI(finalOrderSummary)));

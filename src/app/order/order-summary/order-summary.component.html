@@ -17,6 +17,7 @@
   <ion-list *ngIf="updatedOrders">
     <app-counter *ngFor="let order of updatedOrders; let i=index" 
       [order]= "order"
+      [currencyCode] = "currency$ | async"
       (counterValue)="getCounterValue($event)">
     </app-counter>
   </ion-list>

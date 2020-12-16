@@ -17,6 +17,7 @@
   <ion-list *ngIf="updatedOrders">
     <app-counter *ngFor="let order of updatedOrders; let i=index" 
       [order]= "order"
+      [currencyCode] = "currencyCode"
       (counterValue)="getCounterValue($event)">
     </app-counter>
   </ion-list>
@@ -25,19 +26,19 @@
   <ion-grid>
     <!-- <ion-row class="ion-no-border sub-text">
       <ion-col class="ion-text-left"><ion-text color="medium">Subtotal</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'symbol'}}</ion-text></ion-col>
     </ion-row> -->
     <!-- <ion-row class="ion-no-border sub-text">
       <ion-col class="ion-text-left"><ion-text color="medium">Delivery (estimated)</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'symbol'}}</ion-text></ion-col>
     </ion-row> -->
     <!-- <ion-row class="ion-no-border sub-text">
       <ion-col class="ion-text-left"><ion-text color="medium">Tax/(VAT{{'10%'}})</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="medium">{{subTotal | currency:'USD':'symbol'}}</ion-text></ion-col>
     </ion-row> -->
     <ion-row class="ion-no-border main-text">
       <ion-col class="ion-text-left"><ion-text color="dark">Total</ion-text></ion-col>
-      <ion-col class="ion-text-right"><ion-text color="dark">{{subTotal | currency:'USD':'code'}}</ion-text></ion-col>
+      <ion-col class="ion-text-right"><ion-text color="dark">{{subTotal | currency:currencyCode:'symbol'}}</ion-text></ion-col>
     </ion-row>
     <!-- <ion-row>
       <ion-col>

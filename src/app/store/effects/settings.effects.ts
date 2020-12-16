@@ -24,7 +24,7 @@ export class SettingsEffects {
     ofType(ESettingsActions.PostSettings),
     switchMap((action: PostSettings) => this.monekatService.postSettings(action.payload)
       .pipe(
-        map(SettingsDetails => new OnSettingsSuccess(SettingsDetails)),
+        map(SettingsDetails => new OnSettingsSuccess(SettingsDetails['item'] ? SettingsDetails['item'] : SettingsDetails)),
         catchError((error) => throwError(error))
       ))
     )

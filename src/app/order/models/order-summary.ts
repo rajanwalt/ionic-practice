@@ -28,6 +28,8 @@ export class OrderSummary  {
             data.status,
             data.customerId,
             data.serviceId,
+            data.shippingcharge,
+            data.vat,
             OrderItems.formatAPIArray(data.orderDetails)
         );
     }
@@ -37,6 +39,8 @@ export class OrderSummary  {
     public status: string,
     public customerId: string,
     public serviceId: string,
+    public shippingcharge : any,
+    public vat : any,
     public orderItems?: OrderItems[]
     )  {}
 } 

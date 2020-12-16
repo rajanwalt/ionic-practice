@@ -33,6 +33,8 @@ export class Cart  {
             OrderDetailsModel.formatAPIArray(data.orderItems),
             data.customer,
             data.service,
+            data.shippingcharge,
+            data.vat,
             data.deliveryMethod,
             data.paymentType
         )
@@ -43,6 +45,8 @@ export class Cart  {
         public orderDetails,
         public customer,
         public service,
+        public shippingcharge,
+        public vat,
         public deliveryMethod : any,
         public paymentType : any
     )  {}

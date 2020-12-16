@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { OrderDetails } from './../../order/models';
-import { selectCurrency } from './../../store/selectors';
-import { Store } from '@ngrx/store';
-import { State } from './../../store/state';
+// import { selectCurrency } from './../../store/selectors';
+// import { Store } from '@ngrx/store';
+// import { State } from './../../store/state';
 
 @Component({
   selector: 'app-counter',
@@ -12,7 +12,8 @@ import { State } from './../../store/state';
 })
 export class CounterComponent implements OnInit {
   @Input() public order : OrderDetails;
-  currency$ = this._store.select(selectCurrency);
+  @Input() currencyCode = 'USD'
+  // currency$ = this._store.select(selectCurrency);
 
   public count : number  = 1;
   public price: number = 0;
@@ -38,7 +39,7 @@ export class CounterComponent implements OnInit {
     return this.price * this.count;
   }
 
-  constructor(private _store: Store<State>) { }
+  constructor() { }
 
   ngOnInit() {
     this.count = this.order && this.order.count;

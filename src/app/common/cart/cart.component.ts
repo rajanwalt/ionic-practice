@@ -12,6 +12,7 @@ import { ModalController } from '@ionic/angular';
 export class CartComponent implements OnInit {
 
   @Input() orderDetails : OrderDetailsModel[] = [];
+  @Input() currencyCode = 'USD'
 
   public updatedOrders : OrderDetailsModel[]; 
   

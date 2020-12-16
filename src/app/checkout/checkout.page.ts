@@ -58,11 +58,13 @@ export class CheckoutPage implements OnInit, OnDestroy {
       
   }
 
-  vat(order)  {
-    if(order['VAT'])  {
-      let subTotal = this.subtotal(order.orderDetails);
+  getCurrencyCode(order)  {
+    return (order && order.service && order.service.user && order.service.user.currencycode) ? order.service.user.currencycode : 'USD'
+  }
 
-      return this.subtotal(order.orderDetails) * (order['VAT'] / 100)
+  vat(order)  {
+    if(order && order['vat'])  {
+      return this.subtotal(order.orderDetails) * (order['vat'] / 100)
     }
     return 0;
   }
@@ -70,12 +72,14 @@ export class CheckoutPage implements OnInit, OnDestroy {
   total(order)  {
     let subTotal = this.subtotal(order.orderDetails);
     
-    if(order['deliveryMethod'])  {
-      let delivaeryRate = this.deliveryRate(order.deliveryMethod) ;
-      return subTotal + delivaeryRate['rate'];
-    }
+    // if(order['deliveryMethod'])  {
+    //   let delivaeryRate = this.deliveryRate(order.deliveryMethod) ;
+      let vat = this.vat(order)
+      let shippingCharge = (order && order.shippingcharge) ? +order.shippingcharge : 0
+      return subTotal + vat + shippingCharge;
+    // }
     
-    return subTotal
+    // return subTotal
   }
 
   async onShowAddresseModal(customerDetails=null)  {
@@ -120,12 +124,13 @@ export class CheckoutPage implements OnInit, OnDestroy {
 
   }
   
-  async onShowOrders(orderDetails)  {
+  async onShowOrders(orderDetails, currencyCode='USD')  {
     
     const modal = await this.modalController.create({
       component: CartComponent,
       componentProps : {
-        orderDetails
+        orderDetails,
+        currencyCode
       }
     });
     
@@ -142,13 +147,13 @@ export class CheckoutPage implements OnInit, OnDestroy {
     let payload = {
       id : this.orderId,
       amount : this.total(order),
-      fee : 10
+      fee : this.total(order) * 0.05
     }
 
     this.checkoutLinkSub = this.monekatService.checkout(payload).subscribe( data => {
       let {RedirectURL} = data;
 
-      window.open(RedirectURL, '_self'); 
+      RedirectURL && window.open(RedirectURL, '_self'); 
     })
     
 
@@ -187,6 +192,8 @@ export class CheckoutPage implements OnInit, OnDestroy {
     this.orderId = this.activatedRoute.snapshot.params.orderId;
     
     this._store.dispatch(new GetFinalOrderSummary({orderId : this.orderId}));
+
+    
   }
 
   

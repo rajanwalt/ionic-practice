@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 
 export enum ESettingsActions  {
     GetSettings = '[Settings] Get Settings',
-    OnSettingsSuccess = '[Settings] On Order Success',
+    OnSettingsSuccess = '[Settings] On Settings Success',
     SetSettings = '[Settings] Set Settings',
     PostSettings = '[Settings] Post Settings'
 }
