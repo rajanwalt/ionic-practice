@@ -114,9 +114,12 @@ export class CheckoutPage implements OnInit, OnDestroy {
 
   }
 
-  async showExchangePolicy()  {
+  async showExchangePolicy(policy = '')  {
     const modal = await this.modalController.create({
-      component: RefundExchangePolicyComponent
+      component: RefundExchangePolicyComponent,
+      componentProps: {
+        policy
+      }
     });
 
     await modal.present();

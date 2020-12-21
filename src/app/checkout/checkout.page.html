@@ -67,7 +67,7 @@
   <ion-grid class="footer-grid" *ngIf="(order$ | async) as order">
     <ion-row>
       <ion-col class="tAndc ion-text-center">
-        By placing the order, you agree to our <ion-text color="primary" (click)="showExchangePolicy()">Refund & Exchange Policy</ion-text>
+        By placing the order, you agree to our <ion-text color="primary" (click)="showExchangePolicy(order?.service?.refundPolicy)">Refund & Exchange Policy</ion-text>
       </ion-col>
     </ion-row>
     <ion-row >

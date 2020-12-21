@@ -194,6 +194,11 @@ export class MonekatService {
 
   }
 
+  resetPassword(data: any): Observable<any>  {
+    let url = this.hostName +'/api/login';
+    return this.http.post(url, data);
+  }
+
   getPayStatus(id) : Observable<any>  {
     let url = `${this.hostName}/api/orders/paystatus/${id}`;
 
