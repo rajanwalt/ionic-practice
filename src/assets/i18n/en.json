@@ -5,7 +5,9 @@
         "createAccount" : "Create an Account"
     },
     "languages": {
-        "tabName" : "Languages"
+        "tabName" : "Languages",
+        "english" : "English (US)",
+        "french" : "French"
     },
     "login": {
         "tabName" : "welcome back",
@@ -65,7 +67,9 @@
         "pickUp" : "Pick-up by",
         "Phone" : "Phone",
         "Email" : "Email",
-        "orderItems" : "ORDER ITEMS"
+        "orderItems" : "ORDER ITEMS",
+        "Contactcustomer" : "Contact customer",
+        "Ordertotal" : "Total de la commande"
 
     },
     "customers" : {
@@ -103,7 +107,8 @@
                 "Height" : "Height",
                 "Small" : "Small",
                 "Medium" :"Medium",
-                "Large" : "Large"
+                "Large" : "Large",
+                "ProductDescription" : "Product Description"
             }
         },
         "button" : {
@@ -158,9 +163,12 @@
         "trn" : "TRN"
     },
     "payment_settings" : {
-        "text" : "At leat one payment option must be selected. Credit card is not available in some countries."
+        "text" : "At leat one payment option must be selected. Credit card is not available in some countries.",
+        "card" : "Credit / Debit Card"
     },
     "shipping": {
+        "title" : "Shipping",
+        "AddCustomRate" : "Add custom rate",
         "Type" : "Type",
         "Allow" : "Allow",
         "CustomerPickup" : "Customer Pickup",
@@ -171,7 +179,10 @@
         "setFixed" : "Set fixed courier prices",
         "DestinationCity" : "Destination City",
         "Price" : "Price",
-        "AddAnother" : "Add another location"
+        "AddAnother" : "Add another location",
+        "deliveryMethod" : "Delivery method",
+        "deliveryMethodName" : "Name of delivery method",
+        "charge" : "Charge"
     },
     "orderSummary" : {
         "ChooseShipment" : "Choose shipment type",

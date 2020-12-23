@@ -23,7 +23,8 @@ export class DeliveryAddressModalComponent implements OnInit {
     phonenumber: new FormControl('', Validators.required),
     country: new FormControl(''),
     city: new FormControl(''),
-    street: new FormControl('')
+    street: new FormControl(''),
+    postalcode: new FormControl('')
   });
 
   onChangeCountry(event)  {

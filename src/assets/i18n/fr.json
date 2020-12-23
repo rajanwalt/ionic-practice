@@ -5,7 +5,9 @@
         "createAccount" : "Créer un compte"
     },
     "languages": {
-        "tabName" : "Langue"
+        "tabName" : "Langues",
+        "english" : "Anglais",
+        "french" : "Français"
     },
     "login": {
         "tabName" : "Nous saluons le retour",
@@ -44,14 +46,14 @@
     },
     "orders" : {
         "title" : "Vous n'avez encore reçu aucune commande.",
-        "subTitle" : "Ça va! Ce n'est qu'une question de temps avant que les commandes ne commencent à arriver. Sortez et répandez le monde.",
+        "subTitle" : "Ne baissez pas les bras! Accrochez-vous et les commandes devraient arriver très vite. Engagez avec vos clients et faites vous connaître!",
         "SearchForOrders" : "Rechercher des commandes",
         "button" : {
             "title" : "Créer une facture"
         }
     },
     "viewOrder" : {
-        "title" : "Ordre",
+        "title" : "Commande",
         "paymentStatus" : "STATUT DE PAIEMENT",
         "paid" : "Payé",
         "CardPayment" : "Paiement par carte",
@@ -65,7 +67,9 @@
         "pickUp" : "Prise en charge par",
         "Phone" : "Téléphone",
         "Email" : "Email",
-        "orderItems" : "ITEMS COMMANDÉS"
+        "orderItems" : "Articles commandés",
+        "Contactcustomer" : "Contacter le client",
+        "Ordertotal" : "Order total"
 
     },
     "customers" : {
@@ -86,24 +90,25 @@
         "chooseItems" : "Choisissez dans le catalogue",
         "SearchItems" : "Recherche de catalogue",
         "addItem" : {
-            "title" : "Ajouter un item",
+            "title" : "Ajouter une référence",
             "label" : {
                 "AddPicture" : "Ajouter une image",
                 "productName" : "Nom du produit ou service",
                 "Price" : "Prix",
-                "AdditionalDetails" : "Additional Details",
+                "AdditionalDetails" : "Description",
                 "Delivery" : "Livraison",
                 "DeliveryText1" : "Applicable aux produits physiques",
                 "DeliveryText2" : "L'adresse de livraison et les options seront nécessaires pour que les clients puissent effectuer un achat",
                 "Dimensions" : "Dimensions",
                 "DimensionsText1" : "Choisissez un préréglage ou entrez manuellement",
                 "Weight" : "Poids",
-                "Length" : "Longueur",
+                "Length" : "Longeur",
                 "Width" : "Largeur",
-                "Height" : "la taille",
+                "Height" : "Hauteur",
                 "Small" : "Petit",
                 "Medium" :"Moyen",
-                "Large" : "Grand"
+                "Large" : "Grand",
+                "ProductDescription" : "Description de la référence"
 
             }
         },
@@ -131,9 +136,9 @@
         },
         "PAYOUTSUMMARY" : "RÉSUMÉ DES PAIEMENTS",
         "AccountBalance" : "Solde du compte",
-        "selectPayout" : "Sélectionnez une méthode de paiement",
-        "selectPayoutText" : "Détails: traitement le jour ouvrable uniquement; les week-ends et jours fériés peuvent entraîner des retards.",
-        "RELEASEPAYMENT" : "PAIEMENT DE LIBÉRATION",
+        "selectPayout" : "Sélectionner une méthode de paiement",
+        "selectPayoutText" : "Détails: traitement les jours ouvrables uniquement; les week-ends et jours fériés peuvent entrainer du retard.",
+        "RELEASEPAYMENT" : "Recevoir son solde",
         "BankTransfer" : "Virement",
         "ProcessingIn" : "Traitement en",
         "payoutDays" : "3 à 5 jours ouvrables",
@@ -155,25 +160,31 @@
     },
     "vat" : {
         "rate" : "Taux de TVA",
-        "text" : "Le montant des taxes dues par votre client sera ajouté à chaque produit et affiché à la caisse.",
+        "text" : "Le montant des taxes dues par votre clients sera ajouté à chaque produit et affiché sur la facture.",
         "trnText" : "Numéro d'enregistrement fiscal (TRN)",
         "trn" : "TRN"
     },
     "payment_settings" : {
-        "text" : "Au moins, une option de paiement doit être sélectionnée. La carte de crédit n'est pas disponible dans certains pays."
+        "text" : "Au moins une option de paiement doit être sélectionnée. La carte de crédit n'est pas disponible dans certains pays.",
+        "card" : "Carte de crédit ou débit"
     },
     "shipping": {
+        "title" : "Livraison",
+        "AddCustomRate" : "Ajouter un tarif personnalisé",
         "Type" : "Type",
         "Allow" : "Autoriser",
-        "CustomerPickup" : "Ramassage des clients",
+        "CustomerPickup" : "Commande à collecter",
         "NoCost" : "Sans frais",
-        "InHouseDelivery" : "Livraison en interne",
+        "InHouseDelivery" : "Livraison",
         "FixedPrice" : "Prix ​​fixe",
-        "domesticOnly" : "disponible pour domestique seulement",
-        "setFixed" : "Définir des prix de messagerie fixes",
+        "domesticOnly" : "disponible sur le territoire national uniquement",
+        "setFixed" : "Définir des prix de livraison par destination",
         "DestinationCity" : "ville de destination",
         "Price" : "Prix",
-        "AddAnother" : "Ajouter un autre emplacement"
+        "AddAnother" : "Ajouter une autre destination",
+        "deliveryMethod" : "Méthode de livraison",
+        "deliveryMethodName" : "Nom du moyen de livraison",
+        "charge" : "Charge"
     },
     "orderSummary" : {
         "ChooseShipment" : "Choisir type de livraison",
@@ -213,7 +224,7 @@
         },
         "label" : {
             "firstName" : "Prénom",
-            "lastName" : "Non de famille",
+            "lastName" : "Nom de famille",
             "email" : "Adresse e-mail",
             "optional" : "optionnel",
             "phone": "Téléphone",

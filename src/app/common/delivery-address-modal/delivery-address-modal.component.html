@@ -69,6 +69,14 @@
             <ion-text class="warn-text" >Street cannot be empty</ion-text>
         </ion-item> 
         </ion-col>
+
+        <ion-col size="12">
+          <ion-item lines='none' [class.error]="!customerForm.controls.postalcode.valid && (customerForm.controls.postalcode.dirty || customerForm.controls.postalcode.touched)" >
+            <ion-label position="stacked" class="input-label">Postal code</ion-label>
+            <ion-input type="text" formControlName="postalcode" name="postalcode"></ion-input>
+            <ion-text class="warn-text" >Postal code cannot be empty</ion-text>
+        </ion-item> 
+        </ion-col>
       </ion-row>
     </ion-grid>
   </form>
