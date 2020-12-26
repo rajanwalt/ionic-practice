@@ -45,7 +45,7 @@ export class SetNewPasswordComponent implements OnInit {
       // this.modalController.dismiss(this.passwordForm.get('newPassword').value)
       
       //Post password
-      this.tokenSub = this.monekatService.updatePassword({...this.passwordForm, token: this.token}).subscribe(res => {
+      this.tokenSub = this.monekatService.updatePassword({...this.passwordForm.value, token: this.token}).subscribe(res => {
         this.presentAlert()
       })
     } 
