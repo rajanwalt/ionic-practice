@@ -200,13 +200,8 @@ export class MonekatService {
 
   }
 
-  resetPassword(data: any): Observable<any>  {
-    let url = this.hostName +'/api/passwordResetToken';
-    return this.http.post(url, data);
-  }
-
   updatePassword(data: any): Observable<any>  {
-    let url = this.hostName +'/api/passwordResetToken';
+    let url = this.hostName +'/api/updatePassword';
     return this.http.post(url, data);
   }
 
