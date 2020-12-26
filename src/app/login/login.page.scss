@@ -8,3 +8,14 @@ ion-grid  {
 ion-text  {
     font-size: 22px;
 }
+
+.logo-container  {
+    text-align: center;
+    margin-top: 200px;
+    
+    img  {
+        height: 200px;
+        border: 1px solid var(--ion-color-favorite);
+        border-radius: 5px;
+    }
+}

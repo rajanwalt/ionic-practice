@@ -20,11 +20,11 @@ export class LanguagesComponent implements OnInit {
 
   languages : LanguageModel[] = [
     {
-      name : "English (US)",
+      name : "english",
       LOCALE_ID : 'en'
     },
     {
-      name : "French",
+      name : "french",
       LOCALE_ID : 'fr'
     }
   ]

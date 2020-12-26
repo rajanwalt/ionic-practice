@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 import { Observable, of, Subscription } from 'rxjs';
 import { filter, flatMap, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { State } from './../../store/state';
 import { selectOrderList, selectCurrency } from './../../store/selectors';
+import { MonekatService } from './../../APIs';
 
 enum DeliveryStatus  {
   Pending = "Pending",
@@ -23,13 +24,16 @@ export class ViewOrderComponent implements OnInit {
   orders$: Observable<any> = this._store.select(selectOrderList);
   order = null;
   orderSub : Subscription;
+  statusEmailSub : Subscription;
   currency$ = this._store.select(selectCurrency);
   deliveryStatus = DeliveryStatus
  
   
   constructor(private activatedRoute : ActivatedRoute, 
               private navCtrl: NavController,  
-              private _store: Store<State>
+              private _store: Store<State>,
+              private monekatService: MonekatService,
+              private alertController: AlertController
                ) { }
 
   ngOnInit() {
@@ -47,8 +51,31 @@ export class ViewOrderComponent implements OnInit {
     this.navCtrl.back();
   }
 
-  sendStatusMail(status)  {
-    console.log("status", status);
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Success',
+      message: `The Order status has been emailed to the customer`,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  sendStatusMail(status, email)  {
+
+    if(email && status)  {
+      let payload = {
+        status,
+        email
+      }
+      this.statusEmailSub = this.monekatService.sendOrderStatusEmail(payload).subscribe( data => {
+        if(data)  {
+          this.presentAlert()
+        }
+      })
+    }
+    
   }
 
   ionViewDidEnter(){
@@ -60,6 +87,14 @@ export class ViewOrderComponent implements OnInit {
     ).subscribe( order => {
         this.order = order
     })
+  }
+
+  ionViewDidLeave(){
+
+    if(this.statusEmailSub)  {
+      this.statusEmailSub.unsubscribe()
+    }
+   
   }
 
 }

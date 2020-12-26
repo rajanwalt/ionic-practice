@@ -11,6 +11,7 @@ import { ChangePasswordModalComponent } from './../change-password-modal/change-
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { showValidationMsg } from './../../common/form-validator';
+import { counries, cities } from './../../common/countries_cities';
 
 @Component({
   selector: 'app-user-profile',
@@ -24,12 +25,14 @@ export class UserProfileComponent implements OnInit {
     lastname: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
     password: new FormControl('********', Validators.required),
+    country: new FormControl('', Validators.required),
     // storename: new FormControl('', Validators.required),
     // phoneNumber: new FormControl('', Validators.required),
   });
   user$: Observable<any> = this._store.select(selectUser);
   userId : any;
   userSub : Subscription;
+  countries : Array<string> = counries()
   
   onSubmit()  {
     if(this.createAccountForm.valid)  {

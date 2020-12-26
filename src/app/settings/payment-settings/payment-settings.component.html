@@ -18,7 +18,7 @@
     </ion-item>
     <ion-item button="true" *ngFor="let paymentMethod of paymentMethods$ | async">
       <ion-label>
-        {{paymentMethod.type}} <span (click)="onShowInfo(paymentMethod)">({{paymentMethod.fee}}%)</span>
+        {{ 'payment_settings.'+paymentMethod.type | translate }} <span (click)="onShowInfo(paymentMethod)">({{paymentMethod.fee}}%)</span>
       </ion-label>
       <ion-checkbox slot="end" color="favorite" 
       [checked]="paymentMethod.selected"

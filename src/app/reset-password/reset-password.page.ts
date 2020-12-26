@@ -33,7 +33,6 @@ export class ResetPasswordPage implements OnInit {
 
   onSubmit()  {
     if(this.forgotForm.valid)  {
-      // this._store.dispatch(new Login(this.forgotForm.value));
       this.forgotSub = this.monekatService.forgotPassword(this.forgotForm.value).subscribe( data => {
         if(data)  {
           this.presentAlert()

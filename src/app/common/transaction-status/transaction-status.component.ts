@@ -29,7 +29,7 @@ export class TransactionStatusComponent implements OnInit {
       }
       else {
         this.status = ` <p class="trans-failed"> Payment Failed ! </p> 
-        <p class="trans-message"> We are regret to inform you that <span>${response['ResultMessage']}. </span> </p>`
+        <p class="trans-message"> We are regret to inform you that <span>${response['ResultMessage']} by the user. </span> </p>`
       }
         
        

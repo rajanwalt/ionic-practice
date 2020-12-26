@@ -5,7 +5,7 @@
             <ion-icon name="arrow-back-outline"></ion-icon>
           </ion-button>
       </ion-buttons>
-    <ion-title>Shipping</ion-title>
+    <ion-title>{{ 'shipping.title' | translate }}</ion-title>
     <!-- <ion-buttons slot="end" *ngIf="shippingForm.dirty">
       <ion-button (click)="onSave()">
         Save
@@ -20,18 +20,18 @@
     <ion-radio-group (ionChange)="onSelectShipmentOptions($event)">
       <ion-item lines="full">
         <ion-label>
-          <ion-text color="dark">{{defaultShipmentOption.charge | currency:(currency$ | async):'symbol'}}</ion-text> - {{defaultShipmentOption.type}}
+          <ion-text color="dark">{{defaultShipmentOption.charge | currency:(currency$ | async):'symbol'}}</ion-text> - {{'shipping.'+defaultShipmentOption.type | translate}}
         </ion-label>
         <ion-radio slot="start" [value]="defaultShipmentOption"></ion-radio>
       </ion-item>
       <ion-item *ngIf="(inHouseDelivery$ | async) as inHouseDelivery" lines="full">
         <ion-label>
-          <ion-text color="dark">{{ inHouseDelivery?.charge | currency:(currency$ | async):'symbol'}}</ion-text> - {{inHouseDelivery?.type}}
+          <ion-text color="dark">{{ inHouseDelivery?.charge | currency:(currency$ | async):'symbol'}}</ion-text> - {{'shipping.'+inHouseDelivery?.type | translate}}
         </ion-label>
         <ion-radio slot="start" [value]="inHouseDelivery"></ion-radio>
       </ion-item>
       <ion-item button (click)="onShowDeliveryRateModal()" lines="none" >
-        <ion-label color="primary"> Add custom rate </ion-label>
+        <ion-label color="primary">{{ 'shipping.AddCustomRate' | translate }}</ion-label>
       </ion-item>
     </ion-radio-group>
   </ion-list>

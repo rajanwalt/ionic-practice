@@ -3,11 +3,11 @@
       <ion-buttons slot="start">
           <ion-back-button  color="dark" defaultHref="/" text="" icon="arrow-back-outline"></ion-back-button>
       </ion-buttons>
-      <ion-title color="dark">Item Name</ion-title>
+      <!-- <ion-title color="dark" *ngIf="itemDetails?.productName">{{itemDetails?.productName}}</ion-title> -->
       <ion-buttons slot="end">
           <ion-button (click)="onEdit()">
             <ion-text color="dark">
-              Edit
+              {{ 'common.button.edit' | translate }}
             </ion-text>
           </ion-button>
         </ion-buttons> 
@@ -41,7 +41,7 @@
   <ion-item lines="none" class="item-margin">
       <ion-label >
         <ion-text>
-          <p>Product Description</p>
+          <p>{{ 'catalogue.addItem.label.ProductDescription' | translate }}</p>
         </ion-text>
         <ion-text>
             <p>{{itemDetails?.additionalDetails}}</p>
@@ -53,19 +53,19 @@
       <ion-grid>
           <ion-row >
             <ion-col>
-              <p>Weight</p>
+              <p>{{ 'catalogue.addItem.label.Weight' | translate }}</p>
               <p class="light">{{itemDetails?.weight}} kg</p>
             </ion-col>
             <ion-col>
-                <p>Length</p>
+                <p>{{ 'catalogue.addItem.label.Length' | translate }}</p>
                 <p class="light">{{itemDetails?.length}} cm</p>
             </ion-col>
             <ion-col>
-                <p>Width</p>
+                <p>{{ 'catalogue.addItem.label.Width' | translate }}</p>
                 <p class="light">{{itemDetails?.width}} cm</p>
             </ion-col>
             <ion-col>
-                <p>Height</p>
+                <p>{{ 'catalogue.addItem.label.Height' | translate }}</p>
                 <p class="light">{{itemDetails?.height}} cm</p>
             </ion-col>
           </ion-row>

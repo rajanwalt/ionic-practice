@@ -7,6 +7,7 @@ import { State } from './../../store/state';
 import { selectShopDetails, selectUser, selectCurrency } from './../../store/selectors';
 import { GetShop } from 'src/app/store/actions';
 import { hostName } from './../../common/hostname';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-store-tab',
@@ -79,7 +80,7 @@ export class StoreTabComponent implements OnInit {
     //   }
     // })
 
-    this.shopDetailsSub = this.shopDetails$.subscribe(service => {
+    this.shopDetailsSub = this.shopDetails$.pipe(take(1)).subscribe(service => {
       service && (this._store.dispatch(new GetShop(service['id'])))
     })
 

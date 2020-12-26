@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { State } from './../../store/state';
 import { Order, OrderDetails, OrderSummary } from './../models';
-import { selectLastOrderID, selectOrders, selectSetting, selectUser, selectCurrency, selectShopDetails } from './../../store/selectors';
+import { selectLastOrderID, selectOrders, selectSetting, selectUser, selectCurrency, selectShopDetails, selectSettings } from './../../store/selectors';
 import { PostOrderSummary, SetOrder, ResetOrderStatus, ResetOrder } from './../../store/actions';
 
 import { SocialMediaSharingService } from './../../common';
@@ -27,7 +27,7 @@ export class OrderSummaryComponent implements OnInit {
   public orders$: Observable<Order> = this._store.select(selectOrders);
   public orderStatus$: Observable<Cart> = this._store.select(selectLastOrderID);
   user$: Observable<any> = this._store.select(selectUser)
-  settings$: Observable<any> = this._store.select(state => selectSetting(selectUser(state)));
+  settings$: Observable<any> = this._store.select(selectSettings);
   currency$ = this._store.select(selectCurrency);
   shopDetails$: Observable<any> = this._store.select(selectShopDetails);
   
@@ -100,7 +100,7 @@ export class OrderSummaryComponent implements OnInit {
 
   async onShare(appName, orderId='')  {
     let shopName = this.shopName.replace(/\s/g, '')
-    let checkoutLink = `http://merchants.monekat.com/${shopName}/${orderId}`;
+    let checkoutLink = `http://checkout.monekat.com/${shopName}/${orderId}`;
 
     switch(appName)  {
       case this.SOCIALMEDIA.WHATSAPP : {
@@ -181,7 +181,9 @@ export class OrderSummaryComponent implements OnInit {
     });
 
     this.vatSub = this.settings$.subscribe(data => {
-      this.vat = data && data.length && data[0].vat;
+      if(data && data.vat)  {
+        this.vat = data.vat
+      } 
     })
 
     this.shopDetailsSub = this.shopDetails$.subscribe(service => {

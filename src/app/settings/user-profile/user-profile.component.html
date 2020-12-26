@@ -32,6 +32,16 @@
         <ion-input formControlName="password" type="password" (click)="onShowChangePasswordModal()"></ion-input>
         <ion-text class="warn-text" >{{ 'common.label.password' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
       </ion-item>
+      <ion-item lines="none" [class.error]="!createAccountForm.controls.country.valid && (createAccountForm.controls.country.dirty || createAccountForm.controls.country.touched)">
+        <ion-label position="stacked" class="input-label" >{{ 'common.label.country' | translate }}</ion-label>
+        <ion-select 
+            okText="{{ 'common.button.Okay' | translate }}" 
+            cancelText="{{ 'common.button.Dismiss' | translate }}" 
+            formControlName="country">
+          <ion-select-option *ngFor="let country of countries" [value]="country">{{country}}</ion-select-option>
+        </ion-select>
+        <ion-text class="warn-text" >{{ 'common.label.country' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
+      </ion-item>  
       <!-- <ion-item>
         <ion-label position="stacked">Store name</ion-label>
         <ion-input formControlName="storename" ></ion-input>

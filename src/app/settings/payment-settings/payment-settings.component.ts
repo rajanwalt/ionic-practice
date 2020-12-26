@@ -19,7 +19,7 @@ export class PaymentSettingsComponent implements OnInit {
   paymentMethods$ = of([
     {
       "id" : 1,
-      "type" : "Credit / Debit Card",
+      "type" : "card",
       "fee" : "5",
       "selected" : true
      },
@@ -61,7 +61,7 @@ export class PaymentSettingsComponent implements OnInit {
     private _store: Store<State>) { }
 
   ionViewDidEnter()  {
-    this._store.dispatch(new GetPaymentMethods({}))
+    // this._store.dispatch(new GetPaymentMethods({}))
   }
 
   ngOnInit() {}

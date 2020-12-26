@@ -58,12 +58,13 @@ export class ShopPage implements OnInit, OnDestroy {
     shopName: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
     // website: new FormControl('', Validators.required),
-    shopdetails: new FormControl(''),
+    // shopdetails: new FormControl(''),
     country: new FormControl(''),
     city: new FormControl(''),
     street: new FormControl(''),
+    postalcode: new FormControl(""),
     currencyCode : new FormControl(''),
-    refundExchangePolicy: new FormControl(''),
+    refundPolicy: new FormControl(''),
   }, 
   // { validators: formValidator }
   );

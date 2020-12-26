@@ -4,13 +4,15 @@ export class UserProfile {
             data.firstname,
             data.lastname,
             data.email,
-            data.id
+            data.id,
+            data.country
         )
     }
     constructor(
         public firstname,
         public lastname,
         public email,
-        public id
+        public id,
+        public country
     ) {}
 }

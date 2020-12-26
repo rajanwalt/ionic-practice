@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { showValidationMsg } from './../../common/form-validator';
 import { AlertController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { MonekatService } from './../../APIs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-set-new-password',
@@ -15,6 +18,9 @@ export class SetNewPasswordComponent implements OnInit {
     newPassword: new FormControl('', Validators.required),
     confirmPassword: new FormControl('', Validators.required),
   }, {validators: this.checkPassword});
+
+  token;
+  tokenSub: Subscription;
 
   checkPassword(group: FormGroup)  {
     let newPassword = group.get('newPassword').value;
@@ -39,15 +45,31 @@ export class SetNewPasswordComponent implements OnInit {
       // this.modalController.dismiss(this.passwordForm.get('newPassword').value)
       
       //Post password
-      this.presentAlert()
+      this.tokenSub = this.monekatService.updatePassword({...this.passwordForm, token: this.token}).subscribe(res => {
+        this.presentAlert()
+      })
     } 
     else {
       showValidationMsg(this.passwordForm)
     }
   }
 
-  constructor(public alertController: AlertController) { }
+  constructor(public alertController: AlertController, 
+              private activatedRoute: ActivatedRoute,
+              private monekatService: MonekatService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    let token = this.activatedRoute.snapshot.queryParamMap.get('id');
+
+    if(token)  {
+      this.token = token
+    }
+  }
+
+  ngOnDestroy(){
+    if(this.tokenSub)  {
+      this.tokenSub.unsubscribe()
+    }
+  }
 
 }

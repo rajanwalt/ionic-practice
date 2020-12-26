@@ -58,7 +58,7 @@
         "paid" : "Paid",
         "CardPayment" : "Card Payment",
         "fulfillmentStatus" : "FULFILLMENT STATUS",
-        "Pending" : "Pending",
+        "Pending" : "Being processed",
         "ReadyForDelivery" : "Ready for delivery",
         "DeliveredToCustomer" : "Delivered to customer",
         "orderSummary" : "ORDER SUMMARY",
@@ -83,7 +83,7 @@
     },
     "catalogue" : {
         "title" : "You don't have anything in your catalogue yet",
-        "subTitle" : "Ajoutez des produits ou services à votre catalogue. Juste un nom et un prix sont nécessaires pour démarrer.",
+        "subTitle" : "Add products or services to your catalog. Just a name and a price are needed to get started.",
         "noItem" : "There are no items to add.",
         "SelectItems" : "Select Items",
         "createItem" : "Create New Item",
@@ -124,8 +124,8 @@
         "ShopDetails" : "Shop Details",
         "ShopDetailsText" : "Your customers will see shop details on your online store, other sales channels, and web search results.",
         "BusinessAddress" : "Business Address",
-        "BusinessAddressText" : "This is where shopping companies will pick up your products for delivery. We won't share your business address with anyone.",
-        "policy" : "Refund & Exchange Policy"
+        "BusinessAddressText" : "This is where shipping companies will pick up your products for delivery. We won't share your business address with anyone.",
+        "policy" : "Refund and Return Policy"
     },
     "wallet" : {
         "title" : "Monekat release payouts about 7 days after a sale has been made. The time it takes for the funds to appear in your account depends on your payout method.",
@@ -240,9 +240,10 @@
             "phonenumber" : "Phone Number",
             "cantEmpty" : "cannot be empty",
             "BasicInformation" : "Basic Information",
-            "ShippingDetails" : "Shipping Details",
+            "ShippingDetails" : "Customer adress",
             "Fees" : "Fees",
             "Currency" : "Currency"
-        }
+        },
+        "months" : "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec"
     }
 }

@@ -19,7 +19,7 @@
   <ion-radio-group [value]="selectedLanguage">
     <ion-item class="ion-activated" *ngFor="let language of languages" (click)="onSelect(language)">
       <ion-radio slot="start" [value]="language" ></ion-radio>
-      <ion-label>{{language?.name}}</ion-label>
+      <ion-label *ngIf="language?.name">{{ 'languages.'+language?.name | translate }}</ion-label>
     </ion-item>
   </ion-radio-group>
 </ion-content>

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl, FormGroup } from '@angular/forms';
 
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, ToastController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
-import { PhotoService} from './../../APIs';
+import { MonekatService, PhotoService} from './../../APIs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
@@ -22,7 +22,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 interface Photo  {
   imgBlob :  Blob,
-  webviewPath : string
+  webviewPath : string,
+  filename? : any
 }
 
 @Component({
@@ -93,6 +94,7 @@ export class AddCatalogueItemComponent implements OnInit {
 
   shopDetailsSub: Subscription;
   catalogueSub: Subscription;
+  deleteFileSub: Subscription;
   service_id;
    
   onSelectDimensions(type: string)  {
@@ -163,12 +165,43 @@ export class AddCatalogueItemComponent implements OnInit {
       showValidationMsg(this.catalogueForm)
     }
   }
+  
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: "The file has been removed successfully!",
+      duration: 1000,
+      position: 'bottom'
+    });
+    toast.present();
+  }
+
   onDelete(index)  {
-    let selectedPhoto = this.photos[index] 
-    selectedPhoto.webviewPath && (selectedPhoto.webviewPath = "");
+    let selectedPhoto = this.photos[index]
+    
+    if(selectedPhoto.hasOwnProperty('filename'))  {
+      //remove item image from server
+      this.deleteFileSub = this.monekatService.deleteFile(selectedPhoto.filename).subscribe( data => {
+        selectedPhoto.webviewPath = ""
+        this.presentToast()
+      })
+
+    }
+    else {
+      if(selectedPhoto.webviewPath) {
+        selectedPhoto.webviewPath = ""
+        this.presentToast()
+      }
+    }
+    
   }
   onSelectPhoto(index)  {
-    this.presentActionSheet(index);
+    if(!this.photos[index])  {
+      this.presentActionSheet(index);
+    }
+    else {
+      console.log("Remove and upload the new image");
+    }
+
   }
 
   loadImageFromCamera(index)  {
@@ -224,7 +257,9 @@ export class AddCatalogueItemComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private _store: Store<State>,
     private router: Router,
-    private translate: TranslateService) { 
+    private translate: TranslateService,
+    private monekatService : MonekatService,
+    public toastController: ToastController) { 
 
     }
 
@@ -250,7 +285,8 @@ export class AddCatalogueItemComponent implements OnInit {
               let webviewPath = `${hostName}/api/services/downloadfile/${filename}`
               this.photos[index] = {
                 webviewPath,
-                imgBlob : null
+                imgBlob : null,
+                filename : data['filename']
               }
             })
           }
@@ -271,6 +307,10 @@ export class AddCatalogueItemComponent implements OnInit {
   ionViewDidLeave(){
    if(this.catalogueSub)  {
      this.catalogueSub.unsubscribe();
+   }
+   
+   if(this.deleteFileSub)  {
+    this.deleteFileSub.unsubscribe();
    }
   }
 

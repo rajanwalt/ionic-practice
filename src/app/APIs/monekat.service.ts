@@ -164,7 +164,7 @@ export class MonekatService {
   }
 
   forgotPassword(data): Observable<any>  {
-    let url = this.hostName +'/api/forgot';
+    let url = this.hostName +'/api/passwordResetToken';
     
     return this.http.post(url, data);
   }
@@ -186,6 +186,12 @@ export class MonekatService {
     return this.http.get(url);
   }
 
+  deleteFile(filename) : Observable<any>  {
+    let url = `${this.hostName}/api/items/deletefile/${filename}`;
+
+    return this.http.get(url);
+  }
+
   login(data: any): Observable<any>  {
     let url = this.hostName +'/api/login';
     return this.http.post(url, data);
@@ -195,7 +201,12 @@ export class MonekatService {
   }
 
   resetPassword(data: any): Observable<any>  {
-    let url = this.hostName +'/api/login';
+    let url = this.hostName +'/api/passwordResetToken';
+    return this.http.post(url, data);
+  }
+
+  updatePassword(data: any): Observable<any>  {
+    let url = this.hostName +'/api/passwordResetToken';
     return this.http.post(url, data);
   }
 
@@ -210,6 +221,14 @@ export class MonekatService {
 
     return this.http.post(url, data);
   }
+
+  sendOrderStatusEmail(data): Observable<any>  {
+    let url = this.hostName +'/api/orders/statusEmail';
+
+    return this.http.post(url, data);
+  }
+
+
 
   constructor(private http: HttpClient, private platform: Platform) { }
 }

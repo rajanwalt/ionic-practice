@@ -30,6 +30,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  goToForgetPasswrd()  {
+    this.navCtrl.navigateForward('/reset-password');
+  }
+
   goBack()  {
     this.navCtrl.navigateRoot('/welcome');
   }

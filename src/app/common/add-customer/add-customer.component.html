@@ -33,6 +33,7 @@
                     cancelText="{{ 'common.button.cancel' | translate }}" 
                     doneText="{{ 'common.button.done' | translate }}"
                     [value]="customerForm.get('birthday').value"
+                    monthShortNames="{{ 'common.months' | translate }}"
                     ></ion-datetime>
                 <ion-text class="warn-text">{{ 'common.label.DateofBirth' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
               </ion-item> 
@@ -79,6 +80,11 @@
                     <ion-label position="stacked" class="input-label">{{ 'common.label.address' | translate }}</ion-label>
                     <ion-input type="text" formControlName="street" name="street"></ion-input>
                     <ion-text class="warn-text" >{{ 'common.label.address' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
+                </ion-item> 
+                <ion-item lines='none' [class.error]="!customerForm.controls.postalcode.valid && (customerForm.controls.postalcode.dirty || customerForm.controls.postalcode.touched)" >
+                    <ion-label position="stacked" class="input-label">{{ 'common.label.postalCode' | translate }}</ion-label>
+                    <ion-input type="text" formControlName="postalcode" name="postalcode"></ion-input>
+                    <ion-text class="warn-text" >{{ 'common.label.postalCode' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
                 </ion-item> 
         </ion-list>
     </form>

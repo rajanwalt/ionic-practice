@@ -29,6 +29,7 @@ export class AddCustomerComponent implements OnInit {
     country: new FormControl('', Validators.required),
     city: new FormControl('', Validators.required),
     street: new FormControl('', Validators.required),
+    postalcode: new FormControl('', Validators.required),
     birthday: new FormControl('', Validators.required)
   });
   

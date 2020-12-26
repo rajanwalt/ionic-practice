@@ -85,11 +85,10 @@ export class LoginEffects {
 
   onLoginFailed$ = createEffect(() => this.actions$.pipe(
     ofType(ELoginActions.LoginFailed),
-    switchMap((action: LoginFailed) => throwError(action.payload)),
-    tap(() => {
+    switchMap((action: LoginFailed) => {
       this.navCtrl.navigateForward('/login');
-    })
-    ),
+      return throwError(action.payload)
+    })),
     { dispatch: false }
   )
 

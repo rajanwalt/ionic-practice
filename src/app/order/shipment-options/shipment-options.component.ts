@@ -29,7 +29,7 @@ export class ShipmentOptionsComponent implements OnInit {
         let [matchedCity] = shippingCharges.filter( data => data['city'] == order['city']);
         if(matchedCity)  {
           return {
-            type : "In-house Delivery",
+            type : "InHouseDelivery",
             charge : matchedCity['charge']
           }
         }
@@ -42,7 +42,7 @@ export class ShipmentOptionsComponent implements OnInit {
 
   
   defaultShipmentOption = {
-    type : "Customer Pickup",
+    type : "CustomerPickup",
     charge : "0"
   };
 

@@ -10,8 +10,8 @@
         "french" : "Français"
     },
     "login": {
-        "tabName" : "Nous saluons le retour",
-        "login" : "s'identifier",
+        "tabName" : "Bienvenue",
+        "login" : "S'identifier",
         "forgotPassword" : "Mot de passe oublié"
     },
     "createAccount" : {
@@ -58,7 +58,7 @@
         "paid" : "Payé",
         "CardPayment" : "Paiement par carte",
         "fulfillmentStatus" : "ÉTAT D'EXÉCUTION",
-        "Pending" : "En attente",
+        "Pending" : "En cours de traitement",
         "ReadyForDelivery" : "Prêt pour la livraison",
         "DeliveredToCustomer" : "Livré au client",
         "orderSummary" : "RÉCAPITULATIF DE LA COMMANDE",
@@ -153,14 +153,14 @@
         "vat": "TVA",
         "languages": "Langues",
         "logout": "Déconnexion",
-        "ChangeYourPassword" : "Changez votre mot de passe",
-        "NewPassword" : "nouveau mot de passe",
-        "ConfirmPassword" : "Confirmez le mot de passe",
+        "ChangeYourPassword" : "Changer votre mdp",
+        "NewPassword" : "Nouveau mot de passe",
+        "ConfirmPassword" : "Confimer le mot de passe",
         "UpdateProfile" : "Mettre à jour le profil"
     },
     "vat" : {
         "rate" : "Taux de TVA",
-        "text" : "Le montant des taxes dues par votre clients sera ajouté à chaque produit et affiché sur la facture.",
+        "text" : "Le montant des taxes dues par votre client sera ajouté à chaque référence et affiché sur la facture.",
         "trnText" : "Numéro d'enregistrement fiscal (TRN)",
         "trn" : "TRN"
     },
@@ -197,8 +197,8 @@
         "VAT" : "TVA",
         "SendInvoice" : "Total",
         "wantCantel" : "Êtes-vous sûr de vouloir annuler cette commande?",
-        "yesCancel" : "Oui, annulez-le",
-        "noCancel" : "Non, ne l'annule pas"
+        "yesCancel" : "Oui, annulez-la",
+        "noCancel" : "Non, ne l'annulez paz"
     },
     "common" : {
         "tabs" : {
@@ -215,9 +215,9 @@
             "edit" : "Modifier",
             "done" : "Ok",
             "cancel" : "Annuler",
-            "Next" : "Prochaine",
-            "Okay" : "d'accord",
-            "Dismiss" : "Rejeter",
+            "Next" : "Suivant",
+            "Okay" : "Ok",
+            "Dismiss" : "Annuler",
             "add" : "ajouter",
             "Save" : "sauvegarder",
             "apply" : "Appliquer"
@@ -243,6 +243,7 @@
             "ShippingDetails" : "Les détails d'expédition",
             "Fees" : "Honoraires",
             "Currency" : "Devise"
-        }
+        },
+        "months" : "Jan, Fév, Mars, Avril, Mai, Juin, Juillet, Août, Sept, Oct, Nov, Déc"
     }
 }

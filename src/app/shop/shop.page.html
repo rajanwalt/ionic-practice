@@ -47,7 +47,7 @@
             <ion-label position="stacked">Website</ion-label>
             <ion-input type="text" formControlName="website" name="website"></ion-input>
           </ion-item> -->
-         <div class="divider"></div>
+         <!-- <div class="divider"></div>
          <ion-list-header>
             <ion-text>
                 <h5>{{ 'shop.ShopDetails' | translate }} ({{ 'common.label.optional' | translate }}) </h5>
@@ -57,7 +57,7 @@
           <ion-item lines="none">
             <ion-label position="stacked">{{ 'shop.ShopDetails' | translate }}</ion-label>
             <ion-input type="text" formControlName="shopdetails" name="shopdetails"></ion-input>
-          </ion-item>
+          </ion-item> -->
          <div class="divider"></div>
          <ion-list-header>
                 <ion-text>
@@ -70,9 +70,10 @@
                     <ion-text>
                         <p>{{ 'common.label.address' | translate }}</p>
                         <p *ngIf="shopProfileForm.controls.country.value">
-                            <ion-text *ngIf="shopProfileForm.controls.street.value">{{shopProfileForm.controls.street.value}}, </ion-text>
-                            <ion-text *ngIf="shopProfileForm.controls.city.value">{{shopProfileForm.controls.city.value}}, </ion-text>
-                            <ion-text *ngIf="shopProfileForm.controls.country.value">{{shopProfileForm.controls.country.value}} </ion-text>
+                            <ion-text *ngIf="shopProfileForm.controls.street.value">{{shopProfileForm.controls.street.value}}</ion-text>
+                            <ion-text *ngIf="shopProfileForm.controls.city.value">,{{shopProfileForm.controls.city.value}}</ion-text>
+                            <ion-text *ngIf="shopProfileForm.controls.country.value">,{{shopProfileForm.controls.country.value}}</ion-text>
+                            <ion-text *ngIf="shopProfileForm.controls.postalcode.value">,{{shopProfileForm.controls.postalcode.value}}</ion-text>
                         </p>
                     </ion-text>
                 </ion-label>
@@ -90,7 +91,7 @@
                 </ion-list-header>
                 <ion-item lines="none">
                     <!-- <ion-label position="stacked" class="input-label">{{ 'catalogue.addItem.label.AdditionalDetails' | translate }} ({{ 'common.label.optional' | translate }}) </ion-label> -->
-                    <ion-textarea clearOnEdit="true" rows="6" cols="20" formControlName="refundExchangePolicy" name="refundExchangePolicy" ></ion-textarea>
+                    <ion-textarea clearOnEdit="true" rows="6" cols="20" formControlName="refundPolicy" name="refundPolicy" ></ion-textarea>
                 </ion-item>
           <!-- <div class="divider"></div> -->
           <!-- <div class="map-container" *ngIf="hasShopAddress">

@@ -2,13 +2,13 @@
     <ion-toolbar color="favorite" padding>
         <ion-buttons slot="start">
             <ion-button (click)="onDismiss()">
-              Cancel
+              {{ 'common.button.cancel' | translate }}
             </ion-button>
         </ion-buttons>
         <ion-title color="dark" mode="ios" >Custom delivery rate</ion-title>
         <ion-buttons slot="end">
           <ion-button (click)="onAddDeliveryRate()" [disabled]="!(deliveryRateForm.valid && deliveryRateForm.dirty)">
-            Add
+            {{ 'common.button.add' | translate }}
           </ion-button>
         </ion-buttons> 
     </ion-toolbar>
@@ -17,14 +17,14 @@
   <form [formGroup]="deliveryRateForm">
     <ion-list>
       <ion-item lines="none" [class.error]="!deliveryRateForm.controls.type.valid && (deliveryRateForm.controls.type.dirty || deliveryRateForm.controls.type.touched)"> 
-        <ion-label position="stacked">Name of delivery method</ion-label>
+        <ion-label position="stacked">{{ 'shipping.deliveryMethodName' | translate }}</ion-label>
         <ion-input formControlName="type" ></ion-input>
-        <ion-text class="warn-text"> Delivery method cannot be empty</ion-text>
+        <ion-text class="warn-text"> {{ 'shipping.deliveryMethod' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
       </ion-item>
 
       <ion-item lines="none" [class.error]="!deliveryRateForm.controls.charge.valid && (deliveryRateForm.controls.charge.dirty || deliveryRateForm.controls.charge.touched)">
         <ion-input formControlName="charge" ></ion-input>
-        <ion-text class="warn-text"> Charge cannot be empty</ion-text>
+        <ion-text class="warn-text"> {{ 'shipping.charge' | translate }} {{ 'common.label.cantEmpty' | translate }}</ion-text>
       </ion-item>
     </ion-list>
   </form>
