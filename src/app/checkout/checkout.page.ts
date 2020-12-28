@@ -149,8 +149,8 @@ export class CheckoutPage implements OnInit, OnDestroy {
 
     let payload = {
       id : this.orderId,
-      amount : this.total(order),
-      fee : this.total(order) * 0.05
+      amount : this.total(order).toFixed(2),
+      fee : (this.total(order) * 0.05).toFixed(2)
     }
 
     this.checkoutLinkSub = this.monekatService.checkout(payload).subscribe( data => {
